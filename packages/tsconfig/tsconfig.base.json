@@ -12,6 +12,5 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"alwaysStrict": true
-	},
-	"exclude": ["**/styled-system/**/*", "*.cjs"]
+	}
 }

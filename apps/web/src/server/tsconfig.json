@@ -1,0 +1,8 @@
+{
+	"extends": "../../.nuxt/tsconfig.server.json",
+	"compilerOptions": {
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"verbatimModuleSyntax": true
+	}
+}

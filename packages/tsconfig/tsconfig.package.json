@@ -1,0 +1,13 @@
+{
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"lib": ["esnext", "DOM", "DOM.Iterable"],
+		"moduleResolution": "node",
+		"module": "esnext",
+		"target": "esnext",
+		"isolatedModules": true,
+		// "preserveValueImports": true,
+		"verbatimModuleSyntax": true,
+		"noEmit": true
+	}
+}

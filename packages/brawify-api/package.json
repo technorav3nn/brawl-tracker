@@ -1,0 +1,24 @@
+{
+	"name": "@brawltracker/brawlify-api",
+	"version": "1.0.0",
+	"scripts": {
+		"build": "tsup src/index.ts --format esm,cjs --dts",
+		"test": "vitest run",
+		"lint": "eslint . --ext .ts"
+	},
+	"devDependencies": {
+		"tsup": "^6.7.0",
+		"typescript": "5.0.4",
+		"vitest": "^0.31.1"
+	},
+	"main": "./dist/index.js",
+	"source": "./src/index.ts",
+	"types": "./dist/index.d.ts",
+	"dependencies": {
+		"ofetch": "^1.3.3"
+	},
+	"volta": {
+		"extends": "../../package.json"
+	},
+	"packageManager": "yarn@3.6.3"
+}

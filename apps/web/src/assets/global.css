@@ -1,0 +1,5 @@
+@layer reset, base, tokens, recipes, utilities;
+:root {
+	--font-code: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Menlo", monospace;
+	--font-body: "Inter Variable", serif;
+}
