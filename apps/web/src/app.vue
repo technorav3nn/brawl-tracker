@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { token } from "$styled-system/tokens";
+import "uno.css";
+import "@unocss/reset/tailwind.css";
+
+if (process.client && process.dev) {
+	// @ts-expect-error virtual module
+	await import("virtual:unocss-devtools");
+}
 
 useFont([
 	{
 		src: "/fonts/inter-latin-wght-normal.woff2",
-		family: "Inter Variable",
+		family: "Inter",
 		weight: "100 900",
 		class: "font-inter-body",
 		preload: true,
@@ -14,8 +20,8 @@ useFont([
 </script>
 
 <template>
-	<div>
-		<NuxtLoadingIndicator :color="token('colors.accent.default')" />
+	<div class="font-sans border-border bg-background text-foreground">
+		<NuxtLoadingIndicator />
 		<NuxtLayout name="main">
 			<NuxtPage />
 		</NuxtLayout>
@@ -23,6 +29,13 @@ useFont([
 </template>
 
 <style>
+/* Global styles */
+html {
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: rgba(128, 128, 128, 0.5);
+	font-variation-settings: normal;
+}
+
 /* Slide fade transition */
 .page-enter-active,
 .page-leave-active {

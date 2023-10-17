@@ -16,7 +16,7 @@
 		"prettier": "^3.0.3",
 		"turbo": "latest"
 	},
-	"packageManager": "pnpm@8.6.10",
+	"packageManager": "pnpm@8.7.6",
 	"name": "brawl-tracker-pr-1",
 	"type": "module"
 }

@@ -5,10 +5,11 @@ import { createResolver } from "@nuxt/kit";
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
-	modules: ["@hypernym/nuxt-font", "@nuxtjs/color-mode", "@unocss/nuxt"],
+	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@hypernym/nuxt-font"],
+	css: ["$assets/global.css"],
 	srcDir: "src/",
 	alias: {
-		"$styled-system": resolve("./styled-system"),
+		$assets: resolve("./src/assets"),
 		$components: resolve("./src/components"),
 		$pages: resolve("./src/pages"),
 		$layouts: resolve("./src/layouts"),
@@ -39,13 +40,8 @@ export default defineNuxtConfig({
 	},
 	colorMode: {
 		dataValue: "color-scheme",
+		classSuffix: "",
 	},
-	postcss: {
-		plugins: {
-			"@pandacss/dev/postcss": {},
-		},
-	},
-	css: ["$/assets/global.css"],
 	hooks: {
 		"prepare:types": ({ tsConfig }) => {
 			const aliasesToRemoveFromAutocomplete = ["~~", "~~/*", "@@", "@@/*", "@/*", "@", "~/", "~/*"];

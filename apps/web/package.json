@@ -17,23 +17,33 @@
 		"@nuxt/kit": "^3.7.4",
 		"@nuxtjs/color-mode": "^3.3.0",
 		"@nuxtjs/eslint-config-typescript": "^12.1.0",
+		"@nuxtjs/tailwindcss": "^6.8.0",
 		"@pandacss/dev": "^0.15.5",
 		"@park-ui/presets": "^0.17.0",
 		"@unocss/nuxt": "^0.56.5",
+		"@unocss/preset-attributify": "^0.56.5",
+		"@unocss/preset-wind": "^0.56.5",
 		"eslint": "^8.51.0",
 		"eslint-config-neon": "^0.1.57",
 		"eslint-plugin-vue": "^9.17.0",
 		"nuxt": "^3.7.4",
 		"nuxt-font-loader": "^2.3.4",
+		"tailwindcss-animate": "^1.0.7",
+		"unocss": "^0.56.5",
 		"vue-eslint-parser": "^9.3.2"
 	},
 	"dependencies": {
 		"@ark-ui/vue": "^0.8.0",
-		"@brawltracker/brawlify-api": "workspace:*",
 		"@fontsource-variable/inter": "^5.0.8",
 		"@tabler/icons-vue": "^2.35.0",
+		"@unocss/reset": "^0.56.5",
 		"brawlstats": "^3.2.0",
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.0.0",
 		"node-cache": "^5.1.2",
-		"radix-vue": "^0.4.1"
-	}
+		"radix-vue": "^0.4.1",
+		"tailwind-merge": "^1.14.0",
+		"tailwind-variants": "^0.1.14"
+	},
+	"packageManager": "pnpm@8.7.6"
 }

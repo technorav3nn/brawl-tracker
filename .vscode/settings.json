@@ -1,7 +1,10 @@
 {
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ]
+	"eslint.workingDirectories": [
+		{
+			"mode": "auto"
+		}
+	],
+	"unocss.autocomplete.matchType": "fuzzy",
+	"unocss.colorPreview": false,
+	"unocss"
 }

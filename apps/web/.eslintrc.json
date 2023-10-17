@@ -1,10 +1,21 @@
 {
-	"extends": ["neon/vue", "neon/vue-typescript", "neon/common", "neon/prettier", "neon/node", "neon/browser"],
+	"extends": [
+		"neon/common",
+		"neon/node",
+		"neon/typescript",
+		"neon/prettier",
+		"neon/vue",
+		"neon/vue-typescript"
+	],
 	"parserOptions": {
 		"parser": "@typescript-eslint/parser"
 	},
 	"rules": {
+		"no-restricted-globals": "off",
+		"n/prefer-global/process": "off",
 		"vue/sort-keys": "off",
+		"vue/require-default-prop": "off",
+		"vue/no-empty-component-block": "off", // typescript in template
 		"vue/no-multiple-template-root": "off",
 		"vue/first-attribute-linebreak": "off",
 		"vue/require-emit-validator": "off",

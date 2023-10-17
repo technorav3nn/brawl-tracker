@@ -1,9 +1,5 @@
-<script setup lang="ts">
-import { Box } from "$styled-system/jsx";
-</script>
+<script setup lang="ts" />
 
 <template>
-	<Box>
-		<h1>Test</h1>
-	</Box>
+	<div class="text-lg font-extrabold text-center">Hello</div>
 </template>
