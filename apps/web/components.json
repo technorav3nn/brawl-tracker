@@ -3,13 +3,13 @@
 	"typescript": true,
 	"tailwind": {
 		"config": "tailwind.config.js",
-		"css": "assets/css/tailwind.css",
+		"css": "$assets/css/global.css",
 		"baseColor": "zinc",
 		"cssVariables": true
 	},
 	"framework": "nuxt",
 	"aliases": {
 		"components": "$components",
-		"utils": "$lib/util/class-names.ts"
+		"utils": "$lib/util/tailwind"
 	}
 }

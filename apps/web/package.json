@@ -20,6 +20,7 @@
 		"@nuxtjs/tailwindcss": "^6.8.0",
 		"@pandacss/dev": "^0.15.5",
 		"@park-ui/presets": "^0.17.0",
+		"@tailwindcss/typography": "^0.5.10",
 		"@unocss/nuxt": "^0.56.5",
 		"@unocss/preset-attributify": "^0.56.5",
 		"@unocss/preset-wind": "^0.56.5",
@@ -35,15 +36,19 @@
 	"dependencies": {
 		"@ark-ui/vue": "^0.8.0",
 		"@fontsource-variable/inter": "^5.0.8",
+		"@radix-icons/vue": "^1.0.0",
 		"@tabler/icons-vue": "^2.35.0",
 		"@unocss/reset": "^0.56.5",
 		"brawlstats": "^3.2.0",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
+		"dedent": "^1.5.1",
+		"lucide-vue-next": "^0.288.0",
 		"node-cache": "^5.1.2",
 		"radix-vue": "^0.4.1",
 		"tailwind-merge": "^1.14.0",
-		"tailwind-variants": "^0.1.14"
+		"tailwind-variants": "^0.1.14",
+		"vue-command-palette": "^0.2.3"
 	},
 	"packageManager": "pnpm@8.7.6"
 }

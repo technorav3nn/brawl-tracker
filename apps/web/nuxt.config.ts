@@ -6,7 +6,6 @@ const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
 	modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@hypernym/nuxt-font"],
-	css: ["$assets/global.css"],
 	srcDir: "src/",
 	alias: {
 		$assets: resolve("./src/assets"),
@@ -17,6 +16,7 @@ export default defineNuxtConfig({
 		$lib: resolve("./src/lib"),
 		$: resolve("./src"),
 	},
+	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
 	routeRules: {
 		"/": { static: true },
 	},
@@ -26,11 +26,9 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
 	},
-	components: {
-		dirs: [],
-	},
 	experimental: {
 		typedPages: true,
+		componentIslands: true,
 	},
 	devtools: {
 		enabled: true,
@@ -39,8 +37,9 @@ export default defineNuxtConfig({
 		autoImport: true,
 	},
 	colorMode: {
-		dataValue: "color-scheme",
 		classSuffix: "",
+		preference: "system",
+		fallback: "dark",
 	},
 	hooks: {
 		"prepare:types": ({ tsConfig }) => {

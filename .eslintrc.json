@@ -5,7 +5,6 @@
 		"project": ["tsconfig.eslint.json", "./apps/*/tsconfig.eslint.json"]
 	},
 	"rules": {
-		"comma-dangle": ["error", "never"],
 		"id-length": "off",
 		"import/newline-after-import": "off",
 		"import/extensions": "off",

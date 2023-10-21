@@ -4,7 +4,15 @@
 			"mode": "auto"
 		}
 	],
-	"unocss.autocomplete.matchType": "fuzzy",
-	"unocss.colorPreview": false,
-	"unocss"
+	"editor.quickSuggestions": {
+		"strings": "on"
+	},
+	"css.lint.unknownAtRules": "ignore",
+	"tailwindCSS.experimental.classRegex": [
+		["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["clsx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["tw\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+	]
 }

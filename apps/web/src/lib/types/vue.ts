@@ -1,5 +1,8 @@
 import type { AllowedComponentProps, Component, FunctionalComponent, VNodeProps } from "vue";
 
+export type ComponentProps<T extends new () => any> = InstanceType<T>["$props"];
+export type ComponentEmits<T extends new () => any> = InstanceType<T>["$emit"];
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type VueSfcComponentProps<C extends Component> = C extends new (...args: any) => any
 	? Omit<InstanceType<C>["$props"], keyof AllowedComponentProps | keyof VNodeProps>
@@ -19,14 +22,8 @@ export type ExtendProps<Props> = RemoveDynamicKeys<
 	}>
 >;
 
-export type FunctionalComponentProps<T> = T extends FunctionalComponent<infer Props>
-	? Props
-	: never;
+export type FunctionalComponentProps<T> = T extends FunctionalComponent<infer Props> ? Props : never;
 
 type RemoveDynamicKeys<T> = {
-	[K in keyof T as string extends K
-		? never
-		: K extends number | typeof Symbol.iterator
-		? never
-		: K]: T[K];
+	[K in keyof T as string extends K ? never : K extends number | typeof Symbol.iterator ? never : K]: T[K];
 };

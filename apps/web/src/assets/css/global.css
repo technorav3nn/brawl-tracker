@@ -1,0 +1,10 @@
+html {
+	-webkit-text-size-adjust: 100%;
+	font-variation-settings: normal;
+}
+body {
+	@apply bg-background text-foreground;
+	font-feature-settings:
+		"rlig" 1,
+		"calt" 1;
+}

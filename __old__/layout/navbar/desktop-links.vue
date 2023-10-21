@@ -23,7 +23,7 @@ const route = useRoute();
 		"
 		href="/"
 	>
-		<IconStar :size="30" :strokeWidth="2.1" />
+		<IconStar class="w-2 h-2" :strokeWidth="2.1" />
 		BrawlTrack
 	</NuxtLink>
 	<HStack :display="{ base: 'none', lg: 'flex' }" gap="8">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cn } from "$lib/util/class-names";
+import { cn } from "$lib/util/tailwind";
 import { buttonVariants } from "./index";
 
 interface Props {
@@ -11,6 +11,8 @@ interface Props {
 withDefaults(defineProps<Props>(), {
 	as: "button",
 });
+
+defineEmits(["click"]);
 </script>
 
 <template>
