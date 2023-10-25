@@ -11,8 +11,6 @@ interface Props {
 withDefaults(defineProps<Props>(), {
 	as: "button",
 });
-
-defineEmits(["click"]);
 </script>
 
 <template>

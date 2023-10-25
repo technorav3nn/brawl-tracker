@@ -1,4 +1,6 @@
-<script setup>
+<script setup lang="ts">
+const colorMode = useColorMode();
+
 useFont([
 	{
 		src: "/fonts/inter-latin-wght-normal.woff2",
@@ -13,14 +15,18 @@ useHead({
 	bodyAttrs: { class: "min-h-screen bg-background font-sans antialiased" },
 });
 
-$fetch("https://json.com", {
-	method: "",
-});
+watch(
+	() => colorMode.value,
+	() => {
+		if (process.browser) document.documentElement.style.setProperty("color-scheme", colorMode.value);
+	},
+	{ immediate: true }
+);
 </script>
 
 <template>
 	<main>
-		<NuxtLayout name="main">
+		<NuxtLayout name="default">
 			<NuxtPage />
 		</NuxtLayout>
 	</main>

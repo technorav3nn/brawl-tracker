@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import { HEADER_ITEMS } from "$lib/config";
+import { LINKS } from "$lib/config";
 </script>
 
 <template>
-	<a
-		v-for="item in HEADER_ITEMS"
+	<NuxtLink
+		v-for="item in LINKS"
 		:key="item.path"
 		:href="item.path"
-		class="hidden text-sm font-medium text-foreground/60 transition-colors hover:text-foreground/80 md:inline-block"
+		class="text-sm/6 font-medium text-foreground/60 transition-colors hover:text-foreground/80"
+		activeClass="link-active"
 	>
 		{{ item.label }}
-	</a>
+	</NuxtLink>
 </template>
+
+<style scoped>
+.link-active {
+	@apply text-foreground/[0.87];
+}
+</style>

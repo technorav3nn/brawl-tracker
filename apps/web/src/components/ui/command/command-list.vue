@@ -18,6 +18,8 @@ const forwarded = useForwardPropsEmits(props, emits);
 		v-bind="forwarded"
 		:class="cn('max-h-[300px] overflow-y-auto overflow-x-hidden', $attrs.class ?? '')"
 	>
-		<slot />
+		<div role="presentation">
+			<slot />
+		</div>
 	</ComboboxContent>
 </template>
