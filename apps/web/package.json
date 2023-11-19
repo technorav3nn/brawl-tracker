@@ -29,7 +29,7 @@
 		"vue-eslint-parser": "^9.3.2"
 	},
 	"dependencies": {
-		"@brawltracker/brawlify-api": "workspace:*",
+		"@brawltracker/brawl-api": "workspace:*",
 		"@fontsource-variable/inter": "^5.0.8",
 		"@radix-icons/vue": "^1.0.0",
 		"@sapphire/duration": "^1.1.0",

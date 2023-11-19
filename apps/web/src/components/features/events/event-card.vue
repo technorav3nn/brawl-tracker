@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BrawlApiEvent } from "@brawltracker/brawlify-api";
+import type { BrawlApiEvent } from "@brawltracker/brawl-api";
 import { DurationFormatter } from "@sapphire/duration";
 import { Image } from "@unpic/vue";
 import { ChevronRight, Clock } from "lucide-vue-next";

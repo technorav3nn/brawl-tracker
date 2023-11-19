@@ -51,6 +51,13 @@ export interface BrawlApiEvents {
 	upcoming: BrawlApiEvent[];
 }
 
+export type BrawlApiLeagueEvent = BrawlApiEvent;
+
+export interface BrawlApiLeagueEventsResponse {
+	active: BrawlApiLeagueEvent[];
+	upcoming: [];
+}
+
 export interface BrawlApiMapBrawlerStats {
 	brawler: string;
 	starRate: number;
@@ -108,16 +115,28 @@ export interface BrawlApiEvent {
 	teamStats: BrawlApiEventTeamStats[];
 }
 
-export interface BrawlApiIcon {
+export interface BrawlApiPlayerIcon {
+	// This should only be a number but the api currently returns null
 	brawler: number | null;
 	id: number;
 	imageUrl: string;
 	imageUrl2: string;
+	isAvailableForOffers: boolean;
+	isReward: boolean;
+	name: string;
+	name2: string;
+	requiredTotalTrophies: number;
+	sortOrder: number;
+}
+
+export interface BrawlApiClubIcon {
+	id: number;
+	imageUrl: string;
 }
 
 export interface BrawlApiIconsResponse {
-	club: BrawlApiIcon[];
-	player: BrawlApiIcon[];
+	club: Record<string, BrawlApiClubIcon>;
+	player: Record<string, BrawlApiPlayerIcon>;
 }
 
 export interface BrawlApiMaps {
@@ -145,7 +164,7 @@ export interface BrawlApiMap {
 	name: string;
 	new: boolean;
 	stats: BrawlApiMapBrawlerStats[];
-	teamStats: BrawlApiEventTeamStats[];
+	teamStats: BrawlApiEventTeamStats[] | [];
 	version: number;
 }
 
@@ -214,6 +233,14 @@ export interface BrawlApiClubHistory {
 	type: string;
 }
 
+export interface BrawlApiLocation {
+	clubs: boolean;
+	hash: string;
+	hash2: string;
+	name: string;
+	players: boolean;
+}
+
 export type BrawlerRating = 1 | 2 | 3 | 4 | 5;
 
 export interface CsvBrawler {
@@ -222,5 +249,65 @@ export interface CsvBrawler {
 	OffenseRating: BrawlerRating;
 	Speed: number;
 	UtilityRating: BrawlerRating;
+	id: number;
+}
+
+export interface CsvSkinCampaign {
+	BgItemName: string;
+	BgOfferPopup: string;
+	BundledUnderCatalogCategory: string | null;
+	CampaignIconExportName: string;
+	CatalogDescriptionTID: string | null;
+	CatalogNameOverrideTID: string | null;
+	CatalogSortingOrder: number;
+	DisabledFromCatalog: boolean;
+	EmoteBundleName: string | null;
+	InfoTID: string | null;
+	Name: string;
+	NameTID: string;
+	ShowInCatalogCollectionsSection: boolean;
+	SkinBuyRequiresExclusiveOption: boolean;
+	id: number;
+}
+
+export interface CsvSkin {
+	BattleIntroVFX: boolean;
+	BattleIntroXOffset: number;
+	BattleIntroZOffset: number;
+	BlueSpecular: string;
+	BlueTexture: string;
+	Campaigns: string[] | string;
+	CatalogNewDaysAdjustment: number;
+	CatalogPreRequirementSkin: string | null;
+	CommunityCredit: string | null;
+	Conf: string;
+	DisableCatalogRelease: boolean;
+	Disabled: boolean;
+	DiscountPriceGems: number;
+	Features: string;
+	IconOverride: string | null;
+	LastChance: boolean;
+	MasterSkin: string | null;
+	MaterialsFile: string | null;
+	Name: string;
+	// Couldn't find any use of this
+	NotInCatalogTID: null;
+	ObtainType: number;
+	ObtainTypeCN: number;
+	OutlineShader: null;
+	PackOfferAnimOverride: string | null;
+	PetSkin: string | null;
+	PetSkin2: string | null;
+	PriceBling: number | null;
+	PriceClubCoins: number | null;
+	PriceCoins: number | null;
+	PriceGems: number | null;
+	PriceStarPoints: number | null;
+	Rarity: string | null;
+	RedSpecular: string;
+	RedTexture: string;
+	ShopTID: string | null;
+	SkinGroupId: number;
+	TID: string | null;
 	id: number;
 }

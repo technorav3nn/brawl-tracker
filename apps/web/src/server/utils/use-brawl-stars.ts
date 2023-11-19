@@ -1,4 +1,4 @@
-import { brawlApi } from "@brawltracker/brawlify-api";
+import { brawlApi } from "@brawltracker/brawl-api";
 import { Client } from "brawlstats";
 import { singleton } from "$lib/util/common";
 
@@ -9,7 +9,7 @@ const brawlStarsApiClient = singleton(
 	})
 )!;
 
-const brawlApiClient = singleton("brawlify-api-client", brawlApi)!;
+const brawlApiClient = singleton("brawl-api-client", brawlApi)!;
 
 export function useBrawlStarsApi() {
 	return brawlStarsApiClient;

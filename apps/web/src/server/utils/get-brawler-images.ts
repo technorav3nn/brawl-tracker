@@ -1,4 +1,4 @@
-import type { BrawlApiBrawler } from "@brawltracker/brawlify-api";
+import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
 
 export type BrawlApiBrawlerWithOnlyImages = Pick<
 	BrawlApiBrawler,

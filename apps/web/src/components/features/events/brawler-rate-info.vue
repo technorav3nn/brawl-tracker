@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BrawlApiEvent } from "@brawltracker/brawlify-api";
+import type { BrawlApiEvent } from "@brawltracker/brawl-api";
 import type { BrawlApiBrawlerWithOnlyImages } from "$server/utils/get-brawler-images";
 
 const props = defineProps<{ event: BrawlApiEvent; images: Record<string, BrawlApiBrawlerWithOnlyImages> }>();

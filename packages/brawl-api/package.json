@@ -1,9 +1,10 @@
 {
-	"name": "@brawltracker/brawlify-api",
+	"name": "@brawltracker/brawl-api",
 	"version": "1.0.0",
 	"scripts": {
-		"build": "tsup src/index.ts --format esm,cjs --dts",
-		"test": "vitest run",
+		"build": "tsup",
+		"test:run": "vitest run",
+		"test:watch": "vitest watch",
 		"lint": "eslint . --ext .ts"
 	},
 	"devDependencies": {
@@ -19,6 +20,5 @@
 	},
 	"volta": {
 		"extends": "../../package.json"
-	},
-	"packageManager": "yarn@3.6.3"
+	}
 }
