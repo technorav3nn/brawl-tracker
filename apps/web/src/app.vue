@@ -26,21 +26,23 @@ watch(
 
 <template>
 	<main>
+		<NuxtLoadingIndicator color="hsl(var(--primary))" />
 		<NuxtLayout name="default">
+			<VitePwaManifest />
+
 			<NuxtPage />
 		</NuxtLayout>
 	</main>
 </template>
 
 <style>
-/* Slide fade transition, off for now */
-/* .page-enter-active,
-.page-leave-active {
-	transition: all 0.15s;
+/* .tabs-leave-active,
+.tabs-enter-active {
+	transition: all 200ms cubic-bezier(0.5, 0.7, 0.1, 1);
 }
-.page-enter-from,
-.page-leave-to {
+.tabs-enter-from,
+.tabs-leave-to {
 	opacity: 0;
-	transform: translateY(7px);
+	transform: translateY(8px);
 } */
 </style>

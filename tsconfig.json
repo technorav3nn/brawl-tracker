@@ -11,7 +11,8 @@
 		"noUncheckedIndexedAccess": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"alwaysStrict": true
+		"alwaysStrict": true,
+		"moduleResolution": "NodeNext"
 	},
 	"exclude": ["**/styled-system/**/*", "*.cjs"]
 }

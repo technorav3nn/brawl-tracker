@@ -9,6 +9,7 @@ import { LINKS } from "$lib/config";
 		:href="item.path"
 		class="text-sm/6 font-medium text-foreground/60 transition-colors hover:text-foreground/80"
 		activeClass="link-active"
+		prefetch
 	>
 		{{ item.label }}
 	</NuxtLink>

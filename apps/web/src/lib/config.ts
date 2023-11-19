@@ -2,7 +2,7 @@ import { HomeIcon, TrophyIcon, CalendarIcon, ShieldIcon, SwordsIcon } from "luci
 
 export const LINKS = [
 	{ label: "Brawlers", path: "/brawlers", icon: SwordsIcon },
-	{ label: "Events", path: "/events", icon: CalendarIcon },
+	{ label: "Events", path: "/events/current", icon: CalendarIcon },
 	{ label: "Clubs", path: "/test", icon: ShieldIcon },
 	{ label: "Leaders", path: "/leaderboards", icon: TrophyIcon },
 ] as const;

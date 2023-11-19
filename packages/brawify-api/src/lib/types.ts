@@ -51,6 +51,13 @@ export interface BrawlApiEvents {
 	upcoming: BrawlApiEvent[];
 }
 
+export interface BrawlApiMapBrawlerStats {
+	brawler: string;
+	starRate: number;
+	useRate: number;
+	winRate: number;
+}
+
 export interface BrawlApiEventStats {
 	brawler1: number;
 	brawler2: number;
@@ -137,8 +144,8 @@ export interface BrawlApiMap {
 	link: string;
 	name: string;
 	new: boolean;
-	stats: [];
-	teamStats: [];
+	stats: BrawlApiMapBrawlerStats[];
+	teamStats: BrawlApiEventTeamStats[];
 	version: number;
 }
 

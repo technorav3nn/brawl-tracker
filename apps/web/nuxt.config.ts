@@ -5,64 +5,112 @@ import { createResolver } from "@nuxt/kit";
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
-				modules: ["@nuxtjs/color-mode", "@nuxtjs/tailwindcss", "@hypernym/nuxt-font", "@vueuse/nuxt", "@nuxt/ui"],
-				srcDir: "src/",
-				alias: {
-								$assets: resolve("./src/assets"),
-								$components: resolve("./src/components"),
-								$pages: resolve("./src/pages"),
-								$layouts: resolve("./src/layouts"),
-								$composables: resolve("./src/hooks"),
-								$lib: resolve("./src/lib"),
-								$: resolve("./src"),
+	modules: [
+		"@nuxt/image",
+		"@nuxtjs/color-mode",
+		"@nuxtjs/tailwindcss",
+		"@hypernym/nuxt-font",
+		"@vueuse/nuxt",
+		"@vite-pwa/nuxt",
+	],
+	srcDir: "src/",
+	app: {
+		head: {
+			// eslint-disable-next-line unicorn/text-encoding-identifier-case
+			charset: "utf-8",
+			viewport: "width=device-width, initial-scale=1",
+			title: "BrawlTrack",
+			htmlAttrs: { lang: "en" },
+			titleTemplate: (title) => (title ? `${title} - BrawlTrack` : "BrawlTrack"),
+			meta: [
+				{ name: "viewport", content: "width=device-width, initial-scale=1" },
+				{ name: "theme-color", content: "#000000" },
+				{
+					name: "description",
+					content: "BrawlTrack is a website that allows you to track your Brawl Stars profile.",
 				},
-				components: [
-								{
-												path: "$components/ui",
-												// this is required else Nuxt will autoImport `.ts` file
-												extensions: [".vue"],
-												// prefix for your components, eg: UiButton
-												prefix: "Ui",
-								},
-								{
-												path: "$components",
-												extensions: ["vue"],
-								},
-				],
-				css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
-				routeRules: {
-								"/": { static: true },
+				{ name: "og:title", content: "BrawlTrack" },
+				{
+					name: "og:description",
+					content: "BrawlTrack is a website that allows you to track your Brawl Stars profile.",
 				},
-				app: {
-								pageTransition: { name: "page", mode: "out-in" },
-				},
-				runtimeConfig: {
-								brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
-				},
-				experimental: {
-								typedPages: true,
-								componentIslands: true,
-				},
-				devtools: {
-								enabled: true,
-				},
-				font: {
-								autoImport: true,
-				},
-				colorMode: {
-								classSuffix: "",
-								preference: "system",
-								fallback: "dark",
-				},
-				hooks: {
-								"prepare:types": ({ tsConfig }) => {
-												const aliasesToRemoveFromAutocomplete = ["~~", "~~/*", "@@", "@@/*", "@/*", "@", "~/", "~/*"];
-												for (const alias of aliasesToRemoveFromAutocomplete) {
-																if (tsConfig.compilerOptions?.paths[alias]) {
-																				// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
-																				delete tsConfig.compilerOptions!.paths[alias];
-																}
-												}
-								},
-				},
+			],
+		},
+	},
+	experimental: {
+		typedPages: true,
+		asyncContext: true,
+	},
+	image: {
+		domains: ["cdn-old.brawlify.com", "images.unsplash.com"],
+	},
+	devtools: {
+		enabled: true,
+	},
+	font: {
+		autoImport: true,
+	},
+	colorMode: {
+		classSuffix: "",
+		preference: "system",
+		fallback: "dark",
+	},
+	pwa: {
+		registerType: "autoUpdate",
+		manifest: {
+			name: "BrawlTrack",
+			short_name: "BrawlTrack",
+			theme_color: "#f3a812",
+		},
+		workbox: {
+			globPatterns: ["**/*.{js,css,html,png,svg,ico,woff2}"],
+			navigateFallback: null,
+		},
+		client: {
+			installPrompt: true,
+			periodicSyncForUpdates: 20,
+		},
+		devOptions: {
+			enabled: false,
+			type: "module",
+		},
+	},
+	alias: {
+		$assets: resolve("./src/assets"),
+		$components: resolve("./src/components"),
+		$pages: resolve("./src/pages"),
+		$layouts: resolve("./src/layouts"),
+		$server: resolve("./src/server"),
+		$composables: resolve("./src/hooks"),
+		$lib: resolve("./src/lib"),
+		$: resolve("./src"),
+	},
+	components: [
+		{
+			path: "$components/ui",
+			extensions: [".vue"],
+			prefix: "Ui",
+		},
+		{
+			path: "$components",
+			extensions: ["vue"],
+		},
+		{ path: "$components/features", extensions: [".vue"], prefix: "" },
+	],
+	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
+	runtimeConfig: {
+		brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
+	},
+
+	hooks: {
+		"prepare:types": ({ tsConfig }) => {
+			const aliasesToRemoveFromAutocomplete = ["~~", "~~/*", "@@", "@@/*", "@/*", "@", "~/", "~/*"];
+			for (const alias of aliasesToRemoveFromAutocomplete) {
+				if (tsConfig.compilerOptions?.paths[alias]) {
+					// eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+					delete tsConfig.compilerOptions!.paths[alias];
+				}
+			}
+		},
+	},
 });

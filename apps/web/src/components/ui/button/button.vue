@@ -1,21 +1,22 @@
 <script setup lang="ts">
+import { Primitive } from "radix-vue";
+import type { PrimitiveProps } from "radix-vue/dist/Primitive/Primitive";
 import { cn } from "$lib/util/tailwind";
 import { buttonVariants } from "./index";
 
-interface Props {
+type Props = {
 	variant?: NonNullable<Parameters<typeof buttonVariants>[0]>["variant"];
 	size?: NonNullable<Parameters<typeof buttonVariants>[0]>["size"];
-	as?: string;
-}
+} & PrimitiveProps;
 
-withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
 	as: "button",
 });
 </script>
 
 <template>
-	<component
-		:is="as"
+	<Primitive
+		v-bind="props"
 		:class="
 			cn(
 				buttonVariants({
@@ -27,5 +28,5 @@ withDefaults(defineProps<Props>(), {
 		"
 	>
 		<slot />
-	</component>
+	</Primitive>
 </template>

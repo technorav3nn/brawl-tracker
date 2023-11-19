@@ -1,15 +1,17 @@
-import type { WatchSource } from "vue";
+/* eslint-disable unicorn/template-indent */
 import dedent from "dedent";
+import type { WatchSource } from "vue";
 
 /**
  * Disables CSS transitions when `source` changes.
+ *
  * @param source - The Vue source to watch
  */
 export function useDisableCssTransitions<T>(source: WatchSource<T>) {
 	onMounted(() =>
 		watch(source, () => {
 			const css = document.createElement("style");
-			css.dataset["info"] = "disable-css-transitions";
+			css.dataset.info = "disable-css-transitions";
 
 			const node = document.createTextNode(dedent`* {
 			-webkit-transition: none !important;
