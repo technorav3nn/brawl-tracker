@@ -19,13 +19,15 @@ describe("Brawl API", () => {
 
 	describe("/events endpoint", () => {
 		test("GIVEN event rotation api call THEN should not throw", async () => {
-			expect(await brawlApi.events.getEventRotation()).not.toThrow();
+			const rotation = await brawlApi.events.getEventRotation();
+			expect(rotation.active.length).toBeGreaterThan(0);
 		});
 	});
 
 	describe("/maps endpoint", () => {
 		test("GIVEN all maps api call THEN should not throw", async () => {
-			expect(await brawlApi.maps.getAllMaps()).not.toThrow();
+			const maps = await brawlApi.maps.getAllMaps();
+			expect(maps.list.length).toBeGreaterThan(0);
 		});
 		test("GIVEN valid map id THEN returns map", async () => {
 			const map = await brawlApi.maps.getMapById(15000026);
@@ -35,7 +37,8 @@ describe("Brawl API", () => {
 
 	describe("/gamemodes endpoint", () => {
 		test("GIVEN all gamemodes api call THEN should not throw", async () => {
-			expect(await brawlApi.gamemodes.getAllGamemodes()).not.toThrow();
+			const gamemodes = await brawlApi.gamemodes.getAllGamemodes();
+			expect(gamemodes.list.length).toBeGreaterThan(0);
 		});
 		test("GIVEN valid gamemode id THEN returns gamemode", async () => {
 			const gamemode = await brawlApi.gamemodes.getGamemodeById(15);
