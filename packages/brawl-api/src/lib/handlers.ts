@@ -31,8 +31,8 @@ export const maps = {
 };
 
 export const gamemodes = {
-	getAllGamemodes: createApiHandler<BrawlApiGameMode>("/gamemodes"),
-	getGamemodeById: createApiHandler<BrawlApiGameModes, [id: number | string]>(
+	getAllGamemodes: createApiHandler<BrawlApiGameModes>("/gamemodes"),
+	getGamemodeById: createApiHandler<BrawlApiGameMode, [id: number | string]>(
 		(id: number | string) => `/gamemodes/${id}`
 	),
 };

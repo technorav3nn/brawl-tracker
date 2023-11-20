@@ -3,5 +3,5 @@
 	"compilerOptions": {
 		"allowJs": true
 	},
-	"include": ["*.ts", "*.tsx", "*.js", "*.cjs", "*.mjs", "src", "__tests__", "*.vue", "theme"]
+	"include": ["src/**/*.ts", "src/**/*.js", "*.config.ts", "__tests__/**/*.ts"]
 }

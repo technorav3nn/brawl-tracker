@@ -2,8 +2,18 @@
 	"root": true,
 	"extends": ["neon/common", "neon/node", "neon/typescript", "neon/prettier"],
 	"parserOptions": {
-		"project": ["tsconfig.eslint.json", "./apps/*/tsconfig.eslint.json"]
+		"project": ["tsconfig.eslint.json", "./apps/*/tsconfig.eslint.json", "./packages/*/tsconfig.eslint.json"]
 	},
+	"ignorePatterns": [
+		"**/node_modules/",
+		".git/",
+		"**/dist/",
+		"**/template/",
+		"**/coverage/",
+		"**/storybook-static/",
+		"**/.next/",
+		"packages/discord.js/"
+	],
 	"rules": {
 		"id-length": "off",
 		"import/newline-after-import": "off",
