@@ -1,6 +1,6 @@
 {
 	"name": "@brawltracker/brawl-api",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"scripts": {
 		"build": "tsup",
 		"test:run": "vitest run",
