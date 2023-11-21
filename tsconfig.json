@@ -12,7 +12,7 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"alwaysStrict": true,
-		"moduleResolution": "NodeNext"
+		"moduleResolution": "Bundler"
 	},
 	"exclude": ["**/styled-system/**/*", "*.cjs"]
 }

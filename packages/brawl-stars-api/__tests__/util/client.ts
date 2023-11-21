@@ -1,0 +1,8 @@
+import { BrawlStarsClient } from "../../src";
+import { singleton } from "./index";
+
+// I don't care about the API key since you can't do anything with it
+const token =
+	"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6ImRmMzNkYjgzLWY4N2YtNDVjNi1iMGU0LTcwZDA0ZWQwYjU4NCIsImlhdCI6MTcwMDYwMzY5NCwic3ViIjoiZGV2ZWxvcGVyLzYzYTI2NjI5LWRlMGUtYjM0Zi0zNjUxLTMzMTY4ZDM1N2ZhZSIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiMTczLjc2LjEyMi4yMTkiLCIxMDguMjYuMjM4LjE1NSIsIjQ1Ljc5LjIxOC43OSJdLCJ0eXBlIjoiY2xpZW50In1dfQ.oKvb-zx9ARIyiGc5iIlAL3YWKMkiakKLnLgvnRjrg-1rvEmLvnsu9z6wNarTnqtZ2wIGu6_4Ez8QH4iC1K84yA";
+
+export const client = singleton("brawlStarsClient", new BrawlStarsClient(token));
