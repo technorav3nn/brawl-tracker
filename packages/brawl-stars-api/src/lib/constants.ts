@@ -1,1 +1,1 @@
-export const API_BASE_URL = "https://api.brawlstars.com/v1";
+export const API_BASE_URL = "https://bsproxy.royaleapi.dev/v1";
