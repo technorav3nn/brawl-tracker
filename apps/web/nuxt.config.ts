@@ -5,6 +5,9 @@ import { createResolver } from "@nuxt/kit";
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
+	nitro: {
+		preset: "vercel-edge",
+	},
 	modules: [
 		"@nuxt/image",
 		"@nuxtjs/color-mode",
