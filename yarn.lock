@@ -1513,6 +1513,28 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@brawltracker/brawl-stars-api@workspace:packages/brawl-stars-api":
+  version: 0.0.0-use.local
+  resolution: "@brawltracker/brawl-stars-api@workspace:packages/brawl-stars-api"
+  dependencies:
+    "@brawltracker/supercell-api-utils": "workspace:*"
+    ofetch: ^1.3.3
+    tsup: ^6.7.0
+    typescript: 5.0.4
+    vitest: ^0.31.1
+  languageName: unknown
+  linkType: soft
+
+"@brawltracker/supercell-api-utils@workspace:*, @brawltracker/supercell-api-utils@workspace:packages/supercell-api-utils":
+  version: 0.0.0-use.local
+  resolution: "@brawltracker/supercell-api-utils@workspace:packages/supercell-api-utils"
+  dependencies:
+    tsup: ^6.7.0
+    typescript: 5.0.4
+    vitest: ^0.31.1
+  languageName: unknown
+  linkType: soft
+
 "@brawltracker/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
   resolution: "@brawltracker/tsconfig@workspace:packages/tsconfig"
