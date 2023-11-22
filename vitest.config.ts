@@ -6,6 +6,7 @@ export default defineConfig({
 		passWithNoTests: true,
 		coverage: {
 			enabled: true,
+			all: true,
 			reporter: ["text", "json-summary", "json"],
 			include: ["src"],
 			exclude: [
