@@ -1,11 +1,3 @@
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
-dist
-
 # Node dependencies
 node_modules
 
@@ -18,17 +10,6 @@ logs
 .fleet
 .idea
 
-# Local env files
-.env
-.env.*
-!.env.example
-
-# Turbo
-.turbo
-
-# Panda CSS
-styled-system
-
 # Yarn
 .yarn/*
 !.yarn/cache
@@ -37,6 +18,3 @@ styled-system
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-
-token.json
-.vercel

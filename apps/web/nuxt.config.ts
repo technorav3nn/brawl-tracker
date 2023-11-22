@@ -6,7 +6,7 @@ const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
 	nitro: {
-		preset: "vercel-edge",
+		preset: "vercel",
 	},
 	modules: [
 		"@nuxt/image",
