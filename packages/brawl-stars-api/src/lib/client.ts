@@ -1,6 +1,8 @@
 import { ofetch } from "ofetch";
 import type { FetchContext, $Fetch, FetchResponse } from "ofetch";
 import { BrawlersApi } from "./api/brawlers";
+import { ClubsApi } from "./api/clubs";
+import { EventsApi } from "./api/events";
 import { PlayersApi } from "./api/players";
 import { API_BASE_URL } from "./constants";
 import { SupercellAPIClientError } from "./errors";
@@ -15,6 +17,8 @@ export class BrawlStarsClient {
 
 	public brawlers: BrawlersApi;
 	public players: PlayersApi;
+	public events: EventsApi;
+	public clubs: ClubsApi;
 
 	public constructor(token: string) {
 		this.$fetch = ofetch.create({
@@ -27,6 +31,8 @@ export class BrawlStarsClient {
 
 		this.brawlers = new BrawlersApi(this.$fetch);
 		this.players = new PlayersApi(this.$fetch);
+		this.events = new EventsApi(this.$fetch);
+		this.clubs = new ClubsApi(this.$fetch);
 	}
 
 	private async onResponse({ response, error }: FetchContextError) {

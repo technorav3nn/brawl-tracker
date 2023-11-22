@@ -4,6 +4,13 @@ export interface Event {
 	mode: GameModes;
 }
 
+export interface EventRotationItem<T = Date> {
+	endTime: T;
+	event: Event;
+	slotId: number;
+	startTime: T;
+}
+
 export type GameModes =
 	| "basketBrawl"
 	| "bigGame"
