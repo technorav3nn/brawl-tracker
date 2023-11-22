@@ -1,5 +1,11 @@
 # @brawltracker/supercell-api-utils
 
+## 1.1.4
+
+### Patch Changes
+
+- fix published versions not having source
+
 ## 1.1.3
 
 ### Patch Changes
