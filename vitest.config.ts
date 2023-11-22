@@ -2,13 +2,11 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
 	test: {
-		exclude: ["**/node_modules", "**/dist", ".idea", ".git", ".cache"],
+		exclude: ["**/node_modules", "**/dist", ".idea", ".git", ".cache", ".yarn"],
 		passWithNoTests: true,
 		coverage: {
 			enabled: true,
-			all: true,
 			reporter: ["text", "json-summary", "json"],
-			include: ["src"],
 			exclude: [
 				// All ts files that only contain types, due to ALL
 				"**/*.{interface,type,d}.ts",
@@ -17,6 +15,8 @@ export default defineConfig({
 				"**/index.{js,ts}",
 				// All exports files that make subpackages available as submodules
 				"**/exports/*.{js,ts}",
+				// Config files
+				"**/**{config}.{js,ts}",
 			],
 		},
 	},

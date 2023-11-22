@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { type BrawlApiFetchError, brawlApi } from "../dist";
+import { type BrawlApiFetchError, brawlApi } from "../src";
 
 describe("Brawl API", () => {
 	describe("/brawlers endpoint", () => {
