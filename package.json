@@ -3,6 +3,7 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev",
 		"lint": "turbo run lint",
+		"generate": "turbo run generate",
 		"test": "vitest run",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"ci": "vitest run && turbo run format && turbo run lint",

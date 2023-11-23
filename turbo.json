@@ -20,6 +20,9 @@
 			"dependsOn": ["^build"],
 			"cache": false,
 			"persistent": true
+		},
+		"generate": {
+			"outputs": ["dist/**"]
 		}
 	}
 }

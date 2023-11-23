@@ -13,8 +13,6 @@ const props = defineProps<{
 }>();
 
 const formatter = new DurationFormatter(FORMATTER_UNITS);
-
-watchEffect(() => console.log(props.event.map.gameMode.name, new Date(props.event.endTime)));
 </script>
 
 <template>
