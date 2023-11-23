@@ -2528,8 +2528,8 @@ __metadata:
   linkType: hard
 
 "@iconify/utils@npm:^2.1.4":
-  version: 2.1.11
-  resolution: "@iconify/utils@npm:2.1.11"
+  version: 2.1.12
+  resolution: "@iconify/utils@npm:2.1.12"
   dependencies:
     "@antfu/install-pkg": ^0.1.1
     "@antfu/utils": ^0.7.5
@@ -2537,7 +2537,7 @@ __metadata:
     debug: ^4.3.4
     kolorist: ^1.8.0
     local-pkg: ^0.4.3
-  checksum: 229e886ba4f335f21d106cb3973728c8aecbd84ecce9d4ddd9bc10a9415ae9c419fe10bf9e7cfd6019e2acba9dde24023dd56ef943f1aa2115fedbc566b023f2
+  checksum: 5b307eb5f3407f9ff77b5bfe492e52ac6f0d645df76efdf333f12ccfb31514f224968ebc761c251f7be4a931511d5a147515ea721075d6c742e5d0ee6838fed6
   languageName: node
   linkType: hard
 
@@ -3245,29 +3245,29 @@ __metadata:
   linkType: hard
 
 "@nuxt/telemetry@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "@nuxt/telemetry@npm:2.5.2"
+  version: 2.5.3
+  resolution: "@nuxt/telemetry@npm:2.5.3"
   dependencies:
-    "@nuxt/kit": ^3.7.4
-    ci-info: ^3.8.0
+    "@nuxt/kit": ^3.8.2
+    ci-info: ^4.0.0
     consola: ^3.2.3
     create-require: ^1.1.1
-    defu: ^6.1.2
-    destr: ^2.0.1
+    defu: ^6.1.3
+    destr: ^2.0.2
     dotenv: ^16.3.1
-    git-url-parse: ^13.1.0
+    git-url-parse: ^13.1.1
     is-docker: ^3.0.0
-    jiti: ^1.20.0
+    jiti: ^1.21.0
     mri: ^1.2.0
     nanoid: ^4.0.2
     ofetch: ^1.3.3
     parse-git-config: ^3.0.0
     pathe: ^1.1.1
     rc9: ^2.1.1
-    std-env: ^3.4.3
+    std-env: ^3.5.0
   bin:
     nuxt-telemetry: bin/nuxt-telemetry.mjs
-  checksum: 6c2fb393be824b35fae2defed41f544cf8a907be6248dba4ccd506160d70d784484f88c89875519a383db2b2a69b1fbd072be7cdfd662eb6c98fea7d0757a6d5
+  checksum: 9acb3f23eff3b3884b3ddd6c0c24e408e59435df737b39361d874a67cace781d7741d3dca3ffcf58819bafb3060287209281acf0884643c3a297dee3c9269d50
   languageName: node
   linkType: hard
 
@@ -6126,9 +6126,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.0, caniuse-lite@npm:^1.0.30001538, caniuse-lite@npm:^1.0.30001541":
-  version: 1.0.30001563
-  resolution: "caniuse-lite@npm:1.0.30001563"
-  checksum: c90a1e6efc72fc73ad4a756011242211406883b36dde3a01726e7246281dcbceaf78e1ee61d1298624c4a69cf81c12b41e8d2a2f1b7c89ed84c9333026a0bfbd
+  version: 1.0.30001564
+  resolution: "caniuse-lite@npm:1.0.30001564"
+  checksum: 5b53749a2e9057e74c5a129fc214fa4434d3f0c3faadbec176efa03b44e40f9c1ef8ceec979f0dd186f7a142476713129df9263e012a178351ba7807217f157a
   languageName: node
   linkType: hard
 
@@ -6291,6 +6291,13 @@ __metadata:
   version: 3.9.0
   resolution: "ci-info@npm:3.9.0"
   checksum: 6b19dc9b2966d1f8c2041a838217299718f15d6c4b63ae36e4674edd2bee48f780e94761286a56aa59eb305a85fbea4ddffb7630ec063e7ec7e7e5ad42549a87
+  languageName: node
+  linkType: hard
+
+"ci-info@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "ci-info@npm:4.0.0"
+  checksum: 122fe41c5eb8d0b5fa0ab6fd674c5ddcf2dc59766528b062a0144ff0d913cfb210ef925ec52110e7c2a7f4e603d5f0e8b91cfe68867e196e9212fa0b94d0a08a
   languageName: node
   linkType: hard
 
@@ -7389,9 +7396,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.535":
-  version: 1.4.590
-  resolution: "electron-to-chromium@npm:1.4.590"
-  checksum: 3165a64819ad385e4c732004ceebd9ed2115cbc0e1e311dbfb36cb2809541ab7ea12e58cd1a55a290896a634c58c1a71eeaac203c228aa31e2ec385cdc6b82ee
+  version: 1.4.592
+  resolution: "electron-to-chromium@npm:1.4.592"
+  checksum: 0e8ab68a6f100af1a521c39089fb3a0be062a74c7d009409f53988be1050ca4a32425bb0ce20640a3523056cb17baa278c2ed1f346409329eeaad64d02060cee
   languageName: node
   linkType: hard
 
@@ -9098,7 +9105,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"git-url-parse@npm:^13.1.0":
+"git-url-parse@npm:^13.1.1":
   version: 13.1.1
   resolution: "git-url-parse@npm:13.1.1"
   dependencies:
@@ -11097,9 +11104,9 @@ __metadata:
   linkType: hard
 
 "lru-cache@npm:^10.0.1, lru-cache@npm:^10.0.2, lru-cache@npm:^9.1.1 || ^10.0.0":
-  version: 10.0.3
-  resolution: "lru-cache@npm:10.0.3"
-  checksum: e4b100c5a6b2ac778c0f63711499b5098686205c57907d8c04a413270d37089112d9bd0192dfa36940eb5d94b88c7db54fdb6fd23319c8f89903cfd4323ea06c
+  version: 10.1.0
+  resolution: "lru-cache@npm:10.1.0"
+  checksum: 58056d33e2500fbedce92f8c542e7c11b50d7d086578f14b7074d8c241422004af0718e08a6eaae8705cee09c77e39a61c1c79e9370ba689b7010c152e6a76ab
   languageName: node
   linkType: hard
 
@@ -16381,15 +16388,15 @@ __metadata:
   linkType: hard
 
 "unenv@npm:^1.7.4":
-  version: 1.7.4
-  resolution: "unenv@npm:1.7.4"
+  version: 1.8.0
+  resolution: "unenv@npm:1.8.0"
   dependencies:
     consola: ^3.2.3
-    defu: ^6.1.2
+    defu: ^6.1.3
     mime: ^3.0.0
-    node-fetch-native: ^1.4.0
+    node-fetch-native: ^1.4.1
     pathe: ^1.1.1
-  checksum: a60873b9283c6ff57ed939938c7aac991412be36c02d00e1acb3744a9c4275743190ff665994f9edb2fa2a0f4eb5aa5a0ea4d04625a95fcf33792eff3d9b8092
+  checksum: 8118260ac7be8d13f99ebb5ca6a40203cf64cc592142753c1a1f75d40b07398c3208430d9a0299573cef3e4f2eba3bf6735901ff4217583df8344b2491314fb0
   languageName: node
   linkType: hard
 
@@ -16489,8 +16496,8 @@ __metadata:
   linkType: hard
 
 "unimport@npm:^3.4.0, unimport@npm:^3.5.0":
-  version: 3.5.0
-  resolution: "unimport@npm:3.5.0"
+  version: 3.6.0
+  resolution: "unimport@npm:3.6.0"
   dependencies:
     "@rollup/pluginutils": ^5.0.5
     escape-string-regexp: ^5.0.0
@@ -16500,10 +16507,10 @@ __metadata:
     mlly: ^1.4.2
     pathe: ^1.1.1
     pkg-types: ^1.0.3
-    scule: ^1.0.0
+    scule: ^1.1.0
     strip-literal: ^1.3.0
-    unplugin: ^1.5.0
-  checksum: fa9470f0ff7e0f12e529a3dfadf78fb8b47e57edcba110f8c84364568b1394c23f908b0384b3c7fc4bbd14c4532c869632d884c9178e934c82915dc9b3e0306f
+    unplugin: ^1.5.1
+  checksum: f5c2d64f6e600ab2afbe5dbc2482ea41ff31df0b3915518a67a7d4090a9dc73eb540b7d9f894229110d5d779205ab47c6fc0df98a0a3882939dbf787b2274416
   languageName: node
   linkType: hard
 
@@ -17468,9 +17475,9 @@ __metadata:
   linkType: hard
 
 "webpack-virtual-modules@npm:^0.6.0":
-  version: 0.6.0
-  resolution: "webpack-virtual-modules@npm:0.6.0"
-  checksum: 960cefac04bf90a50a04947c4420b5b46719e23eec08245d6c35e8ecb1558288c889481c610ffdd66d887e269f0d5d9d3dccfde155e7cd19b537701ece0fcf6a
+  version: 0.6.1
+  resolution: "webpack-virtual-modules@npm:0.6.1"
+  checksum: 0cd993d7b00af0ed89eee96ed6dcb2307fa8dc38e37f34e78690088314976aa79a31cf146553c5e414cdc87222878c5e4979abeb0b00bf6dc9c6f018604a1310
   languageName: node
   linkType: hard
 
