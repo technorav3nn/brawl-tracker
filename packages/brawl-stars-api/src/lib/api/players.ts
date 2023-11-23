@@ -1,4 +1,4 @@
-import { formatTag } from "@brawltracker/supercell-api-utils";
+import { convertApiDate, formatTag } from "@brawltracker/supercell-api-utils";
 import type { $Fetch } from "ofetch";
 import type { BattlelogsResponse } from "../types/battlelogs";
 import type { Player } from "../types/players";
@@ -15,9 +15,12 @@ export class PlayersApi {
 	}
 
 	public async getPlayerBattleLog(tag: string) {
-		const { items } = await this.$fetch<BattlelogsResponse>(
+		const { items } = await this.$fetch<BattlelogsResponse<string>>(
 			`/players/${encodeURIComponent(formatTag(tag))}/battlelog`
 		);
-		return items;
+		return items.map((item) => ({
+			...item,
+			battleTime: convertApiDate(item.battleTime),
+		}));
 	}
 }

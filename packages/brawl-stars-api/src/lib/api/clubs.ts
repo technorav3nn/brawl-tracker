@@ -14,6 +14,9 @@ export class ClubsApi {
 	}
 
 	public async getClubMembers(clubTag: string) {
-		return this.$fetch<ClubGetMembersResponse>(`/clubs/${encodeURIComponent(formatTag(clubTag))}/members`);
+		const { items: members } = await this.$fetch<ClubGetMembersResponse>(
+			`/clubs/${encodeURIComponent(formatTag(clubTag))}/members`
+		);
+		return members;
 	}
 }

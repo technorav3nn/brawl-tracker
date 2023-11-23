@@ -1,8 +1,9 @@
 import type { Event, GameModes } from "./events";
 import type { BasicPlayer, StarPlayer } from "./players";
 
-export interface Battlelog {
-	battleTime: Date;
+export interface Battlelog<T = Date> {
+	battle: BattlelogBattle;
+	battleTime: T;
 	event: Event;
 }
 
@@ -18,8 +19,8 @@ export interface BattlelogBattle {
 
 export type BattlelogTeam = BasicPlayer[];
 
-export interface BattlelogsResponse {
-	items: Battlelog[];
+export interface BattlelogsResponse<T = Date> {
+	items: Battlelog<T>[];
 }
 
 export type BattleResult = "defeat" | "draw" | "victory";
