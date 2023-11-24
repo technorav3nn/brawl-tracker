@@ -1,0 +1,48 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:base", "group:allNonMajor"],
+	"labels": ["dependencies"],
+	"schedule": ["before 12pm on Friday"],
+	"cloneSubmodules": true,
+	"github-actions": {
+		"enabled": false
+	},
+	"npm": {
+		"postUpdateOptions": ["yarnDedupeHighest"],
+		"rangeStrategy": "bump",
+		"packageRules": [
+			{
+				"matchUpdateTypes": ["patch"],
+				"matchCurrentVersion": "/^0\\./",
+				"automerge": true,
+				"platformAutomerge": true
+			},
+			{
+				"matchUpdateTypes": ["minor", "patch"],
+				"matchCurrentVersion": ">=1.0.0",
+				"automerge": true,
+				"platformAutomerge": true
+			},
+			{
+				"matchPackagePatterns": ["ansi-regex"],
+				"allowedVersions": "^5",
+				"automerge": true,
+				"platformAutomerge": true
+			},
+			{
+				"matchPackagePatterns": ["@types/node-fetch"],
+				"allowedVersions": "^2",
+				"automerge": true,
+				"platformAutomerge": true
+			},
+			{
+				"matchPackagePatterns": ["tsup"],
+				"enabled": false
+			},
+			{
+				"matchDepTypes": ["engines"],
+				"enabled": false
+			}
+		]
+	}
+}
