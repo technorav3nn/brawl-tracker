@@ -45,4 +45,10 @@ describe("Brawl API", () => {
 			expect(gamemode.name).toBe("Super City Rampage");
 		});
 	});
+
+	describe("/locations endpoint", () => {
+		test("GIVEN all locations api call THEN should not throw", async () => {
+			await expect(brawlApi.locations.getLocations()).resolves.not.toThrow();
+		});
+	});
 });
