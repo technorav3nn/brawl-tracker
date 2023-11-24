@@ -46,6 +46,15 @@ describe("Brawl API", () => {
 		});
 	});
 
+	describe("/icons endpoint", () => {
+		test("GIVEN all icons api call THEN should not throw", async () => {
+			await expect(brawlApi.icons.getAllIcons()).resolves.not.toThrow();
+		});
+		test("GIVEN all icons THEN should have club and player icons", async () => {
+			await expect(brawlApi.icons.getAllIcons()).resolves.toHaveProperty("club");
+		});
+	});
+
 	describe("/locations endpoint", () => {
 		test("GIVEN all locations api call THEN should not throw", async () => {
 			await expect(brawlApi.locations.getLocations()).resolves.not.toThrow();

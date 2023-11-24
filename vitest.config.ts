@@ -6,7 +6,7 @@ export default defineConfig({
 		passWithNoTests: true,
 		coverage: {
 			enabled: true,
-			reporter: ["text", "json-summary", "json"],
+			reporter: ["text", "json-summary", "json", "html"],
 			exclude: [
 				// All ts files that only contain types, due to ALL
 				"**/*.{interface,type,d}.ts",
