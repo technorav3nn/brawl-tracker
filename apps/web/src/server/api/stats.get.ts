@@ -8,8 +8,8 @@ export default eventHandler(async () => {
 
 	// make sure to use setTimeout
 	return await Promise.all(
-		leaderboards.map((player) => {
-			return delay(1000).then(() => brawlStars.battlelogs.fetch(player.tag));
+		leaderboards.map(async (player) => {
+			return delay(1_000).then(() => brawlStars.battlelogs.fetch(player.tag));
 		})
 	);
 });

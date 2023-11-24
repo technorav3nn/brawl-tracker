@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Cross2Icon } from "@radix-icons/vue";
+import { cva } from "class-variance-authority";
 import {
 	DialogClose,
 	DialogContent,
@@ -8,8 +10,6 @@ import {
 	DialogPortal,
 	useEmitAsProps,
 } from "radix-vue";
-import { cva } from "class-variance-authority";
-import { Cross2Icon } from "@radix-icons/vue";
 import { cn } from "$lib/util/tailwind";
 
 interface SheetContentProps extends DialogContentProps {
@@ -50,7 +50,10 @@ const sheetVariants = cva(
 		/>
 		<DialogContent
 			:class="cn(sheetVariants({ side: props.side }), props.class)"
-			v-bind="{ ...props, ...emitsAsProps }"
+			v-bind="{
+				...props,
+				...emitsAsProps,
+			}"
 		>
 			<slot />
 
