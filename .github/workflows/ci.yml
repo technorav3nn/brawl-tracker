@@ -21,6 +21,9 @@ jobs:
         uses: volta-cli/action@v4
       - name: Install Dependencies
         run: yarn --immutable
+      - uses: dtinth/setup-github-actions-caching-for-turbo@v1
+        with:
+          cache-prefix: brawltracker_
       - name: Build
         run: yarn build
       - name: Lint
