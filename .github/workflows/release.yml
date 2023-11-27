@@ -20,13 +20,13 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-
       - name: Setup volta
         uses: volta-cli/action@v4
-
       - name: Install Dependencies
         run: yarn --immutable
-
+      - uses: dtinth/setup-github-actions-caching-for-turbo@v1
+        with:
+          cache-prefix: brawltracker_
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
