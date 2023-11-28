@@ -1576,7 +1576,7 @@ __metadata:
     "@brawltracker/brawl-api": "workspace:*"
     "@fontsource-variable/inter": ^5.0.15
     "@hypernym/nuxt-font": ^2.0.1
-    "@nuxt/devtools": 1.0.3
+    "@nuxt/devtools": 1.0.4
     "@nuxt/image": ^1.1.0
     "@nuxt/kit": ^3.8.2
     "@nuxt/ui": ^2.11.0
@@ -1588,7 +1588,7 @@ __metadata:
     "@tabler/icons-vue": ^2.42.0
     "@tailwindcss/typography": ^0.5.10
     "@unpic/vue": ^0.0.39
-    "@vite-pwa/nuxt": ^0.3.0
+    "@vite-pwa/nuxt": ^0.3.2
     "@vueuse/nuxt": ^10.6.1
     brawlstats: ^3.2.0
     class-variance-authority: ^0.7.0
@@ -3032,23 +3032,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/devtools-kit@npm:1.0.3, @nuxt/devtools-kit@npm:^1.0.2":
-  version: 1.0.3
-  resolution: "@nuxt/devtools-kit@npm:1.0.3"
+"@nuxt/devtools-kit@npm:1.0.4, @nuxt/devtools-kit@npm:^1.0.2":
+  version: 1.0.4
+  resolution: "@nuxt/devtools-kit@npm:1.0.4"
   dependencies:
-    "@nuxt/kit": ^3.8.1
-    "@nuxt/schema": ^3.8.1
+    "@nuxt/kit": ^3.8.2
+    "@nuxt/schema": ^3.8.2
     execa: ^7.2.0
   peerDependencies:
     nuxt: ^3.8.1
     vite: "*"
-  checksum: 6faddd6ca28cfb0e08dc3523f6b43ff58c0dc9352e854394880f383470ab30c9ea526a73b41e263e71d69e4b50f82a9ae843a0c5f60412ea9439c259db7e8499
+  checksum: 9e04b86f1686b8827bf94505f12da2a1fa0156286139d1b424830dfc4f273a8e615a71bc154c70d71cb988ed9c43c594d2af492292ee5756a1ba8aa18b648442
   languageName: node
   linkType: hard
 
-"@nuxt/devtools-wizard@npm:1.0.3":
-  version: 1.0.3
-  resolution: "@nuxt/devtools-wizard@npm:1.0.3"
+"@nuxt/devtools-wizard@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@nuxt/devtools-wizard@npm:1.0.4"
   dependencies:
     consola: ^3.2.3
     diff: ^5.1.0
@@ -3062,18 +3062,18 @@ __metadata:
     semver: ^7.5.4
   bin:
     devtools-wizard: cli.mjs
-  checksum: 3092ae1ad435a2ed9d1a981f428f6627bd85449efffc82880324f1f02858eb04dac70d6e88c076d6399875484e8a111536b550d38b88a9be09bed3bdb57b6410
+  checksum: 174618bce9ea401b1f6d913cef34e0b9b1388d884b5d0a551e79e0af4cddc05348b77f2a17e9b5246b0e190876d6899f02b8fb10e5f6649f532cdf7ce722547f
   languageName: node
   linkType: hard
 
-"@nuxt/devtools@npm:1.0.3, @nuxt/devtools@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "@nuxt/devtools@npm:1.0.3"
+"@nuxt/devtools@npm:1.0.4, @nuxt/devtools@npm:^1.0.3":
+  version: 1.0.4
+  resolution: "@nuxt/devtools@npm:1.0.4"
   dependencies:
     "@antfu/utils": ^0.7.6
-    "@nuxt/devtools-kit": 1.0.3
-    "@nuxt/devtools-wizard": 1.0.3
-    "@nuxt/kit": ^3.8.1
+    "@nuxt/devtools-kit": 1.0.4
+    "@nuxt/devtools-wizard": 1.0.4
+    "@nuxt/kit": ^3.8.2
     birpc: ^0.2.14
     consola: ^3.2.3
     destr: ^2.0.2
@@ -3089,7 +3089,7 @@ __metadata:
     launch-editor: ^2.6.1
     local-pkg: ^0.5.0
     magicast: ^0.3.2
-    nitropack: ^2.7.2
+    nitropack: ^2.8.0
     nypm: ^0.3.3
     ofetch: ^1.3.3
     ohash: ^1.1.3
@@ -3112,7 +3112,7 @@ __metadata:
     vite: "*"
   bin:
     devtools: cli.mjs
-  checksum: 69a598c99a21191746c6c2dc01317c62483212ec8ec00825c75866726abaf8f03f37c7dc9e559fdf3d58cd7fa278887a87c6ef7d07595e8170d3076aacf61610
+  checksum: b812f36ec157503d42684853a610b4234f6c8c8aea0264a434f3df3106503c6554d8d675ffadaacb8a8f2968dd981e084a473108866ec3a8d6dd39a0d4c36ba2
   languageName: node
   linkType: hard
 
@@ -3164,7 +3164,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/schema@npm:3.8.2, @nuxt/schema@npm:^3.8.1":
+"@nuxt/schema@npm:3.8.2, @nuxt/schema@npm:^3.8.2":
   version: 3.8.2
   resolution: "@nuxt/schema@npm:3.8.2"
   dependencies:
@@ -4591,15 +4591,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vite-pwa/nuxt@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@vite-pwa/nuxt@npm:0.3.0"
+"@vite-pwa/nuxt@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "@vite-pwa/nuxt@npm:0.3.2"
   dependencies:
     "@nuxt/kit": ^3.8.2
     pathe: ^1.1.1
     ufo: ^1.3.2
     vite-plugin-pwa: ">=0.16.7 <1"
-  checksum: 4c9e3acb0c5ece39a5f68c8d533d2d4117e24b208f7c89217508601e1d826d08c42c9890c381a1f6f0a0d571fe021ecca3d2f57a6f4ae5b982ed9cd07aee429d
+  checksum: 18c185fd60f91ba8a8fefec32912ace89ff250f4932c8f0f60c9317436f8adf3050ae24698b65791ed17a49b578a0c432e90625df6d6426f6d56585969ec7daa
   languageName: node
   linkType: hard
 
@@ -11881,7 +11881,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nitropack@npm:^2.7.2, nitropack@npm:^2.8.0":
+"nitropack@npm:^2.8.0":
   version: 2.8.0
   resolution: "nitropack@npm:2.8.0"
   dependencies:
