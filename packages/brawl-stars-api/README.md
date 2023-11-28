@@ -1,6 +1,12 @@
-# @brawltracker/supercell-api-utils
+# @brawltracker/brawl-stars-api
 
-Contains utility functions that work with all Supercell APIs (Brawl Stars, Clash Royale, Clash of Clans)
+Brawl Stars official API wrapper
+
+- TypeScript support
+- Promise based
+- Easy to use
+- 100% coverage
+- Uses [ofetch](https://unjs.io/packages/ofetch) for requests
 
 ## Installation
 
