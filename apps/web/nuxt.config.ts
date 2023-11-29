@@ -37,6 +37,10 @@ export default defineNuxtConfig({
 					name: "og:description",
 					content: "BrawlTrack is a website that allows you to track your Brawl Stars profile.",
 				},
+				{
+					name: "keywords",
+					content: "brawl stars, brawl, stars, brawltrack, brawl track, brawl stats",
+				},
 			],
 		},
 	},

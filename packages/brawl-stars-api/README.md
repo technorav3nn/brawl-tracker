@@ -1,11 +1,12 @@
 # @brawltracker/brawl-stars-api
 
-Library for interacting with the Official Brawl Stars API.
+Brawl Stars official API wrapper
 
+- TypeScript support
+- Promise based
 - Easy to use
-- Fully typed
-- Supports all endpoints
-- Works in any environment using [ofetch](https://unjs.io/packages/ofetch)
+- 100% coverage
+- Uses [ofetch](https://unjs.io/packages/ofetch) for requests
 
 ## Installation
 

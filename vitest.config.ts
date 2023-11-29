@@ -2,7 +2,7 @@ import process from "node:process";
 import { defineConfig } from "vitest/config";
 import GithubActionsReporter from "vitest-github-actions-reporter";
 
-export default defineConfig({
+export const configShared = defineConfig({
 	test: {
 		reporters: process.env.GITHUB_ACTIONS ? ["default", new GithubActionsReporter()] : "default",
 		exclude: ["**/node_modules", "**/dist", ".idea", ".git", ".cache", ".yarn"],
@@ -24,3 +24,5 @@ export default defineConfig({
 		},
 	},
 });
+
+export default defineConfig(configShared);
