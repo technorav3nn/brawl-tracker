@@ -1,5 +1,11 @@
 # @brawltracker/brawl-stars-api
 
+## 1.2.3
+
+### Patch Changes
+
+- 9457fbd: Fix workspace protocol that was present
+
 ## 1.2.2
 
 ### Patch Changes
