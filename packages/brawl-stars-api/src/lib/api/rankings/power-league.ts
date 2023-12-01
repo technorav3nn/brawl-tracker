@@ -9,7 +9,7 @@ export class PowerLeagueRankingsEndpoint {
 	}
 
 	public async getSeasons(countryCode: CountryCodes) {
-		const seasons = await this.$fetch<PowerLeagueSeason<string>[]>(
+		const { items: seasons } = await this.$fetch<{ items: PowerLeagueSeason<string>[] }>(
 			`/rankings/${countryCode}/powerplay/seasons`
 		);
 		return seasons.map((season) => ({
@@ -19,7 +19,10 @@ export class PowerLeagueRankingsEndpoint {
 		})) as PowerLeagueSeason<Date>[];
 	}
 
-	public async getSeasonRankings(countryCode: CountryCodes, seasonId: string) {
-		return this.$fetch<RankingsPlayer[]>(`/rankings/${countryCode}/powerplay/seasons/${seasonId}`);
+	public async getSeasonRankings(countryCode: CountryCodes, seasonId: number) {
+		const { items: rankings } = await this.$fetch<{ items: RankingsPlayer[] }>(
+			`/rankings/${countryCode}/powerplay/seasons/${seasonId}`
+		);
+		return rankings;
 	}
 }
