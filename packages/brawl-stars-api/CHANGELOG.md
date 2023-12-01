@@ -1,5 +1,11 @@
 # @brawltracker/brawl-stars-api
 
+## 1.2.0
+
+### Minor Changes
+
+- cdf0332: Finished all endpoints
+
 ## 1.3.0
 
 ### Minor Changes
