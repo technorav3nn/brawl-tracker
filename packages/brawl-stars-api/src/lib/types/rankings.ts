@@ -258,4 +258,13 @@ export type Alpha2CountryCodes =
 	| "SS"
 	| "XK";
 
-export type CountryCodes = Alpha2CountryCodes | Lowercase<Alpha2CountryCodes>;
+export type CountryCodes = Alpha2CountryCodes | Lowercase<Alpha2CountryCodes> | "global";
+
+export interface PowerLeagueSeason<T = Date> {
+	endTime: T;
+	/**
+	 * ID is a number as a string
+	 */
+	id: string;
+	startTime: T;
+}

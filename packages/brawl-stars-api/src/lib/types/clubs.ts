@@ -11,6 +11,15 @@ export interface Club {
 	type: Club;
 }
 
+export interface RankingClub {
+	badgeId: number;
+	memberCount: number;
+	name: string;
+	rank: number;
+	tag: string;
+	trophies: number;
+}
+
 export interface ClubMember {
 	icon: PlayerIconInfo;
 	name: string;

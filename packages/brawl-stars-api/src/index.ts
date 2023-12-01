@@ -8,3 +8,4 @@ export * from "./lib/types/events";
 export * from "./lib/types/battlelogs";
 export * from "./lib/types/players";
 export * from "./lib/types/clubs";
+export * from "./lib/types/rankings";
