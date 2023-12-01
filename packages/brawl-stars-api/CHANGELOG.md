@@ -1,5 +1,17 @@
 # @brawltracker/brawl-stars-api
 
+## 1.3.0
+
+### Minor Changes
+
+- Release
+
+## 1.2.0
+
+### Minor Changes
+
+- Release and add all endpoints
+
 ## 1.1.4
 
 ### Patch Changes
