@@ -1,5 +1,11 @@
 # @brawltracker/brawl-stars-api
 
+## 1.2.1
+
+### Patch Changes
+
+- 70813e3: Fix package.json exports
+
 ## 1.2.0
 
 ### Minor Changes
