@@ -1,5 +1,11 @@
 # @brawltracker/brawl-stars-api
 
+## 1.2.2
+
+### Patch Changes
+
+- 14def58: Fix exports field
+
 ## 1.2.1
 
 ### Patch Changes
