@@ -8,7 +8,6 @@ import DesktopLinks from "./desktop-links.vue";
 const colorMode = useColorMode();
 
 const toggleColorScheme = () => {
-	console.log(colorMode);
 	if (colorMode.preference === "light") {
 		colorMode.preference = "dark";
 	} else {

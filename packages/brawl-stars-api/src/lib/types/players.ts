@@ -19,6 +19,16 @@ export interface Player {
 	trophies: number;
 }
 
+export interface RankingsPlayer {
+	club: PlayerClubInfo;
+	icon: PlayerIconInfo;
+	name: string;
+	nameColor: string;
+	rank: number;
+	tag: string;
+	trophies: number;
+}
+
 export interface BasicPlayer {
 	brawler: BasicBrawler;
 	name: string;

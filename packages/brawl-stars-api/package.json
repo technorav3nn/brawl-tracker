@@ -26,5 +26,10 @@
 	"volta": {
 		"extends": "../../package.json"
 	},
-	"type": "module"
+	"type": "module",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/technorav3nn/brawl-tracker.git",
+		"directory": "packages/brawl-stars-api"
+	}
 }

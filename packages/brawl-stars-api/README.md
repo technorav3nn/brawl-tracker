@@ -11,11 +11,22 @@ Brawl Stars official API wrapper
 ## Installation
 
 ```bash
-npm install @brawltracker/supercell-api-utils
+npm install @brawltracker/brawl-stars-api
 # or
-pnpm install @brawltracker/supercell-api-utils
+pnpm install @brawltracker/brawl-stars-api
 # or
-yarn add @brawltracker/supercell-api-utils
+yarn add @brawltracker/brawl-stars-api
 # or
-bun install @brawltracker/supercell-api-utils
+bun install @brawltracker/brawl-stars-api
+```
+
+## Usage
+
+```ts
+import { BrawlStarsClient } from "@brawltracker/brawl-stars-api";
+
+const client = new BrawlStarsClient("!! PUT YOUR TOKEN HERE !!");
+
+const player = await client.getPlayer("YPJVGUR8L");
+console.log(player.name);
 ```

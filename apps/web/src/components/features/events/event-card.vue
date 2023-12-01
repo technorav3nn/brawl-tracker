@@ -6,15 +6,13 @@ import { ChevronRight, Clock } from "lucide-vue-next";
 import { FORMATTER_UNITS } from "$lib/util/common";
 import type { BrawlApiBrawlerWithOnlyImages } from "$server/utils/get-brawler-images";
 
-const props = defineProps<{
+defineProps<{
 	event: BrawlApiEvent;
 	images: Record<string, BrawlApiBrawlerWithOnlyImages>;
 	type: "upcoming" | "current";
 }>();
 
 const formatter = new DurationFormatter(FORMATTER_UNITS);
-
-watchEffect(() => console.log(props.event.map.gameMode.name, new Date(props.event.endTime)));
 </script>
 
 <template>
