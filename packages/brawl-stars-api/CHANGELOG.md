@@ -1,5 +1,11 @@
 # @brawltracker/brawl-stars-api
 
+## 1.2.4
+
+### Patch Changes
+
+- Fix exports
+
 ## 1.2.3
 
 ### Patch Changes
