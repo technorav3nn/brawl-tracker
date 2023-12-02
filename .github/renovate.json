@@ -1,47 +1,47 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": [
-		":ignoreModulesAndTests",
-		":label(renovate)",
-		":prConcurrentLimit10",
-		":prNotPending",
-		":timezone(Asia/Tokyo)",
-		"group:monorepos"
-	],
+	"extends": ["config:base", "group:allNonMajor", "group:vitestMonorepo"],
+	"labels": ["dependencies"],
+	"schedule": ["before 9am", "after 9am"],
 	"cloneSubmodules": true,
+	"github-actions": {
+		"enabled": false
+	},
 	"npm": {
-		"extends": [
-			":automergePatch",
-			":noUnscheduledUpdates",
-			":separatePatchReleases",
-			"npm:unpublishSafe",
-			"helpers:disableTypesNodeMajor",
-			"group:vitestMonorepo",
-			"packages:eslint"
-		],
-		"schedule": ["after 9pm", "before 9am"],
-		"rangeStrategy": "bump",
 		"postUpdateOptions": ["yarnDedupeHighest"],
-		"lockFileMaintenance": {
-			"enabled": true,
-			"schedule": ["before 3am on the first day of the month"]
-		},
+		"rangeStrategy": "bump",
 		"packageRules": [
 			{
-				"description": "automerge minor updates in devDeps",
+				"matchUpdateTypes": ["patch"],
+				"matchCurrentVersion": "/^0\\./",
 				"automerge": true,
-				"matchUpdateTypes": ["minor"],
-				"matchDepTypes": ["devDependencies"]
+				"platformAutomerge": true
 			},
 			{
-				"description": "disable package.json > engines update",
-				"matchDepTypes": ["engines"],
+				"matchUpdateTypes": ["minor", "patch"],
+				"matchCurrentVersion": ">=1.0.0",
+				"automerge": true,
+				"platformAutomerge": true
+			},
+			{
+				"matchPackagePatterns": ["ansi-regex"],
+				"allowedVersions": "^5",
+				"automerge": true,
+				"platformAutomerge": true
+			},
+			{
+				"matchPackagePatterns": ["@types/node-fetch"],
+				"allowedVersions": "^2",
+				"automerge": true,
+				"platformAutomerge": true
+			},
+			{
+				"matchPackagePatterns": ["tsup"],
 				"enabled": false
 			},
 			{
-				"schedule": "at any time",
-				"minimumReleaseAge": "0",
-				"matchPackageNames": ["eslint-config-neon"]
+				"matchDepTypes": ["engines"],
+				"enabled": false
 			}
 		]
 	}
