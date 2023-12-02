@@ -1537,7 +1537,7 @@ __metadata:
     tsup: "npm:^6.7.0"
     typescript: "npm:5.3.2"
     vitest: "npm:^0.34.6"
-    vitest-github-actions-reporter: "npm:^0.11.0"
+    vitest-github-actions-reporter: "npm:^0.11.1"
   languageName: unknown
   linkType: soft
 
@@ -1589,16 +1589,16 @@ __metadata:
     "@tabler/icons-vue": "npm:^2.42.0"
     "@tailwindcss/typography": "npm:^0.5.10"
     "@unpic/vue": "npm:^0.0.39"
-    "@vite-pwa/nuxt": "npm:^0.3.2"
+    "@vite-pwa/nuxt": "npm:^0.3.3"
     "@vueuse/nuxt": "npm:^10.6.1"
     brawlstats: "npm:^3.2.0"
     class-variance-authority: "npm:^0.7.0"
     clsx: "npm:^2.0.0"
     dedent: "npm:^1.5.1"
-    eslint: "npm:^8.54.0"
+    eslint: "npm:^8.55.0"
     eslint-config-neon: "npm:^0.1.57"
-    eslint-plugin-vue: "npm:^9.18.1"
-    lucide-vue-next: "npm:^0.293.0"
+    eslint-plugin-vue: "npm:^9.19.2"
+    lucide-vue-next: "npm:^0.294.0"
     motion: "npm:^10.16.4"
     node-cache: "npm:^5.1.2"
     nuxt: "npm:^3.8.2"
@@ -2400,9 +2400,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^2.1.3":
-  version: 2.1.3
-  resolution: "@eslint/eslintrc@npm:2.1.3"
+"@eslint/eslintrc@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "@eslint/eslintrc@npm:2.1.4"
   dependencies:
     ajv: "npm:^6.12.4"
     debug: "npm:^4.3.2"
@@ -2413,14 +2413,14 @@ __metadata:
     js-yaml: "npm:^4.1.0"
     minimatch: "npm:^3.1.2"
     strip-json-comments: "npm:^3.1.1"
-  checksum: 77b70a89232fe702c2f765b5b92970f5e4224b55363b923238b996c66fcd991504f40d3663c0543ae17d6c5049ab9b07ab90b65d7601e6f25e8bcd4caf69ac75
+  checksum: 7a3b14f4b40fc1a22624c3f84d9f467a3d9ea1ca6e9a372116cb92507e485260359465b58e25bcb6c9981b155416b98c9973ad9b796053fd7b3f776a6946bce8
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:8.54.0":
-  version: 8.54.0
-  resolution: "@eslint/js@npm:8.54.0"
-  checksum: 4d491ff234cd94b54499428cb3435623270ff8cc59950e13e6e1ac2fa350ec60502dac7bfd4f486523fee65ad7a358034570fe776b81b14dbfe5525d1e26e1d8
+"@eslint/js@npm:8.55.0":
+  version: 8.55.0
+  resolution: "@eslint/js@npm:8.55.0"
+  checksum: 34b001a95b16501fd64f525b1de3ab0e4c252e5820b74069004934cb13977fc04ba4522a3e8f8074bd6af49da10d3444cd49fa711819f425ad73d6bf46eea82d
   languageName: node
   linkType: hard
 
@@ -4582,15 +4582,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vite-pwa/nuxt@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "@vite-pwa/nuxt@npm:0.3.2"
+"@vite-pwa/nuxt@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "@vite-pwa/nuxt@npm:0.3.3"
   dependencies:
     "@nuxt/kit": "npm:^3.8.2"
     pathe: "npm:^1.1.1"
     ufo: "npm:^1.3.2"
     vite-plugin-pwa: "npm:>=0.16.7 <1"
-  checksum: a457ee9864804a775943657fc52d0f516391d82aa47565b57459d6f5a8c811e2294a31312ee49cd6a5fbddf7ac48f3b91e5542d8efad64e15c3920bb326f5097
+  checksum: 62e2900bc5f0dde4b3dfcbfa0a0898726429dd0732d4fea2b6c099089294f7457abd7c0359837f4fbf0e7933373eea85b7c3884663dccb154ed4d5282e7a39c6
   languageName: node
   linkType: hard
 
@@ -5721,14 +5721,14 @@ __metadata:
     "@vitest/coverage-istanbul": "npm:^0.34.6"
     "@vitest/coverage-v8": "npm:^0.34.6"
     "@vitest/ui": "npm:^0.34.6"
-    eslint: "npm:^8.54.0"
+    eslint: "npm:^8.55.0"
     eslint-config-neon: "npm:^0.1.57"
-    eslint-plugin-vue: "npm:^9.18.1"
+    eslint-plugin-vue: "npm:^9.19.2"
     prettier: "npm:^3.1.0"
     prettier-plugin-tailwindcss: "npm:^0.5.7"
     turbo: "npm:latest"
     vitest: "npm:^0.34.6"
-    vitest-github-actions-reporter: "npm:^0.11.0"
+    vitest-github-actions-reporter: "npm:^0.11.1"
   languageName: unknown
   linkType: soft
 
@@ -8098,9 +8098,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vue@npm:^9.17.0, eslint-plugin-vue@npm:^9.18.1":
-  version: 9.18.1
-  resolution: "eslint-plugin-vue@npm:9.18.1"
+"eslint-plugin-vue@npm:^9.17.0, eslint-plugin-vue@npm:^9.19.2":
+  version: 9.19.2
+  resolution: "eslint-plugin-vue@npm:9.19.2"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.4.0"
     natural-compare: "npm:^1.4.0"
@@ -8111,7 +8111,7 @@ __metadata:
     xml-name-validator: "npm:^4.0.0"
   peerDependencies:
     eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
-  checksum: de064eac9ff28315e1f086bd035f2797cf921ec58dd16193b7b6b4aa2898f5d5b7c06e9effe455b3e06744f840e118f05d99943e62052ffd9beaa83959ff7aee
+  checksum: 4cadfd71ef2acd2873302b21675951cb6b397b158adc0bf131ae6425fcf1b7a21c0ec989798684e203521e078863f53f8313ab0635c21882b50e2581682e319f
   languageName: node
   linkType: hard
 
@@ -8142,14 +8142,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.48.0, eslint@npm:^8.54.0":
-  version: 8.54.0
-  resolution: "eslint@npm:8.54.0"
+"eslint@npm:^8.48.0, eslint@npm:^8.55.0":
+  version: 8.55.0
+  resolution: "eslint@npm:8.55.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.2.0"
     "@eslint-community/regexpp": "npm:^4.6.1"
-    "@eslint/eslintrc": "npm:^2.1.3"
-    "@eslint/js": "npm:8.54.0"
+    "@eslint/eslintrc": "npm:^2.1.4"
+    "@eslint/js": "npm:8.55.0"
     "@humanwhocodes/config-array": "npm:^0.11.13"
     "@humanwhocodes/module-importer": "npm:^1.0.1"
     "@nodelib/fs.walk": "npm:^1.2.8"
@@ -8186,7 +8186,7 @@ __metadata:
     text-table: "npm:^0.2.0"
   bin:
     eslint: bin/eslint.js
-  checksum: 379827964fd7885a4d48611a5237cf5c534eff0ad3d0c1a1d6a14d52ac6758f4efdccd924c9bb3a9aa4dc80a3446d48dc49f61733cd5bd5f74419d0240970e7b
+  checksum: afd016cfbe9e9d667b3f98c14c681a7e518808f6c30856e56cbb02248900eac5bf6dc5e577a7eaec259539486db48ef7d16ef58fb14b1585ba7c84b35490c53c
   languageName: node
   linkType: hard
 
@@ -10835,12 +10835,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-vue-next@npm:^0.293.0":
-  version: 0.293.0
-  resolution: "lucide-vue-next@npm:0.293.0"
+"lucide-vue-next@npm:^0.294.0":
+  version: 0.294.0
+  resolution: "lucide-vue-next@npm:0.294.0"
   peerDependencies:
     vue: ">=3.0.1"
-  checksum: 7e13004519899bfd1fa9e5ee39a8b0c6b0461d2bd5a37c82cbf77fb7c7458545e263d852eafc2838791298d2b8677b97fba34fb14578fa9056b995ceee3615fe
+  checksum: 25131e86cd1b35550c827c492465a23bb9e8c1cdd5489045097f21cba63f6315b0df41b79ad893d67563190fd64c6489774c5104a386a2f698f79847337be527
   languageName: node
   linkType: hard
 
@@ -16700,14 +16700,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest-github-actions-reporter@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "vitest-github-actions-reporter@npm:0.11.0"
+"vitest-github-actions-reporter@npm:^0.11.1":
+  version: 0.11.1
+  resolution: "vitest-github-actions-reporter@npm:0.11.1"
   dependencies:
     "@actions/core": "npm:^1.10.0"
   peerDependencies:
     vitest: ">=0.28.5"
-  checksum: f16d4a63304e20e6b6720c7878a78f6750e04faf3e3dcda0a858c5bacd8a2f048c9dbe4e938d75c961822363b5e21472893e2c66778663c7973f1e2302d2d50c
+  checksum: 821f2255974f6b80d735976d25bcddce0fdbb36e91a8addab7b54239d9e488eb3f082e72cd9b3b96f694548e31061f3406a775473985c1775ce8811277cdd33a
   languageName: node
   linkType: hard
 
