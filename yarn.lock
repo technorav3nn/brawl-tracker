@@ -1466,12 +1466,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4":
-  version: 7.23.4
-  resolution: "@babel/runtime@npm:7.23.4"
+"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.5, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4":
+  version: 7.23.5
+  resolution: "@babel/runtime@npm:7.23.5"
   dependencies:
     regenerator-runtime: "npm:^0.14.0"
-  checksum: 6ef4f6dcc4ec4d74cb9f6c26a26e92d016b36debd167be48cae293fbd990b3157fb1d8d21c531285da15a5bda9ccb23e651b56234941e03d91c8af69d4c593a9
+  checksum: 0f1669f639af30a0a2948ffcefa2c61935f337b0777bd94f8d7bc66bba8e7d4499e725caeb0449540d9c6d67399b733c4e719babb43ce9a0f33095aa01b42b37
   languageName: node
   linkType: hard
 
@@ -1603,7 +1603,7 @@ __metadata:
     node-cache: "npm:^5.1.2"
     nuxt: "npm:^3.8.2"
     radix-vue: "npm:^1.2.3"
-    tailwind-merge: "npm:^1.14.0"
+    tailwind-merge: "npm:^2.1.0"
     tailwind-scrollbar: "npm:^3.0.5"
     tailwind-variants: "npm:^0.1.18"
     tailwindcss-animate: "npm:^1.0.7"
@@ -15170,6 +15170,15 @@ __metadata:
   version: 1.14.0
   resolution: "tailwind-merge@npm:1.14.0"
   checksum: 35ff3c3a7f89111acbdef879130064229ce7deee017fd75f17d07135aa4bcc213e049c35d6bd5000de4dc3219e25f7a03295952736d1fee1423535c55775b1e7
+  languageName: node
+  linkType: hard
+
+"tailwind-merge@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "tailwind-merge@npm:2.1.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.5"
+  checksum: 2de4ed3167e69101c7c559af93028ff205543f98f57edaafa460e67b95fdde13a164b8f6f364fde90554e227feac24beaa8be3e74eb12e50fbd38aa5011583db
   languageName: node
   linkType: hard
 
