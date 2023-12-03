@@ -10,7 +10,6 @@ import {
 import { cn } from "$lib/util/tailwind";
 
 const props = defineProps<DropdownMenuRadioItemProps & { class?: string }>();
-
 const emits = defineEmits<DropdownMenuRadioItemEmits>();
 </script>
 
