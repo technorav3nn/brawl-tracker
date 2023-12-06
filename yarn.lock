@@ -5726,9 +5726,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"brawl-tracker-pr-1@workspace:.":
+"brawl-tracker-root@workspace:.":
   version: 0.0.0-use.local
-  resolution: "brawl-tracker-pr-1@workspace:."
+  resolution: "brawl-tracker-root@workspace:."
   dependencies:
     "@changesets/cli": "npm:^2.27.1"
     "@sapphire/eslint-config": "npm:^5.0.3"
