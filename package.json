@@ -1,4 +1,7 @@
 {
+	"name": "brawl-tracker-root",
+	"type": "module",
+	"private": true,
 	"scripts": {
 		"build": "turbo run build",
 		"dev": "turbo run dev",
@@ -22,6 +25,7 @@
 		"eslint": "^8.55.0",
 		"eslint-config-neon": "^0.1.57",
 		"eslint-plugin-vue": "^9.19.2",
+		"lint-staged": "^15.2.0",
 		"prettier": "^3.1.0",
 		"prettier-plugin-tailwindcss": "^0.5.9",
 		"turbo": "latest",
@@ -29,11 +33,13 @@
 		"vitest-github-actions-reporter": "^0.11.1"
 	},
 	"packageManager": "yarn@4.0.2",
-	"name": "brawl-tracker-pr-1",
-	"type": "module",
 	"volta": {
 		"node": "20.10.0",
 		"yarn": "4.0.2"
+	},
+	"lint-staged": {
+		"*": "prettier --ignore-unknown --write",
+		"*.{mjs,js,ts,tsx,jsx}": "eslint --fix --ext mjs,js,ts,tsx,jsx"
 	},
 	"workspaces": [
 		"packages/*",
