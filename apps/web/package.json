@@ -30,7 +30,7 @@
 	},
 	"dependencies": {
 		"@brawltracker/brawl-api": "workspace:*",
-		"@fontsource-variable/inter": "^5.0.15",
+		"@fontsource-variable/inter": "^5.0.16",
 		"@radix-icons/vue": "^1.0.0",
 		"@sapphire/duration": "^1.1.1",
 		"@sapphire/time-utilities": "^1.7.11",
