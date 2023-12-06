@@ -16,7 +16,7 @@ const formatter = new DurationFormatter(FORMATTER_UNITS);
 </script>
 
 <template>
-	<div class="border-1 relative flex flex-col overflow-hidden rounded-md">
+	<div class="relative flex flex-col overflow-hidden rounded-md bg-card shadow dark:shadow-none">
 		<NuxtLink
 			class="absolute inset-0 z-30"
 			:to="`/modes/${event.map.gameMode.id}?realName=${encodeURIComponent(event.map.gameMode.hash)}`"

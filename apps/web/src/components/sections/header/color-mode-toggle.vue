@@ -11,20 +11,12 @@ import { COLOR_MODES } from "$lib/config";
 
 const mode = useColorMode();
 
-const toggleColorScheme = () => {
-	if (mode.preference === "light") {
-		mode.preference = "dark";
-	} else {
-		mode.preference = "light";
-	}
-};
-
 useDisableCssTransitions(() => mode.value);
 </script>
 
 <template>
 	<DropdownMenu>
-		<DropdownMenuTrigger>
+		<DropdownMenuTrigger asChild>
 			<Button variant="ghost" class="w-9 px-0 !ring-0">
 				<SunIcon
 					class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
@@ -35,7 +27,7 @@ useDisableCssTransitions(() => mode.value);
 				<span class="sr-only">Toggle theme</span>
 			</Button>
 		</DropdownMenuTrigger>
-		<DropdownMenuContent class="w-28 !min-w-[unset]">
+		<DropdownMenuContent align="end" class="w-28 !min-w-[unset]">
 			<DropdownMenuItem
 				v-for="colorMode in COLOR_MODES"
 				:key="colorMode"

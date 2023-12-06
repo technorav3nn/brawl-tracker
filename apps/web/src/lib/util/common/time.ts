@@ -1,4 +1,4 @@
-import { TimeTypes, type DurationFormatAssetsTime } from "@sapphire/duration";
+import { TimeTypes, type DurationFormatAssetsTime, DurationFormatter } from "@sapphire/duration";
 
 export const FORMATTER_UNITS: DurationFormatAssetsTime = {
 	[TimeTypes.Day]: {
@@ -30,3 +30,12 @@ export const FORMATTER_UNITS: DurationFormatAssetsTime = {
 		DEFAULT: "mo",
 	},
 };
+
+export const durationFormatter = new DurationFormatter(FORMATTER_UNITS);
+
+export function secondsToDate(seconds: number) {
+	// eslint-disable-next-line unicorn/numeric-separators-style
+	const date = new Date(1970, 0, 1);
+	date.setSeconds(seconds);
+	return date;
+}

@@ -41,6 +41,7 @@
 		"brawlstats": "^3.2.0",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
+		"date-fns": "^2.30.0",
 		"dedent": "^1.5.1",
 		"lucide-vue-next": "^0.294.0",
 		"motion": "^10.16.4",
