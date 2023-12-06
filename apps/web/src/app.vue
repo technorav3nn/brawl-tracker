@@ -23,6 +23,7 @@ watch(
 	{ immediate: true }
 );
 ("bad");
+("bad");
 </script>
 
 <template>
@@ -30,7 +31,7 @@ watch(
 		<NuxtLoadingIndicator color="hsl(var(--primary))" />
 		<NuxtLayout name="default">
 			<VitePwaManifest />
-			<NuxtPage />
+			<NuxtPage />c
 		</NuxtLayout>
 	</main>
 </template>
