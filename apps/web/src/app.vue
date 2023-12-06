@@ -22,6 +22,7 @@ watch(
 	},
 	{ immediate: true }
 );
+("bad");
 </script>
 
 <template>
