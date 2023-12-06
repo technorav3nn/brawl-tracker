@@ -1537,7 +1537,6 @@ __metadata:
     tsup: "npm:^6.7.0"
     typescript: "npm:5.3.2"
     vitest: "npm:^1.0.1"
-    vitest-github-actions-reporter: "npm:^0.11.1"
   languageName: unknown
   linkType: soft
 
@@ -1596,7 +1595,6 @@ __metadata:
     clsx: "npm:^2.0.0"
     date-fns: "npm:^2.30.0"
     dedent: "npm:^1.5.1"
-    eslint: "npm:^8.55.0"
     eslint-config-neon: "npm:^0.1.57"
     eslint-plugin-vue: "npm:^9.19.2"
     lucide-vue-next: "npm:^0.294.0"
