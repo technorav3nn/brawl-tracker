@@ -11,7 +11,7 @@
 	"devDependencies": {
 		"tsup": "^6.7.0",
 		"typescript": "5.3.3",
-		"vitest": "^1.0.2"
+		"vitest": "^1.0.3"
 	},
 	"files": [
 		"dist"
