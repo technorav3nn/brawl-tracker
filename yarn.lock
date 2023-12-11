@@ -1579,7 +1579,7 @@ __metadata:
     "@nuxt/devtools": "npm:1.0.5"
     "@nuxt/image": "npm:^1.1.0"
     "@nuxt/kit": "npm:^3.8.2"
-    "@nuxt/ui": "npm:^2.11.0"
+    "@nuxt/ui": "npm:^2.11.1"
     "@nuxtjs/color-mode": "npm:^3.3.2"
     "@nuxtjs/tailwindcss": "npm:^6.10.1"
     "@radix-icons/vue": "npm:^1.0.0"
@@ -2530,21 +2530,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify-json/heroicons@npm:^1.1.13":
-  version: 1.1.14
-  resolution: "@iconify-json/heroicons@npm:1.1.14"
+"@iconify-json/heroicons@npm:^1.1.15":
+  version: 1.1.15
+  resolution: "@iconify-json/heroicons@npm:1.1.15"
   dependencies:
     "@iconify/types": "npm:*"
-  checksum: 9f907b38a33126ff51d6546b406a2d11b1221b27d7b1adb36a011be33da016379402734600a7b4f734cba736f93b22d2071665f646118a658a595d44955c1faf
+  checksum: ea3b408f3a3c2170e7788901f8362d1902290bf073d2b56df64bd6c63475eaae5b5ce999a243c9c250b35fefcb20428fc18d1b3bd58a4d5a10227f4bf45c31d8
   languageName: node
   linkType: hard
 
-"@iconify/collections@npm:^1.0.356":
-  version: 1.0.361
-  resolution: "@iconify/collections@npm:1.0.361"
+"@iconify/collections@npm:^1.0.366":
+  version: 1.0.368
+  resolution: "@iconify/collections@npm:1.0.368"
   dependencies:
     "@iconify/types": "npm:*"
-  checksum: 7b4ea925dda3e4587c43f2e7453ec1245a1727a9929dfbaaa7ecb2a1844fa93d44f51bebe462a2bce6eb4c4eea331eab57e0a1f373d6fc54e0499667ed48a027
+  checksum: 6e146278ca942f8c4bce2eaa0bd027867aa6fc21ab207b5672cdf81b20543a5866ba9a921fd4d165771cb46ca4f45cf4dce393514c5d3a2558e875bb4524821f
   languageName: node
   linkType: hard
 
@@ -3031,7 +3031,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/devtools-kit@npm:1.0.5, @nuxt/devtools-kit@npm:^1.0.2":
+"@nuxt/devtools-kit@npm:1.0.5, @nuxt/devtools-kit@npm:^1.0.4":
   version: 1.0.5
   resolution: "@nuxt/devtools-kit@npm:1.0.5"
   dependencies:
@@ -3216,34 +3216,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/ui@npm:^2.11.0":
-  version: 2.11.0
-  resolution: "@nuxt/ui@npm:2.11.0"
+"@nuxt/ui@npm:^2.11.1":
+  version: 2.11.1
+  resolution: "@nuxt/ui@npm:2.11.1"
   dependencies:
     "@egoist/tailwindcss-icons": "npm:^1.4.0"
     "@headlessui/tailwindcss": "npm:^0.2.0"
     "@headlessui/vue": "npm:^1.7.16"
-    "@iconify-json/heroicons": "npm:^1.1.13"
+    "@iconify-json/heroicons": "npm:^1.1.15"
     "@nuxt/kit": "npm:^3.8.2"
     "@nuxtjs/color-mode": "npm:^3.3.2"
-    "@nuxtjs/tailwindcss": "npm:^6.10.0"
+    "@nuxtjs/tailwindcss": "npm:^6.10.1"
     "@popperjs/core": "npm:^2.11.8"
     "@tailwindcss/aspect-ratio": "npm:^0.4.2"
     "@tailwindcss/container-queries": "npm:^0.1.1"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@tailwindcss/typography": "npm:^0.5.10"
-    "@vueuse/core": "npm:^10.6.1"
-    "@vueuse/integrations": "npm:^10.6.1"
-    "@vueuse/math": "npm:^10.6.1"
+    "@vueuse/core": "npm:^10.7.0"
+    "@vueuse/integrations": "npm:^10.7.0"
+    "@vueuse/math": "npm:^10.7.0"
     defu: "npm:^6.1.3"
     fuse.js: "npm:^6.6.2"
-    nuxt-icon: "npm:^0.6.6"
+    nuxt-icon: "npm:^0.6.7"
     ohash: "npm:^1.1.3"
     pathe: "npm:^1.1.1"
-    scule: "npm:^1.1.0"
+    scule: "npm:^1.1.1"
     tailwind-merge: "npm:^1.14.0"
-    tailwindcss: "npm:^3.3.5"
-  checksum: cd6174614090d2886c987738ab0672f190a61e5ed0d18cf4e517d5e4b49099c55583845fc42c62af6b8e3783be61e672be14ef4c53ba85831c41e8278ed92b8e
+    tailwindcss: "npm:^3.3.6"
+  checksum: 5ab8144f139b8c012e3962f03ad819ea961323e6c6b7e57db2c0cb7e028d95274a2f7252dec99027e7669ee18f953aceb061b9596cb91b8e75ede2e1dd4b64f9
   languageName: node
   linkType: hard
 
@@ -3301,7 +3301,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/tailwindcss@npm:^6.10.0, @nuxtjs/tailwindcss@npm:^6.10.1":
+"@nuxtjs/tailwindcss@npm:^6.10.1":
   version: 6.10.1
   resolution: "@nuxtjs/tailwindcss@npm:6.10.1"
   dependencies:
@@ -4892,19 +4892,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:10.6.1":
-  version: 10.6.1
-  resolution: "@vueuse/core@npm:10.6.1"
-  dependencies:
-    "@types/web-bluetooth": "npm:^0.0.20"
-    "@vueuse/metadata": "npm:10.6.1"
-    "@vueuse/shared": "npm:10.6.1"
-    vue-demi: "npm:>=0.14.6"
-  checksum: 2e9d69f8a320355c2bc9dd87b8a5ebccdb318ecdc72797ad48128f3a705cba8063b4194c19cc065a0c9b6dd0a2f6fefbab35822b369d63cec7ad7a3ccde07c72
-  languageName: node
-  linkType: hard
-
-"@vueuse/core@npm:10.7.0, @vueuse/core@npm:^10.6.1":
+"@vueuse/core@npm:10.7.0, @vueuse/core@npm:^10.7.0":
   version: 10.7.0
   resolution: "@vueuse/core@npm:10.7.0"
   dependencies:
@@ -4916,12 +4904,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/integrations@npm:^10.6.1":
-  version: 10.6.1
-  resolution: "@vueuse/integrations@npm:10.6.1"
+"@vueuse/integrations@npm:^10.7.0":
+  version: 10.7.0
+  resolution: "@vueuse/integrations@npm:10.7.0"
   dependencies:
-    "@vueuse/core": "npm:10.6.1"
-    "@vueuse/shared": "npm:10.6.1"
+    "@vueuse/core": "npm:10.7.0"
+    "@vueuse/shared": "npm:10.7.0"
     vue-demi: "npm:>=0.14.6"
   peerDependencies:
     async-validator: "*"
@@ -4961,24 +4949,17 @@ __metadata:
       optional: true
     universal-cookie:
       optional: true
-  checksum: 08c9db824f1ac2134757790b1448d593a93b8af76eb7f42588a96480ee527f393d0134a1e55977a90d223f54b1287868550d0ad24d2495b229ce69f74a41f5b6
+  checksum: ecc2a4a85b26c8bf98f68a0802dbd7f422d83d387b40dcc5c9ecab4236c35f0b564a4194903b4f9f3101696b4176a2bf9d225fa6aae666e50e70eaf21f198a26
   languageName: node
   linkType: hard
 
-"@vueuse/math@npm:^10.6.1":
-  version: 10.6.1
-  resolution: "@vueuse/math@npm:10.6.1"
+"@vueuse/math@npm:^10.7.0":
+  version: 10.7.0
+  resolution: "@vueuse/math@npm:10.7.0"
   dependencies:
-    "@vueuse/shared": "npm:10.6.1"
+    "@vueuse/shared": "npm:10.7.0"
     vue-demi: "npm:>=0.14.6"
-  checksum: f82ce6220a1ee0f444e4dc6a4615b030ad119cd31b33ada2d37f4e2417a106bcf291996e3ef630b1da379186fb9794209038c88c62f4efd2a0bb517567d021e7
-  languageName: node
-  linkType: hard
-
-"@vueuse/metadata@npm:10.6.1":
-  version: 10.6.1
-  resolution: "@vueuse/metadata@npm:10.6.1"
-  checksum: 8c7e55ddb9f3f40a2a9ee4be0fa5f0d0c58ee80281fea2aadb5fb6009bc1ac3ae9b57b50260034655d3fcf9e195c165b1cb26ff7243f46cb913dc7ac5a7b5f34
+  checksum: 56e548909866e16f29f07e29488fa5b77ee3a99aa5a6e4fd91e922af6b317213004203756746bf4b3c8d97cc22007c6030ce306fc9879e84ec34423e0f727cc2
   languageName: node
   linkType: hard
 
@@ -5002,15 +4983,6 @@ __metadata:
   peerDependencies:
     nuxt: ^3.0.0
   checksum: 6fcf2da46f7bb7b289dc4092ebb84a6cfd9b43566e8a7af667fabaef6f0c337f842937affb5090838990eb86a320f9b3ab6191a2b865c70f350cfcbf72e24652
-  languageName: node
-  linkType: hard
-
-"@vueuse/shared@npm:10.6.1":
-  version: 10.6.1
-  resolution: "@vueuse/shared@npm:10.6.1"
-  dependencies:
-    vue-demi: "npm:>=0.14.6"
-  checksum: dbd65d2bcc8bd053c85ff08070627f1bb3983f83f8c9c8c60131977518e3a9a23bbd20e5daff3573ec45da18917649717527b0e5680445d6a93af0c325814a44
   languageName: node
   linkType: hard
 
@@ -12372,15 +12344,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nuxt-icon@npm:^0.6.6":
-  version: 0.6.6
-  resolution: "nuxt-icon@npm:0.6.6"
+"nuxt-icon@npm:^0.6.7":
+  version: 0.6.7
+  resolution: "nuxt-icon@npm:0.6.7"
   dependencies:
-    "@iconify/collections": "npm:^1.0.356"
+    "@iconify/collections": "npm:^1.0.366"
     "@iconify/vue": "npm:^4.1.1"
-    "@nuxt/devtools-kit": "npm:^1.0.2"
-    "@nuxt/kit": "npm:^3.8.1"
-  checksum: 533eb908ef81cba6bccd864b9c2b574a40ca0eae5e5b1098d79da5911d4709f6bf56459af1b962497df8725b06a6a344061e70695f6c93559a5349f9e59caf05
+    "@nuxt/devtools-kit": "npm:^1.0.4"
+    "@nuxt/kit": "npm:^3.8.2"
+  checksum: 57979f16dce9041ed3c1e0ccc76f90e58186156d9d60935c54b6252eca0b86518ff30c45927cddd64f359d8fdb8cf4a0298b58cf27d6d948aaa23850400181a1
   languageName: node
   linkType: hard
 
@@ -15407,9 +15379,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.3.5, tailwindcss@npm:~3.3.5":
-  version: 3.3.5
-  resolution: "tailwindcss@npm:3.3.5"
+"tailwindcss@npm:^3.3.6, tailwindcss@npm:~3.3.5":
+  version: 3.3.6
+  resolution: "tailwindcss@npm:3.3.6"
   dependencies:
     "@alloc/quick-lru": "npm:^5.2.0"
     arg: "npm:^5.0.2"
@@ -15436,7 +15408,7 @@ __metadata:
   bin:
     tailwind: lib/cli.js
     tailwindcss: lib/cli.js
-  checksum: a29c764e43fcb06b2ea34d981d2c20831a8bf4cf2a3738d08bbd887199457f686c327360e3b54652106cb2a919ca4f84bc6155853caf7e0078c8ab73b43c3eae
+  checksum: 7cca9ce2d49696a9025f3426fcf1b2ca5c6bba4c8abad50c36d3dc0b87a09b2b89976a2053bab5c50b7d488d5e54fd7865b4d0bbe5cc82a829986b901715fb27
   languageName: node
   linkType: hard
 

@@ -16,7 +16,7 @@
 		"@nuxt/devtools": "1.0.5",
 		"@nuxt/image": "^1.1.0",
 		"@nuxt/kit": "^3.8.2",
-		"@nuxt/ui": "^2.11.0",
+		"@nuxt/ui": "^2.11.1",
 		"@nuxtjs/color-mode": "^3.3.2",
 		"@nuxtjs/tailwindcss": "^6.10.1",
 		"@tailwindcss/typography": "^0.5.10",
