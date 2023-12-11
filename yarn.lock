@@ -1585,7 +1585,7 @@ __metadata:
     "@radix-icons/vue": "npm:^1.0.0"
     "@sapphire/duration": "npm:^1.1.1"
     "@sapphire/time-utilities": "npm:^1.7.11"
-    "@tabler/icons-vue": "npm:^2.43.0"
+    "@tabler/icons-vue": "npm:^2.44.0"
     "@tailwindcss/typography": "npm:^0.5.10"
     "@unpic/vue": "npm:^0.0.40"
     "@vite-pwa/nuxt": "npm:^0.3.5"
@@ -3956,21 +3956,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tabler/icons-vue@npm:^2.43.0":
-  version: 2.43.0
-  resolution: "@tabler/icons-vue@npm:2.43.0"
+"@tabler/icons-vue@npm:^2.44.0":
+  version: 2.44.0
+  resolution: "@tabler/icons-vue@npm:2.44.0"
   dependencies:
-    "@tabler/icons": "npm:2.43.0"
+    "@tabler/icons": "npm:2.44.0"
   peerDependencies:
     vue: ">=3.0.1"
-  checksum: df959f623d6804061887ef09eea541ce3cab2e866b9c23dc524b615a238907631d16f642fa4d92c475ac2c938cd6e178966626360c593c433ef6494e75ba6cd6
+  checksum: 6520cc1f81c071bd4c066a31bd96db0454f5c707439e911f612a1ca83f3f1fed1b50d8c150182c241df2aecdfb854fc3e728db42e0a3e056f5396879cace3914
   languageName: node
   linkType: hard
 
-"@tabler/icons@npm:2.43.0":
-  version: 2.43.0
-  resolution: "@tabler/icons@npm:2.43.0"
-  checksum: 3da5ec377d15d2acda8aef3b8191daadad107e6daac5724aaeb8a447ac675756d304183b7c506d139a78957a85fe826500440e38c01abb993bd6d3350d7f5dfe
+"@tabler/icons@npm:2.44.0":
+  version: 2.44.0
+  resolution: "@tabler/icons@npm:2.44.0"
+  checksum: 20b13a96628ecf0566a8f431b9a0f3653f08f1bab535cb905a14dd8465b18b0b9ca58e53f4b90584007d0bf9837d40f93548842ba98dac63446d630d804b0586
   languageName: node
   linkType: hard
 

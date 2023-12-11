@@ -34,7 +34,7 @@
 		"@radix-icons/vue": "^1.0.0",
 		"@sapphire/duration": "^1.1.1",
 		"@sapphire/time-utilities": "^1.7.11",
-		"@tabler/icons-vue": "^2.43.0",
+		"@tabler/icons-vue": "^2.44.0",
 		"@unpic/vue": "^0.0.40",
 		"@vueuse/nuxt": "^10.7.0",
 		"brawlstats": "^3.2.0",
