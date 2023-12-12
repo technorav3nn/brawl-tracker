@@ -17,14 +17,13 @@ const currentEvents = computed(() => events.value.active);
 </script>
 
 <template>
-	<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-		<EventsEventCard
-			v-for="(event, index) in currentEvents"
-			:key="event.map.id"
-			:event="event"
-			:images="events.images"
-			type="current"
-			:eventIndex="index"
-		/>
-	</div>
+	<!-- eslint-disable-next-line vue/no-multiple-template-root -->
+	<EventsEventCard
+		v-for="(event, index) in currentEvents"
+		:key="event.map.id"
+		:event="event"
+		:images="events.images"
+		type="current"
+		:eventIndex="index"
+	/>
 </template>

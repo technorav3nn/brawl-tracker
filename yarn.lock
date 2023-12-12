@@ -1582,6 +1582,7 @@ __metadata:
     "@nuxt/ui": "npm:^2.11.1"
     "@nuxtjs/color-mode": "npm:^3.3.2"
     "@nuxtjs/tailwindcss": "npm:^6.10.1"
+    "@pinia/nuxt": "npm:^0.5.1"
     "@radix-icons/vue": "npm:^1.0.0"
     "@sapphire/duration": "npm:^1.1.1"
     "@sapphire/time-utilities": "npm:^1.7.11"
@@ -1589,6 +1590,7 @@ __metadata:
     "@tailwindcss/typography": "npm:^0.5.10"
     "@unpic/vue": "npm:^0.0.40"
     "@vite-pwa/nuxt": "npm:^0.3.5"
+    "@vueuse/core": "npm:^10.7.0"
     "@vueuse/nuxt": "npm:^10.7.0"
     brawlstats: "npm:^3.2.0"
     class-variance-authority: "npm:^0.7.0"
@@ -3137,7 +3139,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.8.2, @nuxt/kit@npm:^3.8.1, @nuxt/kit@npm:^3.8.2":
+"@nuxt/kit@npm:3.8.2, @nuxt/kit@npm:^3.5.0, @nuxt/kit@npm:^3.8.1, @nuxt/kit@npm:^3.8.2":
   version: 3.8.2
   resolution: "@nuxt/kit@npm:3.8.2"
   dependencies:
@@ -3471,6 +3473,16 @@ __metadata:
     "@parcel/watcher-win32-x64":
       optional: true
   checksum: 5ba2be3337153f0c26b4a0b3a4f78ee728a96c37855c1cd39a573ac60b68e3116e657404c61b121b3f77f5227ab3d2c94679a816e42e90d1a476d7c783225368
+  languageName: node
+  linkType: hard
+
+"@pinia/nuxt@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@pinia/nuxt@npm:0.5.1"
+  dependencies:
+    "@nuxt/kit": "npm:^3.5.0"
+    pinia: "npm:>=2.1.7"
+  checksum: d9f6aa9f5fa50e811d538931162aa55c193d66324df48c74044b63916c3fa03dd64441b4ef1ce7043d3c3f1009d6cbf2d180ec4990f39d781e0c5c279275c465
   languageName: node
   linkType: hard
 
@@ -13001,6 +13013,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pinia@npm:>=2.1.7":
+  version: 2.1.7
+  resolution: "pinia@npm:2.1.7"
+  dependencies:
+    "@vue/devtools-api": "npm:^6.5.0"
+    vue-demi: "npm:>=0.14.5"
+  peerDependencies:
+    "@vue/composition-api": ^1.4.0
+    typescript: ">=4.4.4"
+    vue: ^2.6.14 || ^3.3.0
+  peerDependenciesMeta:
+    "@vue/composition-api":
+      optional: true
+    typescript:
+      optional: true
+  checksum: e8426e01b127610c96069ae04a68a57569596611816f24d2baa50a03cb2bf773c5b794280063cce53501ad6ad75e419bfd9dc7b45c05014f78fb0b3421dbb7b0
+  languageName: node
+  linkType: hard
+
 "pirates@npm:^4.0.1":
   version: 4.0.6
   resolution: "pirates@npm:4.0.6"
@@ -17018,7 +17049,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-demi@npm:>=0.13.0, vue-demi@npm:>=0.14.6":
+"vue-demi@npm:>=0.13.0, vue-demi@npm:>=0.14.5, vue-demi@npm:>=0.14.6":
   version: 0.14.6
   resolution: "vue-demi@npm:0.14.6"
   peerDependencies:

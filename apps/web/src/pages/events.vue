@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { BrawlApiEvent } from "@brawltracker/brawl-api";
 import { upperFirstCharacter } from "$lib/util/common";
 
 const route = useRoute("events");
@@ -14,7 +15,34 @@ watchEffect(() => {
 	tab.value = route.path.split("/")[2]!;
 });
 
-const { data: events } = await useFetch("/api/events/rotation");
+/**
+ * Sorts the events so that the challenge evenst are always last.
+ *
+ * @param evts The events to sort.
+ */
+function sortEventRotation(evts: BrawlApiEvent[]) {
+	return evts.sort((a, b) => {
+		if (a.slot.name !== "Challenge") {
+			return -1;
+		}
+
+		if (b.slot.name === "Challenge") {
+			return 1;
+		}
+
+		return 0;
+	});
+}
+
+const { data: events } = await useFetch("/api/events/rotation", {
+	transform: ({ active, upcoming, images }) => {
+		return {
+			active: sortEventRotation(active.reverse()),
+			upcoming: sortEventRotation(upcoming.reverse()),
+			images,
+		};
+	},
+});
 </script>
 
 <template>
@@ -38,7 +66,26 @@ const { data: events } = await useFetch("/api/events/rotation");
 			</UiTabsList>
 		</UiTabs>
 		<div class="px-1 pt-4">
-			<NuxtPage :events="events" />
+			<div class="grid-media-cols grid gap-4">
+				<NuxtPage :events="events" />
+			</div>
 		</div>
 	</div>
 </template>
+
+<style scoped>
+.grid-media-cols {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1205px) {
+	.grid-media-cols {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+@media (max-width: 768px) {
+	.grid-media-cols {
+		grid-template-columns: repeat(1, minmax(0, 1fr));
+	}
+}
+</style>

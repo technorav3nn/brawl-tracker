@@ -3,7 +3,7 @@ import { StarIcon } from "lucide-vue-next";
 </script>
 
 <template>
-	<nav class="sticky top-0 z-40 bg-background">
+	<nav class="fixed left-0 right-0 top-0 z-40 bg-background">
 		<div class="relative flex h-16 items-center border-b-[1px]">
 			<div class="container max-w-7xl py-3 max-md:px-4 md:py-4">
 				<section class="justify-between gap-8 hstack">

@@ -2,7 +2,7 @@
 import type { BrawlApiEvent } from "@brawltracker/brawl-api";
 import { DurationFormatter } from "@sapphire/duration";
 import { Image } from "@unpic/vue";
-import { ChevronRight, Clock } from "lucide-vue-next";
+import { ChevronRight, Clock, Trophy } from "lucide-vue-next";
 import { FORMATTER_UNITS } from "$lib/util/common";
 import type { BrawlApiBrawlerWithOnlyImages } from "$server/utils/get-brawler-images";
 
@@ -40,11 +40,15 @@ const formatter = new DurationFormatter(FORMATTER_UNITS);
 					priority
 					width="40"
 					height="40"
-					class="-ml-1.5 h-10 w-10 self-center bg-contain object-contain"
+					class="-ml-1.5 h-10 w-10 self-center bg-contain !object-contain"
 				/>
 				<div class="flex flex-1 flex-col">
-					<h1 class="text-lg font-bold uppercase leading-snug">
+					<h1 class="flex flex-row items-center gap-2 text-lg font-bold uppercase leading-snug">
 						{{ event.map.gameMode.name }}
+						<Trophy
+							v-if="event.slot.name === 'Challenge'"
+							class="fill h-[1.1rem] w-[1.1rem] stroke-[2] text-primary"
+						/>
 					</h1>
 					<div class="flex flex-col justify-between xs:flex-row">
 						<p
@@ -52,7 +56,7 @@ const formatter = new DurationFormatter(FORMATTER_UNITS);
 						>
 							{{ event.map.name }}
 						</p>
-						<div class="flex flex-row items-center gap-1">
+						<div class="inline-flex flex-row items-center gap-1">
 							<Clock class="hidden h-3.5 w-3.5 text-muted-foreground lg:block" />
 							<p class="text-sm font-medium text-muted-foreground">
 								{{ type === "current" ? "ends" : "starts" }} in
@@ -68,18 +72,6 @@ const formatter = new DurationFormatter(FORMATTER_UNITS);
 					</div>
 				</div>
 			</div>
-			<!-- 
-				<div class="flex items-center justify-end">
-				<NuxtImg
-					:src="event.map.gameMode.imageUrl"
-					width="50"
-					height="50"
-					fit="contain"
-					loading="eager"
-					preload
-				/>
-			</div> 
-		-->
 		</div>
 		<div class="flex flex-row justify-between rounded-b-md border border-t-0 border-border p-2">
 			<div class="flex flex-row items-center justify-start gap-1">
@@ -93,10 +85,5 @@ const formatter = new DurationFormatter(FORMATTER_UNITS);
 				<ChevronRight class="h-5 w-5 stroke-[1.5] text-muted-foreground" />
 			</NuxtLink>
 		</div>
-		<!--
-			eslint-disable
-		  <div class="rounded-b-md border border-t-0 border-border px-2 py-1">
-		  <p class="text-sm text-muted-foreground">ends in 1d 22h</p>
-		  </div> -->
 	</div>
 </template>

@@ -15,6 +15,7 @@ export default defineNuxtConfig({
 		"@hypernym/nuxt-font",
 		"@vueuse/nuxt",
 		"@vite-pwa/nuxt",
+		"@pinia/nuxt",
 	],
 	srcDir: "src/",
 	app: {

@@ -29,7 +29,7 @@ watch(
 		<NuxtLoadingIndicator color="hsl(var(--primary))" />
 		<NuxtLayout name="default">
 			<VitePwaManifest />
-			<NuxtPage />c
+			<NuxtPage />
 		</NuxtLayout>
 	</main>
 </template>

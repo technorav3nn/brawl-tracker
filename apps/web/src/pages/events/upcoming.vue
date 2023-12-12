@@ -17,15 +17,14 @@ const upcomingEvents = computed(() => events.value.upcoming);
 </script>
 
 <template>
-	<div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-		<EventsEventCard
-			v-for="(event, index) in upcomingEvents"
-			:key="event.map.id"
-			v-memo="event.map.id"
-			:event="event"
-			:images="events.images"
-			:eventIndex="index"
-			type="upcoming"
-		/>
-	</div>
+	<!-- eslint-disable-next-line vue/no-multiple-template-root -->
+	<EventsEventCard
+		v-for="(event, index) in upcomingEvents"
+		:key="event.map.id"
+		v-memo="event.map.id"
+		:event="event"
+		:images="events.images"
+		:eventIndex="index"
+		type="upcoming"
+	/>
 </template>
