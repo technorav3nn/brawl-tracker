@@ -13,7 +13,7 @@
 	},
 	"devDependencies": {
 		"@hypernym/nuxt-font": "^2.0.1",
-		"@nuxt/devtools": "1.0.5",
+		"@nuxt/devtools": "1.0.6",
 		"@nuxt/image": "^1.1.0",
 		"@nuxt/kit": "^3.8.2",
 		"@nuxt/ui": "^2.11.1",
@@ -36,7 +36,7 @@
 		"@sapphire/duration": "^1.1.1",
 		"@sapphire/time-utilities": "^1.7.11",
 		"@tabler/icons-vue": "^2.44.0",
-		"@unpic/vue": "^0.0.40",
+		"@unpic/vue": "^0.0.41",
 		"@vueuse/core": "^10.7.0",
 		"@vueuse/nuxt": "^10.7.0",
 		"brawlstats": "^3.2.0",

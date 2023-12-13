@@ -122,10 +122,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@antfu/utils@npm:^0.7.5, @antfu/utils@npm:^0.7.6":
-  version: 0.7.6
-  resolution: "@antfu/utils@npm:0.7.6"
-  checksum: 5ad548e20cfa23a956f617768b76eee5c250b810274dc1c22d7732afbb3fa2d804dc7dbb5aeeb249e64fc929535e6c5dee6607fafde5bd65a84473fba4bc1ad6
+"@antfu/utils@npm:^0.7.5, @antfu/utils@npm:^0.7.6, @antfu/utils@npm:^0.7.7":
+  version: 0.7.7
+  resolution: "@antfu/utils@npm:0.7.7"
+  checksum: 28b1a9caecc26bb43c5b08ea18c384f97a1eccc29763ad19c719e57f252fc12296f13849917fdf6611bd3aceff17137011363703e7ac0a07a083c9dce4676e42
   languageName: node
   linkType: hard
 
@@ -1576,7 +1576,7 @@ __metadata:
     "@brawltracker/brawl-api": "workspace:*"
     "@fontsource-variable/inter": "npm:^5.0.16"
     "@hypernym/nuxt-font": "npm:^2.0.1"
-    "@nuxt/devtools": "npm:1.0.5"
+    "@nuxt/devtools": "npm:1.0.6"
     "@nuxt/image": "npm:^1.1.0"
     "@nuxt/kit": "npm:^3.8.2"
     "@nuxt/ui": "npm:^2.11.1"
@@ -1588,7 +1588,7 @@ __metadata:
     "@sapphire/time-utilities": "npm:^1.7.11"
     "@tabler/icons-vue": "npm:^2.44.0"
     "@tailwindcss/typography": "npm:^0.5.10"
-    "@unpic/vue": "npm:^0.0.40"
+    "@unpic/vue": "npm:^0.0.41"
     "@vite-pwa/nuxt": "npm:^0.3.5"
     "@vueuse/core": "npm:^10.7.0"
     "@vueuse/nuxt": "npm:^10.7.0"
@@ -3033,23 +3033,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/devtools-kit@npm:1.0.5, @nuxt/devtools-kit@npm:^1.0.4":
-  version: 1.0.5
-  resolution: "@nuxt/devtools-kit@npm:1.0.5"
+"@nuxt/devtools-kit@npm:1.0.6, @nuxt/devtools-kit@npm:^1.0.4":
+  version: 1.0.6
+  resolution: "@nuxt/devtools-kit@npm:1.0.6"
   dependencies:
     "@nuxt/kit": "npm:^3.8.2"
     "@nuxt/schema": "npm:^3.8.2"
     execa: "npm:^7.2.0"
   peerDependencies:
-    nuxt: ^3.8.1
+    nuxt: ^3.8.2
     vite: "*"
-  checksum: 2470be87f119cd80f16fce4f901c84def5c12537c7ade4e4b4471829f7c47a0e510a072c3d4282ebb955ad136b7ba5e4619bb1a3d0233d5e1eb6927c04f08cc4
+  checksum: 20e444c5669dda85fc80faa22eba023deec1b0bf3d98ea304b12c4943197d6ca14f431fc3e9a2d9496dc74ff3027b28befadb36a4918a7b4cd6cec88a0ada187
   languageName: node
   linkType: hard
 
-"@nuxt/devtools-wizard@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@nuxt/devtools-wizard@npm:1.0.5"
+"@nuxt/devtools-wizard@npm:1.0.6":
+  version: 1.0.6
+  resolution: "@nuxt/devtools-wizard@npm:1.0.6"
   dependencies:
     consola: "npm:^3.2.3"
     diff: "npm:^5.1.0"
@@ -3063,17 +3063,17 @@ __metadata:
     semver: "npm:^7.5.4"
   bin:
     devtools-wizard: cli.mjs
-  checksum: d5cc505024b8c344f8990e93948d1e2ae08a4f3b24b2791486036de81ad1dfd2d6aa79571cfadf5bdb44a9f95560978354119991efad4ca668083d49357bd306
+  checksum: a1a56187ddfa5fa5e38bb59923ed1a9a8b2aefa69845bcc5195c760db7195bf02344848fe9c695f0b202b30d0718d7b78fed5f86a08b05c31e5656e1715c27e7
   languageName: node
   linkType: hard
 
-"@nuxt/devtools@npm:1.0.5, @nuxt/devtools@npm:^1.0.3":
-  version: 1.0.5
-  resolution: "@nuxt/devtools@npm:1.0.5"
+"@nuxt/devtools@npm:1.0.6, @nuxt/devtools@npm:^1.0.3":
+  version: 1.0.6
+  resolution: "@nuxt/devtools@npm:1.0.6"
   dependencies:
-    "@antfu/utils": "npm:^0.7.6"
-    "@nuxt/devtools-kit": "npm:1.0.5"
-    "@nuxt/devtools-wizard": "npm:1.0.5"
+    "@antfu/utils": "npm:^0.7.7"
+    "@nuxt/devtools-kit": "npm:1.0.6"
+    "@nuxt/devtools-wizard": "npm:1.0.6"
     "@nuxt/kit": "npm:^3.8.2"
     birpc: "npm:^0.2.14"
     consola: "npm:^3.2.3"
@@ -3107,13 +3107,13 @@ __metadata:
     vite-plugin-inspect: "npm:^0.8.1"
     vite-plugin-vue-inspector: "npm:^4.0.2"
     which: "npm:^3.0.1"
-    ws: "npm:^8.14.2"
+    ws: "npm:^8.15.0"
   peerDependencies:
-    nuxt: ^3.8.1
+    nuxt: ^3.8.2
     vite: "*"
   bin:
     devtools: cli.mjs
-  checksum: 5e53b728d94f77dc5f10a1ee4105997bc9741b285298226edb317867b014a7b34d128b8c2dbe4c6c1404e4d4b13e31e8be0f21d7a2f484c0ff5173a3b1049ca6
+  checksum: b92c85525fd5f7eabc391f6c334aee57a76964dafb19a45a67e5510e32917b4ef25f112527bfa0db6b5b9720d2b752992660f02dd32389f95cad4d608cbc27ef
   languageName: node
   linkType: hard
 
@@ -4537,22 +4537,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@unpic/core@npm:^0.0.41":
-  version: 0.0.41
-  resolution: "@unpic/core@npm:0.0.41"
+"@unpic/core@npm:^0.0.42":
+  version: 0.0.42
+  resolution: "@unpic/core@npm:0.0.42"
   dependencies:
-    unpic: "npm:^3.15.0"
-  checksum: 0f12eeb40dc78a39f2352e13e0971c48095a8a5d8414f8b1028f451e7882d265578547d5a452839f7d201c6df77d31b0f49440bfd47d993c62b5f3d225597a2a
+    unpic: "npm:^3.16.0"
+  checksum: b3dbe4ac156e321dfe6fd1822de3ae28ef1917d1d92529af276db7e3ec58825e4f927b6ca99effa6b20753cb32517b2cbd9d5c144142d05e9580c47cdeb97901
   languageName: node
   linkType: hard
 
-"@unpic/vue@npm:^0.0.40":
-  version: 0.0.40
-  resolution: "@unpic/vue@npm:0.0.40"
+"@unpic/vue@npm:^0.0.41":
+  version: 0.0.41
+  resolution: "@unpic/vue@npm:0.0.41"
   dependencies:
-    "@unpic/core": "npm:^0.0.41"
+    "@unpic/core": "npm:^0.0.42"
     vue: "npm:^3.3.4"
-  checksum: e4fc98ba78042f145b12d5b81322ec86444fa65ee023ca2f6b32b2930d2f014549fe512cc027f45624a97352dd98e89572585acd23404d19778c61d138056385
+  checksum: a0447c5eeab36d8b1b8af5d4f2548efbd238cf5191106e75ec794fcf69c6dd15ac7b3dc951ee17561ee1beaee7c8ed59cb102d4b1f600fac95464f79c62ed310
   languageName: node
   linkType: hard
 
@@ -16379,10 +16379,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unpic@npm:^3.15.0":
-  version: 3.15.0
-  resolution: "unpic@npm:3.15.0"
-  checksum: 4fad9bdeda0306545ce090834927697caa20984373dfeb9d73d9f580767798d1ffbf1b7c212ee9ec1830f9736ccd51f97f7dbe086a4abecb7310f6d075c6cb60
+"unpic@npm:^3.16.0":
+  version: 3.16.0
+  resolution: "unpic@npm:3.16.0"
+  checksum: 4d54fe6925cc9d69f0d9e4fe084c0d9915a25cab224ca7a97fb7550776bc3e7876560ba7442ea302982b0353f5112b878afcfdb817dadc1479e6f0a3c53df697
   languageName: node
   linkType: hard
 
@@ -17564,9 +17564,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^8.14.2":
-  version: 8.14.2
-  resolution: "ws@npm:8.14.2"
+"ws@npm:^8.15.0":
+  version: 8.15.1
+  resolution: "ws@npm:8.15.1"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ">=5.0.2"
@@ -17575,7 +17575,7 @@ __metadata:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 815ff01d9bc20a249b2228825d9739268a03a4408c2e0b14d49b0e2ae89d7f10847e813b587ba26992bdc33e9d03bed131e4cae73ff996baf789d53e99c31186
+  checksum: 746a3102d43e8df7b09f5814bec858f12d10185a7abd655537f3291b687d440bb80fc9d1e082f8dee42d4d74307f78a96810e18a2c8e13053b003c6608c1c648
   languageName: node
   linkType: hard
 
