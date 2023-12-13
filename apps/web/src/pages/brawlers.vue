@@ -1,8 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { fetchBrawlers } = useBrawlersStore();
+const { brawlers, groupingMode } = storeToRefs(useBrawlersStore());
+
+groupingMode.value = "rarity";
+
+await fetchBrawlers();
+</script>
 
 <template>
 	<div>
-		<h1>About page</h1>
-		<NuxtLink to="/">Home page</NuxtLink>
+		{{ brawlers }}
 	</div>
 </template>

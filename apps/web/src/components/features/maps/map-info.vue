@@ -21,6 +21,7 @@ defineProps<{
 						width="80"
 						height="80"
 						class="!h-[min-content] bg-contain !object-contain"
+						priority
 					/>
 					<div class="flex flex-col">
 						<h2 class="whitespace-nowrap text-3xl font-bold tracking-tight">
@@ -41,7 +42,7 @@ defineProps<{
 				</div>
 			</div>
 
-			<div class="top-48 mt-5 flex flex-col gap-0 overflow-hidden rounded bg-card shadow lg:sticky">
+			<div class="top-48 mx-auto mt-5 flex flex-col gap-0 overflow-hidden rounded bg-card shadow lg:sticky">
 				<!-- max-w-max is to prevent absolute button from following the flexbox's span -->
 				<div class="relative max-w-max">
 					<MapsMapViewDialog :map="map" />

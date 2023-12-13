@@ -1,22 +1,38 @@
 <!-- eslint-disable vue/script-indent -->
 <script setup lang="ts">
+const { SORT_OPTIONS, setMap, setBrawlers } = useMapStore();
+const { search, sort, brawlerStats } = storeToRefs(useMapStore());
+
+const hasSelectedAnySort = ref(false);
+
 const route = useRoute("maps-map");
+
 const { data: map } = await useFetch(`/api/maps/${route.params.map}`);
 const { data: events } = await useFetch(`/api/events/rotation`);
 const { data: brawlers } = await useFetch(`/api/brawlers`);
-
-const { SORT_OPTIONS, setMap, setBrawlers } = useMapStatFilterStore();
-const { search, sort, brawlerStats } = storeToRefs(useMapStatFilterStore());
 
 watchEffect(() => {
 	setMap(map.value!);
 	setBrawlers(brawlers.value!);
 });
 
+watch(sort, () => {
+	hasSelectedAnySort.value = true;
+});
+
 const activeEvents = computed(() => events.value?.active);
 const mapIsActive = computed(() =>
 	Boolean(activeEvents.value?.find((event) => event.map.name === map.value!.name))
 );
+
+const selectValue = computed(() => {
+	const option = SORT_OPTIONS.find((opt) => opt.value === sort.value);
+	if (option?.value === "win-rate-asc" && !hasSelectedAnySort.value) {
+		return "Sort...";
+	}
+
+	return option?.label;
+});
 </script>
 
 <template>
@@ -34,7 +50,9 @@ const mapIsActive = computed(() =>
 					<UiInput v-model:modelValue="search" placeholder="Filter Brawlers..." class="h-8 max-w-[15rem]" />
 					<UiSelect v-model:modelValue="sort">
 						<UiSelectTrigger class="h-8 max-w-[8rem]">
-							<UiSelectValue placeholder="Sort..." />
+							<UiSelectValue>
+								{{ selectValue }}
+							</UiSelectValue>
 						</UiSelectTrigger>
 						<UiSelectContent>
 							<UiSelectGroup>

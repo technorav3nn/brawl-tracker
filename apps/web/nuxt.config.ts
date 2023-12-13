@@ -8,6 +8,11 @@ export default defineNuxtConfig({
 	nitro: {
 		preset: "vercel",
 	},
+	routeRules: {
+		"/api/**": {
+			cors: true,
+		},
+	},
 	modules: [
 		"@nuxt/image",
 		"@nuxtjs/color-mode",
@@ -109,7 +114,6 @@ export default defineNuxtConfig({
 	runtimeConfig: {
 		brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
 	},
-
 	hooks: {
 		"prepare:types": ({ tsConfig }) => {
 			const aliasesToRemoveFromAutocomplete = ["~~", "~~/*", "@@", "@@/*", "@/*", "@", "~/", "~/*"];
