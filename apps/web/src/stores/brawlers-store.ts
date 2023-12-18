@@ -1,13 +1,31 @@
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
 import { groupBy } from "$lib/util/common";
 
-export type GroupingMode = "class" | "none" | "rarity";
+type Mode = "class" | "none" | "rarity";
 
-export const GROUPING_MODES: GroupingMode[] = ["none", "rarity", "class"];
+type GroupingMode = {
+	label: string;
+	value: Mode;
+};
+
+const GROUPING_MODES: GroupingMode[] = [
+	{
+		label: "Rarity",
+		value: "rarity",
+	},
+	{
+		label: "Class",
+		value: "class",
+	},
+	{
+		label: "None",
+		value: "none",
+	},
+];
 
 export const useBrawlersStore = defineStore("brawlers-store", () => {
 	const ungroupedBrawlers = ref<BrawlApiBrawler[]>([]);
-	const groupingMode = ref<GroupingMode>("none");
+	const groupingMode = ref<Mode>("none");
 	const search = ref<string>("");
 
 	const brawlers = computed(() => {
@@ -34,5 +52,6 @@ export const useBrawlersStore = defineStore("brawlers-store", () => {
 		groupingMode,
 		search,
 		fetchBrawlers,
+		GROUPING_MODES,
 	};
 });

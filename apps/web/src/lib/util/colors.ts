@@ -10,3 +10,12 @@ export const GAME_MODE_COLORS: Record<string, string> = {
 	Heist: colors.fuchsia[500],
 	"Hot-Zone": colors.red[500],
 };
+
+export const RARITY_COLORS: Record<string, string> = {
+	Legendary: colors.yellow[400],
+	Mythic: colors.red[400],
+	Epic: colors.purple[400],
+	"Super Rare": colors.blue[400],
+	Rare: colors.green[400],
+	Common: colors.gray[400],
+};

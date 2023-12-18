@@ -6,7 +6,7 @@ type SortOption = {
 	value: SortValues;
 };
 
-export const SORT_OPTIONS: SortOption[] = [
+const SORT_OPTIONS: SortOption[] = [
 	{
 		label: "Win %: Asc",
 		value: "win-rate-asc",
