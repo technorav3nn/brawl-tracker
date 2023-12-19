@@ -31,6 +31,7 @@
 	"dependencies": {
 		"@brawltracker/brawl-api": "workspace:*",
 		"@fontsource-variable/inter": "^5.0.16",
+		"@formkit/auto-animate": "^0.8.1",
 		"@pinia/nuxt": "^0.5.1",
 		"@radix-icons/vue": "^1.0.0",
 		"@sapphire/duration": "^1.1.1",
@@ -38,6 +39,7 @@
 		"@tabler/icons-vue": "^2.44.0",
 		"@unpic/vue": "^0.0.41",
 		"@vueuse/core": "^10.7.0",
+		"@vueuse/motion": "^2.0.0",
 		"@vueuse/nuxt": "^10.7.0",
 		"brawlstats": "^3.2.0",
 		"class-variance-authority": "^0.7.0",
@@ -45,7 +47,6 @@
 		"date-fns": "^2.30.0",
 		"dedent": "^1.5.1",
 		"lucide-vue-next": "^0.294.0",
-		"motion": "^10.16.4",
 		"node-cache": "^5.1.2",
 		"radix-vue": "^1.2.4",
 		"tailwind-merge": "^2.1.0",

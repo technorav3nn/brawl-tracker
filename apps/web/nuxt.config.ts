@@ -21,6 +21,7 @@ export default defineNuxtConfig({
 		"@vueuse/nuxt",
 		"@vite-pwa/nuxt",
 		"@pinia/nuxt",
+		"@formkit/auto-animate/nuxt",
 	],
 	srcDir: "src/",
 	app: {

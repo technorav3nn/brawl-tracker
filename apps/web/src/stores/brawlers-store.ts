@@ -10,16 +10,16 @@ type GroupingMode = {
 
 const GROUPING_MODES: GroupingMode[] = [
 	{
+		label: "None",
+		value: "none",
+	},
+	{
 		label: "Rarity",
 		value: "rarity",
 	},
 	{
 		label: "Class",
 		value: "class",
-	},
-	{
-		label: "None",
-		value: "none",
 	},
 ];
 

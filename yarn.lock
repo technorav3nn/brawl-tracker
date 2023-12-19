@@ -1575,6 +1575,7 @@ __metadata:
   dependencies:
     "@brawltracker/brawl-api": "workspace:*"
     "@fontsource-variable/inter": "npm:^5.0.16"
+    "@formkit/auto-animate": "npm:^0.8.1"
     "@hypernym/nuxt-font": "npm:^2.0.1"
     "@nuxt/devtools": "npm:1.0.6"
     "@nuxt/image": "npm:^1.1.0"
@@ -1591,6 +1592,7 @@ __metadata:
     "@unpic/vue": "npm:^0.0.41"
     "@vite-pwa/nuxt": "npm:^0.3.5"
     "@vueuse/core": "npm:^10.7.0"
+    "@vueuse/motion": "npm:^2.0.0"
     "@vueuse/nuxt": "npm:^10.7.0"
     brawlstats: "npm:^3.2.0"
     class-variance-authority: "npm:^0.7.0"
@@ -1600,7 +1602,6 @@ __metadata:
     eslint-config-neon: "npm:^0.1.57"
     eslint-plugin-vue: "npm:^9.19.2"
     lucide-vue-next: "npm:^0.294.0"
-    motion: "npm:^10.16.4"
     node-cache: "npm:^5.1.2"
     nuxt: "npm:^3.8.2"
     radix-vue: "npm:^1.2.4"
@@ -2482,6 +2483,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@formkit/auto-animate@npm:^0.8.1":
+  version: 0.8.1
+  resolution: "@formkit/auto-animate@npm:0.8.1"
+  checksum: c35cbfddce7a84b9bda7f85eb2dd272b3d432d9914571876078e001bb2b8ddee0021f24cdabd5d5dd9ad13c090e90fd329ba6e007a08cef642fe4b4b6f446c54
+  languageName: node
+  linkType: hard
+
 "@headlessui/tailwindcss@npm:^0.2.0":
   version: 0.2.0
   resolution: "@headlessui/tailwindcss@npm:0.2.0"
@@ -2761,91 +2769,6 @@ __metadata:
   version: 0.14.2
   resolution: "@microsoft/tsdoc@npm:0.14.2"
   checksum: 00c3d4fc184e8e09e17aef57e4a990402bd9752607a5d50bd62a9e85bc4b8791c985a51e238affa6b9a2d23110f24d373becbfc84e1e6e9a84cf977822e3b00a
-  languageName: node
-  linkType: hard
-
-"@motionone/animation@npm:^10.16.3":
-  version: 10.16.3
-  resolution: "@motionone/animation@npm:10.16.3"
-  dependencies:
-    "@motionone/easing": "npm:^10.16.3"
-    "@motionone/types": "npm:^10.16.3"
-    "@motionone/utils": "npm:^10.16.3"
-    tslib: "npm:^2.3.1"
-  checksum: f00436005ff331deab7e870249de1feb368ed727e0d9499a22ecbb2c598a2b531fced6ed87fc6badff3bda5fb94eb0c929be2562e89b16de879d257792af993b
-  languageName: node
-  linkType: hard
-
-"@motionone/dom@npm:^10.16.4":
-  version: 10.16.4
-  resolution: "@motionone/dom@npm:10.16.4"
-  dependencies:
-    "@motionone/animation": "npm:^10.16.3"
-    "@motionone/generators": "npm:^10.16.4"
-    "@motionone/types": "npm:^10.16.3"
-    "@motionone/utils": "npm:^10.16.3"
-    hey-listen: "npm:^1.0.8"
-    tslib: "npm:^2.3.1"
-  checksum: 105eea5bf08df4ecd12d1e4eb98066b25f84593eab53f278a37053c5909986d62b86697688fb0a7e5750b62bc69bc3d4ece1fd15e62d2c883b3a29262522b008
-  languageName: node
-  linkType: hard
-
-"@motionone/easing@npm:^10.16.3":
-  version: 10.16.3
-  resolution: "@motionone/easing@npm:10.16.3"
-  dependencies:
-    "@motionone/utils": "npm:^10.16.3"
-    tslib: "npm:^2.3.1"
-  checksum: 0d87a83cd58fab086043311c5a6330d2efde209b6757f797cca7b858b19e647066a2a34c8f329653d16ec9e2296f23f781bf8b116cc3f3cbe705b594fbc2144d
-  languageName: node
-  linkType: hard
-
-"@motionone/generators@npm:^10.16.4":
-  version: 10.16.4
-  resolution: "@motionone/generators@npm:10.16.4"
-  dependencies:
-    "@motionone/types": "npm:^10.16.3"
-    "@motionone/utils": "npm:^10.16.3"
-    tslib: "npm:^2.3.1"
-  checksum: 3ac88997542e9efe80a8713a6b274398663974d1489c4f53dae8ab1e132a7e64801726f8166b2993462ffae0b8298c1391cd8731c888204003eada2e7cf348d5
-  languageName: node
-  linkType: hard
-
-"@motionone/svelte@npm:^10.16.4":
-  version: 10.16.4
-  resolution: "@motionone/svelte@npm:10.16.4"
-  dependencies:
-    "@motionone/dom": "npm:^10.16.4"
-    tslib: "npm:^2.3.1"
-  checksum: 5ad532d4d9bb16a9f311487e6409fa7e1a66ec12f82e3c36434ab6dfe3cedc61b35dae6314cee4fba8dca463b8a259cafb83801a932b7ad5f4a6e45baaa581f4
-  languageName: node
-  linkType: hard
-
-"@motionone/types@npm:^10.16.3":
-  version: 10.16.3
-  resolution: "@motionone/types@npm:10.16.3"
-  checksum: ff38982f5aff2c0abbc3051c843d186d6f954c971e97dd6fced97a4ef50ee04f6e49607541ebb80e14dd143cf63553c388392110e270d04eca23f6b529f7f321
-  languageName: node
-  linkType: hard
-
-"@motionone/utils@npm:^10.16.3":
-  version: 10.16.3
-  resolution: "@motionone/utils@npm:10.16.3"
-  dependencies:
-    "@motionone/types": "npm:^10.16.3"
-    hey-listen: "npm:^1.0.8"
-    tslib: "npm:^2.3.1"
-  checksum: 95d91927e801d10dd00b0f866a0bf79a2014439a7de30c81031e667960c82a50426be5b358b033e09ea2f861e59102933dff796d742c83ee0345f26c23f64ced
-  languageName: node
-  linkType: hard
-
-"@motionone/vue@npm:^10.16.4":
-  version: 10.16.4
-  resolution: "@motionone/vue@npm:10.16.4"
-  dependencies:
-    "@motionone/dom": "npm:^10.16.4"
-    tslib: "npm:^2.3.1"
-  checksum: 2400d31bbf5c3e02bc68f4b88d96d9c0672ba646bca0b6566e555cd7e8f14849a645f558f574e658fd90574a0b548b61712ae5edcee055c60288fd9382d711ea
   languageName: node
   linkType: hard
 
@@ -3139,7 +3062,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.8.2, @nuxt/kit@npm:^3.5.0, @nuxt/kit@npm:^3.8.1, @nuxt/kit@npm:^3.8.2":
+"@nuxt/kit@npm:3.8.2, @nuxt/kit@npm:^3.5.0, @nuxt/kit@npm:^3.5.1, @nuxt/kit@npm:^3.8.1, @nuxt/kit@npm:^3.8.2":
   version: 3.8.2
   resolution: "@nuxt/kit@npm:3.8.2"
   dependencies:
@@ -4904,7 +4827,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:10.7.0, @vueuse/core@npm:^10.7.0":
+"@vueuse/core@npm:10.7.0, @vueuse/core@npm:^10.1.2, @vueuse/core@npm:^10.7.0":
   version: 10.7.0
   resolution: "@vueuse/core@npm:10.7.0"
   dependencies:
@@ -4982,6 +4905,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/motion@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@vueuse/motion@npm:2.0.0"
+  dependencies:
+    "@nuxt/kit": "npm:^3.5.1"
+    "@vueuse/core": "npm:^10.1.2"
+    "@vueuse/shared": "npm:^10.1.2"
+    csstype: "npm:^3.1.2"
+    framesync: "npm:^6.1.2"
+    popmotion: "npm:^11.0.5"
+    style-value-types: "npm:^5.1.2"
+  peerDependencies:
+    vue: ">=3.0.0"
+  dependenciesMeta:
+    "@nuxt/kit":
+      optional: true
+  checksum: e84ef05518bff20539e0f66ae470062558a7c5b3b2d8733a01efcae709d26eab42a5d8b5268684d1acafe720dca52fee8c35760b7156060929f0ba8cee3dc784
+  languageName: node
+  linkType: hard
+
 "@vueuse/nuxt@npm:^10.7.0":
   version: 10.7.0
   resolution: "@vueuse/nuxt@npm:10.7.0"
@@ -4998,7 +4941,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/shared@npm:10.7.0":
+"@vueuse/shared@npm:10.7.0, @vueuse/shared@npm:^10.1.2":
   version: 10.7.0
   resolution: "@vueuse/shared@npm:10.7.0"
   dependencies:
@@ -8653,6 +8596,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"framesync@npm:6.1.2, framesync@npm:^6.1.2":
+  version: 6.1.2
+  resolution: "framesync@npm:6.1.2"
+  dependencies:
+    tslib: "npm:2.4.0"
+  checksum: 741161b8978173acaf515ab45ff127496476e6262e624de3ccb995a67a8b32c65a4242e178646bb5554f128dd4a350ecff675c7fbd4e2aa4568dffab932ebe29
+  languageName: node
+  linkType: hard
+
 "fresh@npm:0.5.2, fresh@npm:~0.5.2":
   version: 0.5.2
   resolution: "fresh@npm:0.5.2"
@@ -11872,20 +11824,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"motion@npm:^10.16.4":
-  version: 10.16.4
-  resolution: "motion@npm:10.16.4"
-  dependencies:
-    "@motionone/animation": "npm:^10.16.3"
-    "@motionone/dom": "npm:^10.16.4"
-    "@motionone/svelte": "npm:^10.16.4"
-    "@motionone/types": "npm:^10.16.3"
-    "@motionone/utils": "npm:^10.16.3"
-    "@motionone/vue": "npm:^10.16.4"
-  checksum: c0b47b7b8f38b4aa3f2730fd861c719c19b38bb259c6797fea5b5258e879dbf5b6b941fd0c67d1a11552057350c7dbf6893522ed621612ad6b8ced08788d7475
-  languageName: node
-  linkType: hard
-
 "mri@npm:^1.1.0, mri@npm:^1.2.0":
   version: 1.2.0
   resolution: "mri@npm:1.2.0"
@@ -13063,6 +13001,18 @@ __metadata:
   version: 8.0.0
   resolution: "pluralize@npm:8.0.0"
   checksum: 17877fdfdb7ddb3639ce257ad73a7c51a30a966091e40f56ea9f2f545b5727ce548d4928f8cb3ce38e7dc0c5150407d318af6a4ed0ea5265d378473b4c2c61ec
+  languageName: node
+  linkType: hard
+
+"popmotion@npm:^11.0.5":
+  version: 11.0.5
+  resolution: "popmotion@npm:11.0.5"
+  dependencies:
+    framesync: "npm:6.1.2"
+    hey-listen: "npm:^1.0.8"
+    style-value-types: "npm:5.1.2"
+    tslib: "npm:2.4.0"
+  checksum: fa5af63ea94f66dc8219087dc30cb075a18d7cb30185bc9d382ced04007bfb8a3a57600588c060c456c82d2d8f895c9bf3e889c50a6b5312bc757f5a2044aaa3
   languageName: node
   linkType: hard
 
@@ -15248,6 +15198,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"style-value-types@npm:5.1.2, style-value-types@npm:^5.1.2":
+  version: 5.1.2
+  resolution: "style-value-types@npm:5.1.2"
+  dependencies:
+    hey-listen: "npm:^1.0.8"
+    tslib: "npm:2.4.0"
+  checksum: 5be7b66b0ad2447448b167b4b32ebb54b01470f4656a743acad3dcb29f21bb91fd6262f2fcc5c820acfec2cb7ba5cb3c5eb8565d8f2df223de34521aedf3e125
+  languageName: node
+  linkType: hard
+
 "stylehacks@npm:^6.0.0":
   version: 6.0.0
   resolution: "stylehacks@npm:6.0.0"
@@ -15726,6 +15686,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tslib@npm:2.4.0":
+  version: 2.4.0
+  resolution: "tslib@npm:2.4.0"
+  checksum: d8379e68b36caf082c1905ec25d17df8261e1d68ddc1abfd6c91158a064f6e4402039ae7c02cf4c81d12e3a2a2c7cd8ea2f57b233eb80136a2e3e7279daf2911
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^1.8.1":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
@@ -15733,7 +15700,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0, tslib@npm:^2.3.1, tslib@npm:^2.5.0, tslib@npm:^2.6.0, tslib@npm:^2.6.1":
+"tslib@npm:^2.0.0, tslib@npm:^2.5.0, tslib@npm:^2.6.0, tslib@npm:^2.6.1":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: bd26c22d36736513980091a1e356378e8b662ded04204453d353a7f34a4c21ed0afc59b5f90719d4ba756e581a162ecbf93118dc9c6be5acf70aa309188166ca

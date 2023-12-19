@@ -1,13 +1,12 @@
 <script setup lang="ts">
+import { RARITY_COLORS } from "$lib/util/colors";
+
 const { fetchBrawlers, GROUPING_MODES } = useBrawlersStore();
 const { brawlers, groupingMode, search } = storeToRefs(useBrawlersStore());
 
 await fetchBrawlers();
 
 const hasSelectedAnyMode = ref(false);
-watchEffect(() => {
-	console.log(brawlers.value, search.value);
-});
 watch(groupingMode, () => {
 	hasSelectedAnyMode.value = true;
 });
@@ -45,7 +44,6 @@ const selectValue = computed(() => {
 				</UiSelectContent>
 			</UiSelect>
 		</div>
-		<div v-if="groupingMode !== 'none'" class="mt-3.5 h-[2px] w-full bg-secondary" />
 		<div v-if="groupingMode === 'none' && Array.isArray(brawlers)">
 			<div
 				class="mt-3 grid grid-cols-3 justify-items-center gap-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10"
@@ -55,16 +53,16 @@ const selectValue = computed(() => {
 		</div>
 		<div v-else-if="!Array.isArray(brawlers) && groupingMode !== 'none'" class="mt-3 flex flex-col gap-3">
 			<div v-for="(group, rarity) in brawlers" :key="rarity">
-				<h2 class="text-2xl font-bold leading-normal tracking-tight">{{ rarity }}</h2>
+				<h2
+					:style="groupingMode === 'rarity' && { color: RARITY_COLORS[group[0]!.rarity.name] }"
+					class="text-2xl font-bold leading-normal tracking-tight"
+				>
+					{{ rarity }}
+				</h2>
 				<div
 					class="mt-1 grid grid-cols-3 justify-items-center gap-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10"
 				>
-					<BrawlersInfoCard
-						v-for="brawler in group"
-						:key="brawler.id"
-						:hasColor="groupingMode === 'rarity'"
-						:brawler="brawler"
-					/>
+					<BrawlersInfoCard v-for="brawler in group" :key="brawler.id" hasColor :brawler="brawler" />
 				</div>
 			</div>
 		</div>
