@@ -1466,7 +1466,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.5, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.20.1, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.5, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4":
   version: 7.23.5
   resolution: "@babel/runtime@npm:7.23.5"
   dependencies:
@@ -1597,7 +1597,7 @@ __metadata:
     brawlstats: "npm:^3.2.0"
     class-variance-authority: "npm:^0.7.0"
     clsx: "npm:^2.0.0"
-    date-fns: "npm:^2.30.0"
+    date-fns: "npm:^3.0.6"
     dedent: "npm:^1.5.1"
     eslint-config-neon: "npm:^0.1.57"
     eslint-plugin-vue: "npm:^9.19.2"
@@ -6722,12 +6722,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"date-fns@npm:^2.30.0":
-  version: 2.30.0
-  resolution: "date-fns@npm:2.30.0"
-  dependencies:
-    "@babel/runtime": "npm:^7.21.0"
-  checksum: 70b3e8ea7aaaaeaa2cd80bd889622a4bcb5d8028b4de9162cbcda359db06e16ff6e9309e54eead5341e71031818497f19aaf9839c87d1aba1e27bb4796e758a9
+"date-fns@npm:^3.0.6":
+  version: 3.0.6
+  resolution: "date-fns@npm:3.0.6"
+  checksum: 4eb4c1f15257026593bd62ea366347be3940a83133fc84aa32e03bc9a19d6f8a919ef0475211200b16de7980e1d797c993713ed092a6f5c941474bce516f7d96
   languageName: node
   linkType: hard
 
