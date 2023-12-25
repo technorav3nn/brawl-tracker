@@ -42,14 +42,14 @@ const onError = () => {
 
 			<p
 				v-if="hasColor"
-				class="mb-0.5 mt-1.5 w-max rounded-full px-2 text-[0.65rem] font-semibold dark:text-primary-foreground"
+				class="mb-0.5 mt-1.5 w-max rounded-full px-2 text-[0.70rem] font-semibold dark:text-primary-foreground"
 				:class="[
-					rarity === 'Mythic' && 'bg-red-300',
-					rarity === 'Legendary' && 'bg-yellow-300',
-					rarity === 'Epic' && 'bg-purple-300',
-					rarity === 'Rare' && 'bg-green-300',
-					rarity === 'Super Rare' && 'bg-blue-300',
-					rarity === 'Common' && 'bg-gray-300',
+					rarity === 'Mythic' && 'bg-red-400',
+					rarity === 'Legendary' && 'bg-yellow-400',
+					rarity === 'Epic' && 'bg-purple-400',
+					rarity === 'Rare' && 'bg-green-400',
+					rarity === 'Super Rare' && 'bg-blue-400',
+					rarity === 'Common' && 'bg-gray-400',
 				]"
 			>
 				{{ brawler?.rarity.name }}
