@@ -1,5 +1,16 @@
 # @brawltracker/brawl-stars-api
 
+## 1.3.0
+
+### Minor Changes
+
+- fbd88c5: Add keywords and other stuff in package.json
+
+### Patch Changes
+
+- Updated dependencies [fbd88c5]
+  - @brawltracker/supercell-api-utils@1.2.0
+
 ## 1.2.4
 
 ### Patch Changes
