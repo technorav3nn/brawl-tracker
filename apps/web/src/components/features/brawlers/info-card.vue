@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
 import { QuestionMarkIcon } from "@radix-icons/vue";
-import { RARITY_COLORS } from "$lib/util/colors";
 
-defineProps<{
+const props = defineProps<{
 	brawler: BrawlApiBrawler;
 	hasColor?: boolean;
 }>();
 
 const image = ref();
 const hasRemovedImage = ref(false);
+
+const rarity = computed(() => props.brawler.rarity.name);
 
 const onError = () => {
 	if (!image.value) return;
@@ -32,23 +33,29 @@ const onError = () => {
 		/>
 		<QuestionMarkIcon v-if="hasRemovedImage" class="h-[105px] w-[105px] text-primary" />
 		<div class="flex flex-col justify-start px-1.5 py-1.5">
-			<p
-				:style="hasColor && { color: RARITY_COLORS[brawler.rarity.name] }"
-				class="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold"
-			>
+			<p class="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">
 				{{ brawler?.name }}
 			</p>
 			<p class="overflow-hidden text-ellipsis whitespace-nowrap text-xs text-muted-foreground">
 				{{ brawler?.class.name }}
 			</p>
-			<!-- 
-				<p
-				class="mb-0.5 mt-1 rounded text-xs font-semibold text-black"
-				:style="{ color: brawler.rarity.color }"
+
+			<p
+				v-if="hasColor"
+				class="mb-0.5 mt-1.5 w-max rounded-full px-2 text-[0.65rem] font-semibold dark:text-primary-foreground"
+				:class="[
+					rarity === 'Mythic' && 'bg-red-300',
+					rarity === 'Legendary' && 'bg-yellow-300',
+					rarity === 'Epic' && 'bg-purple-300',
+					rarity === 'Rare' && 'bg-green-300',
+					rarity === 'Super Rare' && 'bg-blue-300',
+					rarity === 'Common' && 'bg-gray-300',
+				]"
 			>
 				{{ brawler?.rarity.name }}
-			</p> 
-			-->
+			</p>
 		</div>
 	</div>
 </template>
+
+<style></style>

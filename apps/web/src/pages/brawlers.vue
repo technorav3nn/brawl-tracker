@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { RARITY_COLORS } from "$lib/util/colors";
-
 const { fetchBrawlers, GROUPING_MODES } = useBrawlersStore();
 const { brawlers, groupingMode, search } = storeToRefs(useBrawlersStore());
 
@@ -48,21 +46,34 @@ const selectValue = computed(() => {
 			<div
 				class="mt-3 grid grid-cols-3 justify-items-center gap-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10"
 			>
-				<BrawlersInfoCard v-for="brawler in brawlers" :key="brawler.id" :brawler="brawler" />
+				<BrawlersInfoCard v-for="brawler in brawlers" :key="brawler.id" :brawler="brawler" hasColor />
 			</div>
 		</div>
 		<div v-else-if="!Array.isArray(brawlers) && groupingMode !== 'none'" class="mt-3 flex flex-col gap-3">
 			<div v-for="(group, rarity) in brawlers" :key="rarity">
 				<h2
-					:style="groupingMode === 'rarity' && { color: RARITY_COLORS[group[0]!.rarity.name] }"
 					class="text-2xl font-bold leading-normal tracking-tight"
+					:class="[
+						rarity === 'Mythic' && 'text-red-300',
+						rarity === 'Legendary' && 'text-yellow-300',
+						rarity === 'Epic' && 'text-purple-300',
+						rarity === 'Rare' && 'text-green-300',
+						rarity === 'Super Rare' && 'text-blue-300',
+						rarity === 'Common' && 'text-gray-300',
+					]"
 				>
 					{{ rarity }}
+					<span class="text-sm font-medium text-muted-foreground">({{ group.length }})</span>
 				</h2>
 				<div
 					class="mt-1 grid grid-cols-3 justify-items-center gap-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10"
 				>
-					<BrawlersInfoCard v-for="brawler in group" :key="brawler.id" hasColor :brawler="brawler" />
+					<BrawlersInfoCard
+						v-for="brawler in group"
+						:key="brawler.id"
+						:brawler="brawler"
+						:hasColor="groupingMode !== 'rarity'"
+					/>
 				</div>
 			</div>
 		</div>
