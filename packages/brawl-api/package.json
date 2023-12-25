@@ -22,6 +22,21 @@
 	"dependencies": {
 		"ofetch": "^1.3.3"
 	},
+	"license": "MIT",
+	"keywords": [
+		"brawlstars",
+		"brawl-stars",
+		"bs",
+		"api",
+		"brawl-api",
+		"brawlify",
+		"supercell"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/technorav3nn/brawl-tracker.git",
+		"directory": "packages/brawl-api"
+	},
 	"volta": {
 		"extends": "../../package.json"
 	}

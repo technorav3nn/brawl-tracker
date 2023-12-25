@@ -19,6 +19,18 @@
 	"main": "./dist/index.js",
 	"source": "./src/index.ts",
 	"types": "./dist/index.d.ts",
+	"keywords": [
+		"supercell",
+		"supercell-api",
+		"brawl-stars",
+		"clash-royale",
+		"clash-of-clans"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/technorav3nn/brawl-tracker.git",
+		"directory": "packages/brawl-stars-api"
+	},
 	"volta": {
 		"extends": "../../package.json"
 	}

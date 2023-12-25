@@ -24,12 +24,19 @@
 	"main": "./dist/index.js",
 	"source": "./src/index.ts",
 	"types": "./dist/index.d.ts",
-	"volta": {
-		"extends": "../../package.json"
-	},
+	"keywords": [
+		"brawlstars",
+		"brawl-stars",
+		"bs",
+		"api",
+		"supercell"
+	],
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/technorav3nn/brawl-tracker.git",
 		"directory": "packages/brawl-stars-api"
+	},
+	"volta": {
+		"extends": "../../package.json"
 	}
 }
