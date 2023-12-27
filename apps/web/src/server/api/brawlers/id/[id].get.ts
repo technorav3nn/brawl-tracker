@@ -1,3 +1,4 @@
+// Get a brawler by id (e.g. 16000000)
 export default cachedEventHandler(
 	async (event) => {
 		const { list: brawlers } = await getBrawlers();

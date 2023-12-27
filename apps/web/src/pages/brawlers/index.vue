@@ -54,12 +54,12 @@ const selectValue = computed(() => {
 				<h2
 					class="text-2xl font-bold leading-normal tracking-tight"
 					:class="[
-						rarity === 'Mythic' && 'text-red-300',
-						rarity === 'Legendary' && 'text-yellow-300',
-						rarity === 'Epic' && 'text-purple-300',
-						rarity === 'Rare' && 'text-green-300',
-						rarity === 'Super Rare' && 'text-blue-300',
-						rarity === 'Common' && 'text-gray-300',
+						rarity === 'Mythic' && 'text-red-400',
+						rarity === 'Legendary' && 'text-yellow-400',
+						rarity === 'Epic' && 'text-purple-400',
+						rarity === 'Rare' && 'text-green-400',
+						rarity === 'Super Rare' && 'text-blue-400',
+						rarity === 'Common' && 'text-gray-400',
 					]"
 				>
 					{{ rarity }}

@@ -5,9 +5,11 @@ const { search, sort, brawlerStats } = storeToRefs(useMapStore());
 
 const hasSelectedAnySort = ref(false);
 
-const route = useRoute("maps-map");
+const {
+	params: { map: mapName },
+} = useRoute("maps-map");
 
-const { data: map } = await useFetch(`/api/maps/${route.params.map}`);
+const { data: map } = await useFetch(`/api/maps/${mapName}`);
 const { data: events } = await useFetch(`/api/events/rotation`);
 const { data: brawlers } = await useFetch(`/api/brawlers`);
 
