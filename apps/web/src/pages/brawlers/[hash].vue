@@ -1,14 +1,30 @@
 <script setup lang="ts">
-import { GemIcon , SwordsIcon } from "lucide-vue-next";
+import { GemIcon, SwordsIcon } from "lucide-vue-next";
+import { upperFirstCharacter } from "$lib/util/common";
+
+type Tabs = "kit" | "stats" | "cosmetics" | (string & {});
+const TABS = ["kit", "stats", "cosmetics"] as const;
 
 const {
 	params: { hash },
+	path,
 } = useRoute("brawlers-hash");
 const { data: brawler } = await useFetch(`/api/brawlers/hash/${hash}`);
+
+const tab = ref<Tabs>(path.split("/")[3]!);
+
+console.log(tab.value);
 </script>
 
 <template>
 	<div v-if="brawler">
+		<UiButton
+			asChild
+			variant="link"
+			class="mb-2 px-0 text-base font-normal text-foreground hover:font-medium"
+		>
+			<NuxtLink href="/brawlers">← Go Back</NuxtLink>
+		</UiButton>
 		<div class="flex flex-row gap-3">
 			<div>
 				<NuxtImg
@@ -34,5 +50,16 @@ const { data: brawler } = await useFetch(`/api/brawlers/hash/${hash}`);
 				</div>
 			</div>
 		</div>
+		<p class="mt-3 max-w-4xl text-sm text-muted-foreground lg:text-base">{{ brawler.description }}</p>
+		<UiTabs v-model:modelValue="tab" class="mt-4">
+			<UiTabsList>
+				<UiTabsTrigger v-for="tabRoute in TABS" :key="tabRoute" :value="tabRoute" asChild>
+					<NuxtLink :to="`/brawlers/${brawler.hash}/${tabRoute}`">
+						{{ upperFirstCharacter(tabRoute) }}
+					</NuxtLink>
+				</UiTabsTrigger>
+			</UiTabsList>
+		</UiTabs>
+		<NuxtPage :brawler="brawler" class="mt-4" />
 	</div>
 </template>

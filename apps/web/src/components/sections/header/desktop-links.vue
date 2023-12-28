@@ -6,7 +6,7 @@ import { LINKS } from "$lib/config";
 	<NuxtLink
 		v-for="item in LINKS"
 		:key="item.path"
-		:href="item.path"
+		:to="item.path"
 		class="text-sm/6 font-medium text-foreground/60 transition-colors hover:text-foreground/80"
 		activeClass="link-active"
 		prefetch
