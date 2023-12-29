@@ -3,7 +3,7 @@ import type { BrawlApiEvent } from "@brawltracker/brawl-api";
 import { upperFirstCharacter } from "$lib/util/common";
 
 const route = useRoute("events");
-const tab = ref<"current" | "upcoming" | (string & {})>(route.path.split("/")[2]!);
+const tab = ref<"current" | "upcoming" | "league" | (string & {})>(route.path.split("/")[2]!);
 
 watchEffect(() => {
 	if (tab.value === "") {
@@ -63,6 +63,9 @@ const { data: events } = await useFetch("/api/events/rotation", {
 				<UiTabsTrigger value="upcoming" asChild>
 					<NuxtLink to="/events/upcoming">Upcoming</NuxtLink>
 				</UiTabsTrigger>
+				<UiTabsTrigger value="league" asChild>
+					<NuxtLink to="/events/league">Power League</NuxtLink>
+				</UiTabsTrigger>
 			</UiTabsList>
 		</UiTabs>
 		<div class="px-1 pt-4">
@@ -75,7 +78,7 @@ const { data: events } = await useFetch("/api/events/rotation", {
 
 <style scoped>
 .grid-media-cols {
-	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 @media (max-width: 1205px) {

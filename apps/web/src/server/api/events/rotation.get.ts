@@ -3,10 +3,11 @@ import { getBrawlerImages } from "$server/utils/get-brawler-images";
 // cachedEventHandler has some issues so we use a cachedFunction and connect it to the eventHandler
 const handler = cachedFunction(
 	async () => {
-		// eslint-disable-next-line sonarjs/prefer-immediate-return
-		const result = await useBrawlifyApi()?.events.getEventRotation();
+		const api = useBrawlifyApi();
+		const events = await api.events.getEventRotation();
+		// const plEvents = null;
 		return {
-			...result,
+			...events,
 			images: await getBrawlerImages(),
 		};
 	},

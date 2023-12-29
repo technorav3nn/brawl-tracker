@@ -1,5 +1,11 @@
 # @brawltracker/brawl-api
 
+## 1.2.1
+
+### Patch Changes
+
+- Add /league endpoint
+
 ## 1.2.0
 
 ### Minor Changes

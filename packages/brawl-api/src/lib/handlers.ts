@@ -21,6 +21,10 @@ export const brawlers = {
 	),
 };
 
+export const league = {
+	getPowerLeagueRotation: createApiHandler<BrawlApiEvents>("/league"),
+};
+
 export const events = {
 	getEventRotation: createApiHandler<BrawlApiEvents>("/events"),
 };
