@@ -11,7 +11,7 @@ defineProps<{
 	<div class="mt-3 grid grid-cols-1 bg-card lg:grid-cols-2">
 		<div v-for="power in $props.powers" :key="power.name" class="bg-card p-4 shadow">
 			<div class="flex flex-row gap-4 lg:flex-col">
-				<div class="flex max-h-[60px] w-full max-w-[60px] flex-row items-center gap-3">
+				<div class="flex flex-row items-center gap-3 max-lg:max-h-[60px] max-lg:w-full max-lg:max-w-[60px]">
 					<NuxtImg
 						:src="power.imageUrl"
 						class="aspect-square max-h-[60px] w-full max-w-[60px] self-center bg-contain object-cover lg:self-auto"
