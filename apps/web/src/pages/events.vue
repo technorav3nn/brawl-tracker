@@ -35,10 +35,11 @@ function sortEventRotation(evts: BrawlApiEvent[]) {
 }
 
 const { data: events } = await useFetch("/api/events/rotation", {
-	transform: ({ active, upcoming, images }) => {
+	transform: ({ active, upcoming, league, images }) => {
 		return {
 			active: sortEventRotation(active.reverse()),
 			upcoming: sortEventRotation(upcoming.reverse()),
+			league: sortEventRotation(league.upcoming.reverse()),
 			images,
 		};
 	},
