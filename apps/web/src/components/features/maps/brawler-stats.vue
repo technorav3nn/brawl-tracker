@@ -22,11 +22,11 @@ const brawlerInfo = computed(() => props.brawlerStats);
 		<div class="flex flex-col px-1.5 py-1">
 			<div class="flex flex-row justify-between">
 				<p class="text-sm font-medium text-muted-foreground">Win</p>
-				<p class="text-sm font-semibold text-primary">{{ brawlerInfo.winRate }}%</p>
+				<p class="text-sm font-semibold dark:text-primary">{{ brawlerInfo.winRate }}%</p>
 			</div>
 			<div class="flex flex-row justify-between">
 				<p class="text-sm font-medium text-muted-foreground">Use</p>
-				<p class="text-sm font-semibold text-primary">{{ brawlerInfo.useRate }}%</p>
+				<p class="text-sm font-semibold dark:text-primary">{{ brawlerInfo.useRate }}%</p>
 			</div>
 		</div>
 	</div>

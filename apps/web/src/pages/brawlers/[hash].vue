@@ -25,6 +25,7 @@ console.log(tab.value);
 		>
 			<NuxtLink href="/brawlers">← Go Back</NuxtLink>
 		</UiButton>
+
 		<div class="flex flex-row gap-3">
 			<div>
 				<NuxtImg
@@ -60,6 +61,7 @@ console.log(tab.value);
 				</UiTabsTrigger>
 			</UiTabsList>
 		</UiTabs>
+		<h1 class="mt-4 text-2xl font-bold text-foreground">{{ upperFirstCharacter(tab) }}</h1>
 		<NuxtPage :brawler="brawler" class="mt-4" />
 	</div>
 </template>
