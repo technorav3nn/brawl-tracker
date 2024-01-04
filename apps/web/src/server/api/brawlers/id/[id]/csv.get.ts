@@ -9,9 +9,8 @@ export default cachedEventHandler(async (event) => {
 
 	const unresolvedName = (brawler as any).Name as string;
 	const brawlerName = unresolvedName === "HookDude" ? "Hook" : unresolvedName;
-	console.log(brawlerName);
 	const brawlerSkillsKey = Object.keys(brawlerSkills).find((b) => b.includes(brawlerName));
-	console.log(brawlerName, unresolvedName, brawlerSkillsKey);
+
 	return {
 		csv: brawler,
 		skills: brawlerSkills[brawlerSkillsKey!],

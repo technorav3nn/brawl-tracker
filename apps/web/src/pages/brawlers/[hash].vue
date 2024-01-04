@@ -12,8 +12,6 @@ const {
 const { data: brawler } = await useFetch(`/api/brawlers/hash/${hash}`);
 
 const tab = ref<Tabs>(path.split("/")[3]!);
-
-console.log(tab.value);
 </script>
 
 <template>
