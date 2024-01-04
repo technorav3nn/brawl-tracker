@@ -9,10 +9,10 @@
 		"lint": "eslint . --ext .ts"
 	},
 	"devDependencies": {
-		"@vitest/ui": "^1.1.1",
+		"@vitest/ui": "^1.1.2",
 		"tsup": "^6.7.0",
 		"typescript": "5.3.3",
-		"vitest": "^1.1.1"
+		"vitest": "^1.1.2"
 	},
 	"dependencies": {
 		"@brawltracker/supercell-api-utils": "^1.2.0",
