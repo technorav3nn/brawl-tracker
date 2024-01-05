@@ -17508,7 +17508,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^1.1.2":
+"vitest@npm:^1.1.1, vitest@npm:^1.1.2":
   version: 1.1.2
   resolution: "vitest@npm:1.1.2"
   dependencies:
