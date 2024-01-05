@@ -1,0 +1,25 @@
+{
+	"extends": ["neon/common", "neon/node", "neon/typescript", "neon/prettier"],
+	"parserOptions": {
+		"parser": "@typescript-eslint/parser"
+	},
+	"rules": {
+		"@typescript-eslint/no-return-await": "off",
+		"@typescript-eslint/consistent-type-definitions": "off",
+		"@typescript-eslint/return-await": "off",
+		"no-restricted-globals": "off",
+		"import/no-extraneous-dependencies": "off",
+		"no-undef": "off",
+		"no-extra-parens": "off",
+		// force import type
+		"@typescript-eslint/consistent-type-imports": [
+			"error",
+			{
+				"fixStyle": "inline-type-imports"
+			}
+		],
+		"import/no-duplicates": ["error", { "prefer-inline": true }],
+		"comma-dangle": "off",
+		"object-curly-newline": "off"
+	}
+}
