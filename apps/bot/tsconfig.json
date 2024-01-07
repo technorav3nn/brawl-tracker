@@ -4,8 +4,8 @@
 		"rootDir": "src",
 		"baseUrl": "src",
 		"paths": {
-			"$root/*": ["*"],
-			"$lib/*": ["lib/*"]
+			"$lib/*": ["lib/*"],
+			"$root/*": ["*"]
 		},
 		"lib": ["ESNext", "DOM"],
 		"emitDecoratorMetadata": false,

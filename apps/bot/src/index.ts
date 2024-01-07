@@ -1,31 +1,38 @@
 import "$lib/setup";
-import process from "node:process";
-import { envParseInteger, envParseString, envIsDefined } from "@skyra/env-utilities";
-import { Client, container } from "@skyra/http-framework";
-import { green, magentaBright } from "colorette";
+import { exit } from "node:process";
+import { LogLevel, SapphireClient } from "@sapphire/framework";
+import { envParseString } from "@skyra/env-utilities";
+import { GatewayIntentBits, Partials } from "discord.js";
+
+const client = new SapphireClient({
+	logger: {
+		level: LogLevel.Debug,
+	},
+	shards: "auto",
+	intents: [
+		GatewayIntentBits.DirectMessageReactions,
+		GatewayIntentBits.DirectMessages,
+		GatewayIntentBits.GuildModeration,
+		GatewayIntentBits.GuildEmojisAndStickers,
+		GatewayIntentBits.GuildMessageReactions,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildVoiceStates,
+	],
+	partials: [Partials.Channel, Partials.GuildScheduledEvent],
+	loadMessageCommandListeners: true,
+});
 
 async function main() {
-	const client = new Client();
-	await client.load();
-
-	if (envIsDefined("REGISTRY_GUILD_ID")) {
-		await container.applicationCommandRegistry.pushAllCommandsInGuild(envParseString("REGISTRY_GUILD_ID"));
-	} else {
-		await container.applicationCommandRegistry.pushGlobalCommands();
+	try {
+		client.logger.info("Logging in");
+		await client.login(envParseString("DISCORD_TOKEN"));
+		client.logger.info("Logged in");
+	} catch (error) {
+		client.logger.fatal(error);
+		await client.destroy();
+		exit(1);
 	}
-
-	client.on("error", (error) => container.logger.error(error));
-
-	const address = envParseString("ADDRESS");
-	const port = envParseInteger("HTTP_PORT", 4_000);
-
-	void client.listen({ address, port });
-
-	container.logger.info(
-		`Listening on ${green(address)}:${green(port.toString())} in ${magentaBright(
-			process.env.NODE_ENV ?? "unknown"
-		)} mode.`
-	);
 }
 
 void main();

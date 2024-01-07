@@ -1,14 +1,8 @@
-import "../config";
 import process from "node:process";
-import { container } from "@skyra/http-framework";
-import { Logger } from "@skyra/logger";
+import { ApplicationCommandRegistries, RegisterBehavior } from "@sapphire/framework";
+import "../config";
+import "@sapphire/plugin-logger/register";
 
 process.env.NODE_ENV ??= "development";
 
-container.logger = new Logger({ level: Logger.Level.Debug });
-
-declare module "@sapphire/pieces" {
-	export interface Container {
-		logger: Logger;
-	}
-}
+ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.BulkOverwrite);

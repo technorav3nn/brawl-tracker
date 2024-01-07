@@ -1,37 +1,27 @@
 import { brawlApi } from "@brawltracker/brawl-api";
+import { ApplyOptions } from "@sapphire/decorators";
+import { Command } from "@sapphire/framework";
 import { Time } from "@sapphire/time-utilities";
-import { Command, RegisterCommand } from "@skyra/http-framework";
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
+import { registerCommand } from "$lib/util/commands";
 import { cachePromise } from "$lib/util/promises";
 
-const getBrawlers = cachePromise(async () => brawlApi.brawlers.getAllBrawlers(), {
+export const getBrawlers = cachePromise(async () => brawlApi.brawlers.getAllBrawlers(), {
 	staleWhileRevalidate: true,
 	ttl: Time.Hour * 24,
 });
 
-@RegisterCommand((builder) => builder.setName("brawlers").setDescription("Get a list of all brawlers"))
+@ApplyOptions<Command.Options>({
+	name: "brawlers",
+	description: "Get a list of all brawlers in BR",
+})
 export class BrawlersCommand extends Command {
-	public override async chatInputRun(interaction: Command.ChatInputInteraction) {
-		// temporary
-		// const brawlers = await getBrawlers();
+	public async chatInputRun(interaction: Command.ChatInputCommandInteraction) {
 		return interaction.reply({
-			components: [
-				new ActionRowBuilder<ButtonBuilder>()
-					.addComponents(
-						new ButtonBuilder().setLabel("Test").setCustomId("test").setStyle(ButtonStyle.Primary)
-					)
-					.toJSON(),
-			],
-			content: "test",
+			content: "hello",
 		});
 	}
 
-	public override async autocompleteRun(interaction: Command.AutocompleteInteraction) {
-		return interaction.reply({
-			choices: (await getBrawlers()).list.map((brawler) => ({
-				name: brawler.name,
-				value: brawler.name,
-			})),
-		});
+	public override registerApplicationCommands(registry: Command.Registry) {
+		registerCommand((builder) => builder.setName(this.name).setDescription(this.description), registry);
 	}
 }
