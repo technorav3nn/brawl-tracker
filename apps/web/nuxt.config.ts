@@ -18,7 +18,6 @@ export default defineNuxtConfig({
 		"@vite-pwa/nuxt",
 		"@pinia/nuxt",
 		"@formkit/auto-animate/nuxt",
-		"nuxt-security",
 	],
 	srcDir: "src/",
 	app: {
@@ -57,17 +56,6 @@ export default defineNuxtConfig({
 	},
 	devtools: {
 		enabled: true,
-	},
-	security: {
-		corsHandler: {
-			origin: [
-				"http://localhost:4000", // bot (dev)
-				"https://brawltrack-bot.azurewebsites.net", // bot (prod)
-				"https://brawltrack.com", // web (prod, vercel w/ custom domain)
-				"https://brawl-tracker-pr-1-web.vercel.app/", // web (prod, vercel)
-				"http://localhost:3000", // web (dev)
-			],
-		},
 	},
 	font: {
 		autoImport: true,

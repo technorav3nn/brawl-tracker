@@ -2,8 +2,8 @@
 import { GemIcon, SwordsIcon } from "lucide-vue-next";
 import { upperFirstCharacter } from "$lib/util/common";
 
-type Tabs = "kit" | "stats" | "cosmetics" | (string & {});
-const TABS = ["kit", "stats", "cosmetics"] as const;
+type Tabs = "info" | "stats" | "cosmetics" | (string & {});
+const TABS = ["info", "stats", "cosmetics"] as const;
 
 const {
 	params: { hash },
@@ -59,7 +59,6 @@ const tab = ref<Tabs>(path.split("/")[3]!);
 				</UiTabsTrigger>
 			</UiTabsList>
 		</UiTabs>
-		<h1 class="mt-4 text-2xl font-bold text-foreground">{{ upperFirstCharacter(tab) }}</h1>
-		<NuxtPage :brawler="brawler" class="mt-4" />
+		<NuxtPage :brawler="brawler" class="mt-5" />
 	</div>
 </template>

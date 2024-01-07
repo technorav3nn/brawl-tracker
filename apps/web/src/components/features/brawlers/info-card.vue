@@ -22,7 +22,7 @@ const onError = () => {
 
 <template>
 	<div class="min-h-[105px] w-full rounded border border-border bg-card shadow dark:shadow-none">
-		<NuxtLink :to="`/brawlers/${brawler.hash}/kit`">
+		<NuxtLink :to="`/brawlers/${brawler.hash}/info`">
 			<NuxtImg
 				ref="image"
 				:src="brawler!.imageUrl2"

@@ -24,7 +24,6 @@
 		"eslint-config-neon": "^0.1.57",
 		"eslint-plugin-vue": "^9.19.2",
 		"nuxt": "^3.9.0",
-		"nuxt-security": "^1.0.0",
 		"tailwind-scrollbar": "^3.0.5",
 		"tailwindcss-animate": "^1.0.7",
 		"vue-eslint-parser": "^9.3.2"
