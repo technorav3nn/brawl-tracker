@@ -39,7 +39,7 @@ const { data: events } = await useFetch("/api/events/rotation", {
 		return {
 			active: sortEventRotation(active.reverse()),
 			upcoming: sortEventRotation(upcoming.reverse()),
-			league: sortEventRotation(league.upcoming.reverse()),
+			league: sortEventRotation(league.active.reverse()),
 			images,
 		};
 	},
@@ -53,7 +53,9 @@ const { data: events } = await useFetch("/api/events/rotation", {
 			{{
 				tab === "current"
 					? "Find out what gamemodes and maps are coming next!"
-					: "See what gamemodes are live and see the meta!"
+					: tab === "upcoming"
+						? "See what gamemodes are live and see the meta!"
+						: "View the current Power League rotation for the season!"
 			}}
 		</p>
 		<UiTabs v-model:modelValue="tab">

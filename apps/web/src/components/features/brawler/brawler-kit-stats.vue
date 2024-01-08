@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
-import { getCalculatedBrawlerStats } from "$lib/util/brawl-stars/brawlers";
+import { calculateBrawlerLevelStat, determineSpeed, type Level } from "$lib/util/brawl-stars/brawlers";
+import { upperFirstCharacter } from "$lib/util/common";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
@@ -11,17 +12,19 @@ const { data: brawler } = await useFetch(`/api/brawlers/id/${props.brawler.id}/c
 const level = ref("1");
 const levelStats = computed(() => {
 	const [health, damage] = [brawler.value!.csv.Hitpoints, brawler.value!.skills.Damage].map((value) =>
-		getCalculatedBrawlerStats(value!)
+		calculateBrawlerLevelStat(value!, Number.parseInt(level.value, 10) as Level)
 	);
 	return {
-		health,
-		damage,
+		Hitpoints: health,
+		"Damage Per Shot": damage,
+		// "Damage Per Second": damage * brawler.value!.csv.AttackSpeed,
+		Speed: `${brawler.value!.csv.Speed} (${determineSpeed(brawler.value!.csv.Speed)})	`,
 	};
 });
 </script>
 
 <template>
-	<div class="rounded-lg border border-border p-4 shadow">
+	<div class="flex flex-col justify-between gap-4 rounded-lg border border-border p-4 shadow">
 		<div class="flex items-center justify-between">
 			<h1 class="text-2xl font-bold tracking-tight">Stats</h1>
 			<UiSelect v-model:modelValue="level">
@@ -39,7 +42,20 @@ const levelStats = computed(() => {
 		</div>
 
 		<div>
-			<div v-for="[stat, value] in Object.entries(levelStats)" :key="stat">{{ stat }}: {{ value }}</div>
+			<UiTable>
+				<UiTableHeader>
+					<UiTableRow class="w-full">
+						<UiTableHead> Stat </UiTableHead>
+						<UiTableHead> Value </UiTableHead>
+					</UiTableRow>
+				</UiTableHeader>
+				<UiTableBody>
+					<UiTableRow v-for="[stat, value] in Object.entries(levelStats)" :key="stat">
+						<UiTableCell class="font-medium">{{ upperFirstCharacter(stat) }}</UiTableCell>
+						<UiTableCell>{{ value }}</UiTableCell>
+					</UiTableRow>
+				</UiTableBody>
+			</UiTable>
 		</div>
 	</div>
 </template>
