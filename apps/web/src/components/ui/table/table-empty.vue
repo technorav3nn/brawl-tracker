@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { cn } from "$lib/util/tailwind";
-
 import TableCell from "./table-cell.vue";
-
 import TableRow from "./table-row.vue";
 
 interface Props {
