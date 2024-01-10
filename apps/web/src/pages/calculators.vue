@@ -9,9 +9,12 @@ const CALCULATORS = [
 ];
 const tab = ref(route.path.split("/")[2]!);
 
+definePageMeta({
+	middleware: "calculators-tabs",
+});
+
 watchEffect(() => {
-	tab.value = route.path.split("/")[2]!;
-	useLoadingIndicator().finish();
+	return useLoadingIndicator().finish();
 });
 </script>
 

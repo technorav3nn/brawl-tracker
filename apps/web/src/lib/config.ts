@@ -7,9 +7,7 @@ export const MAIN_LINKS = [
 	{ label: "Leaders", path: "/leaderboards", icon: TrophyIcon },
 ] as const;
 
-export const MORE_LINKS = [
-	{ label: "Calculators", path: "/calculators/brawler-maxed-price", icon: CalculatorIcon },
-];
+export const MORE_LINKS = [{ label: "Calculators", path: "/calculators", icon: CalculatorIcon }];
 
 export const NAVIGATION_DRAWER_ITEMS = [
 	{ label: "Home", path: "/", icon: HomeIcon },
