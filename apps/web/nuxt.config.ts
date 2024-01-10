@@ -18,6 +18,7 @@ export default defineNuxtConfig({
 		"@vite-pwa/nuxt",
 		"@pinia/nuxt",
 		"@formkit/auto-animate/nuxt",
+		"nuxt-time",
 	],
 	srcDir: "src/",
 	app: {

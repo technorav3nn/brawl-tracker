@@ -2,18 +2,12 @@
 import type { BrawlApiEvent } from "@brawltracker/brawl-api";
 import { upperFirstCharacter } from "$lib/util/common";
 
+definePageMeta({
+	middleware: "events-tabs",
+});
+
 const route = useRoute("events");
 const tab = ref<"current" | "upcoming" | "league" | (string & {})>(route.path.split("/")[2]!);
-
-watchEffect(() => {
-	if (tab.value === "") {
-		navigateTo("/events/current");
-	}
-
-	tab.value = "";
-
-	tab.value = route.path.split("/")[2]!;
-});
 
 /**
  * Sorts the events so that the challenge evenst are always last.

@@ -1634,6 +1634,7 @@ __metadata:
     lucide-vue-next: "npm:^0.303.0"
     node-cache: "npm:^5.1.2"
     nuxt: "npm:^3.9.0"
+    nuxt-time: "npm:^0.1.1"
     radix-vue: "npm:^1.2.6"
     tailwind-merge: "npm:^2.2.0"
     tailwind-scrollbar: "npm:^3.0.5"
@@ -3069,6 +3070,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nuxt/kit@npm:^3.2.0":
+  version: 3.9.1
+  resolution: "@nuxt/kit@npm:3.9.1"
+  dependencies:
+    "@nuxt/schema": "npm:3.9.1"
+    c12: "npm:^1.6.1"
+    consola: "npm:^3.2.3"
+    defu: "npm:^6.1.4"
+    globby: "npm:^14.0.0"
+    hash-sum: "npm:^2.0.0"
+    ignore: "npm:^5.3.0"
+    jiti: "npm:^1.21.0"
+    knitwork: "npm:^1.0.0"
+    mlly: "npm:^1.4.2"
+    pathe: "npm:^1.1.1"
+    pkg-types: "npm:^1.0.3"
+    scule: "npm:^1.1.1"
+    semver: "npm:^7.5.4"
+    ufo: "npm:^1.3.2"
+    unctx: "npm:^2.3.1"
+    unimport: "npm:^3.7.1"
+    untyped: "npm:^1.4.0"
+  checksum: 0362b70efd2a46de037a29772a1b3f68e689b789b278caaeeb67b5cc3042b1c2f9199467580d91f97cf10bdabcbe25298ade0dd137de47477241ebfd84b953d0
+  languageName: node
+  linkType: hard
+
 "@nuxt/schema@npm:3.9.0, @nuxt/schema@npm:^3.8.2":
   version: 3.9.0
   resolution: "@nuxt/schema@npm:3.9.0"
@@ -3085,6 +3112,25 @@ __metadata:
     unimport: "npm:^3.7.0"
     untyped: "npm:^1.4.0"
   checksum: 49164c93b643621cfc5ccaf9716b671c00340e168397610491024541f887d09d8fdb9d90cf53fc2b0df852fb21bc6c5dc5e72604f0c551d0e58ad6e70146f7dc
+  languageName: node
+  linkType: hard
+
+"@nuxt/schema@npm:3.9.1":
+  version: 3.9.1
+  resolution: "@nuxt/schema@npm:3.9.1"
+  dependencies:
+    "@nuxt/ui-templates": "npm:^1.3.1"
+    consola: "npm:^3.2.3"
+    defu: "npm:^6.1.4"
+    hookable: "npm:^5.5.3"
+    pathe: "npm:^1.1.1"
+    pkg-types: "npm:^1.0.3"
+    scule: "npm:^1.1.1"
+    std-env: "npm:^3.7.0"
+    ufo: "npm:^1.3.2"
+    unimport: "npm:^3.7.1"
+    untyped: "npm:^1.4.0"
+  checksum: d1da137d80c3f99e8bb483621e25752013c5152638032215b779485cf5a65ec27601be3fddbe4d051bc3f8fe4999a48e3f46ec631d4a2ffd1a5c5ac43e803ebf
   languageName: node
   linkType: hard
 
@@ -5989,6 +6035,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"c12@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "c12@npm:1.6.1"
+  dependencies:
+    chokidar: "npm:^3.5.3"
+    defu: "npm:^6.1.3"
+    dotenv: "npm:^16.3.1"
+    giget: "npm:^1.2.1"
+    jiti: "npm:^1.21.0"
+    mlly: "npm:^1.4.2"
+    ohash: "npm:^1.1.3"
+    pathe: "npm:^1.1.1"
+    perfect-debounce: "npm:^1.0.0"
+    pkg-types: "npm:^1.0.3"
+    rc9: "npm:^2.1.1"
+  checksum: a26d1ce0c369213d0c8199fb4d0e80b549743e2228ad6eaf35557db0929d584f9d4267c63fbbdcdaa25f2df98ec16067eb82e26009f1d764c519d794038cfbba
+  languageName: node
+  linkType: hard
+
 "c8@npm:^7.14.0":
   version: 7.14.0
   resolution: "c8@npm:7.14.0"
@@ -7164,6 +7229,13 @@ __metadata:
   version: 6.1.3
   resolution: "defu@npm:6.1.3"
   checksum: ae0cc81dc6e573422c012bc668625e506525bde9767ff19f80e5c1d155696a95631fced376583d661fb64c3cc6314e578225bba00467178a72a3829d374a346f
+  languageName: node
+  linkType: hard
+
+"defu@npm:^6.1.1, defu@npm:^6.1.4":
+  version: 6.1.4
+  resolution: "defu@npm:6.1.4"
+  checksum: aeffdb47300f45b4fdef1c5bd3880ac18ea7a1fd5b8a8faf8df29350ff03bf16dd34f9800205cab513d476e4c0a3783aa0cff0a433aff0ac84a67ddc4c8a2d64
   languageName: node
   linkType: hard
 
@@ -9085,6 +9157,24 @@ __metadata:
   bin:
     giget: dist/cli.mjs
   checksum: d46faa23d7ea747e8f854843d6b8f1be645f2a374af10a7590156ac5703b82cc3beec5fe723fc900099c8da7d810a7a2b0e0e3cd9db9ad58b453ce4b5090eb5f
+  languageName: node
+  linkType: hard
+
+"giget@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "giget@npm:1.2.1"
+  dependencies:
+    citty: "npm:^0.1.5"
+    consola: "npm:^3.2.3"
+    defu: "npm:^6.1.3"
+    node-fetch-native: "npm:^1.6.1"
+    nypm: "npm:^0.3.3"
+    ohash: "npm:^1.1.3"
+    pathe: "npm:^1.1.1"
+    tar: "npm:^6.2.0"
+  bin:
+    giget: dist/cli.mjs
+  checksum: 5d50c70754fef1f199547fc58ad8ad18fed7f4ee3a2e624827d3f214476b731492ee96bd14934ae23b863524369801b23fd0785028576837be0c23bf2031c2b7
   languageName: node
   linkType: hard
 
@@ -12326,6 +12416,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-fetch-native@npm:^1.6.1":
+  version: 1.6.1
+  resolution: "node-fetch-native@npm:1.6.1"
+  checksum: 83fbe9abea807fe479b45f5512389c71be1328b211bfd2aab39ce56356e6e8b74df41b50f4b7954eac8869c0f09b61dd0e563f28df90218e77ecf3977ed72065
+  languageName: node
+  linkType: hard
+
 "node-fetch@npm:^2.6.12, node-fetch@npm:^2.6.7":
   version: 2.7.0
   resolution: "node-fetch@npm:2.7.0"
@@ -12583,6 +12680,17 @@ __metadata:
     "@nuxt/devtools-kit": "npm:^1.0.4"
     "@nuxt/kit": "npm:^3.8.2"
   checksum: 57979f16dce9041ed3c1e0ccc76f90e58186156d9d60935c54b6252eca0b86518ff30c45927cddd64f359d8fdb8cf4a0298b58cf27d6d948aaa23850400181a1
+  languageName: node
+  linkType: hard
+
+"nuxt-time@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "nuxt-time@npm:0.1.1"
+  dependencies:
+    "@nuxt/kit": "npm:^3.2.0"
+    defu: "npm:^6.1.1"
+    pathe: "npm:^1.0.0"
+  checksum: 8347d2639e7def1bc2756923063cd21ab45f938d5a4814b1554c75c29a56a8380223709ed2b5afb4fb3a3f2faedaa1a06f843aae2dac3a4ca4aa40a51e2b8ea0
   languageName: node
   linkType: hard
 
@@ -13189,7 +13297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pathe@npm:^1.1.0, pathe@npm:^1.1.1":
+"pathe@npm:^1.0.0, pathe@npm:^1.1.0, pathe@npm:^1.1.1":
   version: 1.1.1
   resolution: "pathe@npm:1.1.1"
   checksum: 603decdf751d511f0df10acb8807eab8cc25c1af529e6149e27166916f19db57235a7d374b125452ba6da4dd0f697656fdaf5a9236b3594929bb371726d31602
@@ -16616,7 +16724,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unimport@npm:^3.6.0, unimport@npm:^3.6.1, unimport@npm:^3.7.0":
+"unimport@npm:^3.6.0, unimport@npm:^3.6.1, unimport@npm:^3.7.0, unimport@npm:^3.7.1":
   version: 3.7.1
   resolution: "unimport@npm:3.7.1"
   dependencies:

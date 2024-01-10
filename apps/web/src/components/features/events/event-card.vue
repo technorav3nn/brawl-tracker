@@ -6,13 +6,34 @@ import { ChevronRight, Clock, Trophy } from "lucide-vue-next";
 import { FORMATTER_UNITS } from "$lib/util/common";
 import type { BrawlApiBrawlerWithOnlyImages } from "$server/utils/get-brawler-images";
 
-defineProps<{
+const props = defineProps<{
 	event: BrawlApiEvent;
 	images: Record<string, BrawlApiBrawlerWithOnlyImages>;
 	type: "upcoming" | "current";
 }>();
 
 const formatter = new DurationFormatter(FORMATTER_UNITS);
+
+// eslint-disable-next-line vue/no-setup-props-destructure
+const date = useState(
+	`event-${props.event.slot.id}-${props.event.map.id}-${props.event.map.gameMode.name}-date`,
+	() => {
+		// refactored to not use a ternary operator
+		let dateString: string;
+		if (props.type === "current") {
+			dateString = props.event.endTime;
+		} else {
+			dateString = props.event.startTime;
+		}
+
+		return new Date(dateString).valueOf() - Date.now();
+	}
+);
+// eslint-disable-next-line vue/no-setup-props-destructure
+const formattedDate = useState(
+	`event-${props.event.slot.id}-${props.event.map.id}-${props.event.map.gameMode.name}-formatted-date`,
+	() => formatter.format(date.value, 2, { left: "" })
+);
 </script>
 
 <template>
@@ -60,13 +81,7 @@ const formatter = new DurationFormatter(FORMATTER_UNITS);
 							<Clock class="hidden h-3.5 w-3.5 text-muted-foreground lg:block" />
 							<p class="text-sm font-medium text-muted-foreground">
 								{{ type === "current" ? "ends" : "starts" }} in
-								{{
-									formatter.format(
-										new Date(type === "current" ? event.endTime : event.startTime).valueOf() - Date.now(),
-										2,
-										{ left: "" }
-									)
-								}}
+								{{ formattedDate }}
 							</p>
 						</div>
 					</div>

@@ -49,6 +49,7 @@
 		"dedent": "^1.5.1",
 		"lucide-vue-next": "^0.303.0",
 		"node-cache": "^5.1.2",
+		"nuxt-time": "^0.1.1",
 		"radix-vue": "^1.2.6",
 		"tailwind-merge": "^2.2.0",
 		"tailwind-variants": "^0.1.20",
