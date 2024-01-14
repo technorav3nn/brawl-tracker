@@ -26,7 +26,7 @@ const selectValue = computed(() => {
 			All brawlers in Brawl Stars, explore their stats, kit, and more!
 		</p>
 		<div class="mt-2.5 flex flex-row gap-2.5">
-			<UiInput v-model:modelValue="search" placeholder="Filter Brawlers..." class="h-8 max-w-[15rem]" />
+			<UiInput v-model="search" placeholder="Filter Brawlers..." class="h-8 max-w-[15rem]" />
 			<UiSelect v-model:modelValue="groupingMode">
 				<UiSelectTrigger class="h-8 max-w-[8rem]">
 					<UiSelectValue>

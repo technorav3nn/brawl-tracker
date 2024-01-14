@@ -4,18 +4,14 @@ import { useAttrs } from "vue";
 import { cn } from "$lib/util/tailwind";
 
 const props = defineProps<{
-	defaultValue?: string | number;
-	modelValue?: string | number;
+	defaultValue?: string | number | null;
+	modelValue?: string | number | null;
 }>();
 
 const emits = defineEmits<{
 	// eslint-disable-next-line no-unused-vars
 	(e: "update:modelValue", payload: string | number): void;
 }>();
-
-defineOptions({
-	inheritAttrs: false,
-});
 
 const { class: className, ...rest } = useAttrs();
 

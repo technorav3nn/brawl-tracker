@@ -18,15 +18,14 @@ const formatter = new DurationFormatter(FORMATTER_UNITS);
 const date = useState(
 	`event-${props.event.slot.id}-${props.event.map.id}-${props.event.map.gameMode.name}-date`,
 	() => {
-		// refactored to not use a ternary operator
-		let dateString: string;
+		let apiDate: string;
 		if (props.type === "current") {
-			dateString = props.event.endTime;
+			apiDate = props.event.endTime;
 		} else {
-			dateString = props.event.startTime;
+			apiDate = props.event.startTime;
 		}
 
-		return new Date(dateString).valueOf() - Date.now();
+		return new Date(apiDate).valueOf() - Date.now();
 	}
 );
 // eslint-disable-next-line vue/no-setup-props-destructure

@@ -12,6 +12,9 @@
 		"parser": "@typescript-eslint/parser"
 	},
 	"rules": {
+		"id-length": "off",
+		"typescript-sort-keys/interface": "off",
+		"@typescript-eslint/consistent-type-definitions": "off",
 		"@typescript-eslint/no-return-await": "off",
 		"@typescript-eslint/return-await": "off",
 		"no-restricted-globals": "off",

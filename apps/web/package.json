@@ -39,6 +39,8 @@
 		"@sapphire/time-utilities": "^1.7.11",
 		"@tabler/icons-vue": "^2.45.0",
 		"@unpic/vue": "^0.0.41",
+		"@vee-validate/nuxt": "^4.12.4",
+		"@vee-validate/zod": "^4.12.4",
 		"@vueuse/core": "^10.7.1",
 		"@vueuse/motion": "^2.0.0",
 		"@vueuse/nuxt": "^10.7.1",
@@ -53,7 +55,9 @@
 		"radix-vue": "^1.2.6",
 		"tailwind-merge": "^2.2.0",
 		"tailwind-variants": "^0.1.20",
-		"vue-command-palette": "^0.2.3"
+		"vee-validate": "^4.12.4",
+		"vue-command-palette": "^0.2.3",
+		"zod": "^3.22.4"
 	},
 	"volta": {
 		"extends": "../../package.json"

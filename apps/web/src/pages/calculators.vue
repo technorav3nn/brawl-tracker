@@ -3,8 +3,8 @@ const route = useRoute("calculators");
 
 const CALCULATORS = [
 	{
-		name: "Maxed Brawler Price",
-		path: "brawler-maxed-price",
+		name: "Brawler Price",
+		path: "brawler-price",
 	},
 ];
 const tab = ref(route.path.split("/")[2]!);
@@ -30,9 +30,7 @@ watchEffect(() => {
 			</UiTabsList>
 		</UiTabs>
 		<div class="px-1 pt-4">
-			<div class="grid-media-cols grid gap-4">
-				<NuxtPage />
-			</div>
+			<NuxtPage />
 		</div>
 	</div>
 </template>

@@ -18,6 +18,7 @@ export default defineNuxtConfig({
 		"@vite-pwa/nuxt",
 		"@pinia/nuxt",
 		"@formkit/auto-animate/nuxt",
+		"@vee-validate/nuxt",
 		"nuxt-time",
 	],
 	srcDir: "src/",
@@ -65,6 +66,17 @@ export default defineNuxtConfig({
 		classSuffix: "",
 		preference: "system",
 		fallback: "dark",
+	},
+	veeValidate: {
+		// disable or enable auto imports
+		autoImports: true,
+		// Use different names for components
+		componentNames: {
+			Form: "VeeForm",
+			Field: "VeeField",
+			FieldArray: "VeeFieldArray",
+			ErrorMessage: "VeeErrorMessage",
+		},
 	},
 	pwa: {
 		registerType: "autoUpdate",
