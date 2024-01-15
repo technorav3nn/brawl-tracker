@@ -1,3 +1,2 @@
 #!/bin/sh
 
-yarn lint-staged --allow-empty

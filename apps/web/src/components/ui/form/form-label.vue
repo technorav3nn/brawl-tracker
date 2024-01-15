@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Label } from "radix-vue";
-import { useFormField } from "./use-form-field";
 import { cn } from "$lib/util/tailwind";
+import { useFormField } from "./use-form-field";
 
 const { error, formItemId } = useFormField();
 </script>
