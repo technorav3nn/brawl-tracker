@@ -17,11 +17,17 @@ export default cachedFunction(
 	}
 );
 
-type BrawlerSkill = {
+interface BrawlerSkill {
 	ActiveTime: number;
 	Damage: number;
 	Name: string;
 	RechargeTime: number;
 	Spread: number;
 	id: number;
-};
+	Cooldown: number;
+	MaxCharge: number;
+	/**
+	 * Casting range not in tiles, must convert to tiles
+	 */
+	CastingRange: number;
+}

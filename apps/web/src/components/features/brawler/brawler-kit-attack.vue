@@ -1,30 +1,51 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
-import { calculateBrawlerLevelStat, determineSpeed, type Level } from "$lib/util/brawl-stars/brawlers";
-import { upperFirstCharacter } from "$lib/util/common";
+import {
+	calculateBrawlerLevelStat,
+	convertRangeToTiles,
+	determineSpeed,
+	type Level,
+} from "$lib/util/brawl-stars/brawlers";
+import { durationFormatter } from "$lib/util/common";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
+	level: string;
 }>();
+
+const emit = defineEmits<{
+	updateLevel: [string];
+}>();
+
 // eslint-disable-next-line vue/no-setup-props-destructure
 const { data: brawler } = await useFetch(`/api/brawlers/id/${props.brawler.id}/csv`);
 
-const level = ref("1");
-const levelStats = computed(() => {
-	const [health, damage] = [brawler.value!.csv.Hitpoints, brawler.value!.skills.Damage].map((value) =>
-		calculateBrawlerLevelStat(value!, Number.parseInt(level.value, 10) as Level)
+const stats = computed(() => {
+	const [health, damage] = [brawler.value!.csv.Hitpoints, brawler.value!.attack.Damage].map((value) =>
+		calculateBrawlerLevelStat(value!, Number.parseInt(props.level, 10) as Level)
 	);
+	const { Speed: speed } = brawler.value!.csv;
+	const { MaxCharge: maxAmmo, RechargeTime: reloadSpeed, CastingRange: range } = brawler!.value!.attack;
 	return {
 		Hitpoints: health,
+		Speed: `${speed} (${determineSpeed(speed)}) `,
+		Range: `${convertRangeToTiles(range)} tiles`,
 		"Damage Per Shot": damage,
-		// "Damage Per Second": damage * brawler.value!.csv.AttackSpeed,
-		Speed: `${brawler.value!.csv.Speed} (${determineSpeed(brawler.value!.csv.Speed)})	`,
+		"Reload Speed (ms)": durationFormatter.format(reloadSpeed, undefined, { left: " second" }),
+		"Max Ammo": `${maxAmmo} shots`,
 	};
 });
+
+const onLevelChange = (newLevel: string) => {
+	emit("updateLevel", newLevel);
+};
 </script>
+``
 
 <template>
-	<div class="flex flex-col justify-between gap-4 rounded-lg border border-border p-4 shadow">
+	<BrawlerKitStatsCard title="Attack" :data="stats" :level="props.level" @update-level="onLevelChange" />
+	<!--
+ <div class="flex flex-col gap-4 rounded-lg border border-border p-4 shadow">
 		<div class="flex items-center justify-between">
 			<h1 class="text-2xl font-bold tracking-tight">Stats</h1>
 			<UiSelect v-model:modelValue="level">
@@ -50,12 +71,13 @@ const levelStats = computed(() => {
 					</UiTableRow>
 				</UiTableHeader>
 				<UiTableBody>
-					<UiTableRow v-for="[stat, value] in Object.entries(levelStats)" :key="stat">
+					<UiTableRow v-for="[stat, value] in Object.entries(stats)" :key="stat">
 						<UiTableCell class="font-medium">{{ upperFirstCharacter(stat) }}</UiTableCell>
 						<UiTableCell>{{ value }}</UiTableCell>
 					</UiTableRow>
 				</UiTableBody>
 			</UiTable>
 		</div>
-	</div>
+	</div> 
+	-->
 </template>

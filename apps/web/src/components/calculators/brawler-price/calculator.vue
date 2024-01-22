@@ -73,7 +73,6 @@ const onSelect = (uncastedValue: string, slot: "slot1" | "slot2") => {
 };
 
 const onSubmit = form.handleSubmit((values) => {
-	console.log(values, form.controlledValues.value);
 	result.value = getBrawlerTotalLevelPrice(values);
 });
 </script>

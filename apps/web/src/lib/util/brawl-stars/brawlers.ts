@@ -22,3 +22,9 @@ export function determineSpeed(speed: number) {
 	if (speed <= 770) return "Fast";
 	return "Very Fast";
 }
+
+const RANGE_TO_TILES_DIVISOR = 3;
+export function convertRangeToTiles(range: number) {
+	// round to the nearest hundredth
+	return Number((range / RANGE_TO_TILES_DIVISOR).toFixed(2));
+}
