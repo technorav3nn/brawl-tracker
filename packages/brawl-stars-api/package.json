@@ -1,6 +1,6 @@
 {
 	"name": "@brawltracker/brawl-stars-api",
-	"version": "1.3.2",
+	"version": "1.3.3",
 	"type": "module",
 	"scripts": {
 		"build": "tsup",
@@ -28,6 +28,9 @@
 			"default": "./dist/index.js"
 		}
 	},
+	"files": [
+		"dist/"
+	],
 	"sideEffects": false,
 	"keywords": [
 		"brawlstars",
