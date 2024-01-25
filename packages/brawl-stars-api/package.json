@@ -13,7 +13,7 @@
 		"eslint": "^8.56.0",
 		"tsup": "^6.7.0",
 		"typescript": "5.3.3",
-		"vitest": "^1.2.1"
+		"vitest": "0.34.6"
 	},
 	"dependencies": {
 		"@brawltracker/supercell-api-utils": "^1.2.0",
