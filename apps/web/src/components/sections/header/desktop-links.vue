@@ -17,7 +17,7 @@ const open = ref(false);
 		{{ item.label }}
 	</NuxtLink>
 	<UiDropdownMenuRoot v-model:open="open">
-		<UiDropdownMenuTrigger>
+		<UiDropdownMenuTrigger asChild>
 			<div
 				role="button"
 				class="text-sm/6 font-medium text-foreground/60 transition-colors hover:cursor-pointer hover:text-foreground/80"

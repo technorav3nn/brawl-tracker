@@ -5,7 +5,7 @@ type RepeatTuple<T, N extends number, R extends unknown[]> = R["length"] extends
 export interface BrawlerKitAttack {
 	description: string;
 	name: string;
-	stats: Record<string, string>[];
+	stats: Record<string, string>;
 	statsByLevel: {
 		list: RepeatTuple<number, 11, []>;
 		name: string;

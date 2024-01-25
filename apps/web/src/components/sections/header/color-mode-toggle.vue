@@ -11,7 +11,10 @@ import { COLOR_MODES } from "$lib/config";
 
 const mode = useColorMode();
 
-useDisableCssTransitions(() => mode.value);
+useDisableCssTransitions(() => {
+	console.log(mode.value);
+	return mode.value;
+});
 </script>
 
 <template>
@@ -32,7 +35,7 @@ useDisableCssTransitions(() => mode.value);
 				v-for="colorMode in COLOR_MODES"
 				:key="colorMode"
 				class="h-7"
-				@click="$colorMode.preference = colorMode.toLowerCase()"
+				@click="mode.preference = colorMode.toLowerCase()"
 			>
 				{{ colorMode }}
 			</DropdownMenuItem>

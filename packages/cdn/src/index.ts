@@ -8,6 +8,21 @@ export function normalizeNameToCdnName(name: string) {
 	return name.toLowerCase().replaceAll(" ", "_");
 }
 
+export function isNameNormalized(name: string) {
+	return name === normalizeNameToCdnName(name);
+}
+
+/**
+ * Converts lowercase property names to valid case
+ *
+ * @param str - String to convert
+ * @example attackrange becomes Attack Range
+ */
+export function convertLowercaseToTitleCase(str: string) {
+	// eslint-disable-next-line prefer-named-capture-group
+	return str.replaceAll(/([a-z])([A-Z])/g, "$1 $2");
+}
+
 /**
  * Get brawler data from CDN
  *
