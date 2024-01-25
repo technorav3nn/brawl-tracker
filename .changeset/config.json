@@ -6,6 +6,6 @@
 	"linked": [],
 	"access": "public",
 	"updateInternalDependencies": "patch",
-	"ignore": ["@brawltracker/web"],
+	"ignore": ["@brawltracker/web", "@brawltracker/bot"],
 	"baseBranch": "main"
 }
