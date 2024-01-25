@@ -1,5 +1,11 @@
 # @brawltracker/brawl-stars-api
 
+## 1.3.1
+
+### Patch Changes
+
+- Add extra keyword
+
 ## 1.3.0
 
 ### Minor Changes

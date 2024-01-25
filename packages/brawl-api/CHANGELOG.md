@@ -1,5 +1,11 @@
 # @brawltracker/brawl-api
 
+## 1.2.2
+
+### Patch Changes
+
+- Add extra keyword
+
 ## 1.2.1
 
 ### Patch Changes
