@@ -54,7 +54,13 @@ export default defineNuxtConfig({
 		asyncContext: true,
 	},
 	image: {
-		domains: ["cdn-old.brawlify.com", "images.unsplash.com", "github.com", "cdn-fankit.brawlify.com"],
+		domains: [
+			"cdn-old.brawlify.com",
+			"cdn-fankit.brawlify.com",
+			"cdn.deathblows.tech",
+			"images.unsplash.com",
+			"github.com",
+		],
 	},
 	devtools: {
 		enabled: true,

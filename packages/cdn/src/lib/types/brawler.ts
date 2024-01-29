@@ -92,18 +92,16 @@ export interface BrawlerData {
 	/**
 	 * Hypercharge, if any, empty array if none
 	 */
-	hypercharge:
-		| never[]
-		| [
-				hc: {
-					name: string;
-					description: string;
-					/**
-					 * Path to the hypercharge image relative to the cdn root url
-					 */
-					path: string;
-				},
-		  ];
+	hypercharge: {
+		name: string;
+		description: string;
+		/**
+		 * Path to the hypercharge image relative to the cdn root url
+		 */
+		path: string;
+		stats: Record<string, string>;
+	} | null;
+
 	healthByLevel: RepeatTuple<number, 11, []>;
 	attack: BrawlerKitAttack;
 	super: BrawlerKitAttack;

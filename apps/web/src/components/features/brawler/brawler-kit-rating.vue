@@ -24,8 +24,8 @@ const ratings = computed(() => {
 	<div class="rounded-lg border border-border p-4 shadow">
 		<h1 class="text-2xl font-bold tracking-tight">Rating</h1>
 
-		<div class="flex h-[87%] flex-col justify-between">
-			<div class="mt-4 flex flex-col gap-5">
+		<div class="flex h-[95%] flex-col justify-between">
+			<div class="mt-4 flex h-[95%] flex-col gap-5 md:justify-evenly">
 				<div class="flex items-center justify-between gap-2">
 					<div class="flex flex-col gap-1">
 						<p class="font-medium">Offense</p>
@@ -57,6 +57,9 @@ const ratings = computed(() => {
 					<UiRating :count="5" :value="ratings.utility" />
 				</div>
 			</div>
+			<p class="mb-3 mt-4 text-xs text-muted-foreground xs:mb-3 md:mb-3 lg:mb-0 xl:mb-3">
+				These ratings do not reflect the current meta.
+			</p>
 		</div>
 	</div>
 </template>

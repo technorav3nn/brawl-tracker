@@ -1,7 +1,7 @@
 import { $fetch } from "ofetch";
 import type { BrawlerData } from "./lib/types/brawler";
 
-const CDN_URL = "https://cdn.deathblows.tech/file/bs-api/assets";
+export const CDN_URL = "https://cdn.deathblows.tech/file/bs-api";
 
 export function normalizeNameToCdnName(name: string) {
 	// "El Primo" -> "el_primo" for example
@@ -38,7 +38,7 @@ export async function getBrawlerData(name: string) {
  * @param name - Normalized brawler name
  */
 export function getBrawlerAvatarUrl(name: string) {
-	return `${CDN_URL}/brawlers/${name}/avatar.png`;
+	return `${CDN_URL}/brawlers/${name}/avatar.webp`;
 }
 
 /**
@@ -47,5 +47,5 @@ export function getBrawlerAvatarUrl(name: string) {
  * @param name - Normalized brawler name
  */
 export function getBrawlerModelUrl(name: string) {
-	return `${CDN_URL}/brawlers/${name}/model.png`;
+	return `${CDN_URL}/brawlers/${name}/model.webp`;
 }

@@ -1,20 +1,43 @@
 <script setup lang="ts">
 import { upperFirstCharacter } from "$lib/util/common";
 
-defineProps<{
+const props = defineProps<{
 	title: string;
 	data: Record<any, any>;
 	level: string;
+	description: string;
+	type: "super" | "attack" | null;
 }>();
 const emit = defineEmits<{
 	updateLevel: [level: string];
 }>();
+
+const image = computed(() => {
+	if (props.type === "super") {
+		return "/images/icons/super-icon.png";
+	} else if (props.type === "attack") {
+		return "/images/icons/attack-icon.png";
+	}
+
+	return null;
+});
 </script>
 
 <template>
 	<div class="flex flex-col gap-4 rounded-lg border border-border p-4 shadow">
 		<div class="flex items-center justify-between">
-			<h1 class="text-2xl font-bold tracking-tight">{{ title }} Stats</h1>
+			<div class="flex items-center gap-2">
+				<NuxtImg
+					v-if="image"
+					:src="image"
+					width="30"
+					height="30"
+					alt="Attack icon"
+					fit="inside"
+					class="self-center bg-contain object-cover"
+				/>
+				<h1 class="text-2xl font-bold tracking-tight">{{ title }}</h1>
+			</div>
 			<UiSelect :modelValue="level" @update:model-value="(level) => emit('updateLevel', level)">
 				<UiSelectTrigger class="h-8 max-w-[8rem]">
 					<UiSelectValue>Level {{ level }}</UiSelectValue>
@@ -29,17 +52,12 @@ const emit = defineEmits<{
 			</UiSelect>
 		</div>
 		<div>
-			<UiTable>
-				<UiTableHeader>
-					<UiTableRow class="w-full">
-						<UiTableHead> Stat </UiTableHead>
-						<UiTableHead> Value </UiTableHead>
-					</UiTableRow>
-				</UiTableHeader>
+			<p class="text-sm text-muted-foreground">{{ description }}</p>
+			<UiTable class="mt-2">
 				<UiTableBody>
-					<UiTableRow v-for="[stat, value] in Object.entries(data)" :key="stat">
-						<UiTableCell class="font-medium">{{ upperFirstCharacter(stat) }}</UiTableCell>
-						<UiTableCell>{{ value }}</UiTableCell>
+					<UiTableRow v-for="[stat, value] in Object.entries(data)" :key="stat" class="hover:bg-transparent">
+						<UiTableCell class="px-0.5 font-medium">{{ upperFirstCharacter(stat) }}</UiTableCell>
+						<UiTableCell class="px-0.5">{{ value }}</UiTableCell>
 					</UiTableRow>
 				</UiTableBody>
 			</UiTable>

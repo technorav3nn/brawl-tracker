@@ -10,7 +10,7 @@ defineProps<{
 <template>
 	<UiDialog>
 		<UiDialogContent class="h-[95%] max-w-3xl overflow-scroll">
-			<NuxtImg width="700" height="800" fit="outside" :src="map?.imageUrl"></NuxtImg>
+			<NuxtImg width="700" height="800" fit="outside" :src="map?.imageUrl" />
 		</UiDialogContent>
 		<UiDialogTrigger asChild>
 			<UiButton
