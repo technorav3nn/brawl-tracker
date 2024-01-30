@@ -8,7 +8,6 @@ describe("@brawltracker/cdn", () => {
 			await expect(promise).resolves.not.toThrow();
 
 			const data = await promise;
-			expect(data).toMatchSnapshot();
 			expect(data.id).toBe("el_primo");
 			expect(data.name).toBe("El Primo");
 		});

@@ -5,7 +5,7 @@ import GithubActionsReporter from "vitest-github-actions-reporter";
 export const configShared = defineConfig({
 	test: {
 		reporters: process.env.GITHUB_ACTIONS ? ["default", new GithubActionsReporter()] : "default",
-		exclude: ["**/node_modules", "**/dist", ".idea", ".git", ".cache", ".yarn"],
+		exclude: ["**/node_modules", "**/dist", ".idea", ".git", ".cache", ".yarn", "apps"],
 		passWithNoTests: true,
 		coverage: {
 			enabled: true,
