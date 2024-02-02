@@ -1,23 +1,29 @@
 <script setup lang="ts">
 import type { BrawlApiGadget, BrawlApiStarPower } from "@brawltracker/brawl-api";
+import { Image } from "@unpic/vue";
 
-defineProps<{
+const props = defineProps<{
 	powers: BrawlApiGadget[] | BrawlApiStarPower[];
+	type: "gadgets" | "starpowers";
 }>();
+
+const imageUrls = computed(() => {
+	const path = props.type;
+	return props.powers.map((power) => `https://cdn.deathblows.tech/file/bs-api/${path}/${power.id}.webp`);
+});
 </script>
 
 <!-- eslint-disable vue/no-v-html -->
 <template>
-	<div class="mt-3 grid grid-cols-1 bg-card lg:grid-cols-2">
-		<div v-for="power in $props.powers" :key="power.name" class="bg-card p-4 shadow">
+	<div class="mt-3 grid grid-cols-1 gap-3 bg-card lg:grid-cols-2 lg:gap-5">
+		<div v-for="(power, index) in $props.powers" :key="power.name">
 			<div class="flex flex-row gap-4 lg:flex-col">
 				<div class="flex flex-row items-center gap-3 max-lg:max-h-[50px] max-lg:w-full max-lg:max-w-[50px]">
-					<NuxtImg
-						:src="power.imageUrl"
-						class="aspect-square max-h-[50px] w-full max-w-[50px] self-center bg-contain object-cover lg:self-auto"
+					<Image
+						:src="imageUrls[index]!"
+						class="self-center bg-contain object-cover lg:self-auto"
 						width="50"
 						height="50"
-						format="webp"
 					/>
 					<p class="hidden text-xl font-bold tracking-tight lg:block">{{ power.name }}</p>
 				</div>

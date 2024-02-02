@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
 import { normalizeNameToCdnName, CDN_URL } from "@brawltracker/cdn";
+import { Image } from "@unpic/vue";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
@@ -17,11 +18,11 @@ const image = computed(() => `${CDN_URL}${data.value!.hypercharge!.path.replaceA
 	<div class="rounded-lg border border-border p-4 shadow">
 		<div class="flex flex-col">
 			<div class="flex items-center gap-2">
-				<NuxtImg
+				<Image
 					v-if="image"
 					:src="image"
 					width="30"
-					height="30"
+					height="35"
 					alt="Attack icon"
 					fit="inside"
 					class="self-center bg-contain object-cover"

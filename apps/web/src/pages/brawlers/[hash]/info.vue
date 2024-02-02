@@ -45,15 +45,16 @@ const onLevelChange = (newLevel: string) => {
 			<div class="text-sm text-muted-foreground">Gadgets, Star Powers & Gears</div>
 			<div class="flex-1 border-t border-border"></div>
 		</div>
-		<div class="mt-8 grid grid-cols-1 gap-3 lg:grid-cols-2">
-			<div class="rounded-lg border border-border p-4 shadow">
+		<div class="mt-8 flex flex-wrap justify-center gap-3">
+			<div class="flex-grow-0 rounded-lg border border-border p-4 shadow md:flex-1">
 				<h2 class="text-2xl font-bold tracking-tight">Gadgets</h2>
-				<BrawlerPowerCard :powers="brawler.gadgets" />
+				<BrawlerPowerCard :powers="brawler.gadgets" type="gadgets" />
 			</div>
-			<div class="rounded-lg border border-border p-4 shadow">
+			<div class="flex-grow-0 rounded-lg border border-border p-4 shadow md:flex-1">
 				<h2 class="text-2xl font-bold tracking-tight">Star Powers</h2>
-				<BrawlerPowerCard :powers="brawler.starPowers" />
+				<BrawlerPowerCard :powers="brawler.starPowers" type="starpowers" />
 			</div>
+			<BrawlerGearsCard :brawlerId="brawler.id" class="col-span-2 w-full" />
 		</div>
 	</div>
 </template>

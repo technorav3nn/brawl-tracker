@@ -23,7 +23,7 @@
 		"eslint": "^8.56.0",
 		"eslint-config-neon": "^0.1.57",
 		"eslint-plugin-vue": "^9.20.1",
-		"nuxt": "^3.9.0",
+		"nuxt": "^3.10.0",
 		"postcss-custom-properties": "^13.3.4",
 		"tailwind-scrollbar": "^3.0.5",
 		"tailwindcss-animate": "^1.0.7",

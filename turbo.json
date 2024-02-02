@@ -15,7 +15,8 @@
 		"test": {
 			"dependsOn": ["^build"],
 			"cache": false,
-			"persistent": true
+			"persistent": true,
+			"outputMode": "new-only"
 		},
 		"start": {
 			"dependsOn": ["^build"],

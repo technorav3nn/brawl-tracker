@@ -1,5 +1,6 @@
 import { $fetch } from "ofetch";
 import type { BrawlerData } from "./lib/types/brawler";
+import type { GearData } from "./lib/types/gears";
 
 export const CDN_URL = "https://cdn.deathblows.tech/file/bs-api";
 
@@ -32,6 +33,10 @@ export async function getBrawlerData(name: string) {
 	return $fetch<BrawlerData>(`${CDN_URL}/brawlers/${name}/data.json`);
 }
 
+export async function getAllGears() {
+	return $fetch<GearData>(`${CDN_URL}/gears/all-info.json`);
+}
+
 /**
  * Get brawler avatar URL from CDN
  *
@@ -49,3 +54,5 @@ export function getBrawlerAvatarUrl(name: string) {
 export function getBrawlerModelUrl(name: string) {
 	return `${CDN_URL}/brawlers/${name}/model.webp`;
 }
+
+export * from "./lib/types/brawler";

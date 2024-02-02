@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { Primitive } from "radix-vue";
-import type { PrimitiveProps } from "radix-vue/dist/Primitive/Primitive";
+import { Primitive, type PrimitiveProps } from "radix-vue";
 import { cn } from "$lib/util/tailwind";
 import { buttonVariants } from "./index";
 

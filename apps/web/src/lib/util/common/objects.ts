@@ -19,7 +19,19 @@ export function singleton<T>(name: string, value: T) {
  * Turns a class into a pojo that can be serialzed with devalue
  *
  * @param cls - Class to turn into a pojo
+ * @returns The pojo serialized
  */
 export function serdeClass<T>(cls: T) {
 	return { ...cls } as T;
+}
+
+export type Entries<T> = { [K in keyof T]: [K, T[K]] }[keyof T];
+/**
+ * Simple Object.entries that is typed
+ *
+ * @param obj - Object to get entries from
+ * @returns The entries of the object
+ */
+export function typedObjectEntries<T extends object>(obj: T): Entries<T>[] {
+	return Object.entries(obj) as any;
 }

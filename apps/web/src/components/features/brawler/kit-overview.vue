@@ -58,7 +58,7 @@ const stats = computed(() => {
 					height="200"
 					width="200"
 					loading="eager"
-					fit="contain"
+					fit="inside"
 				/>
 				<UiTable class="mt-2">
 					<UiTableBody>

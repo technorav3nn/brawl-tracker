@@ -1,3 +1,5 @@
+import type { Gear } from "./gears";
+
 type RepeatTuple<T, N extends number, R extends unknown[]> = R["length"] extends N
 	? R
 	: RepeatTuple<T, N, [T, ...R]>;
@@ -111,4 +113,9 @@ export interface BrawlerData {
 	avatar: {
 		path: string;
 	};
+	/**
+	 * The special gears the brawler has, super rare gears don't count
+	 * Only epic gears like Reload Speed or mythic gears like Sticky Spikes count
+	 */
+	gears?: Gear[];
 }
