@@ -61,6 +61,7 @@ export default defineNuxtConfig({
 			"images.unsplash.com",
 			"github.com",
 		],
+		provider: "ipx",
 	},
 	devtools: {
 		enabled: true,
