@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
 import { normalizeNameToCdnName, getBrawlerModelUrl } from "@brawltracker/cdn";
+import { Image } from "@unpic/vue";
 import { upperFirstCharacter } from "$lib/util/common";
 
 const props = defineProps<{
@@ -14,7 +15,9 @@ const emit = defineEmits<{
 const { brawler } = toRefs(props);
 
 const cdnName = computed(() => normalizeNameToCdnName(brawler.value.name));
-const modelImage = computed(() => getBrawlerModelUrl(cdnName.value));
+const encodedCdnName = computed(() => encodeURIComponent(cdnName.value));
+
+const modelImage = computed(() => getBrawlerModelUrl(encodedCdnName.value));
 
 const { data } = await useFetch(`/api/brawlers/name/${cdnName.value}/data`);
 
@@ -51,14 +54,12 @@ const stats = computed(() => {
 				</UiSelect>
 			</div>
 			<div class="flex flex-col justify-between gap-3 sm:flex-row md:flex-col xl:flex-row">
-				<NuxtImg
+				<Image
 					priority
-					class="mt-2 aspect-square max-h-[200px] w-full max-w-[200px] self-center object-scale-down"
+					class="mt-2 aspect-square max-h-[200px] w-full max-w-[200px] self-center !object-scale-down"
 					:src="modelImage"
 					height="200"
 					width="200"
-					loading="eager"
-					fit="inside"
 				/>
 				<UiTable class="mt-2">
 					<UiTableBody>

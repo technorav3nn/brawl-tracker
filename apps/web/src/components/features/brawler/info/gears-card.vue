@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { normalizeNameToCdnName } from "@brawltracker/cdn";
+import { CDN_URL, normalizeNameToCdnName } from "@brawltracker/cdn";
 import { Image } from "@unpic/vue";
 import { typedObjectEntries } from "$lib/util/common";
 
 const props = defineProps<{
 	brawlerId: number;
 }>();
+
+const $img = useImage();
 
 function upperFirstLetters(str: string) {
 	return str
@@ -51,7 +53,12 @@ const filteredGears = computed(() => {
 			<div v-for="gear in filteredGears" :key="gear.name" class="flex flex-col gap-2 p-2">
 				<div class="flex items-center gap-2">
 					<Image
-						:src="`https://cdn.deathblows.tech/file/bs-api/gears/${normalizeNameToCdnName(gear.name)}/icon.webp`"
+						:src="
+							$img(`${CDN_URL}/gears/${normalizeNameToCdnName(gear.name)}/icon.webp`, {
+								width: 50,
+								height: 52,
+							})
+						"
 						width="50"
 						height="52"
 						class="!object-scale-down"

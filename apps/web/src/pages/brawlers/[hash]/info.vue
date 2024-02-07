@@ -17,26 +17,26 @@ const onLevelChange = (newLevel: string) => {
 <template>
 	<div>
 		<div class="grid grid-cols-1 gap-3 lg:grid-cols-2">
-			<BrawlerKitOverview
+			<BrawlerInfoKitOverview
 				class="col-span-1"
 				:brawler="brawler"
 				:level="levelSelected"
 				@update-level="onLevelChange"
 			/>
-			<BrawlerKitRating :brawler="brawler" class="col-span-1" />
-			<BrawlerKitAttack
+			<BrawlerInfoKitRating :brawler="brawler" class="col-span-1" />
+			<BrawlerInfoKitAttack
 				:brawler="brawler"
 				class="col-span-1"
 				:level="levelSelected"
 				@update-level="onLevelChange"
 			/>
-			<BrawlerKitSuper
+			<BrawlerInfoKitSuper
 				:brawler="brawler"
 				class="col-span-1"
 				:level="levelSelected"
 				@update-level="onLevelChange"
 			/>
-			<BrawlerKitHypercharge v-if="!!cdnData?.hypercharge" :brawler="brawler" />
+			<BrawlerInfoKitHypercharge v-if="!!cdnData?.hypercharge" :brawler="brawler" />
 		</div>
 
 		<!-- divider with text in the middle -->
@@ -46,15 +46,14 @@ const onLevelChange = (newLevel: string) => {
 			<div class="flex-1 border-t border-border"></div>
 		</div>
 		<div class="mt-8 flex flex-wrap justify-center gap-3">
-			<div class="flex-grow-0 rounded-lg border border-border p-4 shadow md:flex-1">
+			<div class="rounded-lg border border-border p-4 shadow md:flex-1">
 				<h2 class="text-2xl font-bold tracking-tight">Gadgets</h2>
-				<BrawlerPowerCard :powers="brawler.gadgets" type="gadgets" />
+				<BrawlerInfoPowerCard :powers="brawler.gadgets" type="gadgets" />
 			</div>
-			<div class="flex-grow-0 rounded-lg border border-border p-4 shadow md:flex-1">
+			<div class="w-full rounded-lg border border-border p-4 shadow md:flex-1">
 				<h2 class="text-2xl font-bold tracking-tight">Star Powers</h2>
-				<BrawlerPowerCard :powers="brawler.starPowers" type="starpowers" />
+				<BrawlerInfoPowerCard :powers="brawler.starPowers" type="starpowers" />
 			</div>
-			<BrawlerGearsCard :brawlerId="brawler.id" class="col-span-2 w-full" />
 		</div>
 	</div>
 </template>

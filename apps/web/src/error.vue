@@ -29,6 +29,10 @@ const handleError = () => clearError({ redirect: "/" });
 			<p class="text-md mb-5 text-muted-foreground">
 				{{ error!.statusMessage }}
 			</p>
+			<div v-if="!!error!.stack" class="flex flex-col gap-1">
+				{{ error!.message }}
+				{{ error!.stack }}
+			</div>
 			<UiButton @click="handleError"> Go Home </UiButton>
 		</div>
 	</NuxtLayout>

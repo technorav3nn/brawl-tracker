@@ -9,9 +9,11 @@ const props = defineProps<{
 
 const { brawler } = toRefs(props);
 
+const $img = useImage();
+
 const cdnName = computed(() => normalizeNameToCdnName(brawler.value.name));
 const { data } = await useFetch(`/api/brawlers/name/${cdnName.value}/data`);
-const image = computed(() => `${CDN_URL}${data.value!.hypercharge!.path.replaceAll("png", "webp")}`);
+const image = computed(() => $img(`${CDN_URL}${data.value!.hypercharge!.path.replaceAll("png", "webp")}`));
 </script>
 
 <template>
@@ -39,14 +41,14 @@ const image = computed(() => `${CDN_URL}${data.value!.hypercharge!.path.replaceA
 			<div class="mt-2">
 				<UiTable>
 					<UiTableHeader>
-						<UiTableRow>
+						<UiTableRow class="hover:bg-transparent">
 							<UiTableHead class="text-foreground">Speed</UiTableHead>
 							<UiTableHead class="text-foreground">Damage</UiTableHead>
 							<UiTableHead class="text-foreground">Shield</UiTableHead>
 						</UiTableRow>
 					</UiTableHeader>
 					<UiTableBody>
-						<UiTableRow>
+						<UiTableRow class="hover:bg-transparent">
 							<UiTableCell class="text-foreground">
 								{{ data!.hypercharge!.stats.hyperchargespeed }}
 							</UiTableCell>

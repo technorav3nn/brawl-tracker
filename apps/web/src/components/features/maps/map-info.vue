@@ -52,7 +52,7 @@ defineProps<{
 						height="450"
 						class="block rounded-t bg-muted"
 						format="webp"
-						:modifiers="{ trim: '100' }"
+						:modifiers="{ trim: '{}' }"
 					/>
 				</div>
 				<div

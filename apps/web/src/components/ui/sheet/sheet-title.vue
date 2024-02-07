@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { DialogDescription, type DialogDescriptionProps } from "radix-vue";
+import { DialogTitle, type DialogTitleProps } from "radix-vue";
 import { type HTMLAttributes, computed } from "vue";
 import { cn } from "$lib/util/tailwind";
 
-const props = defineProps<DialogDescriptionProps & { class?: HTMLAttributes["class"] }>();
+const props = defineProps<DialogTitleProps & { class?: HTMLAttributes["class"] }>();
 
 const delegatedProps = computed(() => {
 	// eslint-disable-next-line no-unused-vars
@@ -14,7 +14,7 @@ const delegatedProps = computed(() => {
 </script>
 
 <template>
-	<DialogDescription :class="cn('text-sm text-muted-foreground', props.class)" v-bind="delegatedProps">
+	<DialogTitle :class="cn('text-lg font-semibold text-foreground', props.class)" v-bind="delegatedProps">
 		<slot />
-	</DialogDescription>
+	</DialogTitle>
 </template>

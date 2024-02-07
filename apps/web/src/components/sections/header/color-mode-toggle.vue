@@ -12,7 +12,6 @@ import { COLOR_MODES } from "$lib/config";
 const mode = useColorMode();
 
 useDisableCssTransitions(() => {
-	console.log(mode.value);
 	return mode.value;
 });
 </script>
