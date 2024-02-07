@@ -11,12 +11,13 @@ const props = defineProps<{
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 
-const { setSelectedMap } = useBrawlerStatMapsStore();
+const { setSelectedMap, setDialogState } = useBrawlerStatMapsStore();
 
 async function onSelectClicked() {
 	await setSelectedMap(props.map.id);
 	if (breakpoints.smaller("lg").value) {
 		console.log("Toggling dialog");
+		setDialogState(true);
 	}
 }
 </script>
