@@ -34,6 +34,7 @@
 		"@brawltracker/cdn": "workspace:*",
 		"@fontsource-variable/inter": "^5.0.16",
 		"@formkit/auto-animate": "^0.8.1",
+		"@img/sharp-linux-x64": "^0.33.2",
 		"@pinia/nuxt": "^0.5.1",
 		"@radix-icons/vue": "^1.0.0",
 		"@sapphire/duration": "^1.1.2",
@@ -59,8 +60,7 @@
 		"tailwind-variants": "^0.1.20",
 		"vee-validate": "^4.12.4",
 		"vue-command-palette": "^0.2.3",
-		"zod": "^3.22.4",
-		"@img/sharp-linux-x64": "^0.33.2"
+		"zod": "^3.22.4"
 	},
 	"volta": {
 		"extends": "../../package.json"
