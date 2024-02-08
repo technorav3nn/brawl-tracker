@@ -13,7 +13,6 @@
 	},
 	"devDependencies": {
 		"@hypernym/nuxt-font": "^2.0.2",
-		"@img/sharp-linux-x64": "^0.33.2",
 		"@nuxt/devtools": "1.0.8",
 		"@nuxt/image": "^1.3.0",
 		"@nuxt/kit": "^3.9.0",
@@ -35,6 +34,7 @@
 		"@brawltracker/cdn": "workspace:*",
 		"@fontsource-variable/inter": "^5.0.16",
 		"@formkit/auto-animate": "^0.8.1",
+		"@img/sharp-linux-x64": "^0.33.2",
 		"@pinia/nuxt": "^0.5.1",
 		"@radix-icons/vue": "^1.0.0",
 		"@sapphire/duration": "^1.1.2",
