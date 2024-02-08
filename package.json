@@ -17,6 +17,7 @@
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.27.1",
+		"@img/sharp-linux-x64": "^0.33.2",
 		"@sapphire/eslint-config": "^5.0.3",
 		"@vitest/coverage-istanbul": "^1.2.2",
 		"@vitest/coverage-v8": "^1.2.2",
