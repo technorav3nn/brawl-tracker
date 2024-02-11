@@ -14,7 +14,9 @@ definePageMeta({
 });
 
 watchEffect(() => {
-	return useLoadingIndicator().finish();
+	try {
+		useLoadingIndicator().finish();
+	} catch {}
 });
 </script>
 
