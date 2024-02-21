@@ -2,7 +2,6 @@
 import type { BrawlApiMap } from "@brawltracker/brawl-api";
 import { Image } from "@unpic/vue";
 import { breakpointsTailwind } from "@vueuse/core";
-import { ChevronRight } from "lucide-vue-next";
 import { useBrawlerStatMapsStore } from "$components/features/maps/store";
 
 const props = defineProps<{
@@ -23,7 +22,11 @@ async function onSelectClicked() {
 </script>
 
 <template>
-	<div class="relative flex flex-col overflow-hidden rounded-md bg-card shadow dark:shadow-none">
+	<div
+		role="button"
+		class="group relative flex flex-col overflow-hidden rounded-md bg-card transition-colors hover:bg-muted/60"
+		@click="onSelectClicked"
+	>
 		<div class="flex flex-row items-center justify-between rounded-t-md border border-border px-3 py-2">
 			<div class="flex w-full flex-row justify-start gap-2">
 				<Image
@@ -59,17 +62,22 @@ async function onSelectClicked() {
 				width="250"
 				format="webp"
 				loading="lazy"
+				class="bg-muted transition-transform duration-300 group-hover:translate-y-2 group-hover:scale-105"
 			/>
 		</div>
-		<div class="flex flex-row justify-between rounded-b-md border border-t border-border p-2">
-			<div
+		<!--
+ <div class="flex flex-row justify-between rounded-b-md border border-t border-border p-2">
+			
+ <div
 				class="z-30 flex cursor-pointer flex-row items-center justify-end"
 				role="button"
 				@click="onSelectClicked"
 			>
 				<p class="mr-0.5 text-sm font-medium text-muted-foreground">Select</p>
 				<ChevronRight class="h-5 w-5 stroke-[1.5] text-muted-foreground" />
-			</div>
-		</div>
+			</div> 
+
+		</div> 
+-->
 	</div>
 </template>

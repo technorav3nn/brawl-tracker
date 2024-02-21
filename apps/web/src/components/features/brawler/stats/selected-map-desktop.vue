@@ -66,6 +66,10 @@ const brawlerStats = computed(() => {
 						{{ brawler.name }}'s Win Rate:
 						<span class="text-sm font-semibold dark:text-primary">{{ brawlerStats?.winRate }}%</span>
 					</p>
+					<p class="spacing text-sm font-medium text-muted-foreground">
+						{{ brawler.name }}'s Use Rate:
+						<span class="text-sm font-semibold dark:text-primary">{{ brawlerStats?.useRate }}%</span>
+					</p>
 				</div>
 				<div v-else>
 					<p class="text-sm font-medium text-muted-foreground">No data available</p>
