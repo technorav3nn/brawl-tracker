@@ -33,7 +33,7 @@ const { data: events } = await useFetch("/api/events/rotation", {
 		return {
 			active: sortEventRotation(active.reverse()),
 			upcoming: sortEventRotation(upcoming.reverse()),
-			league: sortEventRotation(league.active.reverse()),
+			league: sortEventRotation(league.upcoming.reverse()),
 			images,
 		};
 	},

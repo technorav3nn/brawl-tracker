@@ -54,6 +54,7 @@ const onLevelChange = (newLevel: string) => {
 				<h2 class="text-2xl font-bold tracking-tight">Star Powers</h2>
 				<BrawlerInfoPowerCard :powers="brawler.starPowers" type="starpowers" />
 			</div>
+			<!-- <BrawlerInfoGearsCard :brawlerId="brawler.id" /> -->
 		</div>
 	</div>
 </template>

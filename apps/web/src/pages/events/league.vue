@@ -20,9 +20,10 @@ const currentEvents = computed(() => events.value.league);
 	<EventsEventCard
 		v-for="(event, index) in currentEvents"
 		:key="event.map.id"
+		v-memo="event.map.id"
 		:event="event"
 		:images="events.images"
-		type="current"
 		:eventIndex="index"
+		type="upcoming"
 	/>
 </template>
