@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { ConfigProvider } from "radix-vue";
+
 const colorMode = useColorMode();
+
+const useIdFunction = () => useId();
 
 useFont([
 	{
@@ -26,11 +30,13 @@ watch(
 
 <template>
 	<main>
-		<NuxtLoadingIndicator color="hsl(var(--primary))" />
-		<NuxtLayout name="default">
-			<VitePwaManifest />
-			<NuxtPage />
-		</NuxtLayout>
+		<ConfigProvider :use-id="useIdFunction">
+			<NuxtLoadingIndicator color="hsl(var(--primary))" />
+			<NuxtLayout name="default">
+				<VitePwaManifest />
+				<NuxtPage />
+			</NuxtLayout>
+		</ConfigProvider>
 	</main>
 </template>
 

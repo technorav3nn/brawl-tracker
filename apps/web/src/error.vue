@@ -31,7 +31,8 @@ const handleError = () => clearError({ redirect: "/" });
 			</p>
 			<div v-if="!!error!.stack" class="flex flex-col gap-1">
 				{{ error!.message }}
-				{{ error!.stack }}
+				<!-- eslint-disable-next-line vue/no-v-html -->
+				<div v-html="error!.stack" />
 			</div>
 			<UiButton @click="handleError"> Go Home </UiButton>
 		</div>

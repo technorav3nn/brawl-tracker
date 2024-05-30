@@ -18,7 +18,7 @@ function upperFirstLetters(str: string) {
 
 const showSuperRareGears = ref(true);
 
-const { data: gears } = await useFetch(`/api/gears`);
+const { data: gears } = await useFetch("/api/gears");
 const filteredGears = computed(() => {
 	return Object.fromEntries(
 		typedObjectEntries(gears.value!)
@@ -38,7 +38,7 @@ const filteredGears = computed(() => {
 </script>
 
 <template>
-	<div class="col-span-2 rounded-lg border border-border p-4 shadow">
+	<div class="col-span-2 w-full rounded-lg border border-border p-4 shadow">
 		<h2 class="text-2xl font-bold tracking-tight">Gears</h2>
 		<div class="mt-3 flex items-center gap-2">
 			<UiCheckbox id="show-super-rares" v-model:checked="showSuperRareGears" />

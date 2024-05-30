@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useBrawlersStore } from "$components/features/brawlers/brawlers-store";
+
 const { fetchBrawlers, GROUPING_MODES } = useBrawlersStore();
 const { brawlers, groupingMode, search } = storeToRefs(useBrawlersStore());
 

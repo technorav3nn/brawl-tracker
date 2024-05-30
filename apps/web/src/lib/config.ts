@@ -3,8 +3,8 @@ import { HomeIcon, TrophyIcon, CalendarIcon, ShieldIcon, SwordsIcon, CalculatorI
 export const MAIN_LINKS = [
 	{ label: "Brawlers", path: "/brawlers", icon: SwordsIcon },
 	{ label: "Events", path: "/events/current", icon: CalendarIcon },
+	{ label: "Players", path: "/players", icon: TrophyIcon },
 	{ label: "Clubs", path: "/test", icon: ShieldIcon },
-	{ label: "Leaders", path: "/leaderboards", icon: TrophyIcon },
 ] as const;
 
 export const MORE_LINKS = [{ label: "Calculators", path: "/calculators", icon: CalculatorIcon }];

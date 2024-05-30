@@ -4,7 +4,9 @@ import type { BrawlApiBrawlerWithOnlyImages } from "$server/utils/get-brawler-im
 
 const props = defineProps<{ event: BrawlApiEvent; images: Record<string, BrawlApiBrawlerWithOnlyImages> }>();
 
-const slicedBrawlerStats = computed(() => props.event.map.stats.slice(0, 5));
+const slicedBrawlerStats = computed(() =>
+	props.event.map.stats.slice(0, 5).filter((stat) => Number(stat.brawler) !== 0)
+);
 </script>
 
 <!-- eslint-disable vue/no-v-for-template-key-on-child -->

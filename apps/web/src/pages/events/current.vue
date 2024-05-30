@@ -1,19 +1,5 @@
 <script setup lang="ts">
-import type { BrawlApiEvent } from "@brawltracker/brawl-api";
-import type { BrawlApiBrawlerWithOnlyImages } from "$server/utils/get-brawler-images";
-
-const events = computed(() => {
-	const { events: _events } = useAttrs() as {
-		events: {
-			active: BrawlApiEvent[];
-			upcoming: BrawlApiEvent[];
-			images: Record<string, BrawlApiBrawlerWithOnlyImages>;
-		};
-	};
-	return _events;
-});
-
-const currentEvents = computed(() => events.value.active);
+const { events, currentEvents } = usePassedDownEvents();
 </script>
 
 <template>

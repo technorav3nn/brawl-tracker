@@ -1,5 +1,7 @@
 <!-- eslint-disable vue/script-indent -->
 <script setup lang="ts">
+import { useMapStore } from "$components/features/maps/map-store";
+
 const { SORT_OPTIONS, setMap, setBrawlers } = useMapStore();
 const { search, sort, brawlerStats } = storeToRefs(useMapStore());
 

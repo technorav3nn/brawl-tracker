@@ -2,7 +2,7 @@
 import type { BrawlApiMap } from "@brawltracker/brawl-api";
 import { Image } from "@unpic/vue";
 import { breakpointsTailwind } from "@vueuse/core";
-import { useBrawlerStatMapsStore } from "$components/features/maps/store";
+import { useBrawlerMapStore } from "$components/features/brawler/stats/store";
 
 const props = defineProps<{
 	map: BrawlApiMap;
@@ -10,13 +10,13 @@ const props = defineProps<{
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 
-const { setSelectedMap, setDialogState } = useBrawlerStatMapsStore();
+const { setSelectedMap, setSheetState } = useBrawlerMapStore();
 
 async function onSelectClicked() {
 	await setSelectedMap(props.map.id);
 	if (breakpoints.smaller("lg").value) {
 		console.log("Toggling dialog");
-		setDialogState(true);
+		setSheetState(true);
 	}
 }
 </script>
@@ -34,7 +34,7 @@ async function onSelectClicked() {
 					priority
 					width="40"
 					height="40"
-					class="-ml-1.5 h-10 w-10 self-center bg-contain !object-contain"
+					class="-ml-1.5 h-10 w-full self-center bg-contain !object-contain"
 					loading="lazy"
 				/>
 				<div class="flex flex-1 flex-col">

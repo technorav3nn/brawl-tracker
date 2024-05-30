@@ -15,5 +15,6 @@
 		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
 		["tw\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
 	],
-	"nuxtr.monorepoMode.DirectoryName": "apps/web"
+	"nuxtr.monorepoMode.DirectoryName": "apps/web",
+	"stylua.targetReleaseVersion": "latest"
 }
