@@ -11,8 +11,6 @@ interface GearTypesFormatted {
 	label: string;
 }
 
-// eslint-disable-next-line no-use-before-define
-
 const GEAR_TYPES_FORMATTED: GearTypesFormatted[] = [
 	{ value: "super_rare", label: "Super Rare Gear (1000 Coins)" },
 	{ value: "epic", label: "Epic Gear (1500 Coins)" },

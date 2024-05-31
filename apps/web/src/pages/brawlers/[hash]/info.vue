@@ -41,9 +41,9 @@ const onLevelChange = (newLevel: string) => {
 
 		<!-- divider with text in the middle -->
 		<div class="mt-8 flex items-center gap-2">
-			<div class="flex-1 border-t border-border"></div>
+			<div class="flex-1 border-t border-border" />
 			<div class="text-sm text-muted-foreground">Gadgets, Star Powers & Gears</div>
-			<div class="flex-1 border-t border-border"></div>
+			<div class="flex-1 border-t border-border" />
 		</div>
 		<div class="mt-8 flex flex-wrap justify-center gap-3">
 			<div class="rounded-lg border border-border p-4 shadow md:flex-1">

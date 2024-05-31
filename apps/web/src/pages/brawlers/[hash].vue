@@ -23,7 +23,6 @@ const tab = ref<Tabs>(path.split("/")[3]!);
 		>
 			<NuxtLink href="/brawlers">← Go Back</NuxtLink>
 		</UiButton>
-
 		<div class="flex flex-row gap-3">
 			<div>
 				<NuxtImg

@@ -6,6 +6,7 @@ export const usePassedDownEvents = () => {
 			events: {
 				active: BrawlApiEvent[];
 				upcoming: BrawlApiEvent[];
+				league: BrawlApiEvent[];
 				images: Record<string, BrawlApiBrawlerWithOnlyImages>;
 			};
 		};
@@ -14,6 +15,7 @@ export const usePassedDownEvents = () => {
 
 	const currentEvents = computed(() => events.value.active);
 	const upcomingEvents = computed(() => events.value.upcoming);
+	const leagueEvents = computed(() => events.value.league);
 
-	return { events, currentEvents, upcomingEvents };
+	return { leagueEvents, currentEvents, upcomingEvents, events };
 };

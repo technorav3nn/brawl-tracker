@@ -1601,7 +1601,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@brawltracker/supercell-api-utils@npm:^1.2.0, @brawltracker/supercell-api-utils@workspace:packages/supercell-api-utils":
+"@brawltracker/supercell-api-utils@npm:^1.2.0, @brawltracker/supercell-api-utils@workspace:*, @brawltracker/supercell-api-utils@workspace:packages/supercell-api-utils":
   version: 0.0.0-use.local
   resolution: "@brawltracker/supercell-api-utils@workspace:packages/supercell-api-utils"
   dependencies:
@@ -1624,6 +1624,7 @@ __metadata:
     "@brawltracker/brawl-api": "workspace:*"
     "@brawltracker/brawl-stars-api": "workspace:*"
     "@brawltracker/cdn": "workspace:*"
+    "@brawltracker/supercell-api-utils": "workspace:*"
     "@fontsource-variable/inter": "npm:^5.0.16"
     "@formkit/auto-animate": "npm:^0.8.1"
     "@hypernym/nuxt-font": "npm:^2.0.2"
@@ -1653,7 +1654,7 @@ __metadata:
     eslint: "npm:^8.56.0"
     eslint-config-neon: "npm:^0.1.57"
     eslint-plugin-vue: "npm:^9.20.1"
-    lucide-vue-next: "npm:^0.314.0"
+    lucide-vue-next: "npm:^0.381.0"
     node-cache: "npm:^5.1.2"
     nuxt: "npm:^3.10.0"
     nuxt-og-image: "npm:^3.0.0-rc.37"
@@ -12731,12 +12732,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-vue-next@npm:^0.314.0":
-  version: 0.314.0
-  resolution: "lucide-vue-next@npm:0.314.0"
+"lucide-vue-next@npm:^0.381.0":
+  version: 0.381.0
+  resolution: "lucide-vue-next@npm:0.381.0"
   peerDependencies:
     vue: ">=3.0.1"
-  checksum: 10/a7638555bff0caa39d82e1d9ae33d87d978da6ad84dc3fc019f33e22dff0fbea73fa9f303fc672f1b6532c5f99f4773fb426ba6a32f1c7e424372488d78aa0e5
+  checksum: 10/9dc6d4049f26d2e4a03d1fa7febf48f477a371cd8e7d21bf91808a15e7fed1765f32c75329b0a5b192b289dff024924aef61a9ae05ab3a6d4af14bea252a5c2f
   languageName: node
   linkType: hard
 
