@@ -13,6 +13,7 @@
 		"noUnusedParameters": true,
 		"alwaysStrict": true,
 		"moduleResolution": "Bundler",
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"module": "ESNext"
 	}
 }

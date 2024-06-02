@@ -1,0 +1,38 @@
+{
+	"name": "@brawltracker/gene-brawl-api",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"build": "tsup",
+		"test": "vitest run",
+		"test:watch": "vitest watch",
+		"lint": "eslint . --ext .ts"
+	},
+	"dependencies": {
+		"ofetch": "^1.3.4"
+	},
+	"devDependencies": {
+		"eslint": "^8.56.0",
+		"tsup": "^6.7.0",
+		"typescript": "5.3.3"
+	},
+	"files": [
+		"dist"
+	],
+	"main": "./dist/index.js",
+	"source": "./src/index.ts",
+	"types": "./dist/index.d.ts",
+	"keywords": [
+		"supercell",
+		"supercell-api",
+		"brawl-stars"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/technorav3nn/brawl-tracker.git",
+		"directory": "packages/gene-brawl-api"
+	},
+	"volta": {
+		"extends": "../../package.json"
+	}
+}

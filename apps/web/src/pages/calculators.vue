@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const route = useRoute("calculators");
 
+definePageMeta({
+	middleware: "calculators-tabs",
+});
+
 const CALCULATORS = [
 	{
 		name: "Brawler Price",
@@ -8,10 +12,6 @@ const CALCULATORS = [
 	},
 ];
 const tab = ref(route.path.split("/")[2]!);
-
-definePageMeta({
-	middleware: "calculators-tabs",
-});
 
 watchEffect(() => {
 	try {
