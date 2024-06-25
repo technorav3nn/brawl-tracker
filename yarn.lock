@@ -1648,7 +1648,7 @@ __metadata:
     "@radix-icons/vue": "npm:^1.0.0"
     "@sapphire/duration": "npm:^1.1.2"
     "@sapphire/time-utilities": "npm:^1.7.12"
-    "@tabler/icons-vue": "npm:^2.46.0"
+    "@tabler/icons-vue": "npm:^3.7.0"
     "@tailwindcss/typography": "npm:^0.5.10"
     "@unpic/vue": "npm:^0.0.43"
     "@vee-validate/nuxt": "npm:^4.12.4"
@@ -2817,17 +2817,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@floating-ui/dom@npm:^1.6.1":
-  version: 1.6.3
-  resolution: "@floating-ui/dom@npm:1.6.3"
-  dependencies:
-    "@floating-ui/core": "npm:^1.0.0"
-    "@floating-ui/utils": "npm:^0.2.0"
-  checksum: 10/83e97076c7a5f55c3506f574bc53f03d38bed6eb8181920c8733076889371e287e9ae6f28c520a076967759b9b6ff425362832a5cdf16a999069530dbb9cce53
-  languageName: node
-  linkType: hard
-
-"@floating-ui/dom@npm:^1.6.5":
+"@floating-ui/dom@npm:^1.6.1, @floating-ui/dom@npm:^1.6.5":
   version: 1.6.5
   resolution: "@floating-ui/dom@npm:1.6.5"
   dependencies:
@@ -4730,21 +4720,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tabler/icons-vue@npm:^2.46.0":
-  version: 2.47.0
-  resolution: "@tabler/icons-vue@npm:2.47.0"
+"@tabler/icons-vue@npm:^3.7.0":
+  version: 3.7.0
+  resolution: "@tabler/icons-vue@npm:3.7.0"
   dependencies:
-    "@tabler/icons": "npm:2.47.0"
+    "@tabler/icons": "npm:3.7.0"
   peerDependencies:
     vue: ">=3.0.1"
-  checksum: 10/c2aa6fc2ed065af08ad39aedf52daecdd1cf7856631909580b6a7c8fd4a45a5c6d75790207c2b34722f6de41f598e5110880eef45b78af82a2c714116fd98a04
+  checksum: 10/0c7d02face8e1e2936b266aa26ee14490104d0c8ba5f63027713b310e0f536cd07a4044c9e7bcca8d7c45efab778356c6086ac1b28aeb4bc5aba8c1f1ac993e3
   languageName: node
   linkType: hard
 
-"@tabler/icons@npm:2.47.0":
-  version: 2.47.0
-  resolution: "@tabler/icons@npm:2.47.0"
-  checksum: 10/1bf27e9c1fecdd6a80f8ff94e89c49890ae85ca0baf91fe3b28f9325a54a509281a5859beb0197f1833ba58a2af71c9ebaf025ad37f0e562d305982812d1de13
+"@tabler/icons@npm:3.7.0":
+  version: 3.7.0
+  resolution: "@tabler/icons@npm:3.7.0"
+  checksum: 10/2abf197bf2dffddbb8c2cc80c4485333b49bd377290a723e22f9e2f0858d0f6908265016f6acccd3f53d527a5594ec3f44f42b13a87837ab21c6947588f80357
   languageName: node
   linkType: hard
 
@@ -6194,7 +6184,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:10.8.0, @vueuse/core@npm:^10.1.2, @vueuse/core@npm:^10.7.1, @vueuse/core@npm:^10.7.2":
+"@vueuse/core@npm:10.8.0":
   version: 10.8.0
   resolution: "@vueuse/core@npm:10.8.0"
   dependencies:
@@ -6206,7 +6196,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:^10.5.0":
+"@vueuse/core@npm:^10.1.2, @vueuse/core@npm:^10.5.0, @vueuse/core@npm:^10.7.1, @vueuse/core@npm:^10.7.2":
   version: 10.9.0
   resolution: "@vueuse/core@npm:10.9.0"
   dependencies:
@@ -6316,7 +6306,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/shared@npm:10.8.0, @vueuse/shared@npm:^10.1.2":
+"@vueuse/shared@npm:10.8.0":
   version: 10.8.0
   resolution: "@vueuse/shared@npm:10.8.0"
   dependencies:
@@ -6325,7 +6315,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/shared@npm:10.9.0, @vueuse/shared@npm:^10.5.0":
+"@vueuse/shared@npm:10.9.0, @vueuse/shared@npm:^10.1.2, @vueuse/shared@npm:^10.5.0":
   version: 10.9.0
   resolution: "@vueuse/shared@npm:10.9.0"
   dependencies:
@@ -8495,7 +8485,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"destr@npm:^2.0.0, destr@npm:^2.0.1, destr@npm:^2.0.2, destr@npm:^2.0.3":
+"destr@npm:^2.0.0, destr@npm:^2.0.2, destr@npm:^2.0.3":
   version: 2.0.3
   resolution: "destr@npm:2.0.3"
   checksum: 10/dbb756baa876810ec0ca4bcb702d86cc3b480ed14f36bf5747718ed211f96bca5520b63a4109eb181ad940ee2a645677d9a63d4a0ed11a7510619dae97317201
@@ -13925,14 +13915,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch-native@npm:^1.4.0, node-fetch-native@npm:^1.4.1, node-fetch-native@npm:^1.6.1":
-  version: 1.6.2
-  resolution: "node-fetch-native@npm:1.6.2"
-  checksum: 10/85a3c8fb853d2abbd7e4235742ee0ff5d8ac15f982209989f7150407203dc65ad45e0c11a0f7416c3685e3cdd3d3f9ee2922e7558f201dd6a7e9c9dde3b612fd
-  languageName: node
-  linkType: hard
-
-"node-fetch-native@npm:^1.6.3":
+"node-fetch-native@npm:^1.4.1, node-fetch-native@npm:^1.6.1, node-fetch-native@npm:^1.6.3":
   version: 1.6.4
   resolution: "node-fetch-native@npm:1.6.4"
   checksum: 10/39c4c6d0c2a4bed1444943e1647ad0d79eb6638cf159bc37dffeafd22cffcf6a998e006aa1f3dd1d9d2258db7d78dee96b44bee4ba0bbaf0440ed348794f2543
@@ -14460,18 +14443,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ofetch@npm:^1.3.3":
-  version: 1.3.3
-  resolution: "ofetch@npm:1.3.3"
-  dependencies:
-    destr: "npm:^2.0.1"
-    node-fetch-native: "npm:^1.4.0"
-    ufo: "npm:^1.3.0"
-  checksum: 10/d4ba1f374f3b9f3b4bd47fdca3cda47a16367e6f727545aa3ba93e9be89e615c6731dfd21158b2ef78c1788def15d2d045c233a446354099d6a17fee66e60c98
-  languageName: node
-  linkType: hard
-
-"ofetch@npm:^1.3.4":
+"ofetch@npm:^1.3.3, ofetch@npm:^1.3.4":
   version: 1.3.4
   resolution: "ofetch@npm:1.3.4"
   dependencies:
@@ -18470,14 +18442,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ufo@npm:^1.1.2, ufo@npm:^1.2.0, ufo@npm:^1.3.0, ufo@npm:^1.3.1, ufo@npm:^1.3.2, ufo@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "ufo@npm:1.4.0"
-  checksum: 10/b7aea8503878dc5ad797d8fc6fe39fec64d9cc7e89fb147ef86ec676e37bb462d99d67c6aad20b15f7d3e6d275d66666b29214422e268f1d98f6eaf707a207a6
-  languageName: node
-  linkType: hard
-
-"ufo@npm:^1.5.3":
+"ufo@npm:^1.1.2, ufo@npm:^1.2.0, ufo@npm:^1.3.1, ufo@npm:^1.3.2, ufo@npm:^1.4.0, ufo@npm:^1.5.3":
   version: 1.5.3
   resolution: "ufo@npm:1.5.3"
   checksum: 10/2b30dddd873c643efecdb58cfe457183cd4d95937ccdacca6942c697b87a2c578232c25a5149fda85436696bf0fdbc213bf2b220874712bc3e58c0fb00a2c950
