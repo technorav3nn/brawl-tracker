@@ -13,7 +13,24 @@ interface SavedTag {
 	playerName: string;
 }
 
+const schema = z.string().min(3).refine(verifyTag, {
+	message: "Invalid tag format",
+});
+
 const savedTags = useLocalStorage<SavedTag[]>("savedTags", []);
+const { value: tag, errorMessage, meta } = useField("tag", toTypedSchema(schema));
+
+const fixedTag = computed(() => formatTag(tag.value ?? ""));
+const dirty = computed(() => meta.dirty);
+const shouldBeDisabled = computed(() => Boolean(errorMessage.value) || !dirty.value);
+
+function onSavedTagClick(playerTag: string) {
+	tag.value = playerTag;
+}
+
+function onSavedTagDeleteClick(playerTag: string) {
+	savedTags.value = savedTags.value.filter((t) => t.tag !== playerTag);
+}
 
 savedTags.value = [
 	{
@@ -29,22 +46,6 @@ savedTags.value = [
 		playerName: "Coach Cory",
 	},
 ];
-
-const schema = z.string().min(3).refine(verifyTag, {
-	message: "Invalid tag format",
-});
-
-const { value: tag, errorMessage, meta } = useField("tag", toTypedSchema(schema));
-
-const fixedTag = computed(() => formatTag(tag.value ?? ""));
-
-function onSavedTagClick(playerTag: string) {
-	tag.value = playerTag;
-}
-
-function onSavedTagDeleteClick(playerTag: string) {
-	savedTags.value = savedTags.value.filter((t) => t.tag !== playerTag);
-}
 </script>
 
 <template>
@@ -68,10 +69,11 @@ function onSavedTagDeleteClick(playerTag: string) {
 							<LucideHash class="size-5 stroke-[2] text-muted-foreground" />
 						</span>
 					</div>
-					<NuxtLink :to="`/players/${encodeURIComponent(fixedTag)}`">
-						<UiButton class="rounded-l-none border-l-0" :disabled="Boolean(errorMessage) || !meta.dirty">
-							Search
-						</UiButton>
+					<NuxtLink
+						:to="`/players/${encodeURIComponent(fixedTag)}`"
+						:class="shouldBeDisabled && 'pointer-events-none'"
+					>
+						<UiButton class="rounded-l-none border-l-0" :disabled="shouldBeDisabled"> Search </UiButton>
 					</NuxtLink>
 				</div>
 				<p v-if="errorMessage" class="mt-1 text-[0.8rem] font-medium text-destructive">{{ errorMessage }}</p>

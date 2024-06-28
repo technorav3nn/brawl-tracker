@@ -1,5 +1,6 @@
-import { $fetch } from "ofetch";
+import { $fetch, FetchError } from "ofetch";
 import type {
+	ApiProfile,
 	ApiProfileResponse,
 	ApiUnresolvedProfileStats,
 	ResolvedProfileStats,
@@ -8,13 +9,15 @@ import type {
 const BASE_URL = "https://api.hpdevfox.ru";
 
 export async function getPlayerProfile(tag: string) {
-	const unresolvedData = await $fetch<ApiProfileResponse<ApiUnresolvedProfileStats>>(
-		`${BASE_URL}/profile/${tag}`
+	const data = await $fetch<ApiProfileResponse<ApiUnresolvedProfileStats>>(`${BASE_URL}/profile/${tag}`);
+	if (data?.detail === 0) {
+		throw new FetchError("Invalid player tag");
+	}
+
+	(data.response.Stats as unknown as ApiProfile<ResolvedProfileStats>["Stats"]) = resolveStats(
+		data.response.Stats
 	);
-	(unresolvedData.Stats as unknown as ApiProfileResponse<ResolvedProfileStats>["Stats"]) = resolveStats(
-		unresolvedData.Stats
-	);
-	return unresolvedData as unknown as ApiProfileResponse<ResolvedProfileStats>;
+	return data as unknown as ApiProfileResponse<ResolvedProfileStats>;
 }
 
 function resolveStats(stats: ApiUnresolvedProfileStats): ResolvedProfileStats {

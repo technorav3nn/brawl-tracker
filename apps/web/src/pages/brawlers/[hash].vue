@@ -24,16 +24,14 @@ const tab = ref<Tabs>(path.split("/")[3]!);
 			<NuxtLink href="/brawlers">← Go Back</NuxtLink>
 		</UiButton>
 		<div class="flex flex-row gap-3">
-			<div>
-				<NuxtImg
-					:src="brawler.imageUrl2"
-					height="100"
-					width="100"
-					:alt="brawler.name"
-					format="webp"
-					class="rounded border border-border"
-				/>
-			</div>
+			<NuxtImg
+				:src="brawler.imageUrl2"
+				height="100"
+				width="100"
+				:alt="brawler.name"
+				format="webp"
+				class="rounded border border-border"
+			/>
 			<div class="flex flex-col items-start justify-between">
 				<h1 class="text-4xl font-bold">{{ brawler.name }}</h1>
 				<div class="flex flex-col">

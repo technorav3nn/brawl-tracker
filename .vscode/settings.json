@@ -13,8 +13,15 @@
 		["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
 		["clsx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
 		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-		["tw\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+		["tw\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["ui:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]"]
 	],
-	"nuxtr.monorepoMode.DirectoryName": "apps/web",
-	"stylua.targetReleaseVersion": "latest"
+	"stylua.targetReleaseVersion": "latest",
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"tailwindCSS.classAttributes": ["class", "className", "ngClass", "ui"],
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"tailwindCSS.experimental.configFile": "./apps/web2/.nuxt/tailwind.config.cjs"
 }
