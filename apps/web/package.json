@@ -33,6 +33,7 @@
 		"@brawltracker/brawl-api": "workspace:*",
 		"@brawltracker/brawl-stars-api": "workspace:*",
 		"@brawltracker/cdn": "workspace:*",
+		"@brawltracker/gene-brawl-api": "workspace:*",
 		"@brawltracker/supercell-api-utils": "workspace:*",
 		"@fontsource-variable/inter": "^5.0.16",
 		"@formkit/auto-animate": "^0.8.1",

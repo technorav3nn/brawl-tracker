@@ -1,0 +1,29 @@
+diff --git a/modules/pro/index.ts b/modules/pro/index.ts
+index c8f62a695184dfbb9a8610acb83c58a9e56130c4..7dae84e6f56b7db08794f9efb0b7250da4faba99 100644
+--- a/modules/pro/index.ts
++++ b/modules/pro/index.ts
+@@ -84,24 +84,5 @@ export default defineNuxtModule({
+         (Array.isArray(tailwindConfig.content) ? tailwindConfig.content : tailwindConfig.content.files).push(resolver.resolve('./runtime/components/**/*.{vue,mjs,ts}'))
+       })
+     }
+-
+-    /**
+-     * License
+-     */
+-    const theme = pkg.theme || { env: 'NUXT_UI_PRO_LICENSE', link: 'https://ui.nuxt.com/pro' }
+-    const key = process.env[theme.env] || (nuxt.options as any).uiPro?.license
+-    if (nuxt.options.dev || nuxt.options._prepare || nuxt.options.test) {
+-      if (nuxt.options.dev && !key) {
+-        consola.box(
+-          colors.greenBright('Nuxt UI Pro') + '\n\n' +
+-          `Missing \`${theme.env}\` env variable, please add it to your \`.env\`.` + '\n\n' +
+-          colors.blueBright(`Purchase Nuxt UI Pro at ${theme.link} to build your app in production.`)
+-        )
+-      }
+-      return
+-    }
+-    nuxt.hook('build:before', async () => {
+-      await validateLicense({ key, theme, dir: nuxt.options.rootDir })
+-    })
+   }
+ })
