@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
-import { normalizeNameToCdnName, getBrawlerModelUrl } from "@brawltracker/cdn";
-import { Image } from "@unpic/vue";
+import { normalizeNameToCdnName, getBrawlerModelUrl, type BrawlerData } from "@brawltracker/cdn";
 import { useBrawlerStore } from "./brawler-store";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
+	cdnInfo: BrawlerData;
 }>();
 
 const { brawler } = toRefs(props);
@@ -15,19 +15,19 @@ const brawlerStore = useBrawlerStore();
 const cdnName = computed(() => normalizeNameToCdnName(brawler.value.name));
 const modelImage = computed(() => getBrawlerModelUrl(encodeURIComponent(cdnName.value)));
 
-const { data } = await useFetch(`/api/brawlers/cdn/${cdnName.value}`);
+console.log(modelImage);
 
-const selectedLevel = ref(1);
+const selectedLevel = ref(11);
 watch(selectedLevel, (level) => {
 	brawlerStore.level = level;
 });
-const levelSelectOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((level) => ({
+const levelSelectOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((level) => ({
 	label: `Level ${level}`,
 	value: level,
 }));
 
 const stats = computed(() => {
-	const { healthByLevel, stats: brawlerStats } = data.value!;
+	const { healthByLevel, stats: brawlerStats } = props.cdnInfo;
 
 	return [
 		{
@@ -72,13 +72,18 @@ const stats = computed(() => {
 				/>
 			</div>
 			<div class="flex flex-col justify-between gap-3 sm:flex-row md:flex-col xl:flex-row items-center">
-				<Image
-					priority
-					class="mt-2 aspect-square max-h-[200px] w-full max-w-[200px] self-center !object-scale-down"
+				<NuxtImg
+					class="mt-2 aspect-square max-h-[270px] w-full max-w-[200px] self-center !object-scale-down"
 					:src="modelImage"
 					height="300"
 					width="200"
+					format="webp"
+					fit="outside"
 				/>
+
+				<UDivider orientation="horizontal" class="sm:hidden md:block xl:hidden" />
+				<UDivider orientation="vertical" class="h-[80%] hidden sm:block md:hidden xl:block" />
+
 				<UTable
 					:ui="{
 						thead: 'border-b-0 hidden',

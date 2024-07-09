@@ -42,8 +42,8 @@ export async function getAllGears() {
  *
  * @param name - Normalized brawler name
  */
-export function getBrawlerAvatarUrl(name: string) {
-	return `${CDN_URL}/brawlers/${name}/avatar.webp`;
+export function getBrawlerAvatarUrl(name: string, format: string = "png") {
+	return `${CDN_URL}/brawlers/${name}/avatar.${format}`;
 }
 
 /**
@@ -51,8 +51,8 @@ export function getBrawlerAvatarUrl(name: string) {
  *
  * @param name - Normalized brawler name
  */
-export function getBrawlerModelUrl(name: string) {
-	return `${CDN_URL}/brawlers/${name}/model.webp`;
+export function getBrawlerModelUrl(name: string, format: string = "png") {
+	return `${CDN_URL}/brawlers/${name}/model.${format}`;
 }
 
 export * from "./lib/types/brawler";

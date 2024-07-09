@@ -4,6 +4,7 @@ export default cachedEventHandler(
 		if (!brawlerId) {
 			throw createError({ statusCode: 400, message: "Missing id for brawler" });
 		}
+
 		const brawlApi = useBrawlApi();
 		return await brawlApi.brawlers.getBrawlerById(brawlerId);
 	},

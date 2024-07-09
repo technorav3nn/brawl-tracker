@@ -12,4 +12,5 @@
 		</NuxtLayout>
 	</UMain>
 	<AppFooter />
+	<UNotifications />
 </template>

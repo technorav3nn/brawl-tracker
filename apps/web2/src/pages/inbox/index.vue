@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import type { UBlogPost } from "#build/components";
+import type { Article } from "$lib/types/inbox/blog-list";
+import { kebabCaseToNormalCase, capitalizeLetters } from "$lib/utils/common";
+
+type UBlogPostProps = InstanceType<typeof UBlogPost>["$props"];
+
 const route = useRoute("inbox");
 const page = ref(Number(route.query.page ?? 1));
 
@@ -13,18 +19,32 @@ function scrollToTop() {
 	window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function getPostIdsFromUrl(url: string) {
-	// /en/games/brawlstars/blog/community/100starrdrops-community-event -> 100starrdrops-community-event
-	const id = url.split("/").pop()!;
-	// /en/games/brawlstars/blog/community/100starrdrops-community-event -> /community/100starrdrops-community-event
-	const supercellBlogId = url.split("/").slice(-2).join("/");
-
-	return { id, supercellBlogId };
+function getPostIdFromUrl(url: string) {
+	return url.split("/").slice(-2).join("/");
 }
 
-function generateHref(linkUrl: string) {
-	const { id, supercellBlogId } = getPostIdsFromUrl(linkUrl);
-	return `/inbox/${id}?scbid=${encodeURIComponent(supercellBlogId)}`;
+function getOtherInfoFromUrl(url: string) {
+	const postId = getPostIdFromUrl(url);
+	return {
+		// community/thumbs-up-for-brawl-community-event -> community
+		category: postId.split("/")[0],
+		href: `/inbox/post/${postId}`,
+	};
+}
+
+function getPropsForPost(post: Article): UBlogPostProps {
+	const { category, href } = getOtherInfoFromUrl(post.linkUrl);
+	return {
+		title: post.title,
+		date: new Date(post.publishDate).toDateString(),
+		badge: { label: capitalizeLetters(kebabCaseToNormalCase(category)) },
+		image: {
+			src: post.thumbnail.imgUrl,
+			alt: post.title,
+		},
+		orientation: "vertical",
+		to: href,
+	};
 }
 </script>
 
@@ -50,15 +70,7 @@ function generateHref(linkUrl: string) {
 				<UBlogPost
 					v-for="post in news!.articles"
 					:key="post.title"
-					:title="post.title"
-					:date="new Date(post.publishDate).toDateString()"
-					:badge="{ label: post.category }"
-					:image="{
-						src: post.thumbnail.imgUrl,
-						alt: post.title,
-					}"
-					orientation="vertical"
-					:to="generateHref(post.linkUrl)"
+					v-bind="getPropsForPost(post as Article)"
 				/>
 			</UBlogList>
 

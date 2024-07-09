@@ -1,7 +1,7 @@
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
 
 export const useBrawlerStore = defineStore("brawler-store", () => {
-	const level = ref(1);
+	const level = ref(11);
 	const brawler = ref<BrawlApiBrawler | null>(null);
 
 	return {

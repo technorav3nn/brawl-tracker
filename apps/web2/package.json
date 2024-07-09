@@ -31,7 +31,8 @@
 		"@sapphire/duration": "^1.1.2",
 		"@sapphire/time-utilities": "^1.7.12",
 		"@unpic/vue": "^0.0.50",
-		"cheerio": "^1.0.0-rc.12"
+		"cheerio": "^1.0.0-rc.12",
+		"dom-parser": "^1.1.5"
 	},
 	"devDependencies": {
 		"@nuxt/content": "^2.13.0",

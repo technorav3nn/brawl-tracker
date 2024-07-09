@@ -1678,6 +1678,7 @@ __metadata:
     "@sapphire/time-utilities": "npm:^1.7.12"
     "@unpic/vue": "npm:^0.0.50"
     cheerio: "npm:^1.0.0-rc.12"
+    dom-parser: "npm:^1.1.5"
     eslint: "npm:^8.56.0"
     eslint-config-neon: "npm:^0.1.57"
     eslint-plugin-vue: "npm:^9.20.1"
@@ -9832,6 +9833,13 @@ __metadata:
   dependencies:
     esutils: "npm:^2.0.2"
   checksum: 10/b4b28f1df5c563f7d876e7461254a4597b8cabe915abe94d7c5d1633fed263fcf9a85e8d3836591fc2d040108e822b0d32758e5ec1fe31c590dc7e08086e3e48
+  languageName: node
+  linkType: hard
+
+"dom-parser@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "dom-parser@npm:1.1.5"
+  checksum: 10/658b9f46df9246f817f888462f53bead0911b680f3504ddd3830b6fc53ed012911ab793add8eca8791f6a49bd2f986c89965b4af9efb302579950d1d12a3ff7b
   languageName: node
   linkType: hard
 
