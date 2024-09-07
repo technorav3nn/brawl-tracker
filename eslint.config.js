@@ -121,6 +121,7 @@ export default tseslint.config(
 			"**/storybook-static/",
 			"**/.next/",
 			"**/.nuxt/",
+			"**/.output/",
 		],
 	},
 	commonRuleset,
