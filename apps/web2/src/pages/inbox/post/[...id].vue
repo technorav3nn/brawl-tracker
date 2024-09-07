@@ -34,7 +34,7 @@ function cleanTocTag(heading: string) {
 	return heading.replaceAll("&amp;", "&");
 }
 
-const tocs = computed<(TocLink | null)[]>(() => {
+const tocs = computed<TocLink[]>(() => {
 	// find all h3 with id's
 	// eslint-disable-next-line unicorn/prefer-query-selector
 	const headings = doc.getElementsByTagName("h3");
@@ -42,8 +42,6 @@ const tocs = computed<(TocLink | null)[]>(() => {
 	return headings.map((heading) => {
 		const tagId = cleanTocTag(heading.getAttribute("id"));
 		const title = cleanTocTag(heading.textContent);
-
-		if (!title) return null;
 
 		return { depth: 0, id: tagId, text: title } satisfies TocLink;
 	});
@@ -53,18 +51,18 @@ const links: PageLink[] = [
 	{
 		label: "Share",
 		icon: "i-heroicons-share",
-		click: () => {
+		click: async () => {
 			// eslint-disable-next-line n/prefer-global/url
 			const url = new URL(window.location.href);
 			url.hash = "";
 			if (navigator.share && navigator.canShare()) {
-				navigator.share({
+				await navigator.share({
 					url: url.toString(),
 				});
 				return;
 			}
 
-			navigator.clipboard.writeText(url.toString());
+			await navigator.clipboard.writeText(url.toString());
 			toast.add({ title: "Link has been copied to your clipboard!" });
 		},
 	},

@@ -1,3 +1,4 @@
+import { URLSearchParams } from "node:url";
 import { $fetch } from "ofetch";
 
 const BASE_URL = "https://id.supercell.com/api/ingame";
@@ -13,7 +14,7 @@ const LOGIN_BODY = {
 	env: "prod",
 };
 
-export function sendLoginCode(email: string, game: SupercellGame) {
+export async function sendLoginCode(email: string, game: SupercellGame) {
 	return $fetch<{ ok: boolean }>(`${BASE_URL}/account/login`, {
 		headers: HEADERS,
 		method: "POST",
@@ -21,7 +22,7 @@ export function sendLoginCode(email: string, game: SupercellGame) {
 	});
 }
 
-export function validateLoginCode(email: string, pin: string | number) {
+export async function validateLoginCode(email: string, pin: number | string) {
 	return $fetch<{ ok: boolean }>(`${BASE_URL}/account/login.validate`, {
 		headers: HEADERS,
 		method: "POST",
@@ -29,4 +30,4 @@ export function validateLoginCode(email: string, pin: string | number) {
 	});
 }
 
-type SupercellGame = "laser" | "magic" | "soil" | "scroll" | "squad" | "sand";
+type SupercellGame = "laser" | "magic" | "sand" | "scroll" | "soil" | "squad";

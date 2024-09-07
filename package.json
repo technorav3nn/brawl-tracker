@@ -17,6 +17,7 @@
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.27.1",
+		"@humanwhocodes/retry": "^0.3.0",
 		"@sapphire/eslint-config": "^5.0.3",
 		"@vitest/coverage-istanbul": "^2.0.5",
 		"@vitest/coverage-v8": "^2.0.5",

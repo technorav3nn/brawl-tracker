@@ -19,7 +19,6 @@ const rarityToColor = /* ui */ {
 const rarity = computed(() => props.brawler.rarity.name);
 const color = computed(() => {
 	if (!props.showRarity) return;
-	// eslint-disable-next-line consistent-return
 	return rarityToColor[rarity.value as keyof typeof rarityToColor];
 });
 </script>

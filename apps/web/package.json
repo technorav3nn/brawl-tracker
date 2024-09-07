@@ -3,13 +3,13 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "nuxt build",
-		"dev": "nuxt dev",
-		"generate": "nuxt generate",
-		"preview": "nuxt preview",
-		"postinstall": "nuxt prepare",
-		"nuxt:prepare": "nuxt prepare",
-		"lint": "eslint . "
+		"_build": "nuxt build",
+		"_dev": "nuxt dev",
+		"_generate": "nuxt generate",
+		"_preview": "nuxt preview",
+		"_postinstall": "nuxt prepare",
+		"_nuxt:prepare": "nuxt prepare",
+		"_lint": "eslint . "
 	},
 	"devDependencies": {
 		"@hypernym/nuxt-font": "^2.0.2",

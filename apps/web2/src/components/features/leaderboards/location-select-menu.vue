@@ -26,7 +26,7 @@ const locations = [
 				name: country.country,
 			};
 		})
-		.sort(),
+		.sort((a, b) => a.name.localeCompare(b.name)),
 ];
 
 const selected = ref(locations.find((l) => l.countryCode === currentLocation));
