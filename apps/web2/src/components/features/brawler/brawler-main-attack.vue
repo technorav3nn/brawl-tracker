@@ -1,29 +1,20 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
 import type { BrawlerData } from "@brawltracker/cdn";
-import { useBrawlerStore } from "./brawler-store";
-import { getNameConversions, STAT_NAME_CONVERSIONS } from "./brawler-utils";
+import { useKitAbilityStats } from "./brawler-composables";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
-	cdnInfo: BrawlerData;
+	brawlerCdnData: BrawlerData;
 }>();
-const { cdnInfo } = toRefs(props);
-const { level } = storeToRefs(useBrawlerStore());
-
-const basicStats = computed(() => getNameConversions(STAT_NAME_CONVERSIONS, cdnInfo.value!.attack.stats));
-const levelStats = computed(() =>
-	cdnInfo.value.attack.statsByLevel.map((s) => ({
-		title: s.name,
-		value: s.list[level.value - 1],
-	}))
-);
+const { brawlerCdnData } = toRefs(props);
+const { basicStats, levelStats } = useKitAbilityStats("attack");
 </script>
 
 <template>
 	<BrawlerKitCard
-		title="Attack"
-		:description="cdnInfo.attack.description"
+		:title="`Attack: ${brawlerCdnData.attack.name}`"
+		:description="brawlerCdnData.attack.description"
 		:tableData="[...basicStats, ...levelStats]"
 		icon="/icons/attack-icon.png"
 	/>

@@ -57,7 +57,7 @@ export default defineNuxtConfig({
 		domains: [
 			"cdn-old.brawlify.com",
 			"cdn-fankit.brawlify.com",
-			"cdn.deathblows.tech",
+			"cdn.deathblows.xyz",
 			"images.unsplash.com",
 			"github.com",
 		],

@@ -22,4 +22,4 @@ export default {
 			},
 		},
 	},
-} as Partial<Config>;
+} satisfies Partial<Config>;

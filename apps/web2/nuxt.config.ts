@@ -5,19 +5,27 @@ const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
 	extends: ["@nuxt/ui-pro"],
-	modules: ["@nuxt/ui", "@nuxt/devtools", "@nuxt/fonts", "@nuxt/image", "@pinia/nuxt", "@nuxt/content"],
-	// srcDir: "src/app",
-	// serverDir: "src/server",
+	modules: [
+		"@nuxt/ui",
+		"@nuxt/devtools",
+		"@nuxt/fonts",
+		"@nuxt/image",
+		"@nuxt/eslint",
+		"@pinia/nuxt",
+		"@nuxt/content",
+		"@vueuse/nuxt",
+	],
 	srcDir: "src",
 	devtools: {
 		enabled: true,
-
 		timeline: {
 			enabled: true,
 		},
 	},
-	ui: {
-		icons: ["heroicons", "simple-icons", "tabler", "lucide"],
+	eslint: {
+		config: {
+			standalone: false,
+		},
 	},
 	uiPro: {
 		routerOptions: false,
@@ -42,10 +50,8 @@ export default defineNuxtConfig({
 					name: "description",
 					content: "BrawlTrack is a website that allows you to track your Brawl Stars profile.",
 				},
-				// @ts-expect-error - Og:title does work
 				{ name: "og:title", content: "BrawlTrack" },
 				{
-					// @ts-expect-error - Og:description does work
 					name: "og:description",
 					content: "BrawlTrack is a website that allows you to track your Brawl Stars profile.",
 				},
@@ -64,15 +70,33 @@ export default defineNuxtConfig({
 		domains: [
 			"cdn-old.brawlify.com",
 			"cdn-fankit.brawlify.com",
-			"cdn.deathblows.tech",
+			"cdn.deathblows.xyz",
 			"images.unsplash.com",
 			"github.com",
 			"brawlstars.inbox.supercell.com",
 		],
-		provider: "ipx",
+		provider: "vercel",
+		alias: {
+			cdn: "https://cdn.deathblows.xyz",
+		},
 	},
 	tailwindcss: {
 		exposeConfig: true,
+	},
+	runtimeConfig: {
+		brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
+		discordClientId: process.env.DISCORD_CLIENT_ID,
+		discordClientSecret: process.env.DISCORD_CLIENT_SECRET,
+		authOrigin: "https://brawl-tracker-pr-1-web.vercel.app",
+		nuxtAuthSecret: process.env.NUXT_AUTH_SECRET,
+		mongoDbConnectionUri: process.env.MONGODB_CONNECTION_URI,
+	},
+	nitro: {
+		storage: {
+			kv: {
+				driver: "vercelKV",
+			},
+		},
 	},
 	css: ["~/assets/css/tailwind.css", "~/assets/css/global.css"],
 	alias: {
@@ -97,4 +121,5 @@ export default defineNuxtConfig({
 			}
 		},
 	},
+	compatibilityDate: "2024-09-03",
 });

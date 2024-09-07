@@ -13,7 +13,7 @@ export default cachedEventHandler(
 	async (event) => {
 		const page = getRouterParam(event, "page");
 		console.log(page, " is the page");
-		if (!page) throw createError({ status: 500, message: "No page given" });
+		if (!page) throw createError({ status: 500, statusMessage: "No page given" });
 		console.log(getPage(Number(page)));
 		const html = await $fetch<string>(getPage(Number(page)), { parseResponse: (t) => t });
 		const $ = load(html!);

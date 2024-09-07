@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import { normalizeNameToCdnName } from "@brawltracker/cdn";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
 
 definePageMeta({
-	// eslint-disable-next-line consistent-return
 	middleware: (to) => {
 		const tab = to.path.split("/")[3]!;
-		const id = to.params.id;
+		const { id } = to.params as { id: string };
 		if (!tab) {
 			return navigateTo(`/brawlers/${id}/info`);
 		}
@@ -16,8 +16,27 @@ const route = useRoute("brawlers-id");
 const brawlerId = route.params.id;
 
 const brawlerStore = useBrawlerStore();
-const { data: brawler } = await useFetch(`/api/brawlers/${brawlerId}`);
+const { data: brawler, error: apiError } = await useFetch(`/api/brawlers/${brawlerId}`);
 
+if (apiError.value) {
+	throw createError({
+		statusCode: apiError.value?.statusCode,
+		message: `Error fetching brawler API data: ${apiError.value?.statusMessage}`,
+		fatal: true,
+	});
+}
+
+const cdnName = computed(() => normalizeNameToCdnName(brawler.value!.name));
+const { data: brawlerCdnData, error: cdnError } = await useFetch(`/api/brawlers/cdn/${cdnName.value}`);
+
+if (cdnError.value) {
+	throw createError({
+		statusCode: cdnError.value?.statusCode,
+		message: `Error fetching brawler CDN data: ${cdnError.value?.message}`,
+	});
+}
+
+watchEffect(() => brawlerStore.setBrawlerCdnData(brawlerCdnData.value!));
 watchEffect(() => brawlerStore.setBrawler(brawler.value!));
 
 function createTabLink(tab: string) {

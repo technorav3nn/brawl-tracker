@@ -54,11 +54,18 @@ const links: PageLink[] = [
 		label: "Share",
 		icon: "i-heroicons-share",
 		click: () => {
-			toast.add({ title: "Link has been copied to your clipboard!" });
 			// eslint-disable-next-line n/prefer-global/url
 			const url = new URL(window.location.href);
 			url.hash = "";
+			if (navigator.share && navigator.canShare()) {
+				navigator.share({
+					url: url.toString(),
+				});
+				return;
+			}
+
 			navigator.clipboard.writeText(url.toString());
+			toast.add({ title: "Link has been copied to your clipboard!" });
 		},
 	},
 	{
@@ -67,6 +74,12 @@ const links: PageLink[] = [
 		target: "_blank",
 		to: `https://supercell.com/en/games/brawlstars/blog/${supercellBlogId}`,
 		icon: "i-heroicons-newspaper",
+	},
+	{
+		label: "Open In Brawl Stars",
+		icon: "i-heroicons-inbox",
+		to: "brawlstars://news",
+		target: "_blank",
 	},
 ];
 </script>

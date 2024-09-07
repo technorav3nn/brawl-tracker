@@ -1,25 +1,31 @@
 <script setup lang="ts">
-import { normalizeNameToCdnName } from "@brawltracker/cdn";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
 
-const { brawler } = storeToRefs(useBrawlerStore());
+const { brawler, brawlerCdnData } = storeToRefs(useBrawlerStore());
+
 if (!brawler.value) {
 	throw createError({
 		statusCode: 404,
 		message: "Brawler not found",
 	});
 }
-
-const cdnName = computed(() => normalizeNameToCdnName(brawler.value!.name));
-const { data: cdnInfo } = useFetch(`/api/brawlers/cdn/${cdnName.value}`);
 </script>
 
 <template>
-	<UPage v-if="brawler && cdnInfo">
+	<UPage v-if="brawler && brawlerCdnData">
 		<div class="grid grid-cols-1 gap-3 md:grid-cols-2">
-			<BrawlerOverview class="md:col-span-2" :brawler :cdnInfo />
-			<BrawlerMainAttack :brawler :cdnInfo />
-			<BrawlerSuper :brawler :cdnInfo />
+			<BrawlerOverview
+				:class="{ 'md:col-span-2': !Boolean(brawlerCdnData.hypercharge) }"
+				:brawler
+				:brawlerCdnData
+			/>
+			<BrawlerMainAttack :brawler :brawlerCdnData />
+			<BrawlerSuper :brawler :brawlerCdnData />
+			<BrawlerHypercharge
+				:class="{ 'md:col-span-2': !Boolean(brawlerCdnData.hypercharge) }"
+				:brawler
+				:brawlerCdnData
+			/>
 		</div>
 	</UPage>
 </template>

@@ -13,8 +13,6 @@ const { data: news } = await useFetch(() => `/api/inbox/news/${page.value}`, {
 	watch: [page],
 });
 
-watch(page, () => console.log(page.value));
-
 function scrollToTop() {
 	window.scrollTo({ top: 0, behavior: "smooth" });
 }

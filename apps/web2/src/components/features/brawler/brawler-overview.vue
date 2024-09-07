@@ -5,7 +5,7 @@ import { useBrawlerStore } from "./brawler-store";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
-	cdnInfo: BrawlerData;
+	brawlerCdnData: BrawlerData;
 }>();
 
 const { brawler } = toRefs(props);
@@ -27,7 +27,7 @@ const levelSelectOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((level) => ({
 }));
 
 const stats = computed(() => {
-	const { healthByLevel, stats: brawlerStats } = props.cdnInfo;
+	const { healthByLevel, stats: brawlerStats } = props.brawlerCdnData;
 
 	return [
 		{

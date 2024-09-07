@@ -32,6 +32,7 @@
 		"@typescript-eslint/no-unsafe-return": "off",
 		"@typescript-eslint/prefer-ts-expect-error": "off",
 		"@typescript-eslint/consistent-type-assertions": "off",
-		"@typescript-eslint/no-use-before-define": "off"
+		"@typescript-eslint/no-use-before-define": "off",
+		"eslint-plugin-vue/object-curly-newline": "off"
 	}
 }
