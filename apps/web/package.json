@@ -9,7 +9,7 @@
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
 		"nuxt:prepare": "nuxt prepare",
-		"lint": "eslint . --ext .ts,.vue"
+		"lint": "eslint . "
 	},
 	"devDependencies": {
 		"@hypernym/nuxt-font": "^2.0.2",

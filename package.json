@@ -40,7 +40,7 @@
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write",
-		"*.{mjs,js,ts,vue}": "eslint --fix --ext mjs,js,ts,vue"
+		"*.{mjs,js,ts,vue}": "eslint --fix"
 	},
 	"workspaces": [
 		"packages/*",

@@ -6,7 +6,7 @@
 		"build": "tsup",
 		"test": "vitest run",
 		"test:watch": "vitest watch",
-		"lint": "eslint . --ext .ts"
+		"lint": "eslint ."
 	},
 	"devDependencies": {
 		"eslint": "^8.57.0",

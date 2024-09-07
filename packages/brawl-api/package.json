@@ -5,7 +5,7 @@
 	"scripts": {
 		"build": "tsup",
 		"test": "vitest run",
-		"lint": "eslint . --ext .ts"
+		"lint": "eslint ."
 	},
 	"devDependencies": {
 		"eslint": "^8.57.0",

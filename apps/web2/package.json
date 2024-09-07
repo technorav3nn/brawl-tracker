@@ -9,7 +9,7 @@
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
 		"nuxt:prepare": "nuxt prepare",
-		"lint": "eslint . --ext .ts,.vue"
+		"lint": "eslint . "
 	},
 	"dependencies": {
 		"@brawltracker/brawl-api": "workspace:*",
