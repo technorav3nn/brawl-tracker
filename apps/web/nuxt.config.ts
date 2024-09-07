@@ -1,27 +1,40 @@
-import process from "node:process";
 import { createResolver } from "@nuxt/kit";
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
-	nitro: {
-		preset: "vercel",
-	},
-	routeRules: {},
+	extends: ["@nuxt/ui-pro"],
 	modules: [
+		"@nuxt/ui",
+		"@nuxt/devtools",
+		"@nuxt/fonts",
 		"@nuxt/image",
-		"@nuxtjs/color-mode",
-		"@nuxtjs/tailwindcss",
-		"@hypernym/nuxt-font",
-		"@vueuse/nuxt",
-		"@vite-pwa/nuxt",
+		"@nuxt/eslint",
 		"@pinia/nuxt",
-		"@formkit/auto-animate/nuxt",
-		"@vee-validate/nuxt",
-		"nuxt-time",
+		"@nuxt/content",
+		"@vueuse/nuxt",
 	],
-	srcDir: "src/",
+	srcDir: "src",
+	devtools: {
+		enabled: true,
+		timeline: {
+			enabled: true,
+		},
+	},
+	eslint: {
+		config: {
+			standalone: false,
+		},
+	},
+	uiPro: {
+		routerOptions: false,
+	},
+	fonts: {
+		defaults: {
+			preload: true,
+		},
+	},
 	app: {
 		head: {
 			// eslint-disable-next-line unicorn/text-encoding-identifier-case
@@ -29,7 +42,7 @@ export default defineNuxtConfig({
 			viewport: "width=device-width, initial-scale=1",
 			title: "BrawlTrack",
 			htmlAttrs: { lang: "en" },
-			titleTemplate: (title) => (title ? `${title} - BrawlTrack` : "BrawlTrack"),
+			titleTemplate: "%s | BrawlTrack",
 			meta: [
 				{ name: "viewport", content: "width=device-width, initial-scale=1" },
 				{ name: "theme-color", content: "#000000" },
@@ -60,49 +73,32 @@ export default defineNuxtConfig({
 			"cdn.deathblows.xyz",
 			"images.unsplash.com",
 			"github.com",
+			"brawlstars.inbox.supercell.com",
 		],
-		provider: "ipx",
-	},
-	devtools: {
-		enabled: true,
-	},
-	font: {
-		autoImport: true,
-	},
-	colorMode: {
-		classSuffix: "",
-		preference: "system",
-		fallback: "dark",
-	},
-	veeValidate: {
-		autoImports: true,
-		componentNames: {
-			Form: "VeeForm",
-			Field: "VeeField",
-			FieldArray: "VeeFieldArray",
-			ErrorMessage: "VeeErrorMessage",
+		provider: "vercel",
+		alias: {
+			cdn: "https://cdn.deathblows.xyz",
 		},
 	},
-	pwa: {
-		registerType: "autoUpdate",
-		manifest: {
-			name: "BrawlTrack",
-			short_name: "BrawlTrack",
-			theme_color: "#f3a812",
-		},
-		workbox: {
-			globPatterns: ["**/*.{js,css,html,png,svg,ico,woff2}"],
-			navigateFallback: null,
-		},
-		client: {
-			installPrompt: true,
-			periodicSyncForUpdates: 20,
-		},
-		devOptions: {
-			enabled: false,
-			type: "module",
+	tailwindcss: {
+		exposeConfig: true,
+	},
+	runtimeConfig: {
+		brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
+		discordClientId: process.env.DISCORD_CLIENT_ID,
+		discordClientSecret: process.env.DISCORD_CLIENT_SECRET,
+		authOrigin: "https://brawl-tracker-pr-1-web.vercel.app",
+		nuxtAuthSecret: process.env.NUXT_AUTH_SECRET,
+		mongoDbConnectionUri: process.env.MONGODB_CONNECTION_URI,
+	},
+	nitro: {
+		storage: {
+			kv: {
+				driver: "vercelKV",
+			},
 		},
 	},
+	css: ["~/assets/css/tailwind.css", "~/assets/css/global.css"],
 	alias: {
 		$assets: resolve("./src/assets"),
 		$components: resolve("./src/components"),
@@ -113,22 +109,7 @@ export default defineNuxtConfig({
 		$lib: resolve("./src/lib"),
 		$: resolve("./src"),
 	},
-	components: [
-		{
-			path: "$components/ui",
-			extensions: [".vue"],
-			prefix: "Ui",
-		},
-		{
-			path: "$components",
-			extensions: ["vue"],
-		},
-		{ path: "$components/features", extensions: [".vue"], prefix: "" },
-	],
-	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
-	runtimeConfig: {
-		brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
-	},
+	components: [{ path: "$components/features", extensions: [".vue"], prefix: "" }, "$components"],
 	hooks: {
 		"prepare:types": ({ tsConfig }) => {
 			const aliasesToRemoveFromAutocomplete = ["~~", "~~/*", "@@", "@@/*", "@/*", "@", "~/", "~/*"];
@@ -140,4 +121,5 @@ export default defineNuxtConfig({
 			}
 		},
 	},
+	compatibilityDate: "2024-09-03",
 });

@@ -1,7 +1,11 @@
 export default cachedEventHandler(
 	async () => {
-		const { list: brawlers } = await getBrawlers();
-		return brawlers;
+		const brawlApi = useBrawlApi();
+		return await brawlApi.brawlers.getAllBrawlers();
 	},
-	{ maxAge: 10_000 }
+	{
+		maxAge: 60 * 60,
+		swr: true,
+		name: "brawlers-data",
+	}
 );

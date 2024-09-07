@@ -10,7 +10,9 @@
 		"src/**/*.js",
 		"*.config.ts",
 		"*.config.js",
-		"*.config.cjs"
+		"*.config.cjs",
+		"nuxt.config.ts",
+		"eslint.config.js"
 	],
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules", ".nuxt"]
 }

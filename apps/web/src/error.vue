@@ -3,38 +3,37 @@ import type { NuxtError } from "#app";
 
 defineProps<{ error: NuxtError }>();
 
-useFont([
-	{
-		src: "/fonts/inter-latin-wght-normal.woff2",
-		family: "Inter",
-		weight: "100 900",
-		preload: true,
-		fallback: ["-apple-system", "BlinkMacSystemFont", "system-ui", "-ui-sans-serif", "sans-serif"],
-	},
-]);
-
-useHead({
-	bodyAttrs: { class: "min-h-screen bg-background font-sans antialiased" },
-});
-
 const handleError = () => clearError({ redirect: "/" });
+
+onMounted(() => {
+	window.scrollTo(0, 0);
+});
 </script>
 
 <template>
-	<NuxtLayout>
-		<div class="flex flex-col items-center justify-center">
-			<h1 class="text-8xl font-bold leading-normal tracking-tight text-primary">
-				{{ error!.statusCode }}
-			</h1>
-			<p class="text-md mb-5 text-muted-foreground">
-				{{ error!.statusMessage }}
-			</p>
-			<div v-if="!!error!.stack" class="flex flex-col gap-1">
-				{{ error!.message }}
-				<!-- eslint-disable-next-line vue/no-v-html -->
-				<div v-html="error!.stack" />
+	<AppHeader />
+	<UMain>
+		<NuxtLayout>
+			<NuxtLoadingIndicator
+				color="repeating-linear-gradient(to right,rgb(var(--color-primary-DEFAULT)) 0%,#34cdfe 50%,#0047e1 100%)"
+				:throttle="150"
+			/>
+			<div class="flex flex-col items-center justify-center">
+				<h1 class="text-8xl font-bold leading-normal tracking-tight text-primary">
+					{{ error!.statusCode }}
+				</h1>
+				<p class="text-md mb-5 text-gray-500 dark:text-gray-400">
+					{{ error!.statusMessage }}
+				</p>
+				<div v-if="!!error!.stack" class="flex flex-col gap-1">
+					{{ error!.message }}
+					<!-- eslint-disable-next-line vue/no-v-html -->
+					<div v-html="error!.stack" />
+				</div>
+				<UButton @click="handleError">Go Home</UButton>
 			</div>
-			<UiButton @click="handleError"> Go Home </UiButton>
-		</div>
-	</NuxtLayout>
+		</NuxtLayout>
+	</UMain>
+	<AppFooter />
+	<UNotifications />
 </template>
