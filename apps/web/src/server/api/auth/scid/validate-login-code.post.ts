@@ -1,4 +1,4 @@
-import { validateLoginCode } from "@brawltracker/supercell-id-api";
+import { confirmLoginCode, validateLoginCode } from "@brawltracker/supercell-id-api";
 import { generateIdFromEntropySize } from "lucia";
 import { lucia } from "$server/auth";
 import { db } from "$server/db";
@@ -18,7 +18,7 @@ export default eventHandler(async (event) => {
 		const result = await validateLoginCode(email, code);
 		if (!result) {
 			throw createError({
-				statusMessage: "Invalid code, try again",
+				statusMessage: "Invalid code: Try again",
 				statusCode: 400,
 			});
 		}
@@ -55,11 +55,15 @@ export default eventHandler(async (event) => {
 
 		const session = await lucia.createSession(userId, {});
 		appendHeader(event, "Set-Cookie", lucia.createSessionCookie(session.id).serialize());
+		setResponseStatus(event, 200);
+
+		confirmLoginCode(email, code);
+
 		return await sendRedirect(event, "/");
 	} catch (error) {
 		console.error(error);
 		throw createError({
-			statusMessage: "Invalid code, incorrect pin",
+			statusMessage: "Invalid code: Incorrect pin",
 			statusCode: 400,
 		});
 	}

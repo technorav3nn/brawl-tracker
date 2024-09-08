@@ -22,14 +22,12 @@ async function login(body: { username: string; password: string }) {
 
 async function supercellIdLogin() {
 	scidModalOpen.value = true;
-	// $fetch("/api/auth/scid/create-login-code", {
-	// 	method: "POST",
-	// })
-	// 	.then(async () => await navigateTo("/"))
-	// 	.catch((error) => {
-	// 		const { statusMessage } = error as FetchError;
-	// 		validationError.value = statusMessage!;
-	// 	});
+	$fetch("/api/auth/scid/create-login-code", {
+		method: "POST",
+	}).catch((error) => {
+		const { statusMessage } = error as FetchError;
+		validationError.value = statusMessage!;
+	});
 }
 </script>
 

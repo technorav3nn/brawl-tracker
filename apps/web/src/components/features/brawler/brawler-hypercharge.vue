@@ -17,18 +17,18 @@ const hyperchargeIconUrl = computed(() => `${CDN_URL}${hypercharge.value!.path}`
 
 <template>
 	<div v-if="hypercharge" class="flex flex-col rounded-lg border border-border shadow">
-		<div class="flex flex-col p-4">
+		<div class="flex flex-col p-4 py-2.5">
 			<div class="flex items-center gap-2">
 				<NuxtImg
 					:src="hyperchargeIconUrl"
-					width="30"
-					height="30"
+					width="40"
+					height="40"
 					alt="Attack icon"
 					fit="inside"
-					class="self-center bg-contain object-cover"
+					class="self-center bg-contain object-cover -ml-1"
 					format="webp"
 				/>
-				<h1 class="text-2xl font-bold tracking-tight">HYPERCHARGE: {{ hypercharge.name }}</h1>
+				<h1 class="text-2xl font-bold tracking-tight -ml-1">HYPERCHARGE: {{ hypercharge.name }}</h1>
 			</div>
 		</div>
 		<div class="h-full">

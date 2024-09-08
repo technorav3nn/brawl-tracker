@@ -38,7 +38,7 @@ export default eventHandler(async (event) => {
 
 	// const existingUser = await db.select().from(users).where(eq(users.username, username)).limit(1);
 	const existingUser = await db.query.users.findFirst({
-		where: (users, { eq }) => and(eq(users.username, username), eq(users.email, email)),
+		where: (users, { eq }) => and(eq(users.email, email)),
 	});
 	if (!existingUser) {
 		throw createError({

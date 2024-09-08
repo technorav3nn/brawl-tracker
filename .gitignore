@@ -8,6 +8,7 @@ dist
 
 # Vitest
 coverage
+html
 
 # Node dependencies
 node_modules

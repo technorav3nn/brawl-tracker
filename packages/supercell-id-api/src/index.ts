@@ -30,4 +30,12 @@ export async function validateLoginCode(email: string, pin: number | string) {
 	});
 }
 
+export async function confirmLoginCode(email: string, pin: number | string) {
+	return $fetch<{ ok: boolean }>(`${BASE_URL}/account/login.confirm`, {
+		headers: HEADERS,
+		method: "POST",
+		body: new URLSearchParams({ email, pin: pin.toString() }),
+	});
+}
+
 type SupercellGame = "laser" | "magic" | "sand" | "scroll" | "soil" | "squad";

@@ -13,6 +13,7 @@ const progress = computed(() => (stageOne.value ? 1 : stageTwo.value ? 2 : 1));
 const validationError = ref<string | null>(null);
 
 async function submitStageOne({ email: em }: { email: string }) {
+	email.value = em;
 	const response = await $fetch(`/api/auth/scid/create-login-code`, {
 		method: "POST",
 		query: { email: em },
@@ -24,12 +25,13 @@ async function submitStageOne({ email: em }: { email: string }) {
 	if (response.success) {
 		stageOne.value = false;
 		stageTwo.value = true;
-		email.value = em;
 		validationError.value = null;
 	}
 }
 
-async function submitStageTwo({ code }: { code: number }) {
+async function submitStageTwo({ code: c }: { code: string }) {
+	const code = String(c).replaceAll(/\s/g, "");
+
 	const response = await $fetch(`/api/auth/scid/validate-login-code`, {
 		method: "POST",
 		query: { email: email.value, code: String(code) },
@@ -84,6 +86,7 @@ async function submitStageTwo({ code }: { code: number }) {
 							color: 'gray',
 							required: true,
 							id: 'email',
+							name: 'email',
 						},
 					]"
 					@submit="submitStageOne"
@@ -107,9 +110,10 @@ async function submitStageTwo({ code }: { code: number }) {
 							placeholder: 'XXXXXX',
 							// @ts-expect-error - Bug
 							color: 'gray',
-							pattern: '\\d{6}',
-							inputmode: 'numeric',
-							maxlength: 6,
+							// Pattern that only allows 6 digits, but a space in between
+							pattern: '^(\\d\\s*){6}$',
+							// inputmode: 'numeric',
+							// Max length is 7 so people can copy and paste from email
 							minlength: 6,
 							title: '6-digit code',
 							required: true,
@@ -127,7 +131,12 @@ async function submitStageTwo({ code }: { code: number }) {
 			<UProgress
 				class="mt-3"
 				:value="progress"
-				:max="['empty step', 'Step 1: Enter your email', 'Step 2: Enter the code from your inbox']"
+				:max="[
+					'empty step',
+					'Step 1: Enter your email',
+					'Step 2: Enter the code from your inbox',
+					'empty step',
+				]"
 				:ui="{ step: { align: 'text-start' } }"
 			/>
 		</UCard>

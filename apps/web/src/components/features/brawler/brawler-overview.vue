@@ -71,18 +71,20 @@ const stats = computed(() => {
 					optionAttribute="label"
 				/>
 			</div>
-			<div class="flex flex-col justify-between gap-3 sm:flex-row md:flex-col xl:flex-row items-center">
+			<div
+				class="flex flex-col justify-between gap-3 sm:flex-col md:flex-col lg:flex-row xl:flex-col items-center"
+			>
 				<NuxtImg
-					class="mt-2 aspect-square max-h-[270px] w-full max-w-[200px] self-center !object-scale-down"
+					class="mt-2 aspect-square max-h-[300px] w-full max-w-[180px] self-center !object-scale-down"
 					:src="modelImage"
 					height="300"
-					width="200"
+					width="180"
 					format="webp"
 					fit="outside"
 				/>
 
-				<UDivider orientation="horizontal" class="sm:hidden md:block xl:hidden" />
-				<UDivider orientation="vertical" class="h-[80%] hidden sm:block md:hidden xl:block" />
+				<UDivider class="w-[102.8%] lg:hidden xl:block" />
+				<UDivider orientation="vertical" class="h-full hidden lg:block xl:hidden" />
 
 				<UTable
 					:ui="{
@@ -99,6 +101,7 @@ const stats = computed(() => {
 					class="w-full"
 				/>
 			</div>
+			<div class="mt-8"></div>
 		</div>
 	</div>
 </template>

@@ -122,6 +122,7 @@ export default tseslint.config(
 			"**/.next/",
 			"**/.nuxt/",
 			"**/.output/",
+			"**/__old__/",
 		],
 	},
 	commonRuleset,

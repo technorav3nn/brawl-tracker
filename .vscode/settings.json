@@ -23,7 +23,7 @@
 	},
 	"tailwindCSS.classAttributes": ["class", "className", "ngClass", "ui"],
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"tailwindCSS.experimental.configFile": "./apps/web2/.nuxt/tailwind.config.cjs",
+	"tailwindCSS.experimental.configFile": "./apps/web/.nuxt/tailwind.config.cjs",
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/bower_components": true,

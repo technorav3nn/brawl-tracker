@@ -1,5 +1,5 @@
 {
-	"name": "@brawltracker/web2",
+	"name": "@brawltracker/web",
 	"private": true,
 	"type": "module",
 	"scripts": {
