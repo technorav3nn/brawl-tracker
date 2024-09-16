@@ -75,7 +75,6 @@ export default defineNuxtConfig({
 			"github.com",
 			"brawlstars.inbox.supercell.com",
 		],
-		provider: "vercel",
 		alias: {
 			cdn: "https://cdn.deathblows.xyz",
 		},
