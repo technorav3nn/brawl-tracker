@@ -15,8 +15,6 @@ const brawlerStore = useBrawlerStore();
 const cdnName = computed(() => normalizeNameToCdnName(brawler.value.name));
 const modelImage = computed(() => getBrawlerModelUrl(encodeURIComponent(cdnName.value)));
 
-console.log(modelImage);
-
 const selectedLevel = ref(11);
 watch(selectedLevel, (level) => {
 	brawlerStore.level = level;

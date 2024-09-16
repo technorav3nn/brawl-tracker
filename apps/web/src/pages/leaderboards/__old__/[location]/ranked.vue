@@ -43,8 +43,6 @@ const RANK_TO_IMAGES: Record<string, string> = (() => {
 	);
 })();
 
-console.log(RANK_TO_IMAGES);
-
 function convertShortEloToActual(elo: string) {
 	return Number.parseInt(elo, 10) * 1_000;
 }

@@ -2,14 +2,13 @@
 /* eslint-disable promise/prefer-await-to-callbacks */
 /* eslint-disable promise/prefer-await-to-then */
 import type { FetchError } from "ofetch";
-import { objectToFormData } from "$lib/utils/common";
 
 const validationError = ref<string | null>(null);
 
 async function login(body: { username: string; password: string }) {
 	$fetch("/api/auth/signup", {
 		method: "POST",
-		body: objectToFormData(body),
+		body,
 	})
 		.then(async () => await navigateTo("/"))
 		.catch((error) => {
@@ -22,16 +21,25 @@ async function login(body: { username: string; password: string }) {
 <template>
 	<UPage>
 		<UPageBody class="flex justify-center items-center mt-14">
-			<UCard class="max-w-sm w-full">
+			<UCard class="max-w-lg w-full">
 				<template #header>
 					<h1 class="text-lg font-semibold">Welcome!</h1>
 				</template>
 				<UAuthForm
 					title="Sign Up"
+					class="!max-w-lg"
 					description="Enter your information to create an account."
 					align="bottom"
 					icon="i-heroicons-user-circle"
 					:fields="[
+						{
+							name: 'email',
+							type: 'email',
+							label: 'Email',
+							placeholder: 'Enter your email',
+							// @ts-expect-error - Bug
+							color: 'gray',
+						},
 						{
 							name: 'username',
 							type: 'username',

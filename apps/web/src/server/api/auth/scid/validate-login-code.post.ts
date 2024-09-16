@@ -32,7 +32,6 @@ export default eventHandler(async (event) => {
 
 		const accountBrawlStarsId = (result as any).data.application.account as string;
 		const brawlStarsUsername = (result as any).data.application.username as string;
-		console.log((result as any).data);
 
 		const existingUser = await db.query.users.findFirst({
 			where: (users, { eq }) => eq(users.supercellId, accountBrawlStarsId),
@@ -44,20 +43,35 @@ export default eventHandler(async (event) => {
 			return await sendRedirect(event, "/");
 		}
 
+		const {
+			data: { scidToken },
+		} = await confirmLoginCode(email, code);
+
 		const userId = generateIdFromEntropySize(10); // 16 characters long
+
+		const { token } = await $fetch<{ ok: boolean; token: string }>(
+			"https://security.id.supercell.com/api/security/v1/sessionToken",
+			{
+				headers: {
+					Authorization: `Bearer ${scidToken}`,
+					"User-Agent": "scid/1.4.16-f (iPadOS 17.1; laser-prod; iPad8,6)",
+					"X-Supercell-Device-Id": "0D2CB22F-243F-5843-8A60-3E8F0685BBD0",
+				},
+			}
+		);
 
 		await db.insert(users).values({
 			id: userId,
 			username: brawlStarsUsername,
 			email,
 			supercellId: accountBrawlStarsId,
+			scidToken,
+			scidApiSessionToken: token,
 		});
 
 		const session = await lucia.createSession(userId, {});
 		appendHeader(event, "Set-Cookie", lucia.createSessionCookie(session.id).serialize());
 		setResponseStatus(event, 200);
-
-		confirmLoginCode(email, code);
 
 		return await sendRedirect(event, "/");
 	} catch (error) {

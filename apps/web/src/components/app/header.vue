@@ -6,12 +6,6 @@ const user = useUser();
 
 type Link = AsideLink & { children?: AsideLink[] };
 
-console.log(user.value);
-
-watchEffect(() => {
-	console.log(user.value);
-});
-
 const links = computed<Link[]>(() => [
 	{
 		label: "Brawlers",
@@ -85,6 +79,7 @@ const items = computed(() => [
 		{
 			label: "Settings",
 			icon: "i-heroicons-cog",
+			to: "/settings",
 		},
 	],
 	[

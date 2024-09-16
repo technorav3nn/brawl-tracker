@@ -89,7 +89,7 @@ export default defineNuxtConfig({
 		discordClientSecret: process.env.DISCORD_CLIENT_SECRET,
 		authOrigin: "https://brawl-tracker-pr-1-web.vercel.app",
 		nuxtAuthSecret: process.env.NUXT_AUTH_SECRET,
-		mongoDbConnectionUri: process.env.MONGODB_CONNECTION_URI,
+		postgresUrl: process.env.POSTGRES_URL,
 	},
 	nitro: {
 		storage: {

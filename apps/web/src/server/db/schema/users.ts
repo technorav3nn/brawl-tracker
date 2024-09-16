@@ -5,6 +5,8 @@ export const users = pgTable("user", {
 		length: 255,
 	}).primaryKey(),
 	supercellId: varchar("supercell_id", { length: 255 }).unique(),
+	scidToken: varchar("scid_token", { length: 800 }).unique(),
+	scidApiSessionToken: varchar("scid_api_session_token", { length: 800 }).unique(),
 	username: varchar("username", { length: 30 }).unique().notNull(),
 	email: varchar("email", { length: 60 }).unique().notNull(),
 	hashedPassword: varchar("hashed_password", { length: 255 }),

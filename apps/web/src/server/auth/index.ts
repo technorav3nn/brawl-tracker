@@ -15,6 +15,7 @@ export const lucia = new Lucia(new DrizzlePostgreSQLAdapter(db, sessions, users)
 			createdAt: attributes.createdAt,
 			updatedAt: attributes.updatedAt,
 			supercellId: attributes.supercellId,
+			scidApiSessionToken: attributes.scidApiSessionToken,
 		};
 	},
 	sessionExpiresIn: new TimeSpan(14, "d"),

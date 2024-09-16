@@ -3,7 +3,6 @@
 /* eslint-disable promise/prefer-await-to-callbacks */
 /* eslint-disable promise/prefer-await-to-then */
 import type { FetchError } from "ofetch";
-import { objectToFormData } from "$lib/utils/common";
 
 const validationError = ref<string | null>(null);
 const scidModalOpen = ref(false);
@@ -11,7 +10,7 @@ const scidModalOpen = ref(false);
 async function login(body: { username: string; password: string }) {
 	$fetch("/api/auth/login", {
 		method: "POST",
-		body: objectToFormData(body),
+		body,
 	})
 		.then(async () => await navigateTo("/"))
 		.catch((error) => {

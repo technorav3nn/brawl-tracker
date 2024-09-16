@@ -1,41 +1,23 @@
 import { hash } from "@node-rs/argon2";
 import { generateIdFromEntropySize } from "lucia";
-import { validEmail } from "$lib/utils/common";
+import { signupUserSchema } from "$lib/validation/user-schema";
 import { lucia } from "$server/auth";
 import { db } from "$server/db";
 import { users } from "$server/db/schema/users";
 
 export default eventHandler(async (event) => {
-	const formData = await readFormData(event);
-	const username = formData.get("username");
-	const email = formData.get("email");
-
-	if (
-		typeof username !== "string" ||
-		username.length < 3 ||
-		username.length > 31 ||
-		/^[\d_a-z]+$/.test(username)
-	) {
-		throw createError({
-			statusMessage: "Invalid username",
-			statusCode: 400,
-		});
+	console.log("signup.post.ts");
+	const { success, error, data } = await readValidatedBody(event, (body) => {
+		console.log("body", body);
+		return signupUserSchema.safeParse(body);
+	});
+	console.log("success", success);
+	if (!success) {
+		console.log(error.issues, error);
+		throw error.issues;
 	}
 
-	if (typeof email !== "string" || email.length < 3 || email.length > 255 || !validEmail(email)) {
-		throw createError({
-			statusMessage: "Invalid email",
-			statusCode: 400,
-		});
-	}
-
-	const password = formData.get("password");
-	if (typeof password !== "string" || password.length < 6 || password.length > 255) {
-		throw createError({
-			statusMessage: "Invalid password",
-			statusCode: 400,
-		});
-	}
+	const { email, password, username } = data;
 
 	const passwordHash = await hash(password, {
 		// recommended minimum parameters
@@ -47,12 +29,22 @@ export default eventHandler(async (event) => {
 	const userId = generateIdFromEntropySize(10); // 16 characters long
 
 	// TODO: check if username is already used
-	await db.insert(users).values({
-		id: userId,
-		username,
-		email,
-		hashedPassword: passwordHash,
-	});
+	try {
+		await db.insert(users).values({
+			id: userId,
+			username,
+			email,
+			hashedPassword: passwordHash,
+		});
+	} catch (error) {
+		if (error instanceof Error && error.message.includes("duplicate key value violates unique constraint")) {
+			throw createError({
+				statusMessage:
+					"Username or email already taken, or email is in use with Supercell ID. Try using Supercell ID if this is your email or try a different email.",
+				statusCode: 400,
+			});
+		}
+	}
 
 	const session = await lucia.createSession(userId, {});
 	appendHeader(event, "Set-Cookie", lucia.createSessionCookie(session.id).serialize());

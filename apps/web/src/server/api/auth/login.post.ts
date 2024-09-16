@@ -1,42 +1,16 @@
 import { verify } from "@node-rs/argon2";
 import { and } from "drizzle-orm";
-import { validEmail } from "$lib/utils/common";
+import { loginUserSchema } from "$lib/validation/user-schema";
 import { lucia } from "$server/auth";
 import { db } from "$server/db";
 
 export default eventHandler(async (event) => {
-	const formData = await readFormData(event);
-	const username = formData.get("username");
-	const email = formData.get("email");
-
-	if (
-		typeof username !== "string" ||
-		username.length < 3 ||
-		username.length > 31 ||
-		/^[\d_a-z]+$/.test(username)
-	) {
-		throw createError({
-			statusMessage: "Invalid username",
-			statusCode: 400,
-		});
+	const { success, error, data } = await readValidatedBody(event, (body) => loginUserSchema.safeParse(body));
+	if (!success) {
+		throw error.issues;
 	}
 
-	if (typeof email !== "string" || email.length < 3 || email.length > 255 || !validEmail(email)) {
-		throw createError({
-			statusMessage: "Invalid email",
-			statusCode: 400,
-		});
-	}
-
-	const password = formData.get("password");
-	if (typeof password !== "string" || password.length < 6 || password.length > 255) {
-		throw createError({
-			statusMessage: "Invalid password",
-			statusCode: 400,
-		});
-	}
-
-	// const existingUser = await db.select().from(users).where(eq(users.username, username)).limit(1);
+	const { email, password } = data;
 	const existingUser = await db.query.users.findFirst({
 		where: (users, { eq }) => and(eq(users.email, email)),
 	});
