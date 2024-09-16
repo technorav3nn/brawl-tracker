@@ -6,7 +6,7 @@ export default defineCachedEventHandler(async (event) => {
 	if (!event.context.user) {
 		throw createError({
 			statusCode: 401,
-			message: "Unauthorized",
+			message: "Unauthorized request",
 		});
 	}
 
