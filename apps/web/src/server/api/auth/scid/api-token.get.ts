@@ -1,6 +1,6 @@
+import { eq } from "drizzle-orm";
 import { db } from "$server/db";
 import { users } from "$server/db/schema/users";
-import { eq } from "drizzle-orm";
 
 export default defineCachedEventHandler(async (event) => {
 	if (!event.context.user) {
