@@ -1,7 +1,7 @@
 {
 	"$schema": "https://turbo.build/schema.json",
 	"globalDependencies": ["**/.env.*local"],
-	"pipeline": {
+	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**", ".output/**", ".vercel/output/**"]
@@ -16,7 +16,7 @@
 			"dependsOn": ["^build"],
 			"cache": false,
 			"persistent": true,
-			"outputMode": "new-only"
+			"outputLogs": "new-only"
 		},
 		"start": {
 			"dependsOn": ["^build"],

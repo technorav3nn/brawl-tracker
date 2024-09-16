@@ -1,5 +1,4 @@
-import { ofetch } from "ofetch";
-import type { FetchContext, $Fetch, FetchResponse } from "ofetch";
+import { ofetch, type FetchContext, type $Fetch, type FetchResponse } from "ofetch";
 import { BrawlersApi } from "./api/brawlers";
 import { ClubsApi } from "./api/clubs";
 import { EventsApi } from "./api/events";

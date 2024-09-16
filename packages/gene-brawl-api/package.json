@@ -6,14 +6,14 @@
 		"build": "tsup",
 		"test": "vitest run",
 		"test:watch": "vitest watch",
-		"lint": "eslint . --ext .ts"
+		"lint": "eslint ."
 	},
 	"dependencies": {
 		"ofetch": "^1.3.4"
 	},
 	"devDependencies": {
-		"eslint": "^8.56.0",
-		"tsup": "^6.7.0",
+		"eslint": "^8.57.0",
+		"tsup": "^8.2.4",
 		"typescript": "5.3.3"
 	},
 	"files": [

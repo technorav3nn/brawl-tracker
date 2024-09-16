@@ -13,8 +13,22 @@
 		["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
 		["clsx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
 		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
-		["tw\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+		["tw\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["ui:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]"],
+		["/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]"]
 	],
-	"nuxtr.monorepoMode.DirectoryName": "apps/web",
-	"stylua.targetReleaseVersion": "latest"
+	"stylua.targetReleaseVersion": "latest",
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"tailwindCSS.classAttributes": ["class", "className", "ngClass", "ui"],
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"tailwindCSS.experimental.configFile": "./apps/web/.nuxt/tailwind.config.cjs",
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/bower_components": true,
+		"**/*.code-search": true,
+		// "**/__old__": true,
+		"**/.yarn/releases": true
+	}
 }

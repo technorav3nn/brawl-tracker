@@ -1,4 +1,11 @@
 export interface ApiProfileResponse<StatType> {
+	detail?: 0;
+	response: ApiProfile<StatType>;
+	state: number;
+	tag: string;
+}
+
+export interface ApiProfile<StatType> {
 	AccountId: {
 		High: number;
 		Low: number;

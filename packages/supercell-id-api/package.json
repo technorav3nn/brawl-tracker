@@ -1,0 +1,42 @@
+{
+	"name": "@brawltracker/supercell-id-api",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"build": "tsup",
+		"test": "vitest run",
+		"test:watch": "vitest watch",
+		"lint": "eslint ."
+	},
+	"dependencies": {
+		"ofetch": "^1.3.4"
+	},
+	"devDependencies": {
+		"eslint": "^8.57.0",
+		"tsup": "^8.2.4",
+		"typescript": "5.3.3"
+	},
+	"files": [
+		"dist"
+	],
+	"main": "./dist/index.js",
+	"source": "./src/index.ts",
+	"types": "./dist/index.d.ts",
+	"keywords": [
+		"supercell",
+		"supercell-api",
+		"brawl-stars",
+		"clash-royale",
+		"clash-of-clans"
+	],
+	"description": "Supercell ID API for Brawl Stars, Clash Royale, and Clash of Clans",
+	"author": "technorav3nn",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/technorav3nn/brawl-tracker.git",
+		"directory": "packages/brawl-stars-api"
+	},
+	"volta": {
+		"extends": "../../package.json"
+	}
+}

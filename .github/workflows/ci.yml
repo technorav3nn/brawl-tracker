@@ -21,9 +21,10 @@ jobs:
         uses: volta-cli/action@v4
       - name: Install Dependencies
         run: yarn
-      - uses: dtinth/setup-github-actions-caching-for-turbo@v1
+      - name: Cache for Turbo
+        uses: rharkor/caching-for-turbo@v1.5
         with:
-          cache-prefix: brawltracker_
+          cache-prefix: turbogha_ # Custom prefix for cache keys
       - name: Build
         run: yarn build
       - name: Lint
@@ -32,6 +33,6 @@ jobs:
         run: yarn test
       # - name: Build, test, and lint
       #   run: yarn ci
-      - name: "Report Coverage"
-        if: always() # Also generate the report if tests are failing
-        uses: davelosert/vitest-coverage-report-action@v2
+      # - name: "Report Coverage"
+      #   if: always() # Also generate the report if tests are failing
+      #   uses: davelosert/vitest-coverage-report-action@v2

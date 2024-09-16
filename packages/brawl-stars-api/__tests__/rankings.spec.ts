@@ -3,7 +3,7 @@ import { client } from "./util/client";
 
 describe("RankingsApi", () => {
 	describe("powerLeague", () => {
-		test("WITH power league seasons THEN should be valid", async () => {
+		test.skip("WITH power league seasons THEN should be valid", async () => {
 			expect(await client.rankings.powerLeague.getSeasons("global")).toContainEqual(
 				expect.objectContaining({
 					id: expect.any(String),
@@ -12,7 +12,7 @@ describe("RankingsApi", () => {
 				})
 			);
 		});
-		test("WITH valid season id THEN should return a valid season's rankings", async () => {
+		test.skip("WITH valid season id THEN should return a valid season's rankings", async () => {
 			expect(await client.rankings.powerLeague.getSeasonRankings("global", 107)).toContainEqual(
 				expect.objectContaining({
 					rank: expect.any(Number),

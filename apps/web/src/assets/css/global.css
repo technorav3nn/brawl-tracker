@@ -1,13 +1,3 @@
-html {
-	-webkit-text-size-adjust: 100%;
-	font-variation-settings: normal;
-}
-body {
-	font-feature-settings:
-		"rlig" 1,
-		"calt" 1;
-}
-
-:root {
-	--header-height: 4rem;
-}
+/* html {
+	scroll-behavior: smooth;
+} */

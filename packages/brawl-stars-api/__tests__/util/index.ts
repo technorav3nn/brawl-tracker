@@ -6,7 +6,6 @@
  * @returns The singleton
  */
 export function singleton<T>(name: string, value: T) {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const storage = globalThis as any;
 	storage.__singletons ??= {};
 	storage.__singletons[name] ??= value;
