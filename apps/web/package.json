@@ -10,7 +10,7 @@
 		"postinstall": "nuxt prepare",
 		"nuxt:prepare": "nuxt prepare",
 		"lint": "eslint . ",
-		"start": "node .output/server/index.js"
+		"start": "node .output/server/index.mjs"
 	},
 	"dependencies": {
 		"@brawltracker/brawl-api": "workspace:*",
