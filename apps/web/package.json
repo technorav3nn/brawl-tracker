@@ -57,7 +57,7 @@
 		"@nuxt/fonts": "^0.7.0",
 		"@pinia/nuxt": "^0.5.1",
 		"drizzle-kit": "^0.24.2",
-		"eslint": "^8.57.0",
+		"eslint": "^9.10.0",
 		"eslint-config-neon": "^0.1.62",
 		"nuxt": "^3.13.0",
 		"vite": "*"
