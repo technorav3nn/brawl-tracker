@@ -4,6 +4,8 @@ import type { AsideLink } from "@nuxt/ui-pro/types";
 const toast = useToast();
 const user = useUser();
 
+const profileSlideoverOpen = ref(false);
+
 type Link = AsideLink & { children?: AsideLink[] };
 
 const links = computed<Link[]>(() => [
@@ -125,17 +127,20 @@ const items = computed(() => [
 			>
 				Sign In
 			</UButton>
-			<UDropdown v-if="user" :items="items" :popper="{ placement: 'bottom-end' }">
-				<UButton
-					:ui="{ gap: { sm: 'gap-x-[0.095rem]' } }"
-					variant="ghost"
-					leadingIcon="i-heroicons-user-circle-20-solid"
-					color="gray"
-					class="px-1.5"
-				>
-					<UIcon name="i-heroicons-chevron-down-20-solid" class="w-[1.125rem] h-[1.125rem]"></UIcon>
-				</UButton>
-			</UDropdown>
+			<UButton
+				:ui="{ gap: { sm: 'gap-x-[0.095rem]' } }"
+				variant="ghost"
+				leadingIcon="i-heroicons-user-circle-20-solid"
+				color="gray"
+				class="px-1.5"
+				@click="profileSlideoverOpen = true"
+			>
+				<UIcon name="i-heroicons-chevron-down-20-solid" class="w-[1.125rem] h-[1.125rem]"></UIcon>
+			</UButton>
+
+			<AppHeaderProfileSlideover :open="profileSlideoverOpen" :items="items" @update:open="profileSlideoverOpen = $event" />
+
+			<UDropdown v-if="user" :items="items" :popper="{ placement: 'bottom-end' }"> </UDropdown>
 			<UColorModeButton />
 		</template>
 

@@ -629,6 +629,7 @@ __metadata:
     lucia: "npm:^3.2.0"
     mongodb: "npm:^6.8.0"
     nuxt: "npm:^3.13.0"
+    postgres: "npm:^3.4.4"
     vee-validate: "npm:^4.13.2"
     vite: "npm:*"
     zod: "npm:^3.23.8"
@@ -15488,6 +15489,13 @@ __metadata:
   version: 1.1.4
   resolution: "postgres-range@npm:1.1.4"
   checksum: 10/035759f17b44bf9ba7e71a30402ed2ca1e2b7fabb3ad794b08169a5b453d38d06905a6dfb51fe41a3f6d9fac4e183dac9e769b95053053db933be16785edce1f
+  languageName: node
+  linkType: hard
+
+"postgres@npm:^3.4.4":
+  version: 3.4.4
+  resolution: "postgres@npm:3.4.4"
+  checksum: 10/2b8c511f2dd679b91264bb3033c8d18d2ad10a5fc9aca2049eda13d6b68ae96fac45d47cfaeb0b66482ff18cf7175a5562e69a1cf259e892d063fb60d2178758
   languageName: node
   linkType: hard
 

@@ -89,6 +89,7 @@ export default defineNuxtConfig({
 		authOrigin: "https://brawl-tracker-pr-1-web.vercel.app",
 		nuxtAuthSecret: process.env.NUXT_AUTH_SECRET,
 		postgresUrl: process.env.POSTGRES_URL,
+		devPostgresUrl: process.env.DEV_POSTGRES_URL,
 	},
 	nitro: {
 		storage: {

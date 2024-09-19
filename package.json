@@ -13,7 +13,9 @@
 		"ci": "vitest run && turbo run format && turbo run lint",
 		"changeset": "changeset",
 		"version-packages": "changeset version",
-		"release": "turbo build --filter=web^... && changeset publish"
+		"release": "turbo build --filter=web^... && changeset publish",
+		"db:start": "docker-compose up -d",
+		"db:stop": "docker-compose down"
 	},
 	"devDependencies": {
 		"@changesets/cli": "^2.27.1",

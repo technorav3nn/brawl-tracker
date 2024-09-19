@@ -1,8 +1,11 @@
-import { sql } from "@vercel/postgres";
-import { drizzle } from "drizzle-orm/vercel-postgres";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
 import * as usersSchema from "./schema/users";
 
-export const db = drizzle(sql, {
+const { postgresUrl, devPostgresUrl } = useRuntimeConfig();
+const sql = singleton("postgres-client", postgres(import.meta.dev ? devPostgresUrl : postgresUrl));
+
+export const db = drizzle(sql!, {
 	logger: import.meta.dev,
 	schema: {
 		...usersSchema,

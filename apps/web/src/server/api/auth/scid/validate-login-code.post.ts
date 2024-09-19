@@ -1,8 +1,8 @@
-import { confirmLoginCode, validateLoginCode } from "@brawltracker/supercell-id-api";
+import { confirmLoginCode, initalizeSession, validateLoginCode } from "@brawltracker/supercell-id-api";
 import { generateIdFromEntropySize } from "lucia";
 import { lucia } from "$server/auth";
 import { db } from "$server/db";
-import { users } from "$server/db/schema/users";
+import { supercellIdProfiles, tokens, users } from "$server/db/schema/users";
 
 export default eventHandler(async (event) => {
 	const { code, email }: { code: string; email: string } = getQuery(event);
@@ -49,7 +49,7 @@ export default eventHandler(async (event) => {
 
 		const userId = generateIdFromEntropySize(10); // 16 characters long
 
-		const { token } = await $fetch<{ ok: boolean; token: string }>(
+		const { token: sessionToken } = await $fetch<{ ok: boolean; token: string }>(
 			"https://security.id.supercell.com/api/security/v1/sessionToken",
 			{
 				headers: {
@@ -60,13 +60,34 @@ export default eventHandler(async (event) => {
 			}
 		);
 
-		await db.insert(users).values({
-			id: userId,
-			username: brawlStarsUsername,
-			email,
-			supercellId: accountBrawlStarsId,
-			scidToken,
-			scidApiSessionToken: token,
+		const profile = await initalizeSession(sessionToken, scidToken);
+		if (!profile.ok) {
+			throw createError({
+				statusMessage: "Couldn't fetch profile",
+				statusCode: 500,
+			});
+		}
+
+		await db.transaction(async (tx) => {
+			const [{ insertedId }] = await tx
+				.insert(users)
+				.values({
+					id: userId,
+					username: brawlStarsUsername,
+					email,
+					supercellId: accountBrawlStarsId,
+					__ATTRIBUTES__sessionToken: sessionToken,
+				})
+				.returning({ insertedId: users.id });
+			await tx.insert(tokens).values({ scidToken, sessionToken, userId: insertedId });
+			await tx.insert(supercellIdProfiles).values({
+				name: profile.data!.name.name,
+				qrCodeUrl: profile.data!.qrCodeURL,
+				userId: insertedId,
+				scid: profile.data!.scid,
+				universalLink: profile.data!.universalLink,
+				avatarImage: profile.data!.avatarImage.image,
+			});
 		});
 
 		const session = await lucia.createSession(userId, {});
@@ -75,10 +96,10 @@ export default eventHandler(async (event) => {
 
 		return await sendRedirect(event, "/");
 	} catch (error) {
-		console.error(error);
+		console.error((error as any).message);
 		throw createError({
-			statusMessage: "Invalid code: Incorrect pin",
-			statusCode: 400,
+			statusMessage: `Couldn't validate code`,
+			statusCode: 500,
 		});
 	}
 });

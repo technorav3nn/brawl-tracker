@@ -5,7 +5,6 @@ export default eventHandler(async (event) => {
 
 	try {
 		await sendLoginCode(email, "laser");
-
 		setResponseStatus(event, 200, "OK");
 		return { success: true };
 	} catch (error) {

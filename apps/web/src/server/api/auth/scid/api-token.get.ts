@@ -1,8 +1,8 @@
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { db } from "$server/db";
-import { users } from "$server/db/schema/users";
+import { tokens } from "$server/db/schema/users";
 
-export default defineCachedEventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
 	if (!event.context.user) {
 		throw createError({
 			statusCode: 401,
@@ -12,6 +12,9 @@ export default defineCachedEventHandler(async (event) => {
 
 	const user = await db.query.users.findFirst({
 		where: (users, { eq }) => eq(users.id, event.context.user!.id),
+		with: {
+			tokens: true,
+		},
 	});
 	if (!user) {
 		throw createError({
@@ -20,12 +23,20 @@ export default defineCachedEventHandler(async (event) => {
 		});
 	}
 
-	const { scidToken } = user;
+	const {
+		tokens: { scidToken, sessionToken, sessionTokenExpiry },
+	} = user;
+
 	if (!scidToken) {
 		throw createError({
 			statusCode: 400,
 			statusMessage: "User has no SCID token, not logged in with Supercell ID",
 		});
+	}
+
+	// If the session expriy is 30 hours, and the current time before that, then return the session token
+	if (new Date() > sessionTokenExpiry) {
+		return { token: sessionToken, c: true };
 	}
 
 	const response = await $fetch<{ ok: boolean; token: string }>(
@@ -47,7 +58,13 @@ export default defineCachedEventHandler(async (event) => {
 		});
 	}
 
-	await db.update(users).set({ scidApiSessionToken: response.token }).where(eq(users.id, user.id));
+	await db
+		.update(tokens)
+		.set({
+			sessionToken: response.token,
+			sessionTokenExpiry: sql`now() + interval '30 hours'`,
+		})
+		.where(eq(tokens.userId, user.id));
 
-	return { token: response.token };
+	return { token: response.token, c: false };
 });

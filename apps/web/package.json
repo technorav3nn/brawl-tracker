@@ -48,6 +48,7 @@
 		"jwt-decode": "^4.0.0",
 		"lucia": "^3.2.0",
 		"mongodb": "^6.8.0",
+		"postgres": "^3.4.4",
 		"vee-validate": "^4.13.2",
 		"zod": "^3.23.8"
 	},

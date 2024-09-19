@@ -14,18 +14,14 @@ const validationError = ref<string | null>(null);
 
 async function submitStageOne({ email: em }: { email: string }) {
 	email.value = em;
-	const response = await $fetch(`/api/auth/scid/create-login-code`, {
-		method: "POST",
-		query: { email: em },
-	}).catch((error) => {
-		const { statusMessage } = error as FetchError;
-		validationError.value = statusMessage!;
-		return { success: false };
-	});
-	if (response.success) {
+	try {
+		await sendCode();
 		stageOne.value = false;
 		stageTwo.value = true;
 		validationError.value = null;
+	} catch (error) {
+		console.error("Failed to send code");
+		console.error(error);
 	}
 }
 
@@ -43,6 +39,19 @@ async function submitStageTwo({ code: c }: { code: string }) {
 		$emit("update:open", false);
 		refreshNuxtData("user");
 		await navigateTo("/");
+	}
+}
+
+async function sendCode() {
+	const response = await $fetch(`/api/auth/scid/create-login-code`, {
+		method: "POST",
+		query: { email: email.value },
+	}).catch((error) => {
+		const { statusMessage } = error as FetchError;
+		validationError.value = statusMessage!;
+	});
+	if (response) {
+		validationError.value = null;
 	}
 }
 </script>
@@ -121,6 +130,12 @@ async function submitStageTwo({ code: c }: { code: string }) {
 					]"
 					@submit="submitStageTwo"
 				>
+					<template #footer>
+						<div class="-mt-1">
+							<p class="text-primary-500 dark:text-primary-400 text-sm font-medium mb-1">Didn't receive the code?</p>
+							<UButton block color="gray" @click="sendCode">Resend Code</UButton>
+						</div>
+					</template>
 					<template v-if="!!validationError" #validation>
 						<UAlert color="red" icon="i-heroicons-information-circle-20-solid" :title="validationError" />
 					</template>
@@ -131,12 +146,7 @@ async function submitStageTwo({ code: c }: { code: string }) {
 			<UProgress
 				class="mt-3"
 				:value="progress"
-				:max="[
-					'empty step',
-					'Step 1: Enter your email',
-					'Step 2: Enter the code from your inbox',
-					'empty step',
-				]"
+				:max="['empty step', 'Step 1: Enter your email', 'Step 2: Enter the code from your inbox', 'empty step']"
 				:ui="{ step: { align: 'text-start' } }"
 			/>
 		</UCard>
