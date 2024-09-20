@@ -1,15 +1,13 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { relations, sql } from "drizzle-orm";
-import { pgTable, varchar, timestamp, type AnyPgColumn } from "drizzle-orm/pg-core";
+import { pgTable, varchar, timestamp } from "drizzle-orm/pg-core";
 
 export const tokens = pgTable("scid_api_tokens", {
 	userId: varchar("user_id", { length: 255 })
 		.notNull()
 		.references(() => users.id, { onDelete: "cascade" }),
-	sessionToken: varchar("session_token", { length: 800 })
-		.unique()
-		.notNull()
-		.references((): AnyPgColumn => users.__ATTRIBUTES__sessionToken, { onUpdate: "cascade", onDelete: "cascade" }),
+	sessionToken: varchar("session_token", { length: 800 }).unique().notNull(),
+	//	.references((): AnyPgColumn => users.__ATTRIBUTES__sessionToken, { onUpdate: "cascade", onDelete: "cascade" }),
 	scidToken: varchar("scid_token", { length: 800 }).unique().notNull(),
 	sessionTokenExpiry: timestamp("session_token_expiry", { withTimezone: true, mode: "date" })
 		.notNull()
@@ -28,9 +26,7 @@ export const users = pgTable("user", {
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at", { mode: "date" }).$onUpdate(() => new Date()),
 	// Necessary for lucia, don't use in other places
-	__ATTRIBUTES__sessionToken: varchar("session_token", { length: 800 })
-		.unique()
-		.references((): AnyPgColumn => tokens.sessionToken, { onUpdate: "cascade", onDelete: "cascade" }),
+	__ATTRIBUTES__sessionToken: varchar("session_token", { length: 800 }).unique(),
 });
 
 export const supercellIdProfiles = pgTable("supercell_id_profile", {

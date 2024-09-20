@@ -10,32 +10,46 @@ const HEADERS = {
 	"content-type": "application/x-www-form-urlencoded",
 };
 
-const LOGIN_BODY = {
-	lang: "en",
-	env: "prod",
-};
+// const LOGIN_BODY = {
+// 	lang: "en",
+// 	env: "prod",
+// };
 
 export async function sendLoginCode(email: string, game: SupercellGame) {
+	const formData = new FormData();
+	formData.append("email", email);
+	formData.append("game", game);
+	formData.append("lang", "en");
+	formData.append("env", "prod");
+
 	return $fetch<{ ok: boolean }>(`${BASE_URL}/account/login`, {
 		headers: HEADERS,
 		method: "POST",
-		body: new URLSearchParams({ ...LOGIN_BODY, email, game }),
+		body: new URLSearchParams({ email, game }),
 	});
 }
 
 export async function validateLoginCode(email: string, pin: number | string) {
+	const formData = new FormData();
+	formData.append("email", email);
+	formData.append("pin", pin.toString());
+
 	return $fetch<{ ok: boolean }>(`${BASE_URL}/account/login.validate`, {
 		headers: HEADERS,
 		method: "POST",
-		body: new URLSearchParams({ email, pin: pin.toString() }),
+		body: formData,
 	});
 }
 
 export async function confirmLoginCode(email: string, pin: number | string) {
+	const formData = new FormData();
+	formData.append("email", email);
+	formData.append("pin", pin.toString());
+
 	return $fetch<Record<string, any>>(`${BASE_URL}/account/login.confirm`, {
 		headers: HEADERS,
 		method: "POST",
-		body: new URLSearchParams({ email, pin: pin.toString() }),
+		body: formData,
 	});
 }
 
@@ -51,6 +65,9 @@ export async function getSessionToken(scidToken: string) {
 }
 
 export async function initalizeSession(sessionToken: string, scidToken: string) {
+	const formData = new FormData();
+	formData.append("applicationAccountToken", scidToken);
+
 	return $fetch<ScidProfileResponse>("https://id.supercell.com/api/social/v3/session.init", {
 		method: "POST",
 		headers: {
@@ -60,14 +77,15 @@ export async function initalizeSession(sessionToken: string, scidToken: string) 
 				"RFPv1 Timestamp=1725847185,SignedHeaders=authorization;user-agent;x-supercell-device-id,Signature=dt4nQA2ZRLQPSvsst8TsF7Ct65_Jcuu6iRI6qZ4FYik",
 			"User-Agent": "scid/1.4.16-f (iPadOS 17.1; laser-prod; iPad8,6)",
 			"X-Supercell-Device-Id": "0D2CB22F-243F-5843-8A60-3E8F0685BBD0",
+			// "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
 		},
-		body: {
-			applicationAccountToken: scidToken,
-		},
+		body: formData,
 	});
 }
 
 export async function getProfile(sessionToken: string) {
+	const formData = new FormData();
+	formData.append("fetchConnectedSystems", true);
 	return $fetch<ScidProfileResponse>("https://id.supercell.com/api/social/v3/profile.get", {
 		headers: {
 			...HEADERS,
@@ -76,6 +94,9 @@ export async function getProfile(sessionToken: string) {
 				"RFPv1 Timestamp=1725847185,SignedHeaders=authorization;user-agent;x-supercell-device-id,Signature=dt4nQA2ZRLQPSvsst8TsF7Ct65_Jcuu6iRI6qZ4FYik",
 			"User-Agent": "scid/1.4.16-f (iPadOS 17.1; laser-prod; iPad8,6)",
 			"X-Supercell-Device-Id": "0D2CB22F-243F-5843-8A60-3E8F0685BBD0",
+		},
+		body: {
+			fetchConnectedSystems: true,
 		},
 	});
 }

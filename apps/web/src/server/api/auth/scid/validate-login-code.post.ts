@@ -79,7 +79,7 @@ export default eventHandler(async (event) => {
 					__ATTRIBUTES__sessionToken: sessionToken,
 				})
 				.returning({ insertedId: users.id });
-			await tx.insert(tokens).values({ scidToken, sessionToken, userId: insertedId });
+			await tx.insert(tokens).values({ scidToken, sessionToken, userId });
 			await tx.insert(supercellIdProfiles).values({
 				name: profile.data!.name.name,
 				qrCodeUrl: profile.data!.qrCodeURL,
