@@ -37,7 +37,7 @@
 		"@sapphire/time-utilities": "^1.7.12",
 		"@unpic/vue": "^0.0.50",
 		"@vee-validate/zod": "^4.13.2",
-		"@vercel/kv": "^2.0.0",
+		"@vercel/kv": "^3.0.0",
 		"@vercel/postgres": "^0.9.0",
 		"@vueuse/nuxt": "^11.0.3",
 		"arctic": "^1.9.2",
