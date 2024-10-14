@@ -614,7 +614,7 @@ __metadata:
     "@sapphire/time-utilities": "npm:^1.7.12"
     "@unpic/vue": "npm:^0.0.50"
     "@vee-validate/zod": "npm:^4.13.2"
-    "@vercel/kv": "npm:^2.0.0"
+    "@vercel/kv": "npm:^3.0.0"
     "@vercel/postgres": "npm:^0.9.0"
     "@vueuse/nuxt": "npm:^11.0.3"
     arctic: "npm:^1.9.2"
@@ -5103,12 +5103,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@upstash/redis@npm:^1.31.3":
-  version: 1.34.0
-  resolution: "@upstash/redis@npm:1.34.0"
+"@upstash/redis@npm:^1.34.0":
+  version: 1.34.3
+  resolution: "@upstash/redis@npm:1.34.3"
   dependencies:
     crypto-js: "npm:^4.2.0"
-  checksum: 10/c7534ec0eb1706cee1baf715ea3f829d7edec9d1360dfe9a41affe70a3ff49de6694b1d7f5d14737ef75d7022b1f537bdb63b4dbd2854c643950e325b3048f77
+  checksum: 10/bc56656b80b368e318287eaeac861c65b7b35b5227564bbea54670aa1de0bc225bde72a36edef4ae4e379dd0b7fa2be6e003cbfc779fe6d4ffdb478af0196cfc
   languageName: node
   linkType: hard
 
@@ -5123,12 +5123,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/kv@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@vercel/kv@npm:2.0.0"
+"@vercel/kv@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@vercel/kv@npm:3.0.0"
   dependencies:
-    "@upstash/redis": "npm:^1.31.3"
-  checksum: 10/e9731d0fb63750f0290ede2a2cef58b6f9c0a6fcafe34915cade02b2a2f15f38a7e9f6290b83f3a4e81e2d0a3c9f976de764620770226994ffe6f89cde94ed28
+    "@upstash/redis": "npm:^1.34.0"
+  checksum: 10/019354a89fb624017cefc2414d3d4c2897631ff2ec5fb066c8e3e5cea848750723ae22ac44cfff509e3aed6be7361db7e50b9097d7784427120b3ae9474e52fa
   languageName: node
   linkType: hard
 
