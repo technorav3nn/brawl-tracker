@@ -1,10 +1,20 @@
 <script setup lang="ts">
+import { getCdnUrlForAvatarId } from "@brawltracker/supercell-id-api";
 import type { AsideLink } from "@nuxt/ui-pro/types";
+import HeaderProfileSlideover from "./header-profile-slideover.vue";
+import { createGetCachedData } from "$lib/utils/nuxt";
 
 const toast = useToast();
+const slideover = useSlideover();
 const user = useUser();
+const nuxtApp = useNuxtApp();
 
-const profileSlideoverOpen = ref(false);
+const { data: profile, status } = await useFetch("/api/auth/scid/my-profile", {
+	ignoreResponseError: true,
+	watch: user.value === null ? [user] : [],
+	getCachedData: createGetCachedData(nuxtApp),
+	key: "profile",
+});
 
 type Link = AsideLink & { children?: AsideLink[] };
 
@@ -100,10 +110,10 @@ const items = computed(() => [
 </script>
 
 <template>
+	<AppHeaderProfileSlideover :items="items" />
 	<UHeader
 		:links="links"
 		:ui="{
-			// @ts-expect-error - Bug
 			panel: { body: '[&_:nth-child(5)]:hidden' },
 		}"
 	>
@@ -115,8 +125,8 @@ const items = computed(() => [
 		</template>
 
 		<template #right>
-			<UButton v-if="!user" class="hidden sm:block" color="gray" variant="ghost" to="/login">Log In</UButton>
-			<UButton v-if="!user" class="mr-1.5 hidden sm:block" color="primary" to="/signup">Sign Up</UButton>
+			<UButton v-if="!user" class="hidden sm:block" to="/login">Log In</UButton>
+			<!-- <UButton v-if="!user" class="mr-1.5 hidden sm:block" color="primary" to="/signup">Sign Up</UButton> -->
 			<UButton
 				v-if="!user"
 				class="sm:hidden"
@@ -125,31 +135,27 @@ const items = computed(() => [
 				icon="i-heroicons-arrow-left-end-on-rectangle-20-solid"
 				square
 			>
-				Sign In
+				Log In
 			</UButton>
-			<UButton
-				:ui="{ gap: { sm: 'gap-x-[0.095rem]' } }"
-				variant="ghost"
-				leadingIcon="i-heroicons-user-circle-20-solid"
-				color="gray"
-				class="px-1.5"
-				@click="profileSlideoverOpen = true"
-			>
-				<UIcon name="i-heroicons-chevron-down-20-solid" class="w-[1.125rem] h-[1.125rem]"></UIcon>
-			</UButton>
-
-			<AppHeaderProfileSlideover :open="profileSlideoverOpen" :items="items" @update:open="profileSlideoverOpen = $event" />
-
-			<UDropdown v-if="user" :items="items" :popper="{ placement: 'bottom-end' }"> </UDropdown>
-			<UColorModeButton />
+			<UTooltip v-if="status === 'success' && profile?.exists" text="My Profile">
+				<UButton
+					v-if="status === 'success' && profile?.exists"
+					:ui="{ gap: { sm: 'gap-x-[0.095rem]' } }"
+					variant="ghost"
+					trailingIcon="i-heroicons-chevron-down-20-solid"
+					color="gray"
+					class="px-1.5"
+					@click="slideover.open(HeaderProfileSlideover)"
+				>
+					<NuxtImg class="w-7 h-7 rounded-full" :src="getCdnUrlForAvatarId(profile.data?.avatarImage!)" />
+				</UButton>
+			</UTooltip>
+			<UTooltip :text="$colorMode.value === 'dark' ? 'Turn the lights on' : 'Turns the lights off'">
+				<UColorModeButton />
+			</UTooltip>
 		</template>
 
 		<template #panel>
-			<!--
- <UAsideLinks :links="links" />
-			<UDivider type="dashed" class="my-4" />
-			<UAsideLinks :links="flattenedChildrenLinks" /> 
--->
 			<UNavigationTree
 				:links="links"
 				defaultOpen

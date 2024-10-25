@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/* eslint-disable vue/no-v-html */
 import type { TocLink } from "@nuxt/content";
 import type { PageLink } from "@nuxt/ui-pro/types";
 import { parseFromString } from "dom-parser";
@@ -39,12 +40,14 @@ const tocs = computed<TocLink[]>(() => {
 	// eslint-disable-next-line unicorn/prefer-query-selector
 	const headings = doc.getElementsByTagName("h3");
 	if (!headings) return [];
-	return headings.map((heading) => {
-		const tagId = cleanTocTag(heading.getAttribute("id"));
-		const title = cleanTocTag(heading.textContent);
+	return headings
+		.filter((h) => h.attributes.length !== 0)
+		.map((heading) => {
+			const tagId = cleanTocTag(heading.getAttribute("id"));
+			const title = cleanTocTag(heading.textContent);
 
-		return { depth: 0, id: tagId, text: title } satisfies TocLink;
-	});
+			return { depth: 0, id: tagId, text: title } satisfies TocLink;
+		});
 });
 
 const links: PageLink[] = [
@@ -83,6 +86,7 @@ const links: PageLink[] = [
 </script>
 
 <template>
+	<NuxtImg v-if="postProps" :src="postProps.hero" :alt="postProps.title" width="2000" height="400" loading="eager" preload />
 	<UContainer v-if="post && postProps">
 		<UPage>
 			<UPageHeader :title="postProps.title" :ui="{ headline: 'flex flex-col gap-y-8 items-start' }">
@@ -97,30 +101,20 @@ const links: PageLink[] = [
 							{ label: postProps!.title },
 						]"
 					/>
-					<NuxtImg
-						v-if="postProps.hero"
-						:src="postProps.hero"
-						:alt="postProps.title"
-						:width="850"
-						:height="300"
-						class="rounded"
-					/>
+
 					<div class="flex items-center space-x-2">
 						<span>{{ category }}</span>
 						<span class="text-gray-500 dark:text-gray-400">
 							&middot;&nbsp;&nbsp;
 							<time>{{ new Date(postProps!.publishDate).toDateString() }}</time>
 						</span>
-						<span class="text-gray-500 dark:text-gray-400"
-							>&middot;&nbsp;&nbsp;{{ timeToRead }} min read</span
-						>
+						<span class="text-gray-500 dark:text-gray-400">&middot;&nbsp;&nbsp;{{ timeToRead }} min read</span>
 					</div>
 				</template>
 			</UPageHeader>
 
 			<UPage>
 				<UPageBody prose>
-					<!-- eslint-disable-next-line vue/no-v-html -->
 					<article v-html="post.html" />
 				</UPageBody>
 				<template #right>

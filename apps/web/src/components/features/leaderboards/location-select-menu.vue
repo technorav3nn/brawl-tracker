@@ -1,18 +1,10 @@
 <script setup lang="ts">
 import type { CountryCodes } from "@brawltracker/brawl-stars-api";
 import { countries } from "country-code-lookup";
+import { getCountryFlagEmoji } from "$lib/utils/common";
 
 const route = useRoute("leaderboards-ranked");
 const currentLocation = (route.query.location ?? "global") as CountryCodes;
-
-function getCountryFlagEmoji(countryCode: string) {
-	return (
-		[...countryCode.toUpperCase()]
-			// eslint-disable-next-line unicorn/prefer-code-point
-			.map((char) => String.fromCodePoint(127_397 + char.charCodeAt(0)))
-			.reduce((a, b) => `${a}${b}`)
-	);
-}
 
 const locations = [
 	...countries

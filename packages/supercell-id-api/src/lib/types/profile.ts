@@ -1,5 +1,3 @@
-export type SupercellGame = "laser" | "magic" | "sand" | "scroll" | "soil" | "squad";
-
 export interface ScidProfileResponse {
 	data?: Profile;
 	ok: boolean;

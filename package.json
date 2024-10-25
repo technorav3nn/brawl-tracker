@@ -49,6 +49,6 @@
 		"apps/*"
 	],
 	"dependencies": {
-		"@nuxt/ui-pro": "patch:@nuxt/ui-pro@npm%3A1.4.1#~/.yarn/patches/@nuxt-ui-pro-npm-1.4.1-1462ef5001.patch"
+		"@nuxt/ui-pro": "patch:@nuxt/ui-pro@npm%3A1.4.3#~/.yarn/patches/@nuxt-ui-pro-npm-1.4.3-c79a6386e3.patch"
 	}
 }

@@ -1,4 +1,5 @@
 import { createResolver } from "@nuxt/kit";
+import { isDevelopment } from "std-env";
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const { resolve } = createResolver(import.meta.url);
@@ -14,6 +15,8 @@ export default defineNuxtConfig({
 		"@pinia/nuxt",
 		"@nuxt/content",
 		"@vueuse/nuxt",
+		"@sentry/nuxt/module",
+		"nuxt-time",
 	],
 	srcDir: "src",
 	devtools: {
@@ -74,6 +77,7 @@ export default defineNuxtConfig({
 			"images.unsplash.com",
 			"github.com",
 			"brawlstars.inbox.supercell.com",
+			"cdn.brawlify.com",
 		],
 		alias: {
 			cdn: "https://cdn.deathblows.xyz",
@@ -82,19 +86,44 @@ export default defineNuxtConfig({
 	tailwindcss: {
 		exposeConfig: true,
 	},
+	sentry: {
+		sourceMapsUploadOptions: {
+			org: "technorav3nn",
+			project: "javascript-nuxt",
+			authToken: process.env.SENTRY_AUTH_TOKEN,
+		},
+	},
 	runtimeConfig: {
 		brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
 		discordClientId: process.env.DISCORD_CLIENT_ID,
 		discordClientSecret: process.env.DISCORD_CLIENT_SECRET,
 		authOrigin: "https://brawl-tracker-pr-1-web.vercel.app",
 		nuxtAuthSecret: process.env.NUXT_AUTH_SECRET,
-		postgresUrl: process.env.POSTGRES_URL,
+		postgresUrl: process.env.DEV_POSTGRES_URL,
 		devPostgresUrl: process.env.DEV_POSTGRES_URL,
+		public: {
+			sentryDsn: process.env.SENTRY_DSN,
+		},
 	},
 	nitro: {
 		storage: {
 			kv: {
 				driver: "vercelKV",
+			},
+			cache: {
+				driver: "redis",
+				base: "cache",
+				host: process.env.REDIS_HOST,
+				port: 6379,
+				password: process.env.REDIS_PASSWORD,
+			},
+		},
+		devStorage: {
+			cache: {
+				driver: "redis",
+				base: "cache",
+				host: "127.0.0.1",
+				port: 6379,
 			},
 		},
 	},

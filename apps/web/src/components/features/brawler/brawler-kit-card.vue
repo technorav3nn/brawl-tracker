@@ -27,7 +27,7 @@ const props = defineProps<{
 		</div>
 		<div>
 			<p class="text-sm text-muted-foreground">{{ description }}</p>
-			<UDivider class="mt-4 -scale-x-[1.06]" />
+			<UDivider class="mt-4 -scale-x-[1.042]" />
 			<UTable
 				:ui="{
 					thead: 'border-b-0 hidden',

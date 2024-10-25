@@ -1,9 +1,14 @@
-import type { z } from "zod";
+import type { ZodEffects, ZodNullable, ZodOptional, ZodType, ZodTypeAny } from "zod";
 
-export type ToZod<T extends Record<string, any>> = {
-	[K in keyof T]-?: z.ZodType<T[K]>;
-};
+type IsNullable<T> = Extract<T, null> extends never ? false : true;
+type IsOptional<T> = Extract<T, undefined> extends never ? false : true;
 
-export type InferZodMap<T extends abstract new (...args: any) => any> = {
-	[k in keyof Partial<InstanceType<T>>]?: unknown;
+type ZodWithEffects<T extends ZodTypeAny> = T | ZodEffects<T, unknown, unknown>;
+
+export type ToZodSchema<T extends Record<string, any>> = {
+	[K in keyof T]-?: IsNullable<T[K]> extends true
+		? ZodWithEffects<ZodNullable<ZodType<T[K]>>>
+		: IsOptional<T[K]> extends true
+			? ZodWithEffects<ZodOptional<ZodType<T[K]>>>
+			: ZodWithEffects<ZodType<T[K]>>;
 };

@@ -41,7 +41,19 @@ export default eventHandler(async (event) => {
 		});
 	}
 
-	const session = await lucia.createSession(existingUser.id, {});
+	const ip = event.headers.get("x-forwarded-for") || event.node.req.socket.remoteAddress;
+	if (!ip) {
+		throw createError({
+			statusMessage: "Failed to get IP address",
+			statusCode: 500,
+		});
+	}
+
+	const ipCountry = useIpToCountry(ip);
+
+	const session = await lucia.createSession(existingUser.id, {
+		ipCountry,
+	});
 	appendHeader(event, "Set-Cookie", lucia.createSessionCookie(session.id).serialize());
 });
 

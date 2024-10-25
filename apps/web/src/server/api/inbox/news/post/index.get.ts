@@ -15,13 +15,12 @@ export default eventHandler(async (event) => {
 	const $ = load(html!);
 
 	function getRootHtml() {
-		const rootChild = $("div[data-test-id='category-heading']");
+		const rootChild = $("div[data-test-id='tagline']");
 		const root = rootChild.parent();
-		rootChild.remove();
 		return root.html();
 	}
 
-	const articleHtml = $(".article_articleLink__j5rH1").html() ?? getRootHtml();
+	const articleHtml = getRootHtml();
 	const articleInfo = destr<ScrapedBlogPostData>($("#__NEXT_DATA__").text());
 
 	delete (articleInfo.props.pageProps as any).bodyCollection;

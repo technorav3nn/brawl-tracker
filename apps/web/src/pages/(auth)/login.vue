@@ -4,6 +4,16 @@
 /* eslint-disable promise/prefer-await-to-then */
 import type { FetchError } from "ofetch";
 
+definePageMeta({
+	middleware: "no-auth",
+});
+
+useServerSeoMeta({
+	title: "Login",
+	description: "Login to your account with Supercell ID",
+	applicationName: "BrawlTracker",
+});
+
 const validationError = ref<string | null>(null);
 const scidModalOpen = ref(false);
 
@@ -21,12 +31,6 @@ async function login(body: { username: string; password: string }) {
 
 async function supercellIdLogin() {
 	scidModalOpen.value = true;
-	$fetch("/api/auth/scid/create-login-code", {
-		method: "POST",
-	}).catch((error) => {
-		const { statusMessage } = error as FetchError;
-		validationError.value = statusMessage!;
-	});
 }
 </script>
 
@@ -39,12 +43,9 @@ async function supercellIdLogin() {
 					<template #header>
 						<h1 class="text-lg font-semibold">Welcome Back!</h1>
 					</template>
-					<UAuthForm
-						title="Login"
-						description="Enter your information to access your account."
-						align="bottom"
-						icon="i-heroicons-user-circle"
-						:fields="[
+					<!-- Removed password auth because it's kinda useless, but in case i need to add it back: -->
+					<!--
+					:fields="[
 							{
 								name: 'username',
 								type: 'username',
@@ -62,6 +63,12 @@ async function supercellIdLogin() {
 								color: 'gray',
 							},
 						]"
+					-->
+					<UAuthForm
+						title="Login"
+						description="Enter your information to access your account."
+						align="bottom"
+						icon="i-heroicons-user-circle"
 						:providers="[
 							{
 								label: 'Supercell ID',
@@ -74,7 +81,7 @@ async function supercellIdLogin() {
 								// This is so scuffed LOL
 								icon: 's',
 								color: 'gray',
-								click: supercellIdLogin.bind(null),
+								click: () => supercellIdLogin(),
 							},
 						]"
 						:loading="false"

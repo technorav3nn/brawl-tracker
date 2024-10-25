@@ -37,8 +37,9 @@ async function submitStageTwo({ code: c }: { code: string }) {
 	});
 	if (response) {
 		$emit("update:open", false);
-		refreshNuxtData("user");
 		await navigateTo("/");
+		refreshNuxtData("user");
+		refreshNuxtData("profile");
 	}
 }
 
@@ -106,40 +107,21 @@ async function sendCode() {
 				</UAuthForm>
 			</div>
 
-			<div v-show="stageTwo">
-				<UAuthForm
-					class="!max-w-none"
-					title="Supercell ID Login Code"
-					description="Enter the code sent to your email to login."
-					:fields="[
-						{
-							type: 'text',
-							label: 'Code',
-							name: 'code',
-							placeholder: 'XXXXXX',
-							// @ts-expect-error - Bug
-							color: 'gray',
-							// Pattern that only allows 6 digits, but a space in between
-							pattern: '^(\\d\\s*){6}$',
-							// inputmode: 'numeric',
-							// Max length is 7 so people can copy and paste from email
-							minlength: 6,
-							title: '6-digit code',
-							required: true,
-						},
-					]"
-					@submit="submitStageTwo"
-				>
-					<template #footer>
-						<div class="-mt-1">
-							<p class="text-primary-500 dark:text-primary-400 text-sm font-medium mb-1">Didn't receive the code?</p>
-							<UButton block color="gray" @click="sendCode">Resend Code</UButton>
-						</div>
-					</template>
-					<template v-if="!!validationError" #validation>
-						<UAlert color="red" icon="i-heroicons-information-circle-20-solid" :title="validationError" />
-					</template>
-				</UAuthForm>
+			<div v-show="stageTwo" class="w-full flex flex-col">
+				<p class="text-md font-medium">Enter the code sent to your email to login.</p>
+				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
+					If you didn't receive the code, check your spam folder or resend it.
+				</p>
+				<UiPinInput class="!w-full" otp format="###-###" @completed="submitStageTwo({ code: $event })" />
+				<UDivider class="mt-4 w-[75px] self-center" size="xs" />
+				<UButton block class="mt-4" @click="sendCode">Resend Code</UButton>
+				<UAlert
+					v-if="!!validationError"
+					color="red"
+					class="mt-4"
+					icon="i-heroicons-information-circle-20-solid"
+					:title="validationError"
+				/>
 			</div>
 
 			<UDivider class="mt-4" size="xs" />

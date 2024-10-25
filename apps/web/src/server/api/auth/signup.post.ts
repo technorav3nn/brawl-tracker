@@ -6,14 +6,10 @@ import { db } from "$server/db";
 import { users } from "$server/db/schema/users";
 
 export default eventHandler(async (event) => {
-	console.log("signup.post.ts");
 	const { success, error, data } = await readValidatedBody(event, (body) => {
-		console.log("body", body);
 		return signupUserSchema.safeParse(body);
 	});
-	console.log("success", success);
 	if (!success) {
-		console.log(error.issues, error);
 		throw error.issues;
 	}
 
@@ -46,6 +42,18 @@ export default eventHandler(async (event) => {
 		}
 	}
 
-	const session = await lucia.createSession(userId, {});
+	const ip = event.headers.get("x-forwarded-for") || event.node.req.socket.remoteAddress;
+	if (!ip) {
+		throw createError({
+			statusMessage: "Failed to get IP address",
+			statusCode: 500,
+		});
+	}
+
+	const ipCountry = useIpToCountry(ip);
+
+	const session = await lucia.createSession(userId, {
+		ipCountry,
+	});
 	appendHeader(event, "Set-Cookie", lucia.createSessionCookie(session.id).serialize());
 });

@@ -25,6 +25,14 @@ export const users = pgTable("user", {
 	username: varchar("username", { length: 30 }).unique().notNull(),
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at", { mode: "date" }).$onUpdate(() => new Date()),
+	savedPlayerTags: varchar("saved_tags")
+		.array()
+		.default(sql`ARRAY[]::text[]`)
+		.notNull(),
+	savedClubTags: varchar("saved_club_tags")
+		.array()
+		.default(sql`ARRAY[]::text[]`)
+		.notNull(),
 	// Necessary for lucia, don't use in other places
 	__ATTRIBUTES__sessionToken: varchar("session_token", { length: 800 }).unique(),
 });
@@ -67,6 +75,7 @@ export const sessions = pgTable("session", {
 		.notNull()
 		.references(() => users.id),
 	expiresAt: timestamp("expires_at", { withTimezone: true, mode: "date" }).notNull(),
+	ipCountry: varchar("ip_country", { length: 4 }).notNull(),
 });
 
 export type User = typeof users.$inferSelect;

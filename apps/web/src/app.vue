@@ -13,4 +13,6 @@
 	</UMain>
 	<AppFooter />
 	<UNotifications />
+	<UModals />
+	<USlideovers />
 </template>

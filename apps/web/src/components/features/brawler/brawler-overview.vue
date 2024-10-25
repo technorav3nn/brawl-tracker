@@ -15,6 +15,12 @@ const brawlerStore = useBrawlerStore();
 const cdnName = computed(() => normalizeNameToCdnName(brawler.value.name));
 const modelImage = computed(() => getBrawlerModelUrl(encodeURIComponent(cdnName.value)));
 
+const brawlerModelSize = computed(() => {
+	console.log(brawler.value.name);
+	if (brawler.value.name === "Clancy") return { width: 1000, height: 1200 };
+	return { width: 200, height: 400 };
+});
+
 const selectedLevel = ref(11);
 watch(selectedLevel, (level) => {
 	brawlerStore.level = level;
@@ -69,20 +75,17 @@ const stats = computed(() => {
 					optionAttribute="label"
 				/>
 			</div>
-			<div
-				class="flex flex-col justify-between gap-3 sm:flex-col md:flex-col lg:flex-row xl:flex-col items-center"
-			>
+			<div class="flex flex-col justify-between gap-3 sm:flex-col md:flex-col xl:flex-col items-center w-full">
 				<NuxtImg
-					class="mt-2 aspect-square max-h-[300px] w-full max-w-[180px] self-center !object-scale-down"
+					class="mt-2 aspect-square w-full self-center !object-scale-down"
 					:src="modelImage"
-					height="300"
-					width="180"
+					:height="brawlerModelSize.height"
+					:width="brawlerModelSize.width"
 					format="webp"
 					fit="outside"
 				/>
 
 				<UDivider class="w-[102.8%] lg:hidden xl:block" />
-				<UDivider orientation="vertical" class="h-full hidden lg:block xl:hidden" />
 
 				<UTable
 					:ui="{
@@ -96,10 +99,9 @@ const stats = computed(() => {
 					}"
 					:rows="stats"
 					:columns="null"
-					class="w-full"
+					class="!w-full"
 				/>
 			</div>
-			<div class="mt-8"></div>
 		</div>
 	</div>
 </template>

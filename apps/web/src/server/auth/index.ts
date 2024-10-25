@@ -16,12 +16,18 @@ export const lucia = new Lucia(new DrizzlePostgreSQLAdapter(db, sessions, users)
 			updatedAt: attributes.updatedAt,
 			supercellId: attributes.supercellId,
 			sessionToken: attributes.__ATTRIBUTES__sessionToken,
+			savedPlayerTags: attributes.savedPlayerTags,
+			savedClubTags: attributes.savedClubTags,
+		};
+	},
+	getSessionAttributes: (attributes) => {
+		return {
+			ipCountry: attributes.ipCountry,
 		};
 	},
 	sessionExpiresIn: new TimeSpan(14, "d"),
 	sessionCookie: {
 		name: "session",
-
 		expires: false, // session cookies have very long lifespan (2 years)
 		attributes: {
 			secure: !import.meta.dev,
@@ -43,6 +49,7 @@ declare module "lucia" {
 	}
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface DatabaseSessionAttributes {}
+interface DatabaseSessionAttributes {
+	ipCountry: string;
+}
 interface DatabaseUserAttributes extends Omit<User, "hashedPassword"> {}

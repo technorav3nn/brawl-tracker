@@ -18,7 +18,7 @@ function fixSeasons(seasons: PowerLeagueSeason<Date>[]) {
 export default cachedEventHandler(
 	async () => {
 		const api = useBrawlStarsApi();
-		const storage = useStorage("kv");
+		const storage = useStorage("cache");
 
 		if (!(await storage.hasItem("season"))) {
 			await storage.setItem("season", CURRENT_SEASON);
@@ -36,8 +36,7 @@ export default cachedEventHandler(
 
 		// seasons from the current season to 101
 		const rankedSeasons = seasons.filter(
-			(season) =>
-				Number.parseInt(season.id, 10) >= MIN_SEASON_ID && Number.parseInt(season.id, 10) <= currentSeason
+			(season) => Number.parseInt(season.id, 10) >= MIN_SEASON_ID && Number.parseInt(season.id, 10) <= currentSeason
 		);
 		// check if the season after the current is available
 		const nextSeason = currentSeason + 1;

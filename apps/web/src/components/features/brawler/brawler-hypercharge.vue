@@ -44,7 +44,7 @@ const hyperchargeIconUrl = computed(() => `${CDN_URL}${hypercharge.value!.path}`
 						</div>
 					</div>
 				</div>
-				<div class="flex flex-row *:flex-[1] flex-wrap w-full h-full">
+				<div class="flex flex-row *:flex-[1] flex-wrap w-full h-full my-2.5">
 					<div
 						class="p-1.5 rounded border border-border border-t-0 border-b-0 rounded-br-none border-l-0 rounded-t-none flex flex-col items-center justify-center gap-0.5"
 					>

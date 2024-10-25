@@ -35,15 +35,13 @@ if (!brawler.value) {
 		</div> 
 -->
 
-		<div class="grid grid-cols-1 gap-3 md:grid-cols-2">
+		<div class="grid grid-cols-1 gap-3 md:grid-cols-3">
 			<BrawlerOverview :brawler :brawlerCdnData />
-			<BrawlerMainAttack :brawler :brawlerCdnData />
-			<BrawlerSuper :brawler :brawlerCdnData />
-			<BrawlerHypercharge
-				:class="{ 'md:col-span-2': !Boolean(brawlerCdnData.hypercharge) }"
-				:brawler
-				:brawlerCdnData
-			/>
+			<div class="flex md:col-span-2 flex-col gap-2">
+				<BrawlerMainAttack class="h-full" :brawler :brawlerCdnData />
+				<BrawlerSuper class="h-full" :brawler :brawlerCdnData />
+			</div>
+			<BrawlerHypercharge class="md:col-span-3" :brawler :brawlerCdnData />
 		</div>
 	</UPage>
 </template>
