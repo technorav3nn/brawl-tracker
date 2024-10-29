@@ -606,7 +606,7 @@ __metadata:
     "@nuxt/devtools": "npm:^1.3.3"
     "@nuxt/eslint": "npm:^0.5.3"
     "@nuxt/fonts": "npm:^0.7.0"
-    "@nuxt/image": "npm:^1.3.0"
+    "@nuxt/image": "npm:^1.8.1"
     "@nuxt/kit": "npm:^3.9.0"
     "@nuxt/ui": "npm:^2.18.6"
     "@nuxt/ui-pro": "patch:@nuxt/ui-pro@npm%3A1.4.3#~/.yarn/patches/@nuxt-ui-pro-npm-1.4.3-c79a6386e3.patch"
@@ -629,6 +629,7 @@ __metadata:
     dom-parser: "npm:^1.1.5"
     drizzle-kit: "npm:^0.24.2"
     drizzle-orm: "npm:^0.33.0"
+    embla-carousel-vue: "npm:^8.3.0"
     eslint: "npm:^8.57.0"
     eslint-config-neon: "npm:^0.1.62"
     geoip-country: "npm:^5.0.202410042341"
@@ -640,6 +641,7 @@ __metadata:
     nuxt: "npm:^3.13.0"
     nuxt-time: "npm:^1.0.2"
     postgres: "npm:^3.4.4"
+    tailwind-variants: "npm:^0.2.1"
     vee-validate: "npm:^4.13.2"
     virtua: "npm:^0.35.1"
     vite: "npm:*"
@@ -3312,7 +3314,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/image@npm:^1.3.0":
+"@nuxt/image@npm:^1.8.1":
   version: 1.8.1
   resolution: "@nuxt/image@npm:1.8.1"
   dependencies:
@@ -9195,6 +9197,34 @@ __metadata:
   version: 1.5.31
   resolution: "electron-to-chromium@npm:1.5.31"
   checksum: 10/b1fc54bb6eca9a8e6ed3870d4d2de74f080b4e6384f3bbeef8c9d8911cbe3ccb1f57fd2c8f800b871841836134f2597a7edcb2e4dc644b9281b95fd0323cde46
+  languageName: node
+  linkType: hard
+
+"embla-carousel-reactive-utils@npm:8.3.0":
+  version: 8.3.0
+  resolution: "embla-carousel-reactive-utils@npm:8.3.0"
+  peerDependencies:
+    embla-carousel: 8.3.0
+  checksum: 10/8d1db9a65455dbbee4de7e163c470b2a7552dee13153e95c8754d37389e29dbd03b9a7b11018c84ed59b4db616846cf39de8ea828f50945ab9ea1e99fe9e7289
+  languageName: node
+  linkType: hard
+
+"embla-carousel-vue@npm:^8.3.0":
+  version: 8.3.0
+  resolution: "embla-carousel-vue@npm:8.3.0"
+  dependencies:
+    embla-carousel: "npm:8.3.0"
+    embla-carousel-reactive-utils: "npm:8.3.0"
+  peerDependencies:
+    vue: ^3.2.37
+  checksum: 10/03fc2774967e794296869371e756fa40db7af7bb8182d1d57b7535c12dd868a76b6ab469852657004cff0308349ccc949ff06530661a40a7d76f0820a1c573c5
+  languageName: node
+  linkType: hard
+
+"embla-carousel@npm:8.3.0":
+  version: 8.3.0
+  resolution: "embla-carousel@npm:8.3.0"
+  checksum: 10/939db8fbe604f1d46a1c3150bf8be7f5a566924e426a02762c0c97dcf474973fdb128a113d96a57e953753657fb69298f31247e7dfbc4d820fbb691c54502249
   languageName: node
   linkType: hard
 
@@ -18822,10 +18852,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tailwind-merge@npm:^2.2.0":
+  version: 2.5.4
+  resolution: "tailwind-merge@npm:2.5.4"
+  checksum: 10/2bf6585a30c0ab2e4e8c4bfe0d0a14edbf8e1d88bb8ce68c79f7185e8a7e410893903a98f5819cf8843f1afbe87639e1989af28456cbb0240ddec3468f303727
+  languageName: node
+  linkType: hard
+
 "tailwind-merge@npm:^2.5.2":
   version: 2.5.2
   resolution: "tailwind-merge@npm:2.5.2"
   checksum: 10/9f51ae7277a0ba51d9bec774bc9013c1b8736129b52d97886098689ea51bc7a894f6c7e857217019d92925c935ca18a53f24b4b416be4be363ef16cfb2ce480d
+  languageName: node
+  linkType: hard
+
+"tailwind-variants@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "tailwind-variants@npm:0.2.1"
+  dependencies:
+    tailwind-merge: "npm:^2.2.0"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 10/061b9fdb56bca0d49da24d67131014e61602ea2a6e9fe098550fd8d06a799a1196ba441e72a9d44c4424a5339397685332962d20e789a82061192ae026be9a8b
   languageName: node
   linkType: hard
 
@@ -20213,7 +20261,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-node@npm:2.1.3, vite-node@npm:^2.0.5":
+"vite-node@npm:2.1.3, vite-node@npm:^2.1.1":
   version: 2.1.3
   resolution: "vite-node@npm:2.1.3"
   dependencies:

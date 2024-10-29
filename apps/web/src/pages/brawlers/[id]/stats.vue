@@ -6,8 +6,9 @@ import { useFilteredMapStore } from "$components/features/brawler-map-stats/filt
 
 const slideover = useSlideover();
 const brawlerStore = useBrawlerStore();
+const { brawler } = storeToRefs(useBrawlerStore());
 
-if (!brawlerStore.brawler) {
+if (!brawler) {
 	throw createError({ statusCode: 404, message: "Brawler not found" });
 }
 
@@ -16,15 +17,19 @@ function openSlideover(map: BrawlApiMap) {
 	slideover.open(BrawlerMapStatsMapSlideover, { map, brawler: brawlerStore.brawler! });
 }
 
-const { brawler } = storeToRefs(useBrawlerStore());
-const filteredMapStore = useFilteredMapStore();
-const { filteredMaps } = storeToRefs(filteredMapStore);
-const { data: maps } = await useFetch("/api/maps");
+const filterButtonId = useId();
 
-watchEffect(() => console.log("filtered: ", filteredMaps.value));
+const filteredMapStore = useFilteredMapStore();
+const { filteredMaps, search } = storeToRefs(filteredMapStore);
+const { data: maps } = await useFetch("/api/maps");
 
 if (!maps.value) {
 	throw createError({ statusCode: 404, message: "Maps not found" });
+}
+
+function openFilterMenu() {
+	if (!document || import.meta.server) return;
+	(document.querySelectorAll(`#${filterButtonId}`)[1] as HTMLButtonElement).click();
 }
 
 filteredMapStore.setInitialMaps(maps.value);
@@ -39,12 +44,15 @@ filteredMapStore.setFilteredMaps(maps.value);
 			orientation="vertical"
 		>
 			<template #links>
-				<div class="space-x-4">
+				<div class="flex gap-4 flex-row">
 					<UButtonGroup class="sm:mt-4 min-w-40">
-						<UInput size="md" color="white" class="w-full" placeholder="Search..." />
+						<UInput v-model="search" size="md" color="white" class="w-full" placeholder="Search..." />
 						<UButton icon="i-heroicons-magnifying-glass" size="md" color="gray" />
 					</UButtonGroup>
-					<BrawlerMapStatsMapFilterSelectNew class="inline-block" />
+					<UButtonGroup class="sm:mt-4">
+						<BrawlerMapStatsMapFilterSelect :id="filterButtonId" />
+						<UButton icon="i-heroicons-funnel" size="md" color="gray" class="rounded-none rounded-r-md" @click="openFilterMenu" />
+					</UButtonGroup>
 					<!--
  <UButtonGroup class="sm:mt-4 min-w-40">
 						<USelectMenu
@@ -69,7 +77,7 @@ filteredMapStore.setFilteredMaps(maps.value);
 
 		<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
 			<UCard
-				v-for="map in filteredMapStore.filteredMaps"
+				v-for="map in filteredMaps"
 				:key="map.id"
 				v-memo="[map]"
 				:ui="{ body: { base: '!p-0  ' }, header: { padding: 'px-4 py-3 sm:px-4' } }"
