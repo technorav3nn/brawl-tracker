@@ -1,5 +1,5 @@
 import { createResolver } from "@nuxt/kit";
-import { isDevelopment } from "std-env";
+// import { isDevelopment } from "std-env";
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const { resolve } = createResolver(import.meta.url);
@@ -118,14 +118,14 @@ export default defineNuxtConfig({
 			// 	password: process.env.REDIS_PASSWORD,
 			// },
 		},
-		devStorage: {
-			cache: {
-				driver: "redis",
-				base: "cache",
-				host: "127.0.0.1",
-				port: 6379,
-			},
-		},
+		// devStorage: {
+		// 	cache: {
+		// 		driver: "redis",
+		// 		base: "cache",
+		// 		host: "127.0.0.1",
+		// 		port: 6379,
+		// 	},
+		// },
 	},
 	css: ["~/assets/css/tailwind.css", "~/assets/css/global.css"],
 	alias: {
