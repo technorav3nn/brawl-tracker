@@ -110,13 +110,13 @@ export default defineNuxtConfig({
 			kv: {
 				driver: "vercelKV",
 			},
-			cache: {
-				driver: "redis",
-				base: "cache",
-				host: process.env.REDIS_HOST,
-				port: 6379,
-				password: process.env.REDIS_PASSWORD,
-			},
+			// cache: {
+			// 	driver: "redis",
+			// 	base: "cache",
+			// 	host: process.env.REDIS_HOST,
+			// 	port: 6379,
+			// 	password: process.env.REDIS_PASSWORD,
+			// },
 		},
 		devStorage: {
 			cache: {
