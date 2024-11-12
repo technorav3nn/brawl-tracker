@@ -4,6 +4,30 @@ export function newFromLength<T extends any[]>(array: T, length: number) {
 	return array;
 }
 
+/**
+ * Splits specific part of an string
+ *
+ * @param inputString - The string to split
+ * @param splitArray - The parts of the string to split
+ * @returns The split array
+ */
+export function splitByArray<T extends any[]>(inputString: string, splitArray: T) {
+	return splitArray.reduce(
+		(result: T, splitString) => {
+			return result.reduce((newResult, str) => {
+				const parts = str.split(splitString);
+				for (let i = 0; i < parts.length - 1; i++) {
+					newResult.push(parts[i], splitString);
+				}
+
+				newResult.push(parts[parts.length - 1]);
+				return newResult;
+			}, []);
+		},
+		[inputString]
+	);
+}
+
 export const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => K) => {
 	return list.reduce(
 		(previous, currentItem) => {

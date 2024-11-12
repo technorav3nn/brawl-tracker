@@ -36,3 +36,14 @@ export function omit<T extends Record<string, any>>(
 
 	return result;
 }
+
+export type Entries<T> = { [K in keyof T]: [K, T[K]] }[keyof T];
+/**
+ * Simple Object.entries that is typed
+ *
+ * @param obj - Object to get entries from
+ * @returns The entries of the object
+ */
+export function typedObjectEntries<T extends object>(obj: T): Entries<T>[] {
+	return Object.entries(obj) as any;
+}

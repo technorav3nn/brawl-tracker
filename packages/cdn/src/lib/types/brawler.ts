@@ -1,8 +1,6 @@
 import type { Gear } from "./gears";
 
-type RepeatTuple<T, N extends number, R extends unknown[]> = R["length"] extends N
-	? R
-	: RepeatTuple<T, N, [T, ...R]>;
+type RepeatTuple<T, N extends number, R extends unknown[]> = R["length"] extends N ? R : RepeatTuple<T, N, [T, ...R]>;
 
 export interface BrawlerKitAttack {
 	description: string;
@@ -66,31 +64,25 @@ export interface BrawlerData {
 		description: string;
 		type: "Buff" | "Nerf" | "Neutral";
 	}[];
-	skins: [
-		brawler: {
-			/**
-			 * Name of the brawler
-			 */
-			name: string;
-			/**
-			 * Points to the directory of the skins
-			 */
-			directory: string;
-			skins: {
-				name: string;
-				path: string;
-				/**
-				 * Cost, if any (doesnt exist for default skin)
-				 */
-				cost?: string;
-				/**
-				 * Campaign, if any (doesnt exist for default skin or skins that arent from a campaign)
-				 * A campaign is like the Brawl Pass or Wasteland skins, etc.
-				 */
-				campaign?: string;
-			}[];
-		},
-	];
+	skins: {
+		name: string;
+		path: string;
+		/**
+		 * Cost, if any (doesnt exist for default skin)
+		 */
+		cost?: string;
+		/**
+		 * Campaign, if any (doesnt exist for default skin or skins that arent from a campaign)
+		 * A campaign is like the Brawl Pass or Wasteland skins, etc.
+		 */
+		campaign?: string;
+		/**
+		 * Rarity, if any
+		 * E.g. Super Rare, Epic, etc.
+		 */
+		// eslint-disable-next-line @typescript-eslint/sort-type-constituents
+		rarity?: "Rare" | "Super Rare" | "Epic" | "Mythic" | "Legendary" | "Hypercharge";
+	}[];
 	/**
 	 * Hypercharge, if any, empty array if none
 	 */

@@ -2,6 +2,10 @@ export function kebabCaseToNormalCase(string: string) {
 	return string.replaceAll("-", " ");
 }
 
+export function normalCaseToKebabCase(string: string) {
+	return string.replaceAll(" ", "-");
+}
+
 export function capitalizeLetters(string: string) {
 	return string.replaceAll(/\b\w/g, (letter) => letter.toUpperCase());
 }
