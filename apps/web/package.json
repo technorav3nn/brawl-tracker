@@ -41,7 +41,7 @@
 		"@vee-validate/zod": "^4.13.2",
 		"@vercel/kv": "^2.0.0",
 		"@vercel/postgres": "^0.9.0",
-		"@vueuse/nuxt": "^11.0.3",
+		"@vueuse/nuxt": "^12.0.0",
 		"@zag-js/pin-input": "^0.72.0",
 		"@zag-js/tags-input": "^0.72.0",
 		"@zag-js/vue": "^0.72.0",
