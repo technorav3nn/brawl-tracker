@@ -55,4 +55,11 @@ export function getBrawlerModelUrl(name: string, format: string = "png") {
 	return `${CDN_URL}/brawlers/${name}/model.${format}`;
 }
 
+/**
+ * Get skins -\> ids json
+ */
+export async function getSkinsIdsToNames() {
+	return $fetch<Record<string, { name: string; path: string }>>(`${CDN_URL}/skin-ids-to-name.json`);
+}
+
 export * from "./lib/types/brawler";

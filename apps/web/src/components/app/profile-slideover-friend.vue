@@ -11,7 +11,7 @@ const { friend } = toRefs(props);
 	<div class="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-800">
 		<div class="flex items-center gap-2">
 			<NuxtImg
-				:src="getCdnUrlForAvatarId(friend.avatarImage)"
+				:src="(friend as any).imageURL ? (friend as any).imageURL : getCdnUrlForAvatarId(friend.avatarImage)"
 				width="40"
 				height="40"
 				class="w-10 h-10 rounded-full self-center bg-contain object-cover aspect-1"

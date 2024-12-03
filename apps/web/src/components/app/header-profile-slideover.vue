@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getCdnUrlForAvatarId } from "@brawltracker/supercell-id-api";
+import { getCdnUrlForAvatarId, highLowToId, idToTag } from "@brawltracker/supercell-id-api";
 import type { NavigationLink } from "@nuxt/ui-pro/types";
 import { capitalizeFirstLetter, lowercaseFirstLetter } from "$lib/utils/common";
 
@@ -72,7 +72,7 @@ const sortMode = ref<"ascending" | "descending" | "none" | "status">("none");
 const friends = computed(() => {
 	if (!unfiltedFriends.value) return [];
 	return unfiltedFriends.value
-		.filter((f) => f.name.toLowerCase().includes(search.value.toLowerCase()))
+		.filter((f) => f.name.toLowerCase().includes(search.value.toLowerCase()) && f.applicationAccountId)
 		.sort((a, b) => {
 			if (sortMode.value === "status") return a.presence ? -1 : 1;
 			if (sortMode.value === "ascending") return a.name.localeCompare(b.name);
@@ -173,7 +173,11 @@ async function logout() {
 							@change="sortMode = lowercaseFirstLetter($event) as typeof sortMode"
 						/>
 					</div>
-					<NuxtLink v-for="friend in friends" :key="friend.scid" external :to="`/players/redirect/${friend.scid}`">
+					<NuxtLink
+						v-for="friend in friends"
+						:key="friend.scid"
+						:to="`/players/${idToTag(highLowToId(friend.applicationAccountId!))}`"
+					>
 						<LazyAppProfileSlideoverFriend :key="friend.scid" :friend="friend" />
 					</NuxtLink>
 				</div>

@@ -311,3 +311,108 @@ export interface CsvSkin {
 	TID: string | null;
 	id: number;
 }
+/* eslint-disable typescript-sort-keys/interface */
+export interface ShopBillingPackage {
+	id: number;
+	Name: string;
+	TID: string;
+	Type: number;
+	TypeCN: number;
+	Disabled: boolean;
+	ExistsApple: boolean;
+	ExistsAndroid: boolean;
+	ExistsCN: boolean;
+	DisabledCN: boolean;
+	ExistsAppleCN: boolean;
+	ExistsAndroidCN: boolean;
+	Diamonds: number;
+	BonusPercentage: number;
+	/**
+	 * USD uses large numbers, such as 1000 for $10.00 USD
+	 *
+	 * Note this when using this property
+	 */
+	USD: number;
+	Order: number;
+	RMB: number;
+	TencentID: any;
+	IconExportName: any;
+	FrameNumber: number;
+	StarterPackNumber: number;
+	XpLevelReq: number;
+	ValueFactor: number;
+	LabelTID: any;
+	LabelValue: number;
+	Bg: number;
+	Decor: number;
+	IsPromotion: boolean;
+	Coins: number;
+	RefundGemValue: number;
+	PricePointGemValue: number;
+	SCIDStore: boolean;
+	PremiumPass: boolean;
+	PremiumPlusPass: boolean;
+	BundledTierCount: number;
+	DiscountOf: any;
+	BundledXP: number;
+}
+
+/**
+ * Key is the package name, such as "com.supercell.laser.gempack1"
+ */
+export type ShopBillingPackages = Record<string, ShopBillingPackage>;
+
+export interface ShopItem {
+	id: number;
+	Name: string;
+	OfferType: number;
+	AcceptToOffers: boolean;
+	AcceptToChallengeRewards: boolean;
+	AcceptToChallengeFallbackRewards: boolean;
+	AcceptToQuestRewards: boolean;
+	AcceptToQuestFallbackRewards: boolean;
+	IconFrameNumber: number;
+	MaxResourcePerFrame: number;
+	ShopItemAsset: string;
+	ShopItemAssetBig: any;
+	PopupItemAsset: any;
+	PopupItemAssetHighlight: any;
+	MiniOfferAsset: any;
+	SeparatedSectionOfferAsset: any;
+	SeparatedSectionTeaseAsset: any;
+	SeasonalEventOfferAsset: any;
+	LegendaryOfferAsset: string;
+	ClubShopItemAsset: string;
+	OfferAssetSolo: any;
+	OfferAssetHalf: any;
+	OfferAssetQuarter: any;
+	OfferAssetHeroLayout: any;
+	OfferAssetSoloHighlight: any;
+	OfferAssetHalfHighlight: any;
+	OfferAssetQuarterHighlight: any;
+	OfferAssetHeroLayoutHighlight: any;
+	SoloOfferBgFrames: string;
+	BrawlPassAssetPaid: any;
+	BrawlPassAssetFree: any;
+	BrawlPassAssetPlus: any;
+	MasteryTrackAsset: any;
+	MasterySmallRewardAsset: any;
+	TrophyRankRewardProfile: string;
+	SameSizeForCollected: boolean;
+	TrophyRewardMediumThreshold: number;
+	TrophyRewardLargeThreshold: number;
+	TrophyRankRewardTiny: string;
+	TrophyRankRewardSmall: string;
+	TrophyRankRewardMedium: any;
+	TrophyRankRewardLarge: any;
+	ChainOfferMiniItemSmall: any;
+	ChainOfferMiniItemMedium: any;
+	ChainOfferMiniItemLarge: any;
+	RankedRewardAsset: any;
+	RankedGoalAsset: any;
+	RankedGoalQuestAsset: any;
+	ClubCollabAsset: any;
+	RewardDescTID: string;
+	ChallengeRewardFrame: string;
+	ChallengeRewardAsset: any;
+}

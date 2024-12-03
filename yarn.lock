@@ -626,6 +626,7 @@ __metadata:
     arctic: "npm:^1.9.2"
     cheerio: "npm:^1.0.0-rc.12"
     country-code-lookup: "npm:^0.1.3"
+    date-fns: "npm:^4.1.0"
     dom-parser: "npm:^1.1.5"
     drizzle-kit: "npm:^0.24.2"
     drizzle-orm: "npm:^0.33.0"
@@ -8589,6 +8590,13 @@ __metadata:
     es-errors: "npm:^1.3.0"
     is-data-view: "npm:^1.0.1"
   checksum: 10/96f34f151bf02affb7b9f98762fb7aca1dd5f4553cb57b80bce750ca609c15d33ca659568ef1d422f7e35680736cbccb893a3d4b012760c758c1446bbdc4c6db
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "date-fns@npm:4.1.0"
+  checksum: 10/d5f6e9de5bbc52310f786099e18609289ed5e30af60a71e0646784c8185ddd1d0eebcf7c96b7faaaefc4a8366f3a3a4244d099b6d0866ee2bec80d1361e64342
   languageName: node
   linkType: hard
 
