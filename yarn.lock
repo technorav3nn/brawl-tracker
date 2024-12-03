@@ -617,7 +617,7 @@ __metadata:
     "@types/geoip-country": "npm:^4.0.2"
     "@unpic/vue": "npm:^0.0.50"
     "@vee-validate/zod": "npm:^4.13.2"
-    "@vercel/kv": "npm:^2.0.0"
+    "@vercel/kv": "npm:^3.0.0"
     "@vercel/postgres": "npm:^0.9.0"
     "@vueuse/nuxt": "npm:^11.0.3"
     "@zag-js/pin-input": "npm:^0.72.0"
@@ -5933,12 +5933,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@upstash/redis@npm:^1.31.3":
-  version: 1.34.1
-  resolution: "@upstash/redis@npm:1.34.1"
+"@upstash/redis@npm:^1.34.0":
+  version: 1.34.3
+  resolution: "@upstash/redis@npm:1.34.3"
   dependencies:
     crypto-js: "npm:^4.2.0"
-  checksum: 10/4db9954a65be269e3be3eb4a4db5c84700b1b7f3cedfabaa7a65b9a7cecd5e8b1627e09e255fee0467e91eeaa99210930ccfe79e63dcf2de2a24e11e42d1a032
+  checksum: 10/bc56656b80b368e318287eaeac861c65b7b35b5227564bbea54670aa1de0bc225bde72a36edef4ae4e379dd0b7fa2be6e003cbfc779fe6d4ffdb478af0196cfc
   languageName: node
   linkType: hard
 
@@ -5953,12 +5953,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/kv@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@vercel/kv@npm:2.0.0"
+"@vercel/kv@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@vercel/kv@npm:3.0.0"
   dependencies:
-    "@upstash/redis": "npm:^1.31.3"
-  checksum: 10/e9731d0fb63750f0290ede2a2cef58b6f9c0a6fcafe34915cade02b2a2f15f38a7e9f6290b83f3a4e81e2d0a3c9f976de764620770226994ffe6f89cde94ed28
+    "@upstash/redis": "npm:^1.34.0"
+  checksum: 10/019354a89fb624017cefc2414d3d4c2897631ff2ec5fb066c8e3e5cea848750723ae22ac44cfff509e3aed6be7361db7e50b9097d7784427120b3ae9474e52fa
   languageName: node
   linkType: hard
 
@@ -18860,17 +18860,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-merge@npm:^2.2.0":
+"tailwind-merge@npm:^2.2.0, tailwind-merge@npm:^2.5.2":
   version: 2.5.4
   resolution: "tailwind-merge@npm:2.5.4"
   checksum: 10/2bf6585a30c0ab2e4e8c4bfe0d0a14edbf8e1d88bb8ce68c79f7185e8a7e410893903a98f5819cf8843f1afbe87639e1989af28456cbb0240ddec3468f303727
-  languageName: node
-  linkType: hard
-
-"tailwind-merge@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "tailwind-merge@npm:2.5.2"
-  checksum: 10/9f51ae7277a0ba51d9bec774bc9013c1b8736129b52d97886098689ea51bc7a894f6c7e857217019d92925c935ca18a53f24b4b416be4be363ef16cfb2ce480d
   languageName: node
   linkType: hard
 
