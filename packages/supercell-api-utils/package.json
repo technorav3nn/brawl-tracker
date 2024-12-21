@@ -9,9 +9,9 @@
 		"lint": "eslint ."
 	},
 	"devDependencies": {
-		"eslint": "^8.57.0",
+		"eslint": "^8.57.1",
 		"tsup": "^8.2.4",
-		"typescript": "5.3.3"
+		"typescript": "5.7.2"
 	},
 	"files": [
 		"dist"

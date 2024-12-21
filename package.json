@@ -18,27 +18,27 @@
 		"db:stop": "docker-compose down"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.27.1",
-		"@humanwhocodes/retry": "^0.3.0",
-		"@sapphire/eslint-config": "^5.0.3",
-		"@types/pg": "^8",
+		"@changesets/cli": "^2.27.11",
+		"@humanwhocodes/retry": "^0.4.1",
+		"@sapphire/eslint-config": "^5.0.5",
+		"@types/pg": "^8.11.10",
 		"@vitest/ui": "^2.1.3",
-		"eslint": "^8.57.0",
-		"eslint-config-neon": "^0.1.62",
-		"lint-staged": "^15.2.0",
-		"pg": "^8.12.0",
-		"prettier": "^3.2.4",
-		"prettier-plugin-tailwindcss": "^0.6.6",
-		"turbo": "^2.1.0",
+		"eslint": "^8.57.1",
+		"eslint-config-neon": "^0.2.4",
+		"lint-staged": "^15.2.11",
+		"pg": "^8.13.1",
+		"prettier": "^3.4.2",
+		"prettier-plugin-tailwindcss": "^0.6.9",
+		"turbo": "^2.3.3",
 		"vitest": "^2.1.3"
 	},
 	"resolutions": {
-		"sharp": "0.32.6"
+		"sharp": "0.33.5"
 	},
-	"packageManager": "yarn@4.2.2",
+	"packageManager": "yarn@4.5.3",
 	"volta": {
-		"node": "20.11.0",
-		"yarn": "4.1.0"
+		"node": "20.18.1",
+		"yarn": "4.5.3"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write",
