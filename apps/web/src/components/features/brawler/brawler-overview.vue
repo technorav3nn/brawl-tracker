@@ -77,7 +77,7 @@ const stats = computed(() => {
 			</div>
 			<div class="flex flex-col justify-between gap-3 sm:flex-col md:flex-col xl:flex-col items-center w-full">
 				<NuxtImg
-					class="mt-2 aspect-square w-full self-center !object-scale-down"
+					class="mt-2 aspect-square w-full self-center !object-scale-down !h-[revert-layer]"
 					:src="modelImage"
 					:height="brawlerModelSize.height"
 					:width="brawlerModelSize.width"
@@ -98,9 +98,10 @@ const stats = computed(() => {
 						tr: { base: '[&_:nth-child(1)]:!text-foreground [&_:nth-child(1)]:!font-semibold' },
 					}"
 					:rows="stats"
-					:columns="null"
+					:columns="undefined"
 					class="!w-full"
-				/>
+				>
+				</UTable>
 			</div>
 		</div>
 	</div>

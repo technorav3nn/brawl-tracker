@@ -112,9 +112,10 @@ async function sendCode() {
 				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
 					If you didn't receive the code, check your spam folder or resend it.
 				</p>
-				<UiPinInput class="!w-full" otp format="###-###" @completed="submitStageTwo({ code: $event })" />
+				<UiPinInput class="!w-full" otp format="### ###" @completed="submitStageTwo({ code: $event })" />
+				<UButton block class="mt-2" @click="sendCode">Login</UButton>
 				<UDivider class="mt-4 w-[75px] self-center" size="xs" />
-				<UButton block class="mt-4" @click="sendCode">Resend Code</UButton>
+				<UButton block class="mt-4" color="gray" @click="sendCode">Resend Code</UButton>
 				<UAlert
 					v-if="!!validationError"
 					color="red"

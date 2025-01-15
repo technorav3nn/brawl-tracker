@@ -101,6 +101,7 @@ export default defineNuxtConfig({
 		nuxtAuthSecret: process.env.NUXT_AUTH_SECRET,
 		postgresUrl: process.env.DEV_POSTGRES_URL,
 		devPostgresUrl: process.env.DEV_POSTGRES_URL,
+		apiEncryptionSecret: process.env.API_ENCRYPTION_SECRET,
 		public: {
 			sentryDsn: process.env.SENTRY_DSN,
 		},

@@ -24,15 +24,17 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const {
-		tokens: { scidToken, sessionToken, sessionTokenExpiry },
+		tokens: { scidToken: encryptedScidToken, scidTokenIv, sessionToken, sessionTokenExpiry },
 	} = user;
 
-	if (!scidToken) {
+	if (!encryptedScidToken) {
 		throw createError({
 			statusCode: 400,
 			statusMessage: "User has no SCID token, not logged in with Supercell ID",
 		});
 	}
+
+	const scidToken = aes256cbcDecrypt(encryptedScidToken, useRuntimeConfig().apiEncryptionSecret, Buffer.from(scidTokenIv, "hex"));
 
 	// If the session expriy is 30 hours, and the current time before that, then return the session token
 	if (new Date() > sessionTokenExpiry) {

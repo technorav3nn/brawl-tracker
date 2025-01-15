@@ -58,7 +58,7 @@ const links: PageLink[] = [
 			// eslint-disable-next-line n/prefer-global/url
 			const url = new URL(window.location.href);
 			url.hash = "";
-			if (navigator.share && navigator.canShare()) {
+			if (navigator.canShare()) {
 				await navigator.share({
 					url: url.toString(),
 				});

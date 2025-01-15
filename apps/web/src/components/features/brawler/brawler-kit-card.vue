@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
 	title: string;
-	tableData: Record<any, any>;
+	tableData: Record<any, any>[];
 	description: string;
 	icon: string;
 	spanColumns?: boolean;
@@ -38,10 +38,22 @@ const props = defineProps<{
 					},
 					tr: { base: '[&_:nth-child(1)]:!text-foreground [&_:nth-child(1)]:!font-semibold' },
 				}"
+				:columns="[
+					{ key: 'title', label: 'Name' },
+					{ key: 'value', label: 'Value' },
+				]"
 				:rows="tableData"
-				:columns="null"
 				class="w-full mt-2"
-			/>
+			>
+				<template #title-data="{ row }">
+					<div v-if="row.isLevelStat">
+						<UTooltip :ui="{ base: '[@media(pointer:coarse)]:!block' }" text="This stat is level dependent">
+							<p class="underline decoration-dashed underline-offset-4">{{ row.title }}</p>
+						</UTooltip>
+					</div>
+					<p v-else>{{ row.title }}</p>
+				</template>
+			</UTable>
 		</div>
 	</div>
 </template>

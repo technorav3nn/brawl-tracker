@@ -35,8 +35,8 @@ if (!brawler.value) {
 		</div> 
 -->
 
-		<div class="grid grid-cols-1 gap-3 md:grid-cols-3">
-			<BrawlerOverview :brawler :brawlerCdnData />
+		<div class="grid grid-cols-1 gap-y-3 md:gap-x-3 md:grid-cols-3">
+			<BrawlerOverview class="col-span-3 md:col-span-1" :brawler :brawlerCdnData />
 			<div class="flex md:col-span-2 flex-col gap-2">
 				<div
 					class="grid grid-cols-1 gap-2 md:grid-cols-2 h-[100%]"

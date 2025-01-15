@@ -8,7 +8,8 @@ export const tokens = pgTable("scid_api_tokens", {
 		.references(() => users.id, { onDelete: "cascade" }),
 	sessionToken: varchar("session_token", { length: 800 }).unique().notNull(),
 	//	.references((): AnyPgColumn => users.__ATTRIBUTES__sessionToken, { onUpdate: "cascade", onDelete: "cascade" }),
-	scidToken: varchar("scid_token", { length: 800 }).unique().notNull(),
+	scidToken: varchar("scid_token", { length: 985 }).unique().notNull(),
+	scidTokenIv: varchar("scid_token_iv", { length: 64 }).notNull(),
 	sessionTokenExpiry: timestamp("session_token_expiry", { withTimezone: true, mode: "date" })
 		.notNull()
 		.default(sql`now() + interval '30 hours'`), // 1d 6h

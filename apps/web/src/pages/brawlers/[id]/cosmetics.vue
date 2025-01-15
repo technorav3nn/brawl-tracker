@@ -60,7 +60,7 @@ const replacements: Record<string, () => VNode> = {
 				height: 25,
 				class: "inline-block align-middle -translate-y-[2.4px] -ml-0.5",
 			}),
-			h("span", { class: "inline-block" }, "• Seasonal"),
+			h("span", { class: "inline-block" }, "Seasonal"),
 		]),
 };
 

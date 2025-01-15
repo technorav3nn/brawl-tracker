@@ -1,5 +1,4 @@
 import { getProfile, getSessionToken } from "@brawltracker/supercell-id-api";
-import * as Sentry from "@sentry/nuxt";
 import { eq } from "drizzle-orm";
 import type { H3Event, EventHandlerRequest } from "h3";
 import { FetchError } from "ofetch";
@@ -40,12 +39,18 @@ async function handler(event: H3Event<EventHandlerRequest>, retry = false) {
 
 	const userTokens = await db.query.tokens.findFirst({
 		where: (tokens, { eq }) => eq(tokens.userId, id),
-		columns: { scidToken: true, sessionToken: true },
+		columns: { scidToken: true, sessionToken: true, scidTokenIv: true },
 	});
 
 	if (!userTokens) {
 		return { exists: false, data: null };
 	}
+
+	const scidToken = aes256cbcDecrypt(
+		userTokens.scidToken,
+		useRuntimeConfig().apiEncryptionSecret,
+		Buffer.from(userTokens.scidTokenIv, "hex")
+	);
 
 	const profile = await getProfile(userTokens.sessionToken).catch<any>(async (error) => {
 		if (!(error instanceof FetchError)) {
@@ -57,7 +62,7 @@ async function handler(event: H3Event<EventHandlerRequest>, retry = false) {
 
 		if (error.message.includes("401") && !retry) {
 			// user needs a new session token
-			const { token } = await getSessionToken(userTokens.scidToken);
+			const { token } = await getSessionToken(scidToken);
 
 			try {
 				await db.transaction(async (tx) => {
@@ -65,7 +70,6 @@ async function handler(event: H3Event<EventHandlerRequest>, retry = false) {
 					await tx.update(users).set({ __ATTRIBUTES__sessionToken: token }).where(eq(users.id, id));
 				});
 			} catch {
-				Sentry.captureException(error);
 				throw createError({
 					statusCode: 400,
 					statusMessage: "Failed to update session token",

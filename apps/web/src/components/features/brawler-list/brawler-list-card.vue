@@ -27,9 +27,7 @@ const color = computed(() => {
 	<UPageCard
 		class="overflow-hidden w-full"
 		:ui="{
-			// @ts-expect-error - Bug
 			header: { padding: '!p-0' },
-			// @ts-expect-error - Bug
 			body: { padding: '!p-1.5' },
 		}"
 		:to="`/brawlers/${props.brawler.id}`"
@@ -54,12 +52,7 @@ const color = computed(() => {
 					{{ props.brawler.name }}
 				</p>
 				<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">{{ props.brawler.class.name }}</p>
-				<UBadge
-					v-if="showRarity"
-					:ui="{ rounded: 'rounded-full' }"
-					class="w-max h-5 text-[0.70rem] mt-1"
-					:class="color"
-				>
+				<UBadge v-if="showRarity" :ui="{ rounded: 'rounded-full' }" class="w-max h-5 text-[0.70rem] mt-1" :class="color">
 					{{ props.brawler.rarity.name }}
 				</UBadge>
 			</div>

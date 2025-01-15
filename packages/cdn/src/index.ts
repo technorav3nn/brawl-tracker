@@ -6,7 +6,7 @@ export const CDN_URL = "https://cdn.deathblows.xyz";
 
 export function normalizeNameToCdnName(name: string) {
 	// "El Primo" -> "el_primo" for example
-	return name.toLowerCase().replaceAll(" ", "_");
+	return name.toLowerCase().replaceAll(" ", "_").replace("&", "_").replace(".", "_");
 }
 
 export function isNameNormalized(name: string) {

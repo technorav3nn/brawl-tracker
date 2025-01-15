@@ -97,6 +97,8 @@ const vueRuleset = merge(...vue, {
 		"vue/valid-v-for": "off",
 		"vue/no-static-inline-styles": "off",
 		"vue/no-unused-refs": "off",
+		// Rule is also broken
+		"vue/valid-v-slot": "off",
 	},
 	languageOptions: {
 		parser: vueParser,

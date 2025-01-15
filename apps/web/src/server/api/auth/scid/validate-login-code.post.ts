@@ -98,6 +98,7 @@ export default eventHandler(async (event) => {
 
 	const profile = await getProfile(token);
 	const brawlstars = useBrawlStarsApi();
+	console.log("SECRET:", useRuntimeConfig().apiEncryptionSecret);
 
 	await db.transaction(async (tx) => {
 		const connectedSystem = profile.data?.connectedSystems.find((system) => system.application === "laser-prod");
@@ -130,7 +131,15 @@ export default eventHandler(async (event) => {
 				savedClubTags: [],
 			})
 			.returning({ insertedId: users.id });
-		await tx.insert(tokens).values({ scidToken, sessionToken: scidSession.token, userId });
+
+		const iv = generateIV();
+		const encryptedScidToken = aes256cbcEncrypt(scidToken, useRuntimeConfig().apiEncryptionSecret, iv);
+
+		console.log(encryptedScidToken);
+
+		await tx
+			.insert(tokens)
+			.values({ scidToken: encryptedScidToken, sessionToken: scidSession.token, scidTokenIv: iv.toString("hex"), userId });
 		await tx.insert(supercellIdProfiles).values({
 			name: profile.data!.name.name,
 			qrCodeUrl: profile.data!.qrCodeURL,

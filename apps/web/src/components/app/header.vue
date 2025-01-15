@@ -134,9 +134,7 @@ const items = computed(() => [
 				to="/login"
 				icon="i-heroicons-arrow-left-end-on-rectangle-20-solid"
 				square
-			>
-				Log In
-			</UButton>
+			/>
 			<UTooltip v-if="status === 'success' && profile?.exists" text="My Profile">
 				<UButton
 					v-if="status === 'success' && profile?.exists"

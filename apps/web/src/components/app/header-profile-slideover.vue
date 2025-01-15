@@ -7,22 +7,25 @@ const tabs = ["profile", "friends", "settings"] as const;
 const tab = ref<(typeof tabs)[number]>("profile");
 const oldTab = ref<(typeof tabs)[number]>("profile");
 
-const links = computed<Partial<NavigationLink>[]>(() => [
+const links = computed<NavigationLink[]>(() => [
 	{
 		icon: "i-heroicons-user-circle-20-solid",
 		click: () => setTab("profile"),
 		active: tab.value === "profile",
+		label: "",
 	},
 	{
 		icon: "i-heroicons-users-20-solid",
 		click: () => setTab("friends"),
 		active: tab.value === "friends",
+		label: "",
 	},
 
 	{
 		icon: "i-heroicons-cog-20-solid",
 		click: () => setTab("settings"),
 		active: tab.value === "settings",
+		label: "",
 	},
 ]);
 
