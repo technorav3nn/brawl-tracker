@@ -11,7 +11,7 @@
 		"nuxt:prepare": "nuxt prepare",
 		"lint": "eslint . ",
 		"start": "node --env-file=.env --import ./.output/server/sentry.server.config.mjs .output/server/index.mjs",
-		"xata": "xata codegen"
+		"xata:codegen": "xata codegen"
 	},
 	"dependencies": {
 		"@brawltracker/brawl-api": "workspace:*",
