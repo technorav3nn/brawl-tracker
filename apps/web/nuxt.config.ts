@@ -137,6 +137,7 @@ export default defineNuxtConfig({
 		$server: resolve("./src/server"),
 		$composables: resolve("./src/hooks"),
 		$lib: resolve("./src/lib"),
+		$xata: resolve("./src/xata.ts"),
 		$: resolve("./src"),
 	},
 	components: [{ path: "$components/features", extensions: [".vue"], prefix: "" }, "$components"],

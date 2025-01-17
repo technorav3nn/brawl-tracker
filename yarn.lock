@@ -600,7 +600,6 @@ __metadata:
     "@iconify-json/simple-icons": "npm:^1.1.105"
     "@iconify-json/tabler": "npm:^1.1.113"
     "@lucia-auth/adapter-drizzle": "npm:^1.1.0"
-    "@neondatabase/serverless": "npm:^0.9.5"
     "@node-rs/argon2": "npm:^1.8.3"
     "@nuxt/content": "npm:^2.13.0"
     "@nuxt/devtools": "npm:^1.3.3"
@@ -620,8 +619,8 @@ __metadata:
     "@unpic/vue": "npm:^0.0.50"
     "@vee-validate/zod": "npm:^4.13.2"
     "@vercel/kv": "npm:^2.0.0"
-    "@vercel/postgres": "npm:^0.9.0"
     "@vueuse/nuxt": "npm:^11.0.3"
+    "@xata.io/client": "npm:0.30.1"
     "@zag-js/pin-input": "npm:^0.72.0"
     "@zag-js/tags-input": "npm:^0.72.0"
     "@zag-js/vue": "npm:^0.72.0"
@@ -2413,15 +2412,6 @@ __metadata:
     "@emnapi/runtime": "npm:^1.1.0"
     "@tybys/wasm-util": "npm:^0.9.0"
   checksum: 10/c84b96bae4e6c952a6d75d808bfc357d6bcaf0025febab4ec4e54877502f377b399bd6d8026ead96c618979c3fbef4066b3df81773acc93dc9af91a334f25106
-  languageName: node
-  linkType: hard
-
-"@neondatabase/serverless@npm:^0.9.3, @neondatabase/serverless@npm:^0.9.5":
-  version: 0.9.5
-  resolution: "@neondatabase/serverless@npm:0.9.5"
-  dependencies:
-    "@types/pg": "npm:8.11.6"
-  checksum: 10/4a6b370376b42823e2529c24e947a20b709dc65181ab5c21383723298ff76ff38b34ba99c3800c49e85bed7b604fda2430cec4fd9aadfac22bd06ca4e6cc98e8
   languageName: node
   linkType: hard
 
@@ -5374,17 +5364,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/pg@npm:8.11.6":
-  version: 8.11.6
-  resolution: "@types/pg@npm:8.11.6"
-  dependencies:
-    "@types/node": "npm:*"
-    pg-protocol: "npm:*"
-    pg-types: "npm:^4.0.1"
-  checksum: 10/4eb22d42c5363abf58b1be0104e01332a0928e9dce8571ad136ce3e256c16dd97343a17c29066e4f390ed366548cca0bda55ff48b495ee4c1d70d123cc75edf6
-  languageName: node
-  linkType: hard
-
 "@types/pg@npm:8.6.1":
   version: 8.6.1
   resolution: "@types/pg@npm:8.6.1"
@@ -6002,18 +5981,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/postgres@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "@vercel/postgres@npm:0.9.0"
-  dependencies:
-    "@neondatabase/serverless": "npm:^0.9.3"
-    bufferutil: "npm:^4.0.8"
-    utf-8-validate: "npm:^6.0.4"
-    ws: "npm:^8.17.1"
-  checksum: 10/03efc70073d45fbc18cbada00c5fcd09ad9e8bb2fe2857a82ded5b25881bcb83663c88622e067c18c29e680d5e6a271e8643df1c176d482ab34848d01b5ebcbc
-  languageName: node
-  linkType: hard
-
 "@vitejs/plugin-vue-jsx@npm:^4.0.1":
   version: 4.0.1
   resolution: "@vitejs/plugin-vue-jsx@npm:4.0.1"
@@ -6537,6 +6504,15 @@ __metadata:
   dependencies:
     vue-demi: "npm:>=0.14.10"
   checksum: 10/467bd1da45e4cf8d5a9c91129bd7e2cfecd80e896e8fd11e6a85fa28d2743b124faf595fc54e1c00359f721b3faf70c5f9574130c7ab3a30c4891a89c77b80fd
+  languageName: node
+  linkType: hard
+
+"@xata.io/client@npm:0.30.1":
+  version: 0.30.1
+  resolution: "@xata.io/client@npm:0.30.1"
+  peerDependencies:
+    typescript: ">=4.5"
+  checksum: 10/7181e73eadb85647591a721f26621e3367eaff4fa3868d16edfa781ce0e7fb2f092dcc07c08b0348bea8cc1458f7ca76551bbcc5ff75d0d1980292f905df0886
   languageName: node
   linkType: hard
 
@@ -7486,16 +7462,6 @@ __metadata:
     base64-js: "npm:^1.3.1"
     ieee754: "npm:^1.2.1"
   checksum: 10/b6bc68237ebf29bdacae48ce60e5e28fc53ae886301f2ad9496618efac49427ed79096750033e7eab1897a4f26ae374ace49106a5758f38fb70c78c9fda2c3b1
-  languageName: node
-  linkType: hard
-
-"bufferutil@npm:^4.0.8":
-  version: 4.0.8
-  resolution: "bufferutil@npm:4.0.8"
-  dependencies:
-    node-gyp: "npm:latest"
-    node-gyp-build: "npm:^4.3.0"
-  checksum: 10/d9337badc960a19d5a031db5de47159d7d8a11b6bab399bdfbf464ffa9ecd2972fef19bb61a7d2827e0c55f912c20713e12343386b86cb013f2b99c2324ab6a3
   languageName: node
   linkType: hard
 
@@ -15156,7 +15122,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-gyp-build@npm:^4.2.2, node-gyp-build@npm:^4.3.0":
+"node-gyp-build@npm:^4.2.2":
   version: 4.8.2
   resolution: "node-gyp-build@npm:4.8.2"
   bin:
@@ -20121,16 +20087,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"utf-8-validate@npm:^6.0.4":
-  version: 6.0.4
-  resolution: "utf-8-validate@npm:6.0.4"
-  dependencies:
-    node-gyp: "npm:latest"
-    node-gyp-build: "npm:^4.3.0"
-  checksum: 10/046fc81e7c7528661b8162262e62750ab23439e9901dece161b4c6faf36c699f55b8ebd3d9701da2881e315cdce1ee9597121f7dd2f4e405b8aeeec09ded8684
-  languageName: node
-  linkType: hard
-
 "util-deprecate@npm:^1.0.1, util-deprecate@npm:^1.0.2, util-deprecate@npm:~1.0.1":
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
@@ -20926,7 +20882,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^8.16.0, ws@npm:^8.17.1, ws@npm:^8.18.0":
+"ws@npm:^8.16.0, ws@npm:^8.18.0":
   version: 8.18.0
   resolution: "ws@npm:8.18.0"
   peerDependencies:

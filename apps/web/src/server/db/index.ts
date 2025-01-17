@@ -1,12 +1,9 @@
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
-import * as usersSchema from "./schema/users";
+import { drizzle } from "drizzle-orm/xata-http";
+import * as schema from "./schema";
+import { getXataClient } from "./xata";
 
-const { postgresUrl, devPostgresUrl } = useRuntimeConfig();
-const sql = singleton("postgres-client", postgres(import.meta.dev ? devPostgresUrl : postgresUrl));
+const xata = getXataClient();
 
-export const db = drizzle(sql!, {
-	schema: {
-		...usersSchema,
-	},
+export const db = drizzle(xata, {
+	schema,
 });

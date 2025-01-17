@@ -3,7 +3,7 @@ import { generateIdFromEntropySize } from "lucia";
 import { signupUserSchema } from "$lib/validation/user-schema";
 import { lucia } from "$server/auth";
 import { db } from "$server/db";
-import { users } from "$server/db/schema/users";
+import { users } from "$server/db/schema";
 
 export default eventHandler(async (event) => {
 	const { success, error, data } = await readValidatedBody(event, (body) => {

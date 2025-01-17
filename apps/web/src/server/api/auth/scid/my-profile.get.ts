@@ -3,7 +3,7 @@ import { eq } from "drizzle-orm";
 import type { H3Event, EventHandlerRequest } from "h3";
 import { FetchError } from "ofetch";
 import { db } from "$server/db";
-import { supercellIdProfiles, tokens, users, type SupercellIdProfileInsert } from "$server/db/schema/users";
+import { supercellIdProfiles, tokens, users, type SupercellIdProfileInsert } from "$server/db/schema";
 
 async function handler(event: H3Event<EventHandlerRequest>, retry = false) {
 	if (!event.context.user) {

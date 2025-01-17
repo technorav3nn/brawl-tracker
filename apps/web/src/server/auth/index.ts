@@ -2,7 +2,7 @@ import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle";
 import { Discord } from "arctic";
 import { Lucia, TimeSpan } from "lucia";
 import { db } from "$server/db";
-import { sessions, users, type User } from "$server/db/schema/users";
+import { sessions, users, type User } from "$server/db/schema";
 
 const { discordClientId, discordClientSecret, authOrigin } = useRuntimeConfig();
 

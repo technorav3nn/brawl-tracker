@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { ToZodSchema } from "$lib/types/zod";
-import type { User } from "$server/db/schema/users";
+import type { User } from "$server/db/schema";
 
 export type UserBaseSchema = Pick<User, "email" | "savedClubTags" | "savedPlayerTags" | "username">;
 

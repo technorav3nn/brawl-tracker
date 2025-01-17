@@ -1,9 +1,17 @@
 <script setup lang="ts">
+import { Image } from "@unpic/vue";
+import { ModalsMapViewerModal } from "#components";
+
 const {
 	params: { map: mapId },
 } = useRoute("maps-map");
 
 const { data: map } = await useFetch(`/api/maps/${mapId}`);
+const modal = useModal();
+
+function openMapViewer() {
+	modal.open(ModalsMapViewerModal, { imageUrl: map.value!.imageUrl });
+}
 </script>
 
 <template>
@@ -11,23 +19,41 @@ const { data: map } = await useFetch(`/api/maps/${mapId}`);
 		<UPage>
 			<UPageBody class="!mt-8">
 				<div class="flex justify-center items-center">
-					<UCard class="w-min" :ui="{ body: { base: '!p-0' }, header: { padding: 'px-4 py-3 sm:px-4' } }">
-						<template #header>
-							<div class="flex gap-2 items-center">
-								<NuxtImg :src="map!.gameMode.imageUrl" :alt="map!.name" class="object-scale-down" width="30" height="30" />
-								<h1 class="text-md lg:text-md font-semibold truncate">{{ map!.name }}</h1>
-							</div>
-						</template>
-						<div class="flex items-center justify-center h-full mx-auto">
+					<UCard :ui="{ body: { padding: '!p-0' } }" class="min-w-56">
+						<div class="flex flex-row gap-0 flex-nowrap">
 							<NuxtImg
 								:src="map!.imageUrl"
 								:alt="map!.name"
-								class="w-full rounded-b-lg"
-								width="200"
+								class="rounded rounded-r-none"
+								width="180"
 								:modifiers="map!.gameMode.name === 'Brawl Ball' ? { extract: '85_132_500_785' } : { trim: '{}' }"
-								:height="map!.gameMode.name.includes('Showdown') ? 300 : 300"
+								height="250"
 								loading="lazy"
 							/>
+							<div class="p-3.5 flex flex-col items-start justify-between">
+								<div class="flex gap-2 items-center">
+									<Image :src="map!.gameMode.imageUrl" :alt="map!.name" class="!object-scale-down" width="32" height="32" />
+									<div class="flex flex-col">
+										<h1 class="text-md font-semibold">{{ map!.name }}</h1>
+										<p class="text-sm">{{ map!.gameMode.name }}</p>
+									</div>
+								</div>
+								<div class="flex gap-2.5 flex-col w-full">
+									<div class="flex flex-col">
+										<p class="text-sm">
+											Concept by: <span class="font-semibold">{{ map?.credit ?? "BS Devs" }}</span>
+										</p>
+										<p class="text-sm">
+											Disabled: <span class="font-semibold">{{ map?.disabled ? "Yes" : "No" }}</span>
+										</p>
+										<p class="text-sm">
+											Last Seen:
+											<span class="font-semibold">{{ map?.lastActive ? new Date(map.lastActive).toDateString() : "???" }}</span>
+										</p>
+									</div>
+									<UButton icon="i-heroicons-magnifying-glass-plus-20-solid" block @click="openMapViewer">View Map</UButton>
+								</div>
+							</div>
 						</div>
 					</UCard>
 				</div>

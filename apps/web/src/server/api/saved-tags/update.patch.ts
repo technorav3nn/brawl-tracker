@@ -1,6 +1,6 @@
 import { updateTagBodySchema } from "$lib/validation/server/tag-api-schema";
 import { db } from "$server/db";
-import { users } from "$server/db/schema/users";
+import { users } from "$server/db/schema";
 
 export default eventHandler(async (event) => {
 	const body = await readValidatedBody(event, (data) => updateTagBodySchema.safeParse(data));

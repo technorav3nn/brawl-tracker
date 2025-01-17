@@ -46,3 +46,6 @@ token.json
 .vercel
 
 .scripts
+
+**/.xatarc
+**/xata.ts

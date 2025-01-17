@@ -10,7 +10,7 @@ import { generateIdFromEntropySize } from "lucia";
 import { SAVED_TAGS_SECURE_SEPERATOR } from "$lib/constants";
 import { lucia } from "$server/auth";
 import { db } from "$server/db";
-import { supercellIdProfiles, tokens, users } from "$server/db/schema/users";
+import { supercellIdProfiles, tokens, users } from "$server/db/schema";
 import { useIpToCountry } from "$server/utils/ip-to-country";
 
 export default eventHandler(async (event) => {

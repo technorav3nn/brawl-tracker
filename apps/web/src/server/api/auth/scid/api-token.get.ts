@@ -1,6 +1,6 @@
 import { eq, sql } from "drizzle-orm";
 import { db } from "$server/db";
-import { tokens, users } from "$server/db/schema/users";
+import { tokens, users } from "$server/db/schema";
 
 export default defineEventHandler(async (event) => {
 	if (!event.context.user) {

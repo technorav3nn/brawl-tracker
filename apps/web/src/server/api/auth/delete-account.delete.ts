@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { db } from "$server/db";
-import { users, sessions, supercellIdProfiles, tokens } from "$server/db/schema/users";
+import { users, sessions, supercellIdProfiles, tokens } from "$server/db/schema";
 
 export default eventHandler(async (event) => {
 	if (!event.context.session) {
