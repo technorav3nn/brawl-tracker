@@ -3,14 +3,15 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "nuxt build",
+		"build": "xata codegen && nuxt build",
 		"dev": "nuxt dev",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
 		"nuxt:prepare": "nuxt prepare",
 		"lint": "eslint . ",
-		"start": "node --env-file=.env --import ./.output/server/sentry.server.config.mjs .output/server/index.mjs"
+		"start": "node --env-file=.env --import ./.output/server/sentry.server.config.mjs .output/server/index.mjs",
+		"xata": "xata codegen"
 	},
 	"dependencies": {
 		"@brawltracker/brawl-api": "workspace:*",
@@ -72,6 +73,7 @@
 		"@nuxt/fonts": "^0.7.0",
 		"@types/geoip-country": "^4.0.2",
 		"@types/luxon": "^3.4.2",
+		"@xata.io/cli": "0.16.12",
 		"drizzle-kit": "^0.24.2",
 		"eslint": "^8.57.0",
 		"eslint-config-neon": "^0.1.62",
