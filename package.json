@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"build": "turbo run build",
+		"ci:build": "turbo run build --filter=web^...",
 		"dev": "turbo run dev",
 		"lint": "turbo run lint",
 		"generate": "turbo run generate",

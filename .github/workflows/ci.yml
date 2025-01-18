@@ -26,7 +26,7 @@ jobs:
         with:
           cache-prefix: turbogha_ # Custom prefix for cache keys
       - name: Build
-        run: yarn build
+        run: yarn ci:build
       - name: Lint
         run: yarn lint
       - name: Test
