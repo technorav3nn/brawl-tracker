@@ -94,13 +94,12 @@ export default defineNuxtConfig({
 		},
 	},
 	runtimeConfig: {
+		databaseUrl: process.env.DATABASE_URL,
 		brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
 		discordClientId: process.env.DISCORD_CLIENT_ID,
 		discordClientSecret: process.env.DISCORD_CLIENT_SECRET,
 		authOrigin: "https://brawl-tracker-pr-1-web.vercel.app",
 		nuxtAuthSecret: process.env.NUXT_AUTH_SECRET,
-		postgresUrl: process.env.DEV_POSTGRES_URL,
-		devPostgresUrl: process.env.DEV_POSTGRES_URL,
 		apiEncryptionSecret: process.env.API_ENCRYPTION_SECRET,
 		public: {
 			sentryDsn: process.env.SENTRY_DSN,
@@ -113,9 +112,6 @@ export default defineNuxtConfig({
 			},
 		},
 		preset: "vercel",
-		prerender: {
-			failOnError: false,
-		},
 	},
 	css: ["~/assets/css/tailwind.css", "~/assets/css/global.css"],
 	alias: {
@@ -126,7 +122,6 @@ export default defineNuxtConfig({
 		$server: resolve("./src/server"),
 		$composables: resolve("./src/hooks"),
 		$lib: resolve("./src/lib"),
-		$xata: resolve("./src/xata.ts"),
 		$: resolve("./src"),
 	},
 	components: [{ path: "$components/features", extensions: [".vue"], prefix: "" }, "$components"],

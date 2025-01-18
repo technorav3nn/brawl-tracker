@@ -1,6 +1,0 @@
-{
-	"databaseURL": "https://technorav3nn-s-workspace-cacfvr.us-east-1.xata.sh/db/brawltrack",
-	"codegen": {
-		"output": "src/server/db/xata.ts"
-	}
-}

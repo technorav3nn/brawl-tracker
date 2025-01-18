@@ -65,10 +65,8 @@ async function handler(event: H3Event<EventHandlerRequest>, retry = false) {
 			const { token } = await getSessionToken(scidToken);
 
 			try {
-				await db.transaction(async (tx) => {
-					await tx.update(tokens).set({ sessionToken: token }).where(eq(tokens.userId, id));
-					await tx.update(users).set({ __ATTRIBUTES__sessionToken: token }).where(eq(users.id, id));
-				});
+				await db.update(tokens).set({ sessionToken: token }).where(eq(tokens.userId, id));
+				await db.update(users).set({ __ATTRIBUTES__sessionToken: token }).where(eq(users.id, id));
 			} catch {
 				throw createError({
 					statusCode: 400,

@@ -60,16 +60,14 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 
-	await db.transaction(async (tx) => {
-		await tx
-			.update(tokens)
-			.set({
-				sessionToken: response.token,
-				sessionTokenExpiry: sql`now() + interval '30 hours'`,
-			})
-			.where(eq(tokens.userId, user.id));
-		await tx.update(users).set({ id: user.id, __ATTRIBUTES__sessionToken: response.token });
-	});
+	await db
+		.update(tokens)
+		.set({
+			sessionToken: response.token,
+			sessionTokenExpiry: sql`now() + interval '30 hours'`,
+		})
+		.where(eq(tokens.userId, user.id));
+	await db.update(users).set({ id: user.id, __ATTRIBUTES__sessionToken: response.token });
 
 	return { token: response.token, c: false };
 });

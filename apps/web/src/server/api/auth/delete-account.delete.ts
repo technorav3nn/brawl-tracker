@@ -21,12 +21,10 @@ export default eventHandler(async (event) => {
 
 	// Delete user
 	try {
-		return db.transaction(async (tx) => {
-			await tx.delete(supercellIdProfiles).where(eq(supercellIdProfiles.userId, userId));
-			await tx.delete(tokens).where(eq(tokens.userId, userId));
-			await tx.delete(sessions).where(eq(sessions.userId, userId));
-			await tx.delete(users).where(eq(users.id, userId));
-		});
+		await db.delete(supercellIdProfiles).where(eq(supercellIdProfiles.userId, userId));
+		await db.delete(tokens).where(eq(tokens.userId, userId));
+		await db.delete(sessions).where(eq(sessions.userId, userId));
+		await db.delete(users).where(eq(users.id, userId));
 	} catch (error) {
 		console.error(error);
 		throw createError({

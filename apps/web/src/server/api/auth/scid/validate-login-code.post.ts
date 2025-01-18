@@ -100,57 +100,52 @@ export default eventHandler(async (event) => {
 	const brawlstars = useBrawlStarsApi();
 	console.log("SECRET:", useRuntimeConfig().apiEncryptionSecret);
 
-	await db.transaction(async (tx) => {
-		const connectedSystem = profile.data?.connectedSystems.find((system) => system.application === "laser-prod");
-		if (!connectedSystem?.applicationAccountId) {
-			throw createError({
-				statusMessage: "Couldn't get high-low ID, profile is invalid",
-				statusCode: 500,
-			});
-		}
-
-		const tag = idToTag(highLowToId(connectedSystem.applicationAccountId));
-		const playerProfile = await brawlstars.players.getPlayer(tag);
-
-		if (!playerProfile) {
-			throw createError({
-				statusMessage: "Couldn't get player profile",
-				statusCode: 500,
-			});
-		}
-
-		const [{ insertedId }] = await tx
-			.insert(users)
-			.values({
-				id: userId,
-				username: brawlStarsUsername,
-				email,
-				supercellId: accountBrawlStarsId,
-				__ATTRIBUTES__sessionToken: scidSession.token,
-				savedPlayerTags: [`${tag}${SAVED_TAGS_SECURE_SEPERATOR}${playerProfile.name}`],
-				savedClubTags: [],
-			})
-			.returning({ insertedId: users.id });
-
-		const iv = generateIV();
-		const encryptedScidToken = aes256cbcEncrypt(scidToken, useRuntimeConfig().apiEncryptionSecret, iv);
-
-		console.log(encryptedScidToken);
-
-		await tx
-			.insert(tokens)
-			.values({ scidToken: encryptedScidToken, sessionToken: scidSession.token, scidTokenIv: iv.toString("hex"), userId });
-		await tx.insert(supercellIdProfiles).values({
-			name: profile.data!.name.name,
-			qrCodeUrl: profile.data!.qrCodeURL,
-			userId: insertedId,
-			scid: profile.data!.scid,
-			universalLink: profile.data!.universalLink,
-			avatarImage: profile.data!.avatarImage.image,
+	const connectedSystem = profile.data?.connectedSystems.find((system) => system.application === "laser-prod");
+	if (!connectedSystem?.applicationAccountId) {
+		throw createError({
+			statusMessage: "Couldn't get high-low ID, profile is invalid",
+			statusCode: 500,
 		});
+	}
+
+	const tag = idToTag(highLowToId(connectedSystem.applicationAccountId));
+	const playerProfile = await brawlstars.players.getPlayer(tag);
+
+	if (!playerProfile) {
+		throw createError({
+			statusMessage: "Couldn't get player profile",
+			statusCode: 500,
+		});
+	}
+
+	const [{ insertedId }] = await db
+		.insert(users)
+		.values({
+			id: userId,
+			username: brawlStarsUsername,
+			email,
+			supercellId: accountBrawlStarsId,
+			__ATTRIBUTES__sessionToken: scidSession.token,
+			savedPlayerTags: [`${tag}${SAVED_TAGS_SECURE_SEPERATOR}${playerProfile.name}`],
+			savedClubTags: [],
+		})
+		.returning({ insertedId: users.id });
+
+	const iv = generateIV();
+	const encryptedScidToken = aes256cbcEncrypt(scidToken, useRuntimeConfig().apiEncryptionSecret, iv);
+
+	await db
+		.insert(tokens)
+		.values({ scidToken: encryptedScidToken, sessionToken: scidSession.token, scidTokenIv: iv.toString("hex"), userId });
+	await db.insert(supercellIdProfiles).values({
+		name: profile.data!.name.name,
+		qrCodeUrl: profile.data!.qrCodeURL,
+		userId: insertedId,
+		scid: profile.data!.scid,
+		universalLink: profile.data!.universalLink,
+		avatarImage: profile.data!.avatarImage.image,
 	});
 
-	console.log("User created", ipCountry);
 	const session = await lucia.createSession(userId, {
 		ipCountry,
 	});
