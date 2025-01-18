@@ -94,15 +94,16 @@ export default defineNuxtConfig({
 		},
 	},
 	runtimeConfig: {
-		databaseUrl: process.env.DATABASE_URL,
-		brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
-		discordClientId: process.env.DISCORD_CLIENT_ID,
-		discordClientSecret: process.env.DISCORD_CLIENT_SECRET,
+		databaseUrl: "",
+		brawlStarsApiToken: "",
+		discord: {
+			clientId: "",
+			clientSecret: "",
+		},
 		authOrigin: "https://brawl-tracker-pr-1-web.vercel.app",
-		nuxtAuthSecret: process.env.NUXT_AUTH_SECRET,
-		apiEncryptionSecret: process.env.API_ENCRYPTION_SECRET,
+		apiEncryptionSecret: "",
 		public: {
-			sentryDsn: process.env.SENTRY_DSN,
+			sentryDsn: "",
 		},
 	},
 	nitro: {
