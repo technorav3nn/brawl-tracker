@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"build": "turbo run build",
-		"ci:build": "turbo run build --filter=web^...",
+		"ci:build": "turbo run build --filter=@brawltracker/web^...",
 		"dev": "turbo run dev",
 		"lint": "turbo run lint",
 		"generate": "turbo run generate",
@@ -14,7 +14,7 @@
 		"ci": "vitest run && turbo run format && turbo run lint",
 		"changeset": "changeset",
 		"version-packages": "changeset version",
-		"release": "turbo build --filter=web^... && changeset publish",
+		"release": "turbo build --filter=@brawltracker/web^... && changeset publish",
 		"db:start": "docker-compose up -d",
 		"db:stop": "docker-compose down"
 	},
