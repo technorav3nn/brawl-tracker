@@ -34,7 +34,6 @@ export const FORMATTER_UNITS: DurationFormatAssetsTime = {
 export const durationFormatter = new DurationFormatter(FORMATTER_UNITS);
 
 export function secondsToDate(seconds: number) {
-	// eslint-disable-next-line unicorn/numeric-separators-style
 	const date = new Date(1970, 0, 1);
 	date.setSeconds(seconds);
 	return date;
