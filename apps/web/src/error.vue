@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/* eslint-disable vue/no-v-html */
 import type { NuxtError } from "#app";
 
 defineProps<{ error: NuxtError }>();
@@ -27,7 +28,6 @@ onMounted(() => {
 				</p>
 				<div v-if="!!error!.stack" class="flex flex-col gap-1">
 					{{ error!.message }}
-					<!-- eslint-disable-next-line vue/no-v-html -->
 					<div v-html="error!.stack" />
 				</div>
 				<UButton @click="handleError">Go Home</UButton>
