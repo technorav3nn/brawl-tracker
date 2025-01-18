@@ -111,23 +111,11 @@ export default defineNuxtConfig({
 			kv: {
 				driver: "vercelKV",
 			},
-			// cache: {
-			// 	driver: "redis",
-			// 	base: "cache",
-			// 	host: process.env.REDIS_HOST,
-			// 	port: 6379,
-			// 	password: process.env.REDIS_PASSWORD,
-			// },
 		},
-		// devStorage: {
-		// 	cache: {
-		// 		driver: "redis",
-		// 		base: "cache",
-		// 		host: "127.0.0.1",
-		// 		port: 6379,
-		// 	},
-		// },
 		preset: "vercel",
+		prerender: {
+			failOnError: false,
+		},
 	},
 	css: ["~/assets/css/tailwind.css", "~/assets/css/global.css"],
 	alias: {
