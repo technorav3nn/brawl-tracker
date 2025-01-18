@@ -127,6 +127,7 @@ export default defineNuxtConfig({
 		// 		port: 6379,
 		// 	},
 		// },
+		preset: "vercel",
 	},
 	css: ["~/assets/css/tailwind.css", "~/assets/css/global.css"],
 	alias: {
