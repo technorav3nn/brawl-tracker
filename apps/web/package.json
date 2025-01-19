@@ -40,7 +40,7 @@
 		"@sapphire/duration": "^1.1.2",
 		"@sapphire/time-utilities": "^1.7.12",
 		"@sentry/nuxt": "^8.33.1",
-		"@unpic/vue": "^0.0.50",
+		"@unpic/vue": "^1.0.0",
 		"@vee-validate/zod": "^4.13.2",
 		"@vercel/kv": "^3.0.0",
 		"@vueuse/nuxt": "^11.0.3",
