@@ -41,7 +41,7 @@
 		"@radix-icons/vue": "^1.0.0",
 		"@sapphire/duration": "^1.1.2",
 		"@sapphire/time-utilities": "^1.7.12",
-		"@tabler/icons-vue": "^2.46.0",
+		"@tabler/icons-vue": "^3.28.1",
 		"@unpic/vue": "^0.0.43",
 		"@vee-validate/nuxt": "^4.12.4",
 		"@vee-validate/zod": "^4.12.4",
