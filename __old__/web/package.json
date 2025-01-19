@@ -55,7 +55,7 @@
 		"dedent": "^1.5.1",
 		"lucide-vue-next": "^0.381.0",
 		"node-cache": "^5.1.2",
-		"nuxt-og-image": "^3.0.0-rc.37",
+		"nuxt-og-image": "^4.0.3",
 		"nuxt-time": "^0.1.1",
 		"radix-vue": "^1.8.1",
 		"tailwind-merge": "^2.2.1",
