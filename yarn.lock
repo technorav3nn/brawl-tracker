@@ -704,7 +704,6 @@ __metadata:
     "@sapphire/duration": "npm:^1.1.2"
     "@sapphire/time-utilities": "npm:^1.7.12"
     "@sentry/nuxt": "npm:^8.33.1"
-    "@types/geoip-country": "npm:^4.0.2"
     "@types/luxon": "npm:^3.4.2"
     "@types/pg": "npm:^8"
     "@unpic/vue": "npm:^1.0.0"
@@ -726,7 +725,6 @@ __metadata:
     embla-carousel-vue: "npm:^8.3.0"
     eslint: "npm:^8.57.0"
     eslint-config-neon: "npm:^0.1.62"
-    geoip-country: "npm:^5.0.202410042341"
     ioredis: "npm:^5.4.1"
     ip2location-nodejs: "npm:^9.6.1"
     jwt-decode: "npm:^4.0.0"
@@ -6610,13 +6608,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/geoip-country@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@types/geoip-country@npm:4.0.2"
-  checksum: 10/bdabdea429d1fba8f93cab50a3f601ba4ddb55d24eaa00f04967e6261c6540d42104ef7b8fed314cf65f4ae466f858b8880c454beb8742abe299d2f02a035e19
-  languageName: node
-  linkType: hard
-
 "@types/hast@npm:^3.0.0, @types/hast@npm:^3.0.4":
   version: 3.0.4
   resolution: "@types/hast@npm:3.0.4"
@@ -9215,13 +9206,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"buffer-crc32@npm:~0.2.3":
-  version: 0.2.13
-  resolution: "buffer-crc32@npm:0.2.13"
-  checksum: 10/06252347ae6daca3453b94e4b2f1d3754a3b146a111d81c68924c22d91889a40623264e95e67955b1cb4a68cbedf317abeabb5140a9766ed248973096db5ce1c
-  languageName: node
-  linkType: hard
-
 "buffer-from@npm:^1.0.0":
   version: 1.1.2
   resolution: "buffer-from@npm:1.1.2"
@@ -10266,13 +10250,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 10/8bdf1dfbb6fdb3755195b6886dc0649a3c742ec75afa4cb8da7b070936aed22a4f4e5b7359faafe03180358f311dbc300d248fd6586c458203d376a40cc77826
-  languageName: node
-  linkType: hard
-
-"countries-list@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "countries-list@npm:3.1.1"
-  checksum: 10/4519de861c55b4424a089d5335a0094ddca47086ca98a910eac0f4682a582a52fb4453ed067beb4b81fcf7c62e93ea41919d6ad290f36b7e5cb777b84b9e4b9b
   languageName: node
   linkType: hard
 
@@ -13192,15 +13169,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fd-slicer@npm:~1.1.0":
-  version: 1.1.0
-  resolution: "fd-slicer@npm:1.1.0"
-  dependencies:
-    pend: "npm:~1.2.0"
-  checksum: 10/db3e34fa483b5873b73f248e818f8a8b59a6427fd8b1436cd439c195fdf11e8659419404826059a642b57d18075c856d06d6a50a1413b714f12f833a9341ead3
-  languageName: node
-  linkType: hard
-
 "fdir@npm:^6.2.0, fdir@npm:^6.4.2":
   version: 6.4.3
   resolution: "fdir@npm:6.4.3"
@@ -13583,18 +13551,6 @@ __metadata:
   version: 1.0.0-beta.2
   resolution: "gensync@npm:1.0.0-beta.2"
   checksum: 10/17d8333460204fbf1f9160d067e1e77f908a5447febb49424b8ab043026049835c9ef3974445c57dbd39161f4d2b04356d7de12b2eecaa27a7a7ea7d871cbedd
-  languageName: node
-  linkType: hard
-
-"geoip-country@npm:^5.0.202410042341":
-  version: 5.0.202410042341
-  resolution: "geoip-country@npm:5.0.202410042341"
-  dependencies:
-    async: "npm:^2.6.4"
-    countries-list: "npm:^3.1.1"
-    ip-address: "npm:^6.4.0"
-    yauzl: "npm:^2.10.0"
-  checksum: 10/48e1e5d59d83239384bb74554825f3855cb5dbe96686221dcb08715c6957de6ee7de421ccbd4050074d16329f9cb7f66623e0b21e5a6c0861169a17da6a8571d
   languageName: node
   linkType: hard
 
@@ -14758,21 +14714,6 @@ __metadata:
     redis-parser: "npm:^3.0.0"
     standard-as-callback: "npm:^2.1.0"
   checksum: 10/9043b812ac58065e80c759d130602cc64490fcaeaacf93723453fda04c7ba61dab0e2f50380eacb045592378ededf44f270c0d43e13e3e8b8d7c5a8d7fecb823
-  languageName: node
-  linkType: hard
-
-"ip-address@npm:^6.4.0":
-  version: 6.4.0
-  resolution: "ip-address@npm:6.4.0"
-  dependencies:
-    jsbn: "npm:1.1.0"
-    lodash.find: "npm:4.6.0"
-    lodash.max: "npm:4.0.1"
-    lodash.merge: "npm:4.6.2"
-    lodash.padstart: "npm:4.6.1"
-    lodash.repeat: "npm:4.1.0"
-    sprintf-js: "npm:1.1.2"
-  checksum: 10/153e1537be06ef703562fd7b659f97cbf2d615f9ff1e2b3e0a270e0bf371844cf3b72336d8977b5aaf7a4c7c360912735e3b41ef479f87e7850bb62f7aa67973
   languageName: node
   linkType: hard
 
@@ -16234,13 +16175,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.find@npm:4.6.0":
-  version: 4.6.0
-  resolution: "lodash.find@npm:4.6.0"
-  checksum: 10/83c5759af0ce39a651b261b605efd1e35a3df75dca57fe9739e4b5fb1da26aefef6d7b9e9f9ee2a54d4b1b3fd0442b9e230a7d19c140609dc56f31fe7d271552
-  languageName: node
-  linkType: hard
-
 "lodash.isarguments@npm:^3.1.0":
   version: 3.1.0
   resolution: "lodash.isarguments@npm:3.1.0"
@@ -16255,13 +16189,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.max@npm:4.0.1":
-  version: 4.0.1
-  resolution: "lodash.max@npm:4.0.1"
-  checksum: 10/f887b68db054edabe3a4f4877a7b7d0bef6e4a29e9371ea4d711a6ed0ca2393659a879158c609649aabd0337528ec58ed5b1e9581fed536ec0b8ae45a6e5f278
-  languageName: node
-  linkType: hard
-
 "lodash.memoize@npm:^4.1.2":
   version: 4.1.2
   resolution: "lodash.memoize@npm:4.1.2"
@@ -16269,17 +16196,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.merge@npm:4.6.2, lodash.merge@npm:^4.6.2":
+"lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: 10/d0ea2dd0097e6201be083865d50c3fb54fbfbdb247d9cc5950e086c991f448b7ab0cdab0d57eacccb43473d3f2acd21e134db39f22dac2d6c9ba6bf26978e3d6
-  languageName: node
-  linkType: hard
-
-"lodash.padstart@npm:4.6.1":
-  version: 4.6.1
-  resolution: "lodash.padstart@npm:4.6.1"
-  checksum: 10/2005941fffed0e884b0649f496b77f2a11614d9113c33a7fe50c2be3338da42fcd19a50b6519a450a2ac4bcccddb5604e424ee001e98a9d829c7289a32480175
   languageName: node
   linkType: hard
 
@@ -16287,13 +16207,6 @@ __metadata:
   version: 4.4.0
   resolution: "lodash.pick@npm:4.4.0"
   checksum: 10/5a76778aa1c245ce081d19c5a625a44cdf4853f421c8789ec962cb5d73dd21be7cf11ae3bc2123ff5f432326ed0176d674d22ca6e0e8f9eaba5b74b00f632c12
-  languageName: node
-  linkType: hard
-
-"lodash.repeat@npm:4.1.0":
-  version: 4.1.0
-  resolution: "lodash.repeat@npm:4.1.0"
-  checksum: 10/1d2f3f436e929b7917a3fc0eaddba3839bffd84ccc63e98697a1b7566cb9aed605cae340e8d062408da9ed32f8876c6aad192c80c52e51818064bc41100a2d70
   languageName: node
   linkType: hard
 
@@ -19367,13 +19280,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pend@npm:~1.2.0":
-  version: 1.2.0
-  resolution: "pend@npm:1.2.0"
-  checksum: 10/6c72f5243303d9c60bd98e6446ba7d30ae29e3d56fdb6fae8767e8ba6386f33ee284c97efe3230a0d0217e2b1723b8ab490b1bbf34fcbb2180dbc8a9de47850d
-  languageName: node
-  linkType: hard
-
 "perfect-debounce@npm:^1.0.0":
   version: 1.0.0
   resolution: "perfect-debounce@npm:1.0.0"
@@ -22098,13 +22004,6 @@ __metadata:
   version: 4.2.0
   resolution: "split2@npm:4.2.0"
   checksum: 10/09bbefc11bcf03f044584c9764cd31a252d8e52cea29130950b26161287c11f519807c5e54bd9e5804c713b79c02cefe6a98f4688630993386be353e03f534ab
-  languageName: node
-  linkType: hard
-
-"sprintf-js@npm:1.1.2":
-  version: 1.1.2
-  resolution: "sprintf-js@npm:1.1.2"
-  checksum: 10/0044322a252b36bffc3d8a462a4882de57830e18d37d1cc000104ff4744b512d6a9b1ca6240e7ad141a987a1eaad071668fe12d11c496c11d3641c4797a6cf3f
   languageName: node
   linkType: hard
 
@@ -25273,16 +25172,6 @@ __metadata:
     yarn: bin/yarn.js
     yarnpkg: bin/yarn.js
   checksum: 10/98d80230beaa81f186b2256dff5ef9dce2dd6073c94299209f8e562da9018cff4275c95c27c788aaa4a9c3c186ea8a9aee9a5b83570696a4c8a9d1fff2d4da3a
-  languageName: node
-  linkType: hard
-
-"yauzl@npm:^2.10.0":
-  version: 2.10.0
-  resolution: "yauzl@npm:2.10.0"
-  dependencies:
-    buffer-crc32: "npm:~0.2.3"
-    fd-slicer: "npm:~1.1.0"
-  checksum: 10/1e4c311050dc0cf2ee3dbe8854fe0a6cde50e420b3e561a8d97042526b4cf7a0718d6c8d89e9e526a152f4a9cec55bcea9c3617264115f48bd6704cf12a04445
   languageName: node
   linkType: hard
 
