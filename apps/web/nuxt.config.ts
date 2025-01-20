@@ -25,6 +25,12 @@ export default defineNuxtConfig({
 			enabled: true,
 		},
 	},
+	content: {
+		database: {
+			type: "postgres",
+			url: process.env.POSTGRES_URL!,
+		},
+	},
 	eslint: {
 		config: {
 			standalone: false,
