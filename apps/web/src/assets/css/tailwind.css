@@ -4,9 +4,13 @@
 
 @layer base {
 	:root {
+		--ui-background: rgb(var(--color-gray-100));
+		--ui-foreground: var(--color-gray-700);
 		--border: rgb(var(--color-gray-200));
 	}
 	.dark {
+		--ui-background: rgb(var(--color-gray-900));
 		--border: rgb(var(--color-gray-800));
+		--ui-foreground: var(--color-gray-200);
 	}
 }

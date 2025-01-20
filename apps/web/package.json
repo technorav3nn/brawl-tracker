@@ -33,7 +33,6 @@
 		"@nuxt/devtools": "^1.3.3",
 		"@nuxt/image": "^1.8.1",
 		"@nuxt/kit": "^3.9.0",
-		"@nuxt/ui": "^2.18.6",
 		"@nuxt/ui-pro": "patch:@nuxt/ui-pro@npm%3A1.7.0#~/.yarn/patches/@nuxt-ui-pro-npm-1.7.0-cd893573cc.patch",
 		"@pinia/nuxt": "^0.9.0",
 		"@rabbit-company/xchacha20": "^2.3.0",

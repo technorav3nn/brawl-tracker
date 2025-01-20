@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 		"@sentry/nuxt/module",
 		"nuxt-time",
 	],
-	srcDir: "src",
+	srcDir: "src/",
 	devtools: {
 		enabled: true,
 		timeline: {
