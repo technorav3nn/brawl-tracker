@@ -42,7 +42,7 @@
 		"@unpic/vue": "^1.0.0",
 		"@vee-validate/zod": "^4.13.2",
 		"@vercel/kv": "^3.0.0",
-		"@vueuse/nuxt": "^11.0.3",
+		"@vueuse/nuxt": "^12.4.0",
 		"@xata.io/client": "0.30.1",
 		"@zag-js/pin-input": "^0.72.0",
 		"@zag-js/tags-input": "^0.72.0",
