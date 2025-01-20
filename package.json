@@ -22,12 +22,10 @@
 		"@changesets/cli": "^2.27.1",
 		"@humanwhocodes/retry": "^0.3.0",
 		"@sapphire/eslint-config": "^5.0.3",
-		"@types/pg": "^8",
 		"@vitest/ui": "^3.0.2",
 		"eslint": "^8.57.0",
 		"eslint-config-neon": "^0.1.62",
 		"lint-staged": "^15.2.0",
-		"pg": "^8.12.0",
 		"prettier": "^3.2.4",
 		"prettier-plugin-tailwindcss": "^0.6.6",
 		"turbo": "^2.1.0",
@@ -48,8 +46,5 @@
 	"workspaces": [
 		"packages/*",
 		"apps/*"
-	],
-	"dependencies": {
-		"@nuxt/ui-pro": "patch:@nuxt/ui-pro@npm%3A1.4.3#~/.yarn/patches/@nuxt-ui-pro-npm-1.4.3-c79a6386e3.patch"
-	}
+	]
 }

@@ -34,7 +34,7 @@
 		"@nuxt/image": "^1.8.1",
 		"@nuxt/kit": "^3.9.0",
 		"@nuxt/ui": "^2.18.6",
-		"@nuxt/ui-pro": "patch:@nuxt/ui-pro@npm%3A1.4.3#~/.yarn/patches/@nuxt-ui-pro-npm-1.4.3-c79a6386e3.patch",
+		"@nuxt/ui-pro": "patch:@nuxt/ui-pro@npm%3A1.7.0#~/.yarn/patches/@nuxt-ui-pro-npm-1.7.0-cd893573cc.patch",
 		"@pinia/nuxt": "^0.9.0",
 		"@rabbit-company/xchacha20": "^2.3.0",
 		"@sapphire/duration": "^1.1.2",
