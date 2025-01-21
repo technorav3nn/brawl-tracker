@@ -1,10 +1,7 @@
 import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle";
-import { Discord } from "arctic";
 import { Lucia, TimeSpan } from "lucia";
 import { db } from "$server/db";
 import { sessions, users, type User } from "$server/db/schema";
-
-const { discordClientId, discordClientSecret, authOrigin } = useRuntimeConfig();
 
 export const lucia = new Lucia(new DrizzlePostgreSQLAdapter(db, sessions, users), {
 	getUserAttributes: (attributes) => {
@@ -34,12 +31,6 @@ export const lucia = new Lucia(new DrizzlePostgreSQLAdapter(db, sessions, users)
 		},
 	},
 });
-
-export const discord = new Discord(
-	discordClientId,
-	discordClientSecret,
-	`${import.meta.dev ? `localhost:3000` : authOrigin}/"/login/discord/callback"`
-);
 
 declare module "lucia" {
 	interface Register {
