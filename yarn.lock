@@ -606,7 +606,7 @@ __metadata:
     "@unpic/vue": "npm:^1.0.0"
     "@vee-validate/zod": "npm:^4.15.0"
     "@vercel/kv": "npm:^3.0.0"
-    "@vueuse/nuxt": "npm:^12.4.0"
+    "@vueuse/nuxt": "npm:^12.5.0"
     "@xata.io/cli": "npm:0.16.12"
     "@zag-js/pin-input": "npm:^0.82.0"
     "@zag-js/tags-input": "npm:^0.82.0"
@@ -7289,7 +7289,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:12.4.0, @vueuse/core@npm:^12.4.0":
+"@vueuse/core@npm:12.4.0":
   version: 12.4.0
   resolution: "@vueuse/core@npm:12.4.0"
   dependencies:
@@ -7298,6 +7298,18 @@ __metadata:
     "@vueuse/shared": "npm:12.4.0"
     vue: "npm:^3.5.13"
   checksum: 10/79bb29099aa7e142decee079dc8d57592d42c7e3a6a3e0078bd03c30fccf5ecec32b84c3dce6d38e43213c7747a0581e86891fadffb061c8e651238cb7b6c15f
+  languageName: node
+  linkType: hard
+
+"@vueuse/core@npm:12.5.0, @vueuse/core@npm:^12.4.0":
+  version: 12.5.0
+  resolution: "@vueuse/core@npm:12.5.0"
+  dependencies:
+    "@types/web-bluetooth": "npm:^0.0.20"
+    "@vueuse/metadata": "npm:12.5.0"
+    "@vueuse/shared": "npm:12.5.0"
+    vue: "npm:^3.5.13"
+  checksum: 10/c9bfe7f5e33ce57df2a2dea51a3e4c9b094f365e34e97348138f2ed831fb1a6b0af812c5259b7ddab22769f6ca6a6b9d04a357bcabd1d21cd14f22b5eb4b961f
   languageName: node
   linkType: hard
 
@@ -7367,18 +7379,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/nuxt@npm:^12.4.0":
-  version: 12.4.0
-  resolution: "@vueuse/nuxt@npm:12.4.0"
+"@vueuse/metadata@npm:12.5.0":
+  version: 12.5.0
+  resolution: "@vueuse/metadata@npm:12.5.0"
+  checksum: 10/f28b7a2ecbee1654e2c4171ccdca7eb6c255d57201add002762b8b93352059f2837d8b405a23f0efd2ce4f26070b45d3f3af395e247acfc6c30622b4222e24e6
+  languageName: node
+  linkType: hard
+
+"@vueuse/nuxt@npm:^12.5.0":
+  version: 12.5.0
+  resolution: "@vueuse/nuxt@npm:12.5.0"
   dependencies:
     "@nuxt/kit": "npm:^3.15.1"
-    "@vueuse/core": "npm:12.4.0"
-    "@vueuse/metadata": "npm:12.4.0"
+    "@vueuse/core": "npm:12.5.0"
+    "@vueuse/metadata": "npm:12.5.0"
     local-pkg: "npm:^1.0.0"
     vue: "npm:^3.5.13"
   peerDependencies:
     nuxt: ^3.0.0
-  checksum: 10/131098ce02df2a51fad762af79bd6eea7efc787182c4378551966d15ad11dc84971a6f9a6a05b126c624556f1bb107c06234ec6163cfa4380266b63802007e4d
+  checksum: 10/f7b8981aebb787ad9f570d6479209f021326d864afaa65f95a86de80965221490e6a408473397eee7c7d28d5498d3306cedd951b2bfd4dbbaeea1418804a76b5
   languageName: node
   linkType: hard
 
@@ -7388,6 +7407,15 @@ __metadata:
   dependencies:
     vue: "npm:^3.5.13"
   checksum: 10/a06419ea73c58794016e9f3aa168097dd846b3f3d627c505e4746655c056ed61f29ba384f0d8c8ae20ee8875a3d0dff974d0470a5d39dbc044988edf4c2a0641
+  languageName: node
+  linkType: hard
+
+"@vueuse/shared@npm:12.5.0":
+  version: 12.5.0
+  resolution: "@vueuse/shared@npm:12.5.0"
+  dependencies:
+    vue: "npm:^3.5.13"
+  checksum: 10/276c2ae6e565dd5762a2b75023d8dfd4551a26abd3ad8c7bd8a5a1f8a64cd3747fc2b46c6914ef78ef9ebd17196b4ec1c70df043aa0b1ab6b630346a39dca150
   languageName: node
   linkType: hard
 
