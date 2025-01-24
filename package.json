@@ -25,10 +25,10 @@
 		"@vitest/ui": "^3.0.4",
 		"eslint": "^8.57.0",
 		"eslint-config-neon": "^0.1.62",
-		"lint-staged": "^15.4.1",
+		"lint-staged": "^15.4.2",
 		"prettier": "^3.4.2",
-		"prettier-plugin-tailwindcss": "^0.6.10",
-		"turbo": "^2.3.3",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"turbo": "^2.3.4",
 		"vitest": "^3.0.4"
 	},
 	"resolutions": {

@@ -586,7 +586,7 @@ __metadata:
     "@iconify-json/heroicons": "npm:^1.2.2"
     "@iconify-json/lucide": "npm:^1.2.24"
     "@iconify-json/simple-icons": "npm:^1.2.21"
-    "@iconify-json/tabler": "npm:^1.2.14"
+    "@iconify-json/tabler": "npm:^1.2.15"
     "@lucia-auth/adapter-drizzle": "npm:^1.1.0"
     "@neondatabase/serverless": "npm:^0.10.4"
     "@node-rs/argon2": "npm:^2.0.2"
@@ -602,15 +602,15 @@ __metadata:
     "@sapphire/time-utilities": "npm:^1.7.14"
     "@sentry/nuxt": "npm:^8.51.0"
     "@types/luxon": "npm:^3.4.2"
-    "@types/pg": "npm:^8.11.10"
+    "@types/pg": "npm:^8.11.11"
     "@unpic/vue": "npm:^1.0.0"
     "@vee-validate/zod": "npm:^4.15.0"
     "@vercel/kv": "npm:^3.0.0"
     "@vueuse/nuxt": "npm:^12.5.0"
     "@xata.io/cli": "npm:0.16.12"
-    "@zag-js/pin-input": "npm:^0.82.0"
-    "@zag-js/tags-input": "npm:^0.82.0"
-    "@zag-js/vue": "npm:^0.82.0"
+    "@zag-js/pin-input": "npm:^0.82.1"
+    "@zag-js/tags-input": "npm:^0.82.1"
+    "@zag-js/vue": "npm:^0.82.1"
     arctic: "npm:^3.2.1"
     cheerio: "npm:^1.0.0"
     country-code-lookup: "npm:^0.1.3"
@@ -2161,12 +2161,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@iconify-json/tabler@npm:^1.2.14":
-  version: 1.2.14
-  resolution: "@iconify-json/tabler@npm:1.2.14"
+"@iconify-json/tabler@npm:^1.2.15":
+  version: 1.2.15
+  resolution: "@iconify-json/tabler@npm:1.2.15"
   dependencies:
     "@iconify/types": "npm:*"
-  checksum: 10/cfeddaa665aeef92abce72368c02dd93d967a4288757eb33265a6e57334164eb73a1f54b730f13354edb53be4d6aedc76ed064f3c47ffdf20b69366ad5640ee0
+  checksum: 10/9de9e8dcfd5af41d6607e9a3458303e75b08979cc46e58a51828920b7e7230e88308750c9f484710e03ed8ba8c7c0eb0ac4d091001c654cfac516bb9de53ddf9
   languageName: node
   linkType: hard
 
@@ -6189,14 +6189,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/pg@npm:*, @types/pg@npm:^8.11.10":
-  version: 8.11.10
-  resolution: "@types/pg@npm:8.11.10"
+"@types/pg@npm:*, @types/pg@npm:^8.11.11":
+  version: 8.11.11
+  resolution: "@types/pg@npm:8.11.11"
   dependencies:
     "@types/node": "npm:*"
     pg-protocol: "npm:*"
     pg-types: "npm:^4.0.1"
-  checksum: 10/65b7d7ca9c90b7cb94aa94ad94bb1883356845e1f64688bc824ecd499da25f63a2400f0a58500554637048a7cc8b91055bbfe14301c082ce9669afd0c18e414c
+  checksum: 10/f4ba491723d71204e8bcde41c7521f4817a8d8685b5a3f40658ad74fb9a718498ecba96447f40e92a31e8a199e59462e325ed11017534cbadeb77ae0047b3aa0
   languageName: node
   linkType: hard
 
@@ -7514,122 +7514,122 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zag-js/anatomy@npm:0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/anatomy@npm:0.82.0"
-  checksum: 10/4b1a473136c73aed1c479e92b4ed9a4a49fee524ebebb3b92a39d746baac1a66df522b2a65e9dfc87c4e0a167f58406dddc433683285a0fe91fc3843c263a497
+"@zag-js/anatomy@npm:0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/anatomy@npm:0.82.1"
+  checksum: 10/374e66cc0d450124f5a24177d533ecc7a6a6bfe7b1368db4c1fdbb7766ead55759cc4477812aaae1771c3b994f2da75f5660eecb03a7cbcd6fa8686ca21faa96
   languageName: node
   linkType: hard
 
-"@zag-js/auto-resize@npm:0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/auto-resize@npm:0.82.0"
+"@zag-js/auto-resize@npm:0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/auto-resize@npm:0.82.1"
   dependencies:
-    "@zag-js/dom-query": "npm:0.82.0"
-  checksum: 10/eb2663f90704ea090308da04aa98af38175e7d18ccf834b30229ca1e3af18a636094aa6daac91d6a176a4e8b0508c8fc16b03ae315f42e42d869a0af76f62e43
+    "@zag-js/dom-query": "npm:0.82.1"
+  checksum: 10/4dbb21f523e327c9b3d8a0ad17546dfd6d56c103da11b61f5612340190ea8d6935094d9ef409f40b583277ddbea534f024ea35c75d250cfca6bd3063b270c4b3
   languageName: node
   linkType: hard
 
-"@zag-js/core@npm:0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/core@npm:0.82.0"
+"@zag-js/core@npm:0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/core@npm:0.82.1"
   dependencies:
-    "@zag-js/store": "npm:0.82.0"
-    "@zag-js/utils": "npm:0.82.0"
-  checksum: 10/b52f501c5f1c3d0efd0572b00e3643f2f122eefb21b57f91a51d723dff45662d91f85afbc5b572c96e5b4f11dd4db07d501f2f5ccf576d1b647354b98759e243
+    "@zag-js/store": "npm:0.82.1"
+    "@zag-js/utils": "npm:0.82.1"
+  checksum: 10/9edc639f29c6c6f980137f702baf5117fdcffe62614fd90d7f63f81b9dfca0aac572480bb502eaa4cc46a863e77218733ac52f123b9e582dbe580f0e6cbef5a5
   languageName: node
   linkType: hard
 
-"@zag-js/dom-query@npm:0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/dom-query@npm:0.82.0"
+"@zag-js/dom-query@npm:0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/dom-query@npm:0.82.1"
   dependencies:
-    "@zag-js/types": "npm:0.82.0"
-  checksum: 10/36040e133529a022b1b619efb2a31a62d1a997a664940344d6d25ef9ccf9099e34e94a8d70cfa9e7fe0c19e56a52ab2766a6c62703cd2b9193dc8ce41e15a319
+    "@zag-js/types": "npm:0.82.1"
+  checksum: 10/f03eef4fe08c19f8d73f09bdc1ed7773639ad2dc7550fa2dccf3740c08188c39cd92fb7091e60ec44b49a4154340d38f3b4b591571efdf3d1b79f82fbd0d8f89
   languageName: node
   linkType: hard
 
-"@zag-js/interact-outside@npm:0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/interact-outside@npm:0.82.0"
+"@zag-js/interact-outside@npm:0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/interact-outside@npm:0.82.1"
   dependencies:
-    "@zag-js/dom-query": "npm:0.82.0"
-    "@zag-js/utils": "npm:0.82.0"
-  checksum: 10/ab5727179349afb99f96555f8e0bdaaabf8b58e24c493afd3414b2c32d5f28f3299a919451cc6b6f39152b879e3bf3680449196bfe7bf37320981be4d7d97543
+    "@zag-js/dom-query": "npm:0.82.1"
+    "@zag-js/utils": "npm:0.82.1"
+  checksum: 10/51a09c34b22e1b0b6fb6487518c25d84fa7bfb8939ad24d4791f6a0309f9263d1c15e2ada227605a0aa2e9ff93af77463a57d536414c11ffaff6216d587e79b0
   languageName: node
   linkType: hard
 
-"@zag-js/live-region@npm:0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/live-region@npm:0.82.0"
-  checksum: 10/cbd051aa80f98cfc79e82676b25c90e7d91ce172f977236b050895a47ddf9c6b8af7947c33f54d6db4557e170106d6720fdf941b0e5493779a1cb1deac705750
+"@zag-js/live-region@npm:0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/live-region@npm:0.82.1"
+  checksum: 10/939ee1a902cfa95ab3c2c2ca3f725233ba696cb5c8911d0e778069e09bc4be394a3aa3802a2a368fe65f8772fe5f74c775e840290407272e444a1410b2afb074
   languageName: node
   linkType: hard
 
-"@zag-js/pin-input@npm:^0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/pin-input@npm:0.82.0"
+"@zag-js/pin-input@npm:^0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/pin-input@npm:0.82.1"
   dependencies:
-    "@zag-js/anatomy": "npm:0.82.0"
-    "@zag-js/core": "npm:0.82.0"
-    "@zag-js/dom-query": "npm:0.82.0"
-    "@zag-js/types": "npm:0.82.0"
-    "@zag-js/utils": "npm:0.82.0"
-  checksum: 10/ce03359c0ac37c623d8101dd54dae0b2a49edd12cbcae8ebdcbcab4346d556badf755d83d01fbe9d59a287ea9991f0050c38c22a85ce0acb9e40235078ffa32e
+    "@zag-js/anatomy": "npm:0.82.1"
+    "@zag-js/core": "npm:0.82.1"
+    "@zag-js/dom-query": "npm:0.82.1"
+    "@zag-js/types": "npm:0.82.1"
+    "@zag-js/utils": "npm:0.82.1"
+  checksum: 10/b192051d9de6b22d2a3c4122edd3b96ea36f959760c0ecc3902d4c16290d2344cfdf12081dbf1080d7b6ac5a5263dc41aa22bdaca0bbba3b76ae2134b5492395
   languageName: node
   linkType: hard
 
-"@zag-js/store@npm:0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/store@npm:0.82.0"
+"@zag-js/store@npm:0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/store@npm:0.82.1"
   dependencies:
     proxy-compare: "npm:3.0.1"
-  checksum: 10/27bf0412a2e2d6d1d99226851c338c628f0ba0cd09ad000a58ff09c8919f67b3dc3c90e67fd5887eb8a28bf860ccdf15e4dbbcb86fb33f98dd9e9322f2ec67d8
+  checksum: 10/1d3a9c8986250a9599ad7db6666d9ff3a406234d96a5f6130a06fad4c81920503d708026cad8efc3282100c64c87a059c77b416470df163e5d72f0b1b9c3cb84
   languageName: node
   linkType: hard
 
-"@zag-js/tags-input@npm:^0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/tags-input@npm:0.82.0"
+"@zag-js/tags-input@npm:^0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/tags-input@npm:0.82.1"
   dependencies:
-    "@zag-js/anatomy": "npm:0.82.0"
-    "@zag-js/auto-resize": "npm:0.82.0"
-    "@zag-js/core": "npm:0.82.0"
-    "@zag-js/dom-query": "npm:0.82.0"
-    "@zag-js/interact-outside": "npm:0.82.0"
-    "@zag-js/live-region": "npm:0.82.0"
-    "@zag-js/types": "npm:0.82.0"
-    "@zag-js/utils": "npm:0.82.0"
-  checksum: 10/ed88170b3510681e0774cec6782ee94c536e4bd9175c6e0104fe7361728c6aa34d29e7136346a9a781151f002641bb9dd6511a1845ca297e62852bbe5baf90b2
+    "@zag-js/anatomy": "npm:0.82.1"
+    "@zag-js/auto-resize": "npm:0.82.1"
+    "@zag-js/core": "npm:0.82.1"
+    "@zag-js/dom-query": "npm:0.82.1"
+    "@zag-js/interact-outside": "npm:0.82.1"
+    "@zag-js/live-region": "npm:0.82.1"
+    "@zag-js/types": "npm:0.82.1"
+    "@zag-js/utils": "npm:0.82.1"
+  checksum: 10/7a20125192518c149ff0c5341e2fe7eee66866b126effc68702ca6b40c57181deda77c512f827582119b43f455c8ddffe3d5a618e938c2a2652b7fb9c135bddc
   languageName: node
   linkType: hard
 
-"@zag-js/types@npm:0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/types@npm:0.82.0"
+"@zag-js/types@npm:0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/types@npm:0.82.1"
   dependencies:
     csstype: "npm:3.1.3"
-  checksum: 10/888d552f7d042d781b235aab719477b95c813e5aa74be9efe65bfda2a64a9976513e251f1abd30583be282c5dfc798b5b4b0ab77f7962ee7af6251b54e9eea01
+  checksum: 10/e63a330ff8c3f3995f0afe450d71234c210cad56c3937383b01b0424b125904848ad86576c0ec54ce159581d3767c1effa557cbf8f3bd466aabd41dc80729d76
   languageName: node
   linkType: hard
 
-"@zag-js/utils@npm:0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/utils@npm:0.82.0"
-  checksum: 10/5db3e10c4e5fc0f28157e76e1b7f340acd8fa93ff5ed757f8da47a3ce1a07cf845f73e11fd43292925f7a77514879b328472f8048331fd4d02015dfdc9f4e648
+"@zag-js/utils@npm:0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/utils@npm:0.82.1"
+  checksum: 10/bca3bce6c9a4a2911b4d8b2fe68d31d948a61d079c66fc4901aee0aed9049cd9551a90d175f9d91f48888887f03f167bbb193d201dcd4b53c0422762ec374075
   languageName: node
   linkType: hard
 
-"@zag-js/vue@npm:^0.82.0":
-  version: 0.82.0
-  resolution: "@zag-js/vue@npm:0.82.0"
+"@zag-js/vue@npm:^0.82.1":
+  version: 0.82.1
+  resolution: "@zag-js/vue@npm:0.82.1"
   dependencies:
-    "@zag-js/core": "npm:0.82.0"
-    "@zag-js/store": "npm:0.82.0"
-    "@zag-js/types": "npm:0.82.0"
+    "@zag-js/core": "npm:0.82.1"
+    "@zag-js/store": "npm:0.82.1"
+    "@zag-js/types": "npm:0.82.1"
   peerDependencies:
     vue: ">=3.0.0"
-  checksum: 10/f1dae570d91d02bd0a652bc98ad3792939b750151b0848739f4e300d15001c6b83a5a78cda5688c5e1d70f7d1703717654f8acf8294f82a863354165b36bf512
+  checksum: 10/1a75fbb3036b4c55914a23cfaac930733afb34a61bc606c8932cd0cedc6ef6b087ad29fc280629fa6c2469ebe5521473c41579347dc67d8c582d4dc33410dedd
   languageName: node
   linkType: hard
 
@@ -8402,10 +8402,10 @@ __metadata:
     "@vitest/ui": "npm:^3.0.4"
     eslint: "npm:^8.57.0"
     eslint-config-neon: "npm:^0.1.62"
-    lint-staged: "npm:^15.4.1"
+    lint-staged: "npm:^15.4.2"
     prettier: "npm:^3.4.2"
-    prettier-plugin-tailwindcss: "npm:^0.6.10"
-    turbo: "npm:^2.3.3"
+    prettier-plugin-tailwindcss: "npm:^0.6.11"
+    turbo: "npm:^2.3.4"
     vitest: "npm:^3.0.4"
   languageName: unknown
   linkType: soft
@@ -8729,7 +8729,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^5.3.0, chalk@npm:~5.4.1":
+"chalk@npm:^5.3.0, chalk@npm:^5.4.1":
   version: 5.4.1
   resolution: "chalk@npm:5.4.1"
   checksum: 10/29df3ffcdf25656fed6e95962e2ef86d14dfe03cd50e7074b06bad9ffbbf6089adbb40f75c00744d843685c8d008adaf3aed31476780312553caf07fa86e5bc7
@@ -9198,6 +9198,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:^13.1.0":
+  version: 13.1.0
+  resolution: "commander@npm:13.1.0"
+  checksum: 10/d3b4b79e6be8471ddadacbb8cd441fe82154d7da7393b50e76165a9e29ccdb74fa911a186437b9a211d0fc071db6051915c94fb8ef16d77511d898e9dbabc6af
+  languageName: node
+  linkType: hard
+
 "commander@npm:^2.20.0, commander@npm:^2.20.3, commander@npm:^2.6.0":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
@@ -9237,13 +9244,6 @@ __metadata:
   version: 9.5.0
   resolution: "commander@npm:9.5.0"
   checksum: 10/41c49b3d0f94a1fbeb0463c85b13f15aa15a9e0b4d5e10a49c0a1d58d4489b549d62262b052ae0aa6cfda53299bee487bfe337825df15e342114dde543f82906
-  languageName: node
-  linkType: hard
-
-"commander@npm:~12.1.0":
-  version: 12.1.0
-  resolution: "commander@npm:12.1.0"
-  checksum: 10/cdaeb672d979816853a4eed7f1310a9319e8b976172485c2a6b437ed0db0a389a44cfb222bfbde772781efa9f215bdd1b936f80d6b249485b465c6cb906e1f93
   languageName: node
   linkType: hard
 
@@ -9771,7 +9771,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:4.4.0, debug@npm:^4.0.0, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.4, debug@npm:^4.3.5, debug@npm:^4.3.6, debug@npm:^4.3.7, debug@npm:^4.4.0, debug@npm:~4.4.0":
+"debug@npm:4, debug@npm:4.4.0, debug@npm:^4.0.0, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.4, debug@npm:^4.3.5, debug@npm:^4.3.6, debug@npm:^4.3.7, debug@npm:^4.4.0":
   version: 4.4.0
   resolution: "debug@npm:4.4.0"
   dependencies:
@@ -12123,7 +12123,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execa@npm:^8.0.1, execa@npm:~8.0.1":
+"execa@npm:^8.0.1":
   version: 8.0.1
   resolution: "execa@npm:8.0.1"
   dependencies:
@@ -15051,7 +15051,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lilconfig@npm:^3.0.0, lilconfig@npm:^3.1.1, lilconfig@npm:^3.1.2, lilconfig@npm:^3.1.3, lilconfig@npm:~3.1.3":
+"lilconfig@npm:^3.0.0, lilconfig@npm:^3.1.1, lilconfig@npm:^3.1.2, lilconfig@npm:^3.1.3":
   version: 3.1.3
   resolution: "lilconfig@npm:3.1.3"
   checksum: 10/b932ce1af94985f0efbe8896e57b1f814a48c8dbd7fc0ef8469785c6303ed29d0090af3ccad7e36b626bfca3a4dc56cc262697e9a8dd867623cf09a39d54e4c3
@@ -15072,23 +15072,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^15.4.1":
-  version: 15.4.1
-  resolution: "lint-staged@npm:15.4.1"
+"lint-staged@npm:^15.4.2":
+  version: 15.4.2
+  resolution: "lint-staged@npm:15.4.2"
   dependencies:
-    chalk: "npm:~5.4.1"
-    commander: "npm:~12.1.0"
-    debug: "npm:~4.4.0"
-    execa: "npm:~8.0.1"
-    lilconfig: "npm:~3.1.3"
-    listr2: "npm:~8.2.5"
-    micromatch: "npm:~4.0.8"
-    pidtree: "npm:~0.6.0"
-    string-argv: "npm:~0.3.2"
-    yaml: "npm:~2.6.1"
+    chalk: "npm:^5.4.1"
+    commander: "npm:^13.1.0"
+    debug: "npm:^4.4.0"
+    execa: "npm:^8.0.1"
+    lilconfig: "npm:^3.1.3"
+    listr2: "npm:^8.2.5"
+    micromatch: "npm:^4.0.8"
+    pidtree: "npm:^0.6.0"
+    string-argv: "npm:^0.3.2"
+    yaml: "npm:^2.7.0"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10/615a1f0a66c6cb35fda928745fec9864498853d5aab49785840b12643e40c6518daf01218b5255a727d32ef9a3738e3766103679cfdcd6f1b320e272920f3b68
+  checksum: 10/19f85db74d002b46901b8d1acf8af195e116eab53a1c3790be89d6d175b2fdf62098df86d6b5d0db2822ce4e0ccae8dc954f2dd2a79b656b7837d2f5af65c563
   languageName: node
   linkType: hard
 
@@ -15121,7 +15121,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"listr2@npm:~8.2.5":
+"listr2@npm:^8.2.5":
   version: 8.2.5
   resolution: "listr2@npm:8.2.5"
   dependencies:
@@ -16262,7 +16262,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.5, micromatch@npm:^4.0.8, micromatch@npm:~4.0.8":
+"micromatch@npm:^4.0.5, micromatch@npm:^4.0.8":
   version: 4.0.8
   resolution: "micromatch@npm:4.0.8"
   dependencies:
@@ -18370,7 +18370,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pidtree@npm:~0.6.0":
+"pidtree@npm:^0.6.0":
   version: 0.6.0
   resolution: "pidtree@npm:0.6.0"
   bin:
@@ -19010,9 +19010,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-tailwindcss@npm:^0.6.10":
-  version: 0.6.10
-  resolution: "prettier-plugin-tailwindcss@npm:0.6.10"
+"prettier-plugin-tailwindcss@npm:^0.6.11":
+  version: 0.6.11
+  resolution: "prettier-plugin-tailwindcss@npm:0.6.11"
   peerDependencies:
     "@ianvs/prettier-plugin-sort-imports": "*"
     "@prettier/plugin-pug": "*"
@@ -19064,7 +19064,7 @@ __metadata:
       optional: true
     prettier-plugin-svelte:
       optional: true
-  checksum: 10/4325553a712afc506c5ee73bbcf090d75f54c7e7983115c35b728ea3756919f68db35dc064b60dd7b86d7e5a3a4a80085e43ec26d6236f5ca9960b6c8ee355f3
+  checksum: 10/7c87d8b9c7fc6e8bd3722da5c0bd115cfc249baba339b28b56ed270f0bcb99e0196836cd7270c8ab6bc499186f41e2bac4adff7795cd523d8f63f43424a0a36d
   languageName: node
   linkType: hard
 
@@ -20971,7 +20971,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string-argv@npm:~0.3.2":
+"string-argv@npm:^0.3.2":
   version: 0.3.2
   resolution: "string-argv@npm:0.3.2"
   checksum: 10/f9d3addf887026b4b5f997a271149e93bf71efc8692e7dc0816e8807f960b18bcb9787b45beedf0f97ff459575ee389af3f189d8b649834cac602f2e857e75af
@@ -21889,58 +21889,58 @@ __metadata:
   languageName: node
   linkType: hard
 
-"turbo-darwin-64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-darwin-64@npm:2.3.3"
+"turbo-darwin-64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-darwin-64@npm:2.3.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-darwin-arm64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-darwin-arm64@npm:2.3.3"
+"turbo-darwin-arm64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-darwin-arm64@npm:2.3.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-linux-64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-linux-64@npm:2.3.3"
+"turbo-linux-64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-linux-64@npm:2.3.4"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-linux-arm64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-linux-arm64@npm:2.3.3"
+"turbo-linux-arm64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-linux-arm64@npm:2.3.4"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo-windows-64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-windows-64@npm:2.3.3"
+"turbo-windows-64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-windows-64@npm:2.3.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"turbo-windows-arm64@npm:2.3.3":
-  version: 2.3.3
-  resolution: "turbo-windows-arm64@npm:2.3.3"
+"turbo-windows-arm64@npm:2.3.4":
+  version: 2.3.4
+  resolution: "turbo-windows-arm64@npm:2.3.4"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"turbo@npm:^2.3.3":
-  version: 2.3.3
-  resolution: "turbo@npm:2.3.3"
+"turbo@npm:^2.3.4":
+  version: 2.3.4
+  resolution: "turbo@npm:2.3.4"
   dependencies:
-    turbo-darwin-64: "npm:2.3.3"
-    turbo-darwin-arm64: "npm:2.3.3"
-    turbo-linux-64: "npm:2.3.3"
-    turbo-linux-arm64: "npm:2.3.3"
-    turbo-windows-64: "npm:2.3.3"
-    turbo-windows-arm64: "npm:2.3.3"
+    turbo-darwin-64: "npm:2.3.4"
+    turbo-darwin-arm64: "npm:2.3.4"
+    turbo-linux-64: "npm:2.3.4"
+    turbo-linux-arm64: "npm:2.3.4"
+    turbo-windows-64: "npm:2.3.4"
+    turbo-windows-arm64: "npm:2.3.4"
   dependenciesMeta:
     turbo-darwin-64:
       optional: true
@@ -21956,7 +21956,7 @@ __metadata:
       optional: true
   bin:
     turbo: bin/turbo
-  checksum: 10/580203a335321aa77bc04a1db46fe34504dce32c3b22f593044330403915b47f5b10d41158131007ed7a518ff5e8f739f6feb311fa139aa029cd904f398944d3
+  checksum: 10/e1ea94c1977c7d907dff50796b09dca8dc4713590ef0f3a5697abb2de41b9a465e6ca25b8d417d12cadb4db5e65a2c247dd60486c85eaaf69a1888ff9f0d604a
   languageName: node
   linkType: hard
 
@@ -23744,21 +23744,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:^2.0.0, yaml@npm:^2.3.4, yaml@npm:^2.6.1":
+"yaml@npm:^2.0.0, yaml@npm:^2.3.4, yaml@npm:^2.6.1, yaml@npm:^2.7.0":
   version: 2.7.0
   resolution: "yaml@npm:2.7.0"
   bin:
     yaml: bin.mjs
   checksum: 10/c8c314c62fbd49244a6a51b06482f6d495b37ab10fa685fcafa1bbaae7841b7233ee7d12cab087bcca5a0b28adc92868b6e437322276430c28d00f1c1732eeec
-  languageName: node
-  linkType: hard
-
-"yaml@npm:~2.6.1":
-  version: 2.6.1
-  resolution: "yaml@npm:2.6.1"
-  bin:
-    yaml: bin.mjs
-  checksum: 10/cf412f03a33886db0a3aac70bb4165588f4c5b3c6f8fc91520b71491e5537800b6c2c73ed52015617f6e191eb4644c73c92973960a1999779c62a200ee4c231d
   languageName: node
   linkType: hard
 
