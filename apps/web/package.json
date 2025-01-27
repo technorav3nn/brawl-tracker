@@ -37,7 +37,13 @@
 		"@pinia/nuxt": "^0.9.0",
 		"@sapphire/duration": "^1.1.4",
 		"@sapphire/time-utilities": "^1.7.14",
+<<<<<<< HEAD
 		"@sentry/nuxt": "^8.51.0",
+=======
+		"@sentry/nuxt": "^8.50.0",
+		"@unovis/ts": "^1.5.0",
+		"@unovis/vue": "^1.5.0",
+>>>>>>> 4ae1d40 (feat(web): remove email column and add chart)
 		"@unpic/vue": "^1.0.0",
 		"@vee-validate/zod": "^4.15.0",
 		"@vercel/kv": "^3.0.0",

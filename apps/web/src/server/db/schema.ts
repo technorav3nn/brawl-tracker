@@ -20,7 +20,6 @@ export const users = pgTable("user", {
 	id: varchar("id", {
 		length: 255,
 	}).primaryKey(),
-	email: varchar("email", { length: 60 }).unique().notNull(),
 	hashedPassword: varchar("hashed_password", { length: 255 }),
 	supercellId: varchar("supercell_id", { length: 255 }).unique(),
 	username: varchar("username", { length: 30 }).unique().notNull(),

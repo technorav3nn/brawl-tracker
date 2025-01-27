@@ -1,61 +1,118 @@
 <script setup lang="ts">
-import { Image } from "@unpic/vue";
-import { ModalsMapViewerModal } from "#components";
-
 const {
 	params: { map: mapId },
 } = useRoute("maps-map");
 
 const { data: map } = await useFetch(`/api/maps/${mapId}`);
-const modal = useModal();
+const { data: brawlers } = await useFetch("/api/brawlers", { transform: (s) => s.list });
 
-function openMapViewer() {
-	modal.open(ModalsMapViewerModal, { imageUrl: map.value!.imageUrl });
-}
+const brawlerSortedUsage = computed(() => {
+	return map.value!.stats.sort((a, b) => b.useRate - a.useRate);
+});
+
+const chartData = computed(() => {
+	return map
+		.value!.stats.map((s) => {
+			if (Number(s.brawler) === 0) return null;
+			const brawler = brawlers.value!.find((b) => b.id === Number(s.brawler));
+			return {
+				brawler: brawler!.name,
+				winRate: s.winRate,
+				useRate: s.useRate,
+				usageIndex: brawlerSortedUsage.value.findIndex((b) => b.brawler === s.brawler) + 1,
+			};
+		})
+		.filter(Boolean);
+});
+
+const selectedSort = ref("Win Rate");
+const direction = ref<"asc" | "desc">("asc");
+const search = ref("");
+
+const sortedStats = computed(() => {
+	if (selectedSort.value === "None") return map.value!.stats;
+	const property = selectedSort.value === "Win Rate" ? "winRate" : "useRate";
+	const filteredSearch = map.value!.stats.filter((s) =>
+		brawlers
+			.value!.find((b) => b.id === Number(s.brawler))
+			?.name.toLowerCase()
+			.includes(search.value.toLowerCase())
+	);
+	const sortedRates = filteredSearch.sort((a, b) => b[property] - a[property]);
+	return direction.value === "asc" ? sortedRates : sortedRates.slice().reverse();
+});
 </script>
 
 <template>
 	<UContainer>
+		<UPageHero
+			:title="`${map!.name}`"
+			:description="`View the best brawlers and their stats for ${map!.name}.`"
+			:ui="{ wrapper: 'sm:!pt-16 sm:!pb-8 !pt-8 !pb-4' }"
+		>
+			<template #description>
+				<p>View the best brawlers and their stats for {{ map!.name }}.</p>
+				<UButton class="mt-4" icon="i-heroicons-arrow-top-right-on-square-20-solid">View Map Info</UButton>
+			</template>
+		</UPageHero>
+		<UDivider />
 		<UPage>
 			<UPageBody class="!mt-8">
-				<div class="flex justify-center items-center">
-					<UCard :ui="{ body: { padding: '!p-0' } }" class="min-w-56">
-						<div class="flex flex-row gap-0 flex-nowrap">
-							<NuxtImg
-								:src="map!.imageUrl"
-								:alt="map!.name"
-								class="rounded rounded-r-none"
-								width="180"
-								:modifiers="map!.gameMode.name === 'Brawl Ball' ? { extract: '85_132_500_785' } : { trim: '{}' }"
-								height="250"
-								loading="lazy"
+				<div class="flex justify-center items-center"></div>
+				<ClientOnly>
+					<MapsBrawlerBarChart class="mt-8" :data="chartData as any" />
+				</ClientOnly>
+				<div class="flex flex-col mt-8 gap-4">
+					<div class="flex justify-end items-end w-full gap-2.5">
+						<UInput v-model="search" placeholder="Search Brawlers" />
+						<UButtonGroup>
+							<USelectMenu v-model="selectedSort" class="min-w-28" :options="['Win Rate', 'Use Rate']" />
+							<UButton
+								:icon="direction === 'asc' ? 'i-uil-sort-amount-up' : 'i-uil-sort-amount-down'"
+								square
+								size="md"
+								color="gray"
+								@click="direction = direction === 'asc' ? 'desc' : 'asc'"
 							/>
-							<div class="p-3.5 flex flex-col items-start justify-between">
-								<div class="flex gap-2 items-center">
-									<Image :src="map!.gameMode.imageUrl" :alt="map!.name" class="!object-scale-down" width="32" height="32" />
-									<div class="flex flex-col">
-										<h1 class="text-md font-semibold">{{ map!.name }}</h1>
-										<p class="text-sm">{{ map!.gameMode.name }}</p>
-									</div>
+						</UButtonGroup>
+					</div>
+					<div
+						class="grid grid-cols-3 min-[400px]:grid-cols-3 min-[500px]:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-9 gap-4"
+					>
+						<UPageCard
+							v-for="{ brawler: brawlerId, useRate, winRate } in sortedStats"
+							:key="brawlerId"
+							:ui="{
+								header: { padding: '!p-0' },
+								body: { padding: '!p-1.5' },
+							}"
+							:to="`/brawlers/${brawlerId}`"
+						>
+							<template #header>
+								<NuxtImg
+									:src="brawlers?.find((b) => b.id === Number(brawlerId))?.imageUrl2"
+									:alt="brawlerId.toString()"
+									class="w-full h-full rounded-lg rounded-b-none"
+									width="80"
+									height="80"
+									loading="lazy"
+								/>
+							</template>
+							<div class="flex flex-col items-start justify-center">
+								<p class="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">
+									{{ brawlers?.find((b) => b.id === Number(brawlerId))?.name }}
+								</p>
+								<div class="flex justify-between w-full">
+									<p class="text-[0.820rem] font-semibold truncate text-gray-500 dark:text-gray-300">Use Rate</p>
+									<p class="text-[0.820rem] text-gray-500 dark:text-gray-300">{{ useRate }}%</p>
 								</div>
-								<div class="flex gap-2.5 flex-col w-full">
-									<div class="flex flex-col">
-										<p class="text-sm">
-											Concept by: <span class="font-semibold">{{ map?.credit ?? "BS Devs" }}</span>
-										</p>
-										<p class="text-sm">
-											Disabled: <span class="font-semibold">{{ map?.disabled ? "Yes" : "No" }}</span>
-										</p>
-										<p class="text-sm">
-											Last Seen:
-											<span class="font-semibold">{{ map?.lastActive ? new Date(map.lastActive).toDateString() : "???" }}</span>
-										</p>
-									</div>
-									<UButton icon="i-heroicons-magnifying-glass-plus-20-solid" block @click="openMapViewer">View Map</UButton>
+								<div class="flex justify-between w-full">
+									<p class="text-[0.820rem] font-semibold truncate text-gray-500 dark:text-gray-300">Win Rate</p>
+									<p class="text-[0.820rem] text-gray-500 dark:text-gray-300">{{ winRate }}%</p>
 								</div>
 							</div>
-						</div>
-					</UCard>
+						</UPageCard>
+					</div>
 				</div>
 			</UPageBody>
 		</UPage>

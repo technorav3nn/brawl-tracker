@@ -116,6 +116,7 @@ const items = computed(() => [
 		:ui="{
 			panel: { body: '[&_:nth-child(5)]:hidden' },
 		}"
+		class="bg-background"
 	>
 		<template #logo>
 			<div class="flex items-center">
