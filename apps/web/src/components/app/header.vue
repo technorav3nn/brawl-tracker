@@ -1,20 +1,13 @@
 <script setup lang="ts">
-import { getCdnUrlForAvatarId } from "@brawltracker/supercell-id-api";
 import type { AsideLink } from "@nuxt/ui-pro/types";
-import HeaderProfileSlideover from "./header-profile-slideover.vue";
-import { createGetCachedData } from "$lib/utils/nuxt";
+import { AppHeaderProfileSlideover } from "#components";
 
 const toast = useToast();
 const slideover = useSlideover();
 const user = useUser();
-const nuxtApp = useNuxtApp();
+const { data: databaseUser } = await useDatabaseUser();
 
-const { data: profile, status } = await useFetch("/api/auth/scid/my-profile", {
-	ignoreResponseError: true,
-	watch: user.value === null ? [user] : [],
-	getCachedData: createGetCachedData(nuxtApp),
-	key: "profile",
-});
+const avatar = computed<string | null>(() => databaseUser.value?.scidConnections.avatar ?? null);
 
 type Link = AsideLink & { children?: AsideLink[] };
 
@@ -76,9 +69,9 @@ const links = computed<Link[]>(() => [
 const items = computed(() => [
 	[
 		{
-			label: user.value?.username,
+			label: "placeholder",
 			avatar: {
-				alt: user.value?.username,
+				alt: "placeholder avatar",
 				class: "dark:!bg-gray-600",
 			},
 		},
@@ -99,10 +92,10 @@ const items = computed(() => [
 			label: "Logout",
 			icon: "i-heroicons-arrow-right-end-on-rectangle",
 			click: async () => {
-				await $fetch("/api/auth/logout", { method: "POST" });
-				user.value = null;
-				await navigateTo("/");
-				toast.add({ title: "Logged out successfully", color: "primary" });
+				// await $fetch("/api/auth/logout", { method: "POST" });
+				// user.value = null;
+				// await navigateTo("/");
+				toast.add({ title: "ADD THIS FUNCTIONALITY", color: "primary" });
 			},
 		},
 	],
@@ -116,7 +109,6 @@ const items = computed(() => [
 		:ui="{
 			panel: { body: '[&_:nth-child(5)]:hidden' },
 		}"
-		class="bg-background"
 	>
 		<template #logo>
 			<div class="flex items-center">
@@ -126,8 +118,8 @@ const items = computed(() => [
 		</template>
 
 		<template #right>
-			<UButton v-if="!user" class="hidden sm:block" to="/login">Log In</UButton>
-			<!-- <UButton v-if="!user" class="mr-1.5 hidden sm:block" color="primary" to="/signup">Sign Up</UButton> -->
+			<UButton v-if="!user" color="gray" variant="ghost" class="hidden sm:block" to="/login">Log In</UButton>
+			<UButton v-if="!user" class="hidden sm:block" to="/signup">Sign Up</UButton>
 			<UButton
 				v-if="!user"
 				class="sm:hidden"
@@ -136,19 +128,22 @@ const items = computed(() => [
 				icon="i-heroicons-arrow-left-end-on-rectangle-20-solid"
 				square
 			/>
-			<UTooltip v-if="status === 'success' && profile?.exists" text="My Profile">
+
+			<UTooltip v-if="user" text="My Profile">
 				<UButton
-					v-if="status === 'success' && profile?.exists"
+					v-if="user"
 					:ui="{ gap: { sm: 'gap-x-[0.095rem]' } }"
 					variant="ghost"
 					trailingIcon="i-heroicons-chevron-down-20-solid"
 					color="gray"
 					class="px-1.5"
-					@click="slideover.open(HeaderProfileSlideover)"
+					@click="slideover.open(AppHeaderProfileSlideover)"
 				>
-					<NuxtImg class="w-7 h-7 rounded-full" :src="getCdnUrlForAvatarId(profile.data?.avatarImage!)" />
+					<NuxtImg v-if="avatar" class="w-7 h-7 rounded-full" :src="avatar" />
+					<UAvatar v-else class="w-7 h-7" :alt="user.name" />
 				</UButton>
 			</UTooltip>
+
 			<UTooltip :text="$colorMode.value === 'dark' ? 'Turn the lights on' : 'Turns the lights off'">
 				<UColorModeButton />
 			</UTooltip>

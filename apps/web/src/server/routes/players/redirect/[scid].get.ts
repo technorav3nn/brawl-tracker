@@ -1,4 +1,5 @@
-import { getProfile, highLowToId, idToTag } from "@brawltracker/supercell-id-api";
+import { getProfile } from "@brawltracker/supercell-id-api";
+import { highLowToId, idToTag } from "@brawltracker/supercell-id-api/browser";
 
 export default eventHandler(async (event) => {
 	if (!event.context.user) {

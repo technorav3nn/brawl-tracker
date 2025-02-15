@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { type BrawlApiBrawler } from "@brawltracker/brawl-api";
 import { normalizeNameToCdnName } from "@brawltracker/cdn";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
 
@@ -16,7 +17,7 @@ const route = useRoute("brawlers-id");
 const brawlerId = route.params.id;
 
 const brawlerStore = useBrawlerStore();
-const { data: brawler, error: apiError } = await useFetch(`/api/brawlers/${brawlerId}`);
+const { data: brawler, error: apiError } = await useFetch<BrawlApiBrawler>(`/api/brawlers/${brawlerId}`);
 
 if (apiError.value) {
 	throw createError({

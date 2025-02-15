@@ -1,3 +1,5 @@
+import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
+
 export default cachedEventHandler(
 	async (event) => {
 		const brawlerId = event.context.params?.id;

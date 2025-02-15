@@ -4,49 +4,44 @@ import type { FetchError } from "ofetch";
 defineProps<{ open: boolean }>();
 const $emit = defineEmits(["update:open"]);
 
+const user = useUser();
+const modal = useModal();
+
 const stageOne = ref(true);
 const stageTwo = ref(false);
 
-const email = ref("");
 const progress = computed(() => (stageOne.value ? 1 : stageTwo.value ? 2 : 1));
 
 const validationError = ref<string | null>(null);
 
-async function submitStageOne({ email: em }: { email: string }) {
-	email.value = em;
-	try {
-		await sendCode();
-		stageOne.value = false;
-		stageTwo.value = true;
-		validationError.value = null;
-	} catch (error) {
-		console.error("Failed to send code");
-		console.error(error);
-	}
+function nextStage() {
+	stageOne.value = false;
+	stageTwo.value = true;
 }
 
-async function submitStageTwo({ code: c }: { code: string }) {
+async function submitStageTwo(c: string, email: string) {
 	const code = String(c).replaceAll(/\s/g, "");
 
-	const response = await $fetch(`/api/auth/scid/validate-login-code`, {
+	const response = await $fetch(`/api/auth/scid/login`, {
 		method: "POST",
-		query: { email: email.value, code: String(code) },
+		body: { email, code },
 	}).catch((error) => {
 		const { statusMessage } = error as FetchError;
 		validationError.value = statusMessage!;
 	});
 	if (response) {
 		$emit("update:open", false);
+		modal.close();
 		await navigateTo("/");
 		refreshNuxtData("user");
 		refreshNuxtData("profile");
 	}
 }
 
-async function sendCode() {
-	const response = await $fetch(`/api/auth/scid/create-login-code`, {
+async function sendCode(email: string) {
+	const response = await $fetch(`/api/auth/scid/send-code`, {
 		method: "POST",
-		query: { email: email.value },
+		body: { email },
 	}).catch((error) => {
 		const { statusMessage } = error as FetchError;
 		validationError.value = statusMessage!;
@@ -83,39 +78,30 @@ async function sendCode() {
 			</template>
 
 			<div v-show="stageOne">
-				<UAuthForm
-					class="!max-w-none"
-					title="Supercell ID Login"
-					description="Login with your Supercell ID to access your account."
-					:fields="[
-						{
-							type: 'email',
-							label: 'Supercell ID Email',
-							placeholder: 'Enter your email linked to Supercell ID',
-							// @ts-expect-error - Bug
-							color: 'gray',
-							required: true,
-							id: 'email',
-							name: 'email',
-						},
-					]"
-					@submit="submitStageOne"
+				<p class="text-md font-medium">We'll be using your email that you used to sign up.</p>
+				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Then a a code to login will be sent to your that email.</p>
+
+				<UButton
+					block
+					class="mt-2"
+					@click="
+						sendCode(user!.email);
+						nextStage();
+					"
 				>
-					<template v-if="!!validationError" #validation>
-						<UAlert color="red" icon="i-heroicons-information-circle-20-solid" :title="validationError" />
-					</template>
-				</UAuthForm>
+					Send Code
+				</UButton>
 			</div>
 
 			<div v-show="stageTwo" class="w-full flex flex-col">
-				<p class="text-md font-medium">Enter the code sent to your email to login.</p>
+				<p class="text-md font-medium">Enter the code sent to your email you signed up with</p>
 				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
 					If you didn't receive the code, check your spam folder or resend it.
 				</p>
-				<UiPinInput class="!w-full" otp format="### ###" @completed="submitStageTwo({ code: $event })" />
+				<UiPinInput class="!w-full" otp format="### ###" @completed="(code) => submitStageTwo(code, user!.email)" />
 				<UButton block class="mt-2" @click="sendCode">Login</UButton>
 				<UDivider class="mt-4 w-[75px] self-center" size="xs" />
-				<UButton block class="mt-4" color="gray" @click="sendCode">Resend Code</UButton>
+				<UButton block class="mt-4" color="gray" @click="sendCode(user!.email)">Resend Code</UButton>
 				<UAlert
 					v-if="!!validationError"
 					color="red"

@@ -1,59 +1,41 @@
-import { hash } from "@node-rs/argon2";
-import { generateIdFromEntropySize } from "lucia";
-import { signupUserSchema } from "$lib/validation/user-schema";
-import { lucia } from "$server/auth";
-import { db } from "$server/db";
-import { users } from "$server/db/schema";
+import { ID, Query } from "node-appwrite";
+import { createAdminClient } from "$lib/appwrite";
+import { SESSION_COOKIE } from "$lib/constants";
+import { initalizeUser } from "$server/db/users/actions";
 
-export default eventHandler(async (event) => {
-	const { success, error, data } = await readValidatedBody(event, (body) => {
-		return signupUserSchema.safeParse(body);
-	});
-	if (!success) {
-		throw error.issues;
+export default defineEventHandler(async (event) => {
+	const formData = await readFormData(event);
+
+	const email = formData.get("email") as string;
+	const password = formData.get("password") as string;
+	const name = formData.get("username") as string;
+
+	const { account, users, databases } = createAdminClient();
+
+	const emailUsed = await users.list([Query.equal("email", email), Query.limit(1)]);
+	if (emailUsed.users.length > 0) {
+		return await sendRedirect(event, "/signup?error=email-used", 301);
 	}
 
-	const { email, password, username } = data;
-
-	const passwordHash = await hash(password, {
-		// recommended minimum parameters
-		memoryCost: 19456,
-		timeCost: 2,
-		outputLen: 32,
-		parallelism: 1,
-	});
-	const userId = generateIdFromEntropySize(10); // 16 characters long
-
-	// TODO: check if username is already used
-	try {
-		await db.insert(users).values({
-			id: userId,
-			username,
-			email,
-			hashedPassword: passwordHash,
-		});
-	} catch (error) {
-		if (error instanceof Error && error.message.includes("duplicate key value violates unique constraint")) {
-			throw createError({
-				statusMessage:
-					"Username or email already taken, or email is in use with Supercell ID. Try using Supercell ID if this is your email or try a different email.",
-				statusCode: 400,
-			});
-		}
+	const usernameUsed = await users.list([Query.equal("name", name), Query.limit(1)]);
+	if (usernameUsed.users.length > 0) {
+		return await sendRedirect(event, "/signup?error=username-used", 301);
 	}
 
-	const ip = event.headers.get("x-forwarded-for") || event.node.req.socket.remoteAddress;
-	if (!ip) {
-		throw createError({
-			statusMessage: "Failed to get IP address",
-			statusCode: 500,
-		});
-	}
+	const user = await account.create(ID.unique(), email, password, name);
+	await initalizeUser(user.$id, databases);
+	console.log(`User ${user.$id} signed up`);
 
-	const ipCountry = useIpToCountry(ip);
+	const session = await account.createEmailPasswordSession(email, password);
+	console.log("Session:", session);
 
-	const session = await lucia.createSession(userId, {
-		ipCountry,
+	setCookie(event, SESSION_COOKIE, session.secret, {
+		expires: new Date(session.expire),
+		path: "/",
+		httpOnly: true,
+		secure: true,
+		sameSite: "strict",
 	});
-	appendHeader(event, "Set-Cookie", lucia.createSessionCookie(session.id).serialize());
+
+	await sendRedirect(event, "/");
 });

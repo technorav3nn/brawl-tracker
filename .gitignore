@@ -6,6 +6,9 @@
 .cache
 dist
 
+# Private scripts
+.scripts
+
 # Vitest
 coverage
 html

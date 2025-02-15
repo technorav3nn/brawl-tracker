@@ -7,38 +7,24 @@ const { resolve } = createResolver(import.meta.url);
 export default defineNuxtConfig({
 	extends: ["@nuxt/ui-pro"],
 	modules: [
-		"@nuxt/ui",
 		"@nuxt/devtools",
 		"@nuxt/fonts",
-		"@nuxt/image",
-		"@nuxt/eslint",
-		"@pinia/nuxt",
-		"@nuxt/content",
+		"@nuxt/image", // "@nuxt/eslint",
+		"@nuxt/ui",
+		"@pinia/nuxt", // "@nuxt/content",
 		"@vueuse/nuxt",
 		"@sentry/nuxt/module",
 		"nuxt-time",
+		"nuxt-appwrite",
 	],
 	srcDir: "src/",
 	devtools: {
 		enabled: true,
-		timeline: {
-			enabled: true,
-		},
 	},
-	content: {
-		database: {
-			type: "postgres",
-			url: process.env.POSTGRES_URL!,
-		},
-	},
-	eslint: {
-		config: {
-			standalone: false,
-		},
-	},
-	uiPro: {
-		routerOptions: false,
-	},
+	// },
+	// uiPro: {
+	// 	routerOptions: false,
+	// },
 	fonts: {
 		defaults: {
 			preload: true,
@@ -89,9 +75,6 @@ export default defineNuxtConfig({
 			cdn: "https://cdn.deathblows.xyz",
 		},
 	},
-	tailwindcss: {
-		exposeConfig: true,
-	},
 	sentry: {
 		sourceMapsUploadOptions: {
 			org: "technorav3nn",
@@ -100,6 +83,7 @@ export default defineNuxtConfig({
 		},
 	},
 	runtimeConfig: {
+		appwriteApiToken: "",
 		databaseUrl: "",
 		brawlStarsApiToken: "",
 		discord: {
@@ -108,19 +92,16 @@ export default defineNuxtConfig({
 		},
 		authOrigin: "https://brawl-tracker-pr-1-web.vercel.app",
 		apiEncryptionSecret: "",
-		public: {
-			sentryDsn: "",
-		},
+		appwriteEndpoint: "https://cloud.appwrite.io/v1",
+		appwriteProjectId: "6786db24001e31cc452a",
+	},
+	appwrite: {
+		endpoint: "https://cloud.appwrite.io/v1",
+		project: "6786db24001e31cc452a",
 	},
 	nitro: {
-		storage: {
-			kv: {
-				driver: "vercelKV",
-			},
-		},
 		preset: "vercel",
 	},
-	css: ["~/assets/css/tailwind.css", "~/assets/css/global.css"],
 	alias: {
 		$assets: resolve("./src/assets"),
 		$components: resolve("./src/components"),

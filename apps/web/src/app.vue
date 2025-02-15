@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import "$assets/css/global.css";
+</script>
 
 <template>
 	<AppHeader />

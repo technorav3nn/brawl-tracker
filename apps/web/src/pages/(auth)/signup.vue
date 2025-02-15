@@ -1,20 +1,19 @@
 <script setup lang="ts">
-/* eslint-disable promise/prefer-await-to-callbacks */
-/* eslint-disable promise/prefer-await-to-then */
-import type { FetchError } from "ofetch";
-
 const validationError = ref<string | null>(null);
+const loading = ref(false);
 
-async function login(body: { username: string; password: string }) {
-	$fetch("/api/auth/signup", {
-		method: "POST",
-		body,
-	})
-		.then(async () => await navigateTo("/"))
-		.catch((error) => {
-			const { statusMessage } = error as FetchError;
-			validationError.value = statusMessage!;
-		});
+async function onSubmit(body: { username: string; password: string; email: string }) {
+	try {
+		loading.value = true;
+		// eslint-disable-next-line n/prefer-global/url-search-params
+		const result = await $fetch("/api/auth/signup", { method: "POST", body: new URLSearchParams(body) });
+		loading.value = false;
+		await navigateTo("/");
+		console.log(result);
+	} catch (error) {
+		validationError.value = (error as any).message;
+		loading.value = false;
+	}
 }
 </script>
 
@@ -57,9 +56,8 @@ async function login(body: { username: string; password: string }) {
 							color: 'gray',
 						},
 					]"
-					:providers="[{ label: 'Discord', icon: 'i-simple-icons-discord', color: 'gray' }]"
-					:loading="false"
-					@submit="login"
+					:loading="loading"
+					@submit="onSubmit"
 				>
 					<template v-if="validationError" #validation>
 						<UAlert color="red" icon="i-heroicons-information-circle-20-solid" :title="validationError" />
