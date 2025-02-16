@@ -30,7 +30,7 @@
 		"@pinia/nuxt": "^0.9.0",
 		"@sapphire/duration": "^1.1.4",
 		"@sapphire/time-utilities": "^1.7.14",
-		"@sentry/nuxt": "^8.50.0",
+		"@sentry/nuxt": "^9.1.0",
 		"@unovis/ts": "^1.5.0",
 		"@unovis/vue": "^1.5.0",
 		"@unpic/vue": "^1.0.0",
