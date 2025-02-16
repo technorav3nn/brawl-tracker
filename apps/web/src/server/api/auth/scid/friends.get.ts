@@ -1,42 +1,15 @@
-import { getFriends } from "@brawltracker/supercell-id-api";
-import { db } from "$server/db";
+// import { getFriends } from "@brawltracker/supercell-id-api";
+// import { createSessionClient } from "$lib/appwrite";
+// import { getScidSessionToken } from "$server/db/users/actions";
 
-export default eventHandler(async (event) => {
-	if (!event.context.user) {
-		throw createError({
-			statusCode: 401,
-			message: "Unauthorized",
-		});
-	}
-
-	const { sessionToken, id } = event.context.user;
-
-	if (!sessionToken) {
-		throw createError({
-			statusCode: 400,
-			statusMessage: "User has no SCID token, not logged in with Supercell ID",
-		});
-	}
-
-	const tokens = await db.query.tokens.findFirst({
-		where: (tokenProfile, { eq }) => eq(tokenProfile.userId, id),
-	});
-
-	if (!tokens) {
-		throw createError({
-			statusCode: 400,
-			statusMessage: "User has no SCID token",
-		});
-	}
-
-	const friends = await getFriends(sessionToken);
-
-	if (!friends.ok) {
-		throw createError({
-			statusCode: 400,
-			statusMessage: "Failed to fetch friends",
-		});
-	}
-
-	return friends.data;
+export default defineEventHandler(async () => {
+	// if (!event.context.user) {
+	// 	throw createError({ statusCode: 401, statusMessage: "Unauthorized" });
+	// }
+	// const { databases } = createSessionClient(event);
+	// const sessionToken = await getScidSessionToken(event.context.user.$id, databases);
+	// if (!sessionToken) {
+	// 	throw createError({ statusCode: 500, statusMessage: "Failed to retrieve session" });
+	// }
+	// return await getFriends(sessionToken);
 });

@@ -125,7 +125,6 @@ export default defineNuxtConfig({
 		},
 		{ path: "$components/features", extensions: [".vue"], prefix: "" },
 	],
-	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
 	runtimeConfig: {
 		brawlStarsApiToken: process.env.BRAWL_STARS_API_TOKEN,
 	},

@@ -5,9 +5,9 @@ import type { CountryCodes } from "@brawltracker/brawl-stars-api";
 import { byIso } from "country-code-lookup";
 
 definePageMeta({
-	middleware: (to) => {
+	middleware: async (to) => {
 		if (!to.query.location) {
-			return navigateTo({ path: "/leaderboards/ranked", query: { location: "global" } });
+			return await navigateTo({ path: "/leaderboards/ranked", query: { location: "global" } });
 		}
 	},
 });
@@ -194,21 +194,13 @@ const columns = [
 			description="View the ranked leaderboard in your location. See how you stack up against other players in your area."
 			:ui="{ wrapper: 'sm:!pt-16 sm:!pb-2 !pt-8 !pb-4' }"
 		>
-			<NuxtImg
-				src="/icons/ranked/ranked-icon.png"
-				width="280"
-				height="200"
-				alt="Ranked Icon"
-				class="place-self-end"
-			/>
+			<NuxtImg src="/icons/ranked/ranked-icon.png" width="280" height="200" alt="Ranked Icon" class="place-self-end" />
 			<template #title>
 				<p v-show="location !== 'global'">
 					Ranked Leaderboard in
 					<span class="text-primary-400 inline-block">{{ countryName }}</span>
 				</p>
-				<p v-show="location === 'global'">
-					<span class="text-primary-400 inline-block">Global</span> Ranked Leaderboard
-				</p>
+				<p v-show="location === 'global'"><span class="text-primary-400 inline-block">Global</span> Ranked Leaderboard</p>
 			</template>
 		</UPageHero>
 		<UPage>

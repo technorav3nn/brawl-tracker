@@ -1,137 +1,195 @@
 import { $fetch } from "ofetch";
+import { generateRfpHeader } from "./lib/generate-rfp";
 import type { ScidFriendsResponse, ScidProfileResponse, SupercellGame } from "./lib/types";
 
 export * from "./lib/types";
 
-const BASE_URL = "https://id.supercell.com/api/ingame";
-const AVATAR_CDN_BASE_URL = "https://cdn.id.supercell.com/assets/web/portraits";
+const randomUUID = crypto.randomUUID.bind(crypto);
 
-const HEADERS = {
-	Host: "id.supercell.com",
-	Accept: "*/*",
-	baggage:
-		"sentry-environment=production,sentry-public_key=54ea4e6fb96a4952a4913faa741f9900,sentry-release=com.supercell.laser.D4Q55SMVB9%4057.325%2B57.325,sentry-trace_id=9841d06156d74bd982c43815de9a9e1f",
-	"X-Supercell-Device-Id": "0D2CB22F-243F-5843-8A60-3E8F0685BBD0",
+const BASE_URL = "https://id.supercell.com/api/ingame";
+
+const DEFAULT_USER_AGENT = "scid/1.5.8-f (iPadOS 18.1; laser-prod; iPad8,6) com.supercell.laser/59.197";
+const RECAPTCHA_SITE_KEY = "6Lf3ThsqAAAAABuxaWIkogybKxfxoKxtR-aq5g7l";
+
+const DEFAULT_HEADERS = {
+	"User-Agent": DEFAULT_USER_AGENT,
 	"Accept-Language": "en",
-	"sentry-trace": "9841d06156d74bd982c43815de9a9e1f-2ce6920d43e244ec-0",
-	"User-Agent": "scid/1.4.16-f (iPadOS 18.0; laser-prod; iPad8,6)",
-	Connection: "keep-alive",
-	"X-Supercell-Request-Forgery-Protection":
-		"RFPv1 Timestamp=1726888916,SignedHeaders=user-agent;x-supercell-device-id,Signature=knrq54n8oN3MT6q8w1dtzzy1NSizWuA0y4_5MQ2Q-Bw",
+	"Accept-Encoding": "gzip",
+	// "X-Supercell-Device-Id": randomUUID().toUpperCase(),
 	"Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
 };
 
-// const LOGIN_BODY = {
-// 	lang: "en",
-// 	env: "prod",
-// 	recaptchaToken: "FAILED_INIT",
-// 	recaptchaSiteKey: "6Lf3ThsqAAAAABuxaWIkogybKxfxoKxtR-aq5g",
-// 	remember: "true",
-// };
-
 export async function sendLoginCode(email: string, game: SupercellGame) {
+	const uuid = randomUUID().toUpperCase();
+	const body = new URLSearchParams({
+		lang: "en",
+		email,
+		remember: "true",
+		game,
+		env: "prod",
+		recaptchaToken: "FAILED_INIT",
+		recaptchaSiteKey: RECAPTCHA_SITE_KEY,
+	});
+
+	const headers = {
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+	const rfp = generateRfpHeader("/api/ingame/account/login", "POST", body.toString(), headers);
+
 	return $fetch<{ ok: boolean }>(`${BASE_URL}/account/login`, {
-		headers: HEADERS,
+		headers: { ...DEFAULT_HEADERS, ...headers, "X-Supercell-Request-Forgery-Protection": rfp },
 		method: "POST",
-		body: `lang=en&email=${encodeURIComponent(email)}&remember=true&game=${game}&env=prod&recaptchaToken=FAILED_INIT&recaptchaSiteKey=6Lf3ThsqAAAAABuxaWIkogybKxfxoKxtR-aq5g7l`,
+		body,
 	});
 }
 
 export async function validateLoginCode(email: string, pin: number | string) {
+	const uuid = randomUUID().toUpperCase();
+	const body = new URLSearchParams({ email, pin: String(pin) });
+
+	const headers = {
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+	const rfp = generateRfpHeader("/api/ingame/account/login.validate", "POST", body.toString(), headers);
+
 	return $fetch<{ ok: boolean }>(`${BASE_URL}/account/login.validate`, {
-		headers: HEADERS,
+		headers: { ...DEFAULT_HEADERS, ...headers, "X-Supercell-Request-Forgery-Protection": rfp },
 		method: "POST",
-		body: `email=${encodeURIComponent(email)}&pin=${pin}`,
+		body,
 	});
 }
 
 export async function confirmLoginCode(email: string, pin: number | string) {
+	const uuid = randomUUID().toUpperCase();
+	const body = new URLSearchParams({ email, pin: String(pin) });
+	//	const rfp = generateRfpHeader("POST", "/api/ingame/account/login.confirm", body, DEFAULT_USER_AGENT, uuid);
+	const headers = {
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+	const rfp = generateRfpHeader("/api/ingame/account/login.confirm", "POST", body.toString(), headers);
+
 	return $fetch<Record<string, any>>(`${BASE_URL}/account/login.confirm`, {
-		headers: HEADERS,
+		headers: { ...DEFAULT_HEADERS, ...headers, "X-Supercell-Request-Forgery-Protection": rfp },
 		method: "POST",
 		body: `email=${encodeURIComponent(email)}&pin=${pin}`,
 	});
 }
 
 export async function getSessionToken(scidToken: string) {
+	const uuid = randomUUID().toUpperCase();
+
+	const headers = {
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+	const rfp = generateRfpHeader("/api/security/v1/sessionToken", "POST", "", headers);
+
 	return $fetch<{ ok: boolean; token: string }>("https://security.id.supercell.com/api/security/v1/sessionToken", {
 		headers: {
-			...HEADERS,
+			...DEFAULT_HEADERS,
+			...headers,
 			Authorization: `Bearer ${scidToken}`,
-			"User-Agent": "scid/1.4.16-f (iPadOS 17.1; laser-prod; iPad8,6)",
-			"X-Supercell-Device-Id": "0D2CB22F-243F-5843-8A60-3E8F0685BBD0",
+			"X-Supercell-Request-Forgery-Protection": rfp,
 		},
 	});
 }
 
 export async function initalizeSession(sessionToken: string, scidToken: string) {
+	const uuid = randomUUID().toUpperCase();
+	const body = new URLSearchParams({ applicationAccountToken: scidToken });
+	const headers = {
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+		Authorization: `Bearer ${sessionToken}`,
+	};
+
+	const rfp = generateRfpHeader("/api/social/v3/session.init", "POST", body.toString(), headers);
 	return $fetch<ScidProfileResponse>("https://id.supercell.com/api/social/v3/session.init", {
 		method: "POST",
 		headers: {
-			...HEADERS,
-			Authorization: `Bearer ${sessionToken}`,
-			"X-Supercell-Request-Forgery-Protection":
-				"RFPv1 Timestamp=1725847185,SignedHeaders=authorization;user-agent;x-supercell-device-id,Signature=dt4nQA2ZRLQPSvsst8TsF7Ct65_Jcuu6iRI6qZ4FYik",
-			"User-Agent": "scid/1.4.16-f (iPadOS 17.1; laser-prod; iPad8,6)",
-			"X-Supercell-Device-Id": "0D2CB22F-243F-5843-8A60-3E8F0685BBD0",
+			...DEFAULT_HEADERS,
+			...headers,
+			"X-Supercell-Request-Forgery-Protection": rfp,
 		},
-		body: new URLSearchParams({ applicationAccountToken: scidToken }),
+		body,
 	});
 }
 
 export async function getProfile(sessionToken: string, scid?: string) {
+	const uuid = randomUUID().toUpperCase();
+	console.log(scid);
+	const body = `fetchGameData=false`;
+
+	const headers = {
+		Authorization: `Bearer ${sessionToken}`,
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+
+	const rfp = generateRfpHeader("/api/social/v3/profile.get", "POST", body, headers);
+
 	return $fetch<ScidProfileResponse>("https://id.supercell.com/api/social/v3/profile.get", {
 		method: "POST",
 		headers: {
-			...HEADERS,
-			Authorization: `Bearer ${sessionToken}`,
-			"X-Supercell-Request-Forgery-Protection":
-				"RFPv1 Timestamp=1725847185,SignedHeaders=authorization;user-agent;x-supercell-device-id,Signature=dt4nQA2ZRLQPSvsst8TsF7Ct65_Jcuu6iRI6qZ4FYik",
-			"User-Agent": "scid/1.4.16-f (iPadOS 17.1; laser-prod; iPad8,6)",
-			"X-Supercell-Device-Id": "0D2CB22F-243F-5843-8A60-3E8F0685BBD0",
+			...DEFAULT_HEADERS,
+			...headers,
+			"X-Supercell-Request-Forgery-Protection": rfp,
+			"Content-Length": String(body.length),
 		},
-		body: scid ? `scid=${encodeURIComponent(scid)}` : "fetchConnectedSystems=true",
+		body,
 	});
 }
 
-export async function getFriends(sessionToken: string) {
+export async function listProfiles(sessionToken: string, list: string[], type: "appAccountIds" | "handles") {
+	const uuid = randomUUID().toUpperCase();
+
+	const body = new URLSearchParams({
+		[type]: `[${list.map((id) => `"${id}"`).join(",")}]`,
+		format: "BASIC",
+	});
+
+	console.log(body.toString());
+
+	const headers = {
+		Authorization: `Bearer ${sessionToken}`,
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+
+	const rfp = generateRfpHeader("/api/social/v3/profiles.list", "POST", body.toString(), headers);
+	return $fetch<ScidProfileResponse>("https://id.supercell.com/api/social/v3/profiles.list", {
+		method: "POST",
+		headers: {
+			...DEFAULT_HEADERS,
+			...headers,
+			"X-Supercell-Request-Forgery-Protection": rfp,
+			"Content-Length": body.toString().length.toString(),
+		},
+		body,
+	});
+}
+
+export async function getFriends(sessionToken: string, scid?: string) {
+	const uuid = randomUUID().toUpperCase();
+	const body = new URLSearchParams(scid ? { scid } : { fetchPresence: "false" });
+
+	const headers = {
+		Authorization: `Bearer ${sessionToken}`,
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+	const rfp = generateRfpHeader("/api/social/v3/friends.list", "POST", body.toString(), headers);
+
 	return $fetch<ScidFriendsResponse>("https://id.supercell.com/api/social/v3/friends.list", {
 		method: "POST",
 		headers: {
-			...HEADERS,
-			Authorization: `Bearer ${sessionToken}`,
+			...DEFAULT_HEADERS,
+			...headers,
+			"X-Supercell-Request-Forgery-Protection": rfp,
 		},
-		body: "fetchPresence=false",
+		body,
 	});
-}
-
-export function getCdnUrlForAvatarId(avatarId: string) {
-	return `${AVATAR_CDN_BASE_URL}/${avatarId.replaceAll("#", "")}.png`;
-}
-
-export function highLowToId(hl: string) {
-	const splitHl = hl.split("-").map(Number) as [high: number, low: number];
-
-	let id = 0;
-	id += splitHl[0];
-	id += Math.floor(splitHl[1] * 256); // << 8
-
-	return id;
-}
-
-const TAG_CHARACTERS = ["0", "2", "8", "9", "P", "Y", "L", "Q", "G", "R", "J", "C", "U", "V"];
-
-export function idToTag(id: number) {
-	// eslint-disable-next-line no-param-reassign
-	id *= 1;
-
-	const hashtag = [];
-
-	while (id > 0) {
-		hashtag.unshift(TAG_CHARACTERS[id % TAG_CHARACTERS.length]);
-		// eslint-disable-next-line no-param-reassign
-		id = Math.floor(id / TAG_CHARACTERS.length);
-	}
-
-	return "#" + hashtag.join("");
 }

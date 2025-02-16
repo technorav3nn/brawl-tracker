@@ -1,3 +1,10 @@
 /* html {
 	scroll-behavior: smooth;
 } */
+
+:root {
+	--color-border: rgb(var(--color-gray-200));
+}
+.dark {
+	--color-border: rgb(var(--color-gray-800));
+}

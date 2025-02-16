@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { type Friend, getCdnUrlForAvatarId } from "@brawltracker/supercell-id-api";
+import type { Friend } from "@brawltracker/supercell-id-api";
+import { getCdnUrlForAvatarId } from "@brawltracker/supercell-id-api/browser";
 
 const props = defineProps<{
 	friend: Friend;

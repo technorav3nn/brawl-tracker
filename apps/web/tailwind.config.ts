@@ -14,13 +14,11 @@ export default {
 	],
 	theme: {
 		extend: {
-			colors: {
-				border: "var(--border)",
-				foreground: "var(--ui-foreground)",
-				background: "var(--ui-background)",
-			},
 			fontFamily: {
 				sans: ["Inter", ...fontFamily.sans],
+			},
+			colors: {
+				border: "var(--color-border)",
 			},
 		},
 	},

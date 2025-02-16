@@ -12,6 +12,7 @@
 		"ofetch": "^1.4.1"
 	},
 	"devDependencies": {
+		"esbuild-plugins-node-modules-polyfill": "^1.6.8",
 		"eslint": "^8.57.0",
 		"tsup": "^8.2.4",
 		"typescript": "5.7.3"
@@ -19,9 +20,38 @@
 	"files": [
 		"dist"
 	],
-	"main": "./dist/index.js",
-	"source": "./src/index.ts",
-	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.js"
+			}
+		},
+		"./browser": {
+			"import": {
+				"types": "./dist/browser.d.ts",
+				"default": "./dist/browser.js"
+			},
+			"require": {
+				"types": "./dist/browser.d.cts",
+				"default": "./dist/browser.cjs"
+			}
+		},
+		"./crypto": {
+			"import": {
+				"types": "./dist/crypto.d.ts",
+				"default": "./dist/crypto.js"
+			},
+			"require": {
+				"types": "./dist/crypto.d.cts",
+				"default": "./dist/crypto.cjs"
+			}
+		}
+	},
 	"keywords": [
 		"supercell",
 		"supercell-api",
