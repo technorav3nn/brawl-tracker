@@ -5,6 +5,7 @@ export interface Player {
 	"3vs3Victories": number;
 	bestRoboRumbleTime: number;
 	bestTimeAsBigBrawler: number;
+	brawlers: PlayerBrawler[];
 	club: PlayerClubInfo;
 	duoVictories: number;
 	expLevel: number;

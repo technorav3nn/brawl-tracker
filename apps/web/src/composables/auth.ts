@@ -9,5 +9,5 @@ export const useUser = () => {
 };
 
 export function useDatabaseUser(options: UseFetchOptions<User> = {}) {
-	return useFetch<User>("/api/auth/database-user", options);
+	return useFetch<User>("/api/auth/database-user", { key: "database-user", ...options });
 }

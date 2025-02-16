@@ -1,54 +1,70 @@
 <script setup lang="ts">
-import type { FetchError } from "ofetch";
-
 defineProps<{ open: boolean }>();
 const $emit = defineEmits(["update:open"]);
 
-const user = useUser();
 const modal = useModal();
+
+const tag = ref<string>("");
 
 const stageOne = ref(true);
 const stageTwo = ref(false);
 
 const progress = computed(() => (stageOne.value ? 1 : stageTwo.value ? 2 : 1));
 
-const validationError = ref<string | null>(null);
+const {
+	data: player,
+	status,
+	error,
+	execute,
+} = useFetch(`/api/players`, {
+	immediate: false,
+	watch: false,
+	params: { tag },
+});
 
-function nextStage() {
-	stageOne.value = false;
-	stageTwo.value = true;
-}
+const brawlers = computed(() => player.value?.brawlers);
+const { data: icons } = await useFetch("/api/brawlers/icons");
 
-async function submitStageTwo(c: string, email: string) {
-	const code = String(c).replaceAll(/\s/g, "");
+const randomIcon = computed(() => {
+	if (!brawlers.value || !icons.value) return;
+	const randomBrawler = brawlers.value[Math.floor(Math.random() * brawlers.value.length)];
+	return icons.value.find((icon) => icon.brawler === randomBrawler.id);
+});
+const originalIcon = computed(() =>
+	player ? `https://cdn.brawlify.com/profile-icons/regular/${player.value?.icon.id}.png` : null
+);
 
-	const response = await $fetch(`/api/auth/scid/login`, {
+const errorMessage = ref<string | null>(null);
+
+const verifyLoading = ref(false);
+async function verify() {
+	verifyLoading.value = true;
+	const result = await $fetch("/api/auth/scid/connect", {
 		method: "POST",
-		body: { email, code },
-	}).catch((error) => {
-		const { statusMessage } = error as FetchError;
-		validationError.value = statusMessage!;
+		body: { originalIcon: player.value?.icon.id.toString(), tag: tag.value, iconToCheck: randomIcon.value?.id.toString() },
+		onResponseError: ({ error }) => {
+			errorMessage.value =
+				error?.message ??
+				"Failed to verify, please try again. You may have to wait a minute to verify, as the server takes time to update.";
+			verifyLoading.value = false;
+		},
 	});
-	if (response) {
+	verifyLoading.value = false;
+	if (result) {
 		$emit("update:open", false);
 		modal.close();
 		await navigateTo("/");
-		refreshNuxtData("user");
-		refreshNuxtData("profile");
+		refreshNuxtData(["user", "database-user"]);
+	} else {
+		errorMessage.value = "Failed to verify, please try again";
 	}
 }
 
-async function sendCode(email: string) {
-	const response = await $fetch(`/api/auth/scid/send-code`, {
-		method: "POST",
-		body: { email },
-	}).catch((error) => {
-		const { statusMessage } = error as FetchError;
-		validationError.value = statusMessage!;
-	});
-	if (response) {
-		validationError.value = null;
-	}
+async function nextStage() {
+	await execute();
+	if (status.value === "error") return;
+	stageOne.value = false;
+	stageTwo.value = true;
 }
 </script>
 
@@ -77,37 +93,37 @@ async function sendCode(email: string) {
 				</div>
 			</template>
 
-			<div v-show="stageOne">
-				<p class="text-md font-medium">We'll be using your email that you used to sign up.</p>
-				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Then a a code to login will be sent to your that email.</p>
+			<div v-if="stageOne">
+				<p class="text-md font-medium">To verify, you need to change your profile picture into something else</p>
+				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">The profile picture will be a brawler you own.</p>
 
-				<UButton
-					block
-					class="mt-2"
-					@click="
-						sendCode(user!.email);
-						nextStage();
-					"
-				>
-					Send Code
-				</UButton>
-			</div>
-
-			<div v-show="stageTwo" class="w-full flex flex-col">
-				<p class="text-md font-medium">Enter the code sent to your email you signed up with</p>
-				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">
-					If you didn't receive the code, check your spam folder or resend it.
-				</p>
-				<UiPinInput class="!w-full" otp format="### ###" @completed="(code) => submitStageTwo(code, user!.email)" />
-				<UButton block class="mt-2" @click="sendCode">Login</UButton>
-				<UDivider class="mt-4 w-[75px] self-center" size="xs" />
-				<UButton block class="mt-4" color="gray" @click="sendCode(user!.email)">Resend Code</UButton>
+				<label class="text-sm font-medium text-gray-500 dark:text-gray-400">Enter your player tag</label>
+				<UInput v-model="tag" label="playerTag" placeholder="Your tag..." class="!w-full" />
+				<UButton block class="mt-2" :loading="status === 'pending'" @click="async () => await nextStage()">Next</UButton>
 				<UAlert
-					v-if="!!validationError"
+					v-if="status === 'error'"
 					color="red"
 					class="mt-4"
 					icon="i-heroicons-information-circle-20-solid"
-					:title="validationError"
+					:title="error?.data.statusMessage"
+				/>
+			</div>
+
+			<div v-if="stageTwo && status !== 'error' && status === 'success'">
+				<div class="flex flex-row justify-between items-center">
+					<NuxtImg width="100" height="100" :src="originalIcon!"></NuxtImg>
+					<UIcon name="i-heroicons-arrow-right-20-solid" class="text-gray-500 dark:text-gray-400 size-20" />
+					<NuxtImg width="100" height="100" :src="randomIcon?.imageUrl2"></NuxtImg>
+				</div>
+				<p class="text-md font-medium mt-2 text-center">Change your profile picture to the brawler on the right</p>
+				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2 text-center">You can change it back after verifying</p>
+				<UButton block class="mt-2" :loading="verifyLoading" @click="verify">Verify</UButton>
+				<UAlert
+					v-if="!!errorMessage"
+					color="red"
+					class="mt-4"
+					icon="i-heroicons-information-circle-20-solid"
+					:title="errorMessage"
 				/>
 			</div>
 

@@ -1,5 +1,3 @@
-import { getSessionToken } from "@brawltracker/supercell-id-api";
-import { jwtDecode as decode } from "jwt-decode";
 import { Permission, Role, type Databases } from "node-appwrite";
 import { type ScidConnection, type User, type Document } from "./types";
 
@@ -29,7 +27,7 @@ export async function initalizeUser(userId: string, databases: Databases) {
 	}
 }
 
-export async function upsertSupercellIdDoc(userId: string, scidInfo: Partial<ScidConnection>, databases: Databases) {
+export async function upsertSupercellIdDoc(userId: string, scidInfo: ScidConnection, databases: Databases) {
 	try {
 		return await databases.updateDocument("brawltrack", "scidConnections", userId, scidInfo, [
 			Permission.read(Role.user(userId)),
@@ -50,25 +48,4 @@ export async function isSupercellIdConnected(userId: string, databases: Database
 	} catch {
 		return false;
 	}
-}
-
-export async function getScidSessionToken(userId: string, databases: Databases) {
-	const { sessionToken, scidToken } = await databases.getDocument<Document<ScidConnection>>(
-		"brawltrack",
-		"scidConnections",
-		userId
-	);
-	if (!sessionToken || !scidToken) {
-		return null;
-	}
-
-	// check if its expired, its a jwt after all
-	const { exp } = decode(sessionToken);
-	if (exp! * 1000 < Date.now()) {
-		// expired, get a new one
-		const newToken = await getSessionToken(scidToken);
-		await upsertSupercellIdDoc(userId, { sessionToken: newToken.token }, databases);
-	}
-
-	return sessionToken;
 }

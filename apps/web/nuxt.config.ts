@@ -94,6 +94,7 @@ export default defineNuxtConfig({
 		apiEncryptionSecret: "",
 		appwriteEndpoint: "https://cloud.appwrite.io/v1",
 		appwriteProjectId: "6786db24001e31cc452a",
+		scidAccountToken: "",
 	},
 	appwrite: {
 		endpoint: "https://cloud.appwrite.io/v1",

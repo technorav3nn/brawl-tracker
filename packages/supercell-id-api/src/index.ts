@@ -143,11 +143,38 @@ export async function getProfile(sessionToken: string, scid?: string) {
 	});
 }
 
-export async function getFriends(sessionToken: string) {
+export async function listProfiles(sessionToken: string, list: string[], type: "appAccountIds" | "handles") {
 	const uuid = randomUUID().toUpperCase();
+
 	const body = new URLSearchParams({
-		fetchPresence: "false",
+		[type]: `[${list.map((id) => `"${id}"`).join(",")}]`,
+		format: "BASIC",
 	});
+
+	console.log(body.toString());
+
+	const headers = {
+		Authorization: `Bearer ${sessionToken}`,
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+
+	const rfp = generateRfpHeader("/api/social/v3/profiles.list", "POST", body.toString(), headers);
+	return $fetch<ScidProfileResponse>("https://id.supercell.com/api/social/v3/profiles.list", {
+		method: "POST",
+		headers: {
+			...DEFAULT_HEADERS,
+			...headers,
+			"X-Supercell-Request-Forgery-Protection": rfp,
+			"Content-Length": body.toString().length.toString(),
+		},
+		body,
+	});
+}
+
+export async function getFriends(sessionToken: string, scid?: string) {
+	const uuid = randomUUID().toUpperCase();
+	const body = new URLSearchParams(scid ? { scid } : { fetchPresence: "false" });
 
 	const headers = {
 		Authorization: `Bearer ${sessionToken}`,

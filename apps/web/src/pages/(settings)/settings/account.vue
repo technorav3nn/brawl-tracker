@@ -37,8 +37,14 @@ function connect() {
 	modal.open(ScidModal);
 }
 
-function disconnect() {
-	// TODO: Implement disconnecting SCID
+async function disconnect() {
+	const result = await $fetch("/api/auth/scid/disconnect", { method: "POST" });
+	if (result.success) {
+		toast.add({ title: "Disconnected from Supercell ID!", color: "primary" });
+		refreshNuxtData(["user", "database-user"]);
+	} else {
+		toast.add({ title: "Failed to disconnect from Supercell ID", color: "red" });
+	}
 }
 </script>
 

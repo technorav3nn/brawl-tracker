@@ -24,10 +24,8 @@ export default defineEventHandler(async (event) => {
 
 	const user = await account.create(ID.unique(), email, password, name);
 	await initalizeUser(user.$id, databases);
-	console.log(`User ${user.$id} signed up`);
 
 	const session = await account.createEmailPasswordSession(email, password);
-	console.log("Session:", session);
 
 	setCookie(event, SESSION_COOKIE, session.secret, {
 		expires: new Date(session.expire),

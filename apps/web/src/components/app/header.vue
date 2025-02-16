@@ -7,7 +7,9 @@ const slideover = useSlideover();
 const user = useUser();
 const { data: databaseUser } = await useDatabaseUser();
 
-const avatar = computed<string | null>(() => databaseUser.value?.scidConnections.avatar ?? null);
+const avatar = computed<string | null>(() =>
+	databaseUser.value?.scidConnections.isConnected ? databaseUser.value!.scidConnections.avatar! : null
+);
 
 type Link = AsideLink & { children?: AsideLink[] };
 

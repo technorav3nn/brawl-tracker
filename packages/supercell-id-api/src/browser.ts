@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/better-regex */
 const AVATAR_CDN_BASE_URL = "https://cdn.id.supercell.com/assets/web/portraits";
 
 export function getCdnUrlForAvatarId(avatarId: string) {
@@ -14,19 +15,43 @@ export function highLowToId(hl: string) {
 	return id;
 }
 
-const TAG_CHARACTERS = ["0", "2", "8", "9", "P", "Y", "L", "Q", "G", "R", "J", "C", "U", "V"];
-
-export function idToTag(id: number) {
-	// eslint-disable-next-line no-param-reassign
-	id *= 1;
-
-	const hashtag = [];
-
-	while (id > 0) {
-		hashtag.unshift(TAG_CHARACTERS[id % TAG_CHARACTERS.length]);
-		// eslint-disable-next-line no-param-reassign
-		id = Math.floor(id / TAG_CHARACTERS.length);
+/**
+ * Encode tag string into 64bit unsigned integer string.
+ */
+export function tagToId(tag: string) {
+	if (!/^#?[0289PYLQGRJCUV]{3,}$/.test(tag)) {
+		throw new Error("Cannot encode tag " + tag);
 	}
 
-	return "#" + hashtag.join("");
+	if (tag.startsWith("#")) {
+		// eslint-disable-next-line no-param-reassign
+		tag = tag.slice(1);
+	}
+
+	const result = tag.split("").reduce((sum, c) => sum * BigInt(14) + BigInt("0289PYLQGRJCUV".indexOf(c)), BigInt(0));
+	return result.toString();
+}
+
+/**
+ * Decode 64bit unsigned integer string into tag string with hash.
+ */
+export function idToTag(idString: string) {
+	let id = BigInt(idString);
+
+	let tag = "";
+	while (id !== BigInt(0)) {
+		const i = Number(id % BigInt(14));
+		tag = "0289PYLQGRJCUV"[i] + tag;
+		id /= BigInt(14);
+	}
+
+	return "#" + tag;
+}
+
+export function idToHighLow(id: number) {
+	const highLow = [];
+	highLow[0] = id % 256;
+	highLow[1] = Math.floor(id / 256);
+
+	return highLow;
 }
