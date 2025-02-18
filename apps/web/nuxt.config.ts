@@ -9,9 +9,10 @@ export default defineNuxtConfig({
 	modules: [
 		"@nuxt/devtools",
 		"@nuxt/fonts",
-		"@nuxt/image", // "@nuxt/eslint",
+		"@nuxt/image",
 		"@nuxt/ui",
-		"@pinia/nuxt", // "@nuxt/content",
+		"@nuxt/content",
+		"@pinia/nuxt",
 		"@vueuse/nuxt",
 		"@sentry/nuxt/module",
 		"nuxt-time",
@@ -70,6 +71,7 @@ export default defineNuxtConfig({
 			"github.com",
 			"brawlstars.inbox.supercell.com",
 			"cdn.brawlify.com",
+			"cdn.id.supercell.com",
 		],
 		alias: {
 			cdn: "https://cdn.deathblows.xyz",

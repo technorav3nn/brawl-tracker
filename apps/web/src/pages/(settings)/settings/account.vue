@@ -3,7 +3,7 @@ import { ModalsConfirmationModal } from "#components";
 import ScidModal from "$components/features/auth/scid-modal.vue";
 
 const user = useUser();
-const { data: databaseUser } = useDatabaseUser();
+const { data: databaseUser } = await useDatabaseUser();
 
 const modal = useModal();
 const toast = useToast();

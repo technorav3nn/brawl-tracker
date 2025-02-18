@@ -13,7 +13,6 @@ export const useFilteredMapStore = defineStore("filtered-maps", () => {
 	watch(search, () => filterMaps());
 
 	function filterMaps() {
-		console.log(filterOptions.value);
 		const filtered = initialMaps.value.filter((map) => {
 			const modeMatch = filterOptions.value.modes.length === 0 || filterOptions.value.modes.includes(map.gameMode.name);
 			const environmentMatch =

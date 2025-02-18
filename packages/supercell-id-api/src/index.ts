@@ -120,8 +120,7 @@ export async function initalizeSession(sessionToken: string, scidToken: string) 
 
 export async function getProfile(sessionToken: string, scid?: string) {
 	const uuid = randomUUID().toUpperCase();
-	console.log(scid);
-	const body = `fetchGameData=false`;
+	const body = scid ? `scid=${scid}` : `fetchGameData=false`;
 
 	const headers = {
 		Authorization: `Bearer ${sessionToken}`,
@@ -150,8 +149,6 @@ export async function listProfiles(sessionToken: string, list: string[], type: "
 		[type]: `[${list.map((id) => `"${id}"`).join(",")}]`,
 		format: "BASIC",
 	});
-
-	console.log(body.toString());
 
 	const headers = {
 		Authorization: `Bearer ${sessionToken}`,

@@ -2,7 +2,7 @@
 /* eslint-disable vue/no-v-html */
 import type { TocLink } from "@nuxt/content";
 import type { PageLink } from "@nuxt/ui-pro/types";
-import { parseFromString } from "dom-parser";
+import { load } from "cheerio";
 import { capitalizeLetters, kebabCaseToNormalCase } from "$lib/utils/common";
 
 const route = useRoute("inbox-post-id");
@@ -21,7 +21,7 @@ if (status.value === "error" || !id || !post.value?.html) {
 	throw createError({ statusCode: 404, message: "Post Not Found", fatal: true });
 }
 
-const doc = parseFromString(post.value!.html!);
+const $ = load(post.value!.html!);
 
 const postProps = computed(() => post.value?.props.pageProps);
 const timeToRead = computed(() => {
@@ -36,18 +36,22 @@ function cleanTocTag(heading: string) {
 }
 
 const tocs = computed<TocLink[]>(() => {
-	// find all h3 with id's
-	// eslint-disable-next-line unicorn/prefer-query-selector
-	const headings = doc.getElementsByTagName("h3");
+	const headings = $("h3");
 	if (!headings) return [];
+
 	return headings
-		.filter((h) => h.attributes.length !== 0)
-		.map((heading) => {
-			const tagId = cleanTocTag(heading.getAttribute("id"));
-			const title = cleanTocTag(heading.textContent);
+		.map((_, el) => {
+			const title = cleanTocTag($(el).text());
+			const tagId = cleanTocTag($(el).attr("id") ?? title.toLowerCase().replaceAll(/\s/g, "-"));
+
+			$(el)
+				.parent()
+				.attr("id", tagId)
+				.each((_, el) => void (el.tagName = "h3"));
 
 			return { depth: 0, id: tagId, text: title } satisfies TocLink;
-		});
+		})
+		.get();
 });
 
 const links: PageLink[] = [
@@ -115,7 +119,7 @@ const links: PageLink[] = [
 
 			<UPage>
 				<UPageBody prose>
-					<article v-html="post.html" />
+					<article v-html="$.html()" />
 				</UPageBody>
 				<template #right>
 					<UContentToc :links="tocs">

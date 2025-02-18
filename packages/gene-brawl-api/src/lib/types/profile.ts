@@ -61,7 +61,7 @@ export interface ApiProfileBattleCard {
  * 11 - Duo Wins
  * 12 - Boss Fight
  * 13 - Power Play Highest
- * 14 - PROBABLY BIG GAME TIME
+ * 14 - Power Play Highest Rank
  * 15 - Challange Wins
  * 16 - City Rampage
  * 17 - Power League Team
@@ -92,7 +92,7 @@ export interface ApiUnresolvedProfileStats {
 	 */
 	13: number;
 	/**
-	 * Big game time
+	 * Power Play Highest Rank
 	 */
 	14: number;
 	/**
@@ -159,7 +159,6 @@ export interface ApiUnresolvedProfileStats {
 
 export interface ResolvedProfileStats {
 	"3v3Wins": number;
-	bigGameTime: number;
 	bossFightMaxDifficulty: number;
 	brawlersOwned: number;
 	challengeWins: number;
@@ -175,6 +174,7 @@ export interface ResolvedProfileStats {
 	powerLeagueSolo: number;
 	powerLeagueTeam: number;
 	powerPlayHighest: number;
+	powerPlayHighestRank: number;
 	roboRumble: number;
 	soloWins: number;
 	trophies: number;

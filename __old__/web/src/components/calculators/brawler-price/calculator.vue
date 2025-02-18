@@ -60,8 +60,6 @@ const gearSlot2Opened = ref(false);
 
 const result = ref(getBrawlerTotalLevelPrice(INITIAL_VALUES));
 
-watch(gearSlot1Opened, () => console.log(form.values));
-
 const onSelect = (uncastedValue: string, slot: "slot1" | "slot2") => {
 	const value = uncastedValue as GearType;
 	form.setFieldValue(`gears.${slot}`, {

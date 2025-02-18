@@ -29,7 +29,7 @@ function resolveStats(stats: ApiUnresolvedProfileStats): ResolvedProfileStats {
 		trophies: stats[3],
 		bossFightMaxDifficulty: stats[12],
 		roboRumble: stats[9],
-		bigGameTime: stats[14],
+		powerPlayHighestRank: stats[14],
 		cityRampageMaxDifficulty: stats[16],
 		challengeWins: stats[15],
 		brawlersOwned: stats[5],

@@ -11,6 +11,7 @@ export default {
 		"src/app.{js,ts,vue}",
 		"src/error.{js,ts,vue}",
 		"src/content/**/*.md",
+		"src/lib/utils/brawl-stars/color-tags.ts",
 	],
 	theme: {
 		extend: {

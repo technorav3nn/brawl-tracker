@@ -30,10 +30,6 @@ const selected = computed({
 	},
 });
 
-if (import.meta.server) {
-	console.log("server: ", selected.value);
-}
-
 const item = computed(() => items[selected.value].label.toLowerCase());
 
 const { data: events } = await useFetch(() => "/api/events", {

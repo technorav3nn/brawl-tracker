@@ -11,7 +11,6 @@ defineProps<{
 	<div class="flex items-center gap-2">
 		<div class="flex gap-2 flex-col items-center">
 			<p class="font-semibold inline-block">{{ item.name }}</p>
-			{{ console.log(item) }}
 			<NuxtImg :src="(item as any).skinName ? `${CDN_URL}${(item as any).skinName.path}` : ''" width="40" height="40" />
 		</div>
 	</div>

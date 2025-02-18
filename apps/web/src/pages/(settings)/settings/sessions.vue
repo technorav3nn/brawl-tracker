@@ -30,7 +30,6 @@ async function invalidateSession(sessionId: string) {
 				description: "An error occurred while trying to logout of this session",
 				icon: "i-heroicons-exclamation-circle-20-solid",
 			});
-			console.error(error);
 		}
 	}
 

@@ -1,7 +1,0 @@
-{
-	"name": "@brawltracker/tsconfig",
-	"version": "1.0.0",
-	"description": "",
-	"private": true,
-	"type": "module"
-}

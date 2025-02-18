@@ -25,9 +25,7 @@ const items = (_row: SessionsType) => [
 			label: "Delete",
 			icon: "i-heroicons-trash-20-solid",
 			click: () => {
-				console.log("test");
 				modal.open(ModalsConfirmationModal, {
-					onSuccess: () => console.log("success"),
 					labels: ["Cancel", "Delete"],
 					description: "Are you sure you want to delete this session?",
 				});

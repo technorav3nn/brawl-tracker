@@ -3,10 +3,11 @@ import type { CountryCodes } from "@brawltracker/brawl-stars-api";
 import { countries } from "country-code-lookup";
 import { getCountryFlagEmoji } from "$lib/utils/common";
 
-const route = useRoute("leaderboards-ranked");
+const route = useRoute();
 const currentLocation = (route.query.location ?? "global") as CountryCodes;
 
 const locations = [
+	{ url: `${route.path}?location=global`, emoji: "🌍", countryCode: "global", name: "Global" },
 	...countries
 		.map((country) => {
 			const newLocation = encodeURIComponent(country.iso2);

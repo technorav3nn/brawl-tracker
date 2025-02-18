@@ -88,12 +88,8 @@ export default eventHandler(
 		const brawlApi = useBrawlApi();
 
 		const { response: shop } = await getShop();
-		console.log("got shop");
 		const shopItems = Object.values(await brawlApi.csv.getShopItems());
-		console.log("got shop items");
 		const billingPackages = Object.values(await brawlApi.csv.getBillingPackages());
-		console.log("got billing packages");
-		// return shop.filter(filterOffers);
 
 		return shop
 			.filter((offer) => {
@@ -101,7 +97,6 @@ export default eventHandler(
 				return filterOffers(offer, bp ?? null);
 			})
 			.map((offer) => {
-				console.log("mapping offer ", offer.TitleText.Text);
 				const bp = billingPackages.find((bp) => bp.id === 2000000 + offer.BillingPackageInstanceId);
 				return mapOffers(offer, bp ?? null, shopItems);
 			});

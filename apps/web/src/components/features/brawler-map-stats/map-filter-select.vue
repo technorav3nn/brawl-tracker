@@ -33,7 +33,6 @@ const environmentNames = computed(() => {
 });
 
 watch(selectedFilters, () => {
-	console.log(selectedFilters);
 	if (!filteringEnabled.value) {
 		setFilterOptions({ modes: [], environments: [] });
 		setFilteredMaps(initialMaps.value!);

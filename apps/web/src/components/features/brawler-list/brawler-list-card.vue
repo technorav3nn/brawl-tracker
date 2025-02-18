@@ -36,6 +36,7 @@ const color = computed(() => {
 		<template #header>
 			<NuxtImg
 				:src="props.brawler.imageUrl2"
+				loading="lazy"
 				class="object-cover object-top"
 				:alt="brawler.name"
 				width="300"

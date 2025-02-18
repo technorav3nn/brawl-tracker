@@ -25,7 +25,6 @@ const NAME_MAPPINGS: Record<string, string> = {
 	UpgradeMaterial: "Coins",
 };
 function fixName(name: string) {
-	console.log(name);
 	return NAME_MAPPINGS[name] ?? name;
 }
 </script>

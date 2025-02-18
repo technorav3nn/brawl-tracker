@@ -6,14 +6,8 @@ export default defineEventHandler((event) => {
 		location?: string;
 		type?: "brawlers" | "clubs" | "players" | "ranked";
 		brawler?: string;
-		seasonId?: string;
 	}>(event);
-	const [location, type, brawler, seasonId] = [
-		query.location as CountryCodes | undefined,
-		query.type,
-		query.brawler,
-		query.seasonId,
-	];
+	const [location, type, brawler] = [query.location as CountryCodes | undefined, query.type, query.brawler];
 	if (!location || !type) {
 		throw createError({
 			statusCode: 400,
@@ -32,9 +26,6 @@ export default defineEventHandler((event) => {
 		}
 		case "players": {
 			return api.rankings.players.getPlayersRanking(location!);
-		}
-		case "ranked": {
-			return api.rankings.powerLeague.getSeasonRankings(location!, Number.parseInt(seasonId!, 10));
 		}
 		default: {
 			throw createError({

@@ -141,7 +141,7 @@ const items = computed(() => [
 					class="px-1.5"
 					@click="slideover.open(AppHeaderProfileSlideover)"
 				>
-					<NuxtImg v-if="avatar" class="w-7 h-7 rounded-full" :src="avatar" />
+					<NuxtImg v-if="avatar" class="rounded-full" width="28" height="28" :src="avatar" />
 					<UAvatar v-else class="w-7 h-7" :alt="user.name" />
 				</UButton>
 			</UTooltip>

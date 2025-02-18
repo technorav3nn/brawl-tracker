@@ -16,7 +16,6 @@ const cdnName = computed(() => normalizeNameToCdnName(brawler.value.name));
 const modelImage = computed(() => getBrawlerModelUrl(encodeURIComponent(cdnName.value)));
 
 const brawlerModelSize = computed(() => {
-	console.log(brawler.value.name);
 	if (brawler.value.name === "Clancy") return { width: 1000, height: 1200 };
 	return { width: 200, height: 400 };
 });

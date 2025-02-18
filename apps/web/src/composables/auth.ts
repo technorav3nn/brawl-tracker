@@ -1,5 +1,6 @@
 import { type Models } from "appwrite";
 import type { UseFetchOptions } from "nuxt/app";
+import { createGetCachedData } from "$lib/utils/nuxt";
 import { type User } from "$server/db/users/types";
 
 export const useUser = () => {
@@ -9,5 +10,9 @@ export const useUser = () => {
 };
 
 export function useDatabaseUser(options: UseFetchOptions<User> = {}) {
-	return useFetch<User>("/api/auth/database-user", { key: "database-user", ...options });
+	return useFetch<User>("/api/auth/database-user", {
+		key: "database-user",
+		getCachedData: createGetCachedData(useNuxtApp()),
+		...options,
+	});
 }

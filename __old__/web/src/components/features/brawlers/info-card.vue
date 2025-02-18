@@ -31,6 +31,7 @@ const onError = () => {
 				width="105"
 				class="w-full rounded rounded-b-none border-b object-cover object-top"
 				@error="onError"
+				loading="lazy"
 			/>
 			<QuestionMarkIcon v-if="hasRemovedImage" class="h-[105px] w-[105px] text-primary" />
 			<div class="flex flex-col justify-start px-1.5 py-1.5">

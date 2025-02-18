@@ -66,6 +66,7 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 			<NuxtImg
 				:src="event.map.environment.imageUrl"
 				:alt="event.map.name"
+				loading="lazy"
 				height="100"
 				width="500"
 				class="h-full w-full object-cover object-top rounded-t-lg filter brightness-50"
@@ -121,7 +122,7 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 			<div class="flex w-full flex-row justify-start gap-2">
 				<Image
 					:src="event.map.gameMode.imageUrl"
-					priority
+					loading="lazy"
 					width="40"
 					height="40"
 					class="-ml-1.5 h-10 w-10 self-center bg-contain !object-contain"

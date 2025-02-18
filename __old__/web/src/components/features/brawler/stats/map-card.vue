@@ -15,7 +15,6 @@ const { setSelectedMap, setSheetState } = useBrawlerMapStore();
 async function onSelectClicked() {
 	await setSelectedMap(props.map.id);
 	if (breakpoints.smaller("lg").value) {
-		console.log("Toggling dialog");
 		setSheetState(true);
 	}
 }

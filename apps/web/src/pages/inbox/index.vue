@@ -30,7 +30,7 @@ function getOtherInfoFromUrl(url: string) {
 	};
 }
 
-function getPropsForPost(post: Article): UBlogPostProps {
+function getPropsForPost(post: Article, index: number): UBlogPostProps {
 	const { category, href } = getOtherInfoFromUrl(post.linkUrl);
 	return {
 		title: post.title,
@@ -39,6 +39,7 @@ function getPropsForPost(post: Article): UBlogPostProps {
 		image: {
 			src: post.thumbnail.imgUrl,
 			alt: post.title,
+			loading: index <= 3 ? "eager" : "lazy",
 		},
 		orientation: "vertical",
 		to: href,
@@ -65,11 +66,7 @@ function getPropsForPost(post: Article): UBlogPostProps {
 		</UPageHero>
 		<UPageBody>
 			<UBlogList>
-				<UBlogPost
-					v-for="post in news!.articles"
-					:key="post.title"
-					v-bind="getPropsForPost(post as Article)"
-				/>
+				<UBlogPost v-for="(post, index) in news!.articles" :key="post.title" v-bind="getPropsForPost(post as Article, index)" />
 			</UBlogList>
 
 			<div class="flex justify-center mt-8">
@@ -83,14 +80,9 @@ function getPropsForPost(post: Article): UBlogPostProps {
 			</div>
 
 			<div class="flex flex-col items-center justify-center flex-1 mt-16">
-				<UIcon
-					name="i-heroicons-envelope-open-20-solid"
-					class="w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
-				/>
+				<UIcon name="i-heroicons-envelope-open-20-solid" class="w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4" />
 				<p class="text-sm text-center text-gray-900 dark:text-white mb-4">No more posts to show</p>
-				<UButton icon="i-heroicons-arrow-up" color="gray" size="sm" @click="scrollToTop">
-					Scroll To Top
-				</UButton>
+				<UButton icon="i-heroicons-arrow-up" color="gray" size="sm" @click="scrollToTop"> Scroll To Top </UButton>
 			</div>
 		</UPageBody>
 	</UContainer>

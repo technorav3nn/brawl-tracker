@@ -6,10 +6,9 @@ async function onSubmit(body: { username: string; password: string; email: strin
 	try {
 		loading.value = true;
 		// eslint-disable-next-line n/prefer-global/url-search-params
-		const result = await $fetch("/api/auth/signup", { method: "POST", body: new URLSearchParams(body) });
+		await $fetch("/api/auth/signup", { method: "POST", body: new URLSearchParams(body) });
 		loading.value = false;
 		await navigateTo("/");
-		console.log(result);
 	} catch (error) {
 		validationError.value = (error as any).message;
 		loading.value = false;
