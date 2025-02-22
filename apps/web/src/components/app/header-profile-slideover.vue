@@ -107,7 +107,7 @@ const supercellInfo = computed(() => userInfo.value?.scidConnections);
 			<div class="flex items-center">
 				<NuxtImg
 					v-if="supercellInfo?.isConnected"
-					:src="supercellInfo.avatar"
+					:src="supercellInfo.avatar!"
 					width="40"
 					height="40"
 					class="w-10 h-10 rounded-full"

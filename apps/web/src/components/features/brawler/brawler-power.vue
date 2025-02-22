@@ -7,7 +7,9 @@ const props = defineProps<{
 	brawlerCdnData: BrawlerData;
 	type: "gadgets" | "starpowers";
 }>();
-const powers = computed(() => props.brawlerCdnData[props.type].filter((power) => !power.name.includes("Mutation")));
+const powers = computed(() =>
+	props.brawlerCdnData[props.type].filter((power) => !power.name.includes("Mutation")).filter((p) => !p.name.includes("Mythic"))
+);
 </script>
 
 <template>
@@ -37,7 +39,7 @@ const powers = computed(() => props.brawlerCdnData[props.type].filter((power) =>
 						<div class="flex flex-col gap-4 lg:flex-col">
 							<div class="w-full flex flex-row items-center gap-3">
 								<NuxtImg
-									:src="`${CDN_URL}/${power.path}`"
+									:src="`${CDN_URL}${power.path}`"
 									class="self-center bg-contain object-cover lg:self-auto"
 									width="40"
 									height="40"

@@ -33,10 +33,10 @@ const props = defineProps<{
 					thead: 'border-b-0 hidden',
 					divide: '!divide-y-0 ',
 					td: {
-						base: '!whitespace-normal',
-						padding: 'px-2.5 py-2.5',
+						base: '!whitespace-normal ',
+						padding: 'px-2.5 py-1.5',
 					},
-					tr: { base: '[&_:nth-child(1)]:!text-foreground [&_:nth-child(1)]:!font-semibold' },
+					tr: { base: '[&_:nth-child(1)]:!text-foreground [&_:nth-child(1)]:!font-semibold ' },
 				}"
 				:columns="[
 					{ key: 'title', label: 'Name' },

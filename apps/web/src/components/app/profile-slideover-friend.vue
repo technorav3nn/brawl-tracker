@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Friend } from "@brawltracker/supercell-id-api";
 import { getCdnUrlForAvatarId } from "@brawltracker/supercell-id-api/browser";
+import type { JSONSavedPlayer } from "$server/db/users/types";
 
 const props = defineProps<{
-	friend: Friend;
+	friend: JSONSavedPlayer;
 }>();
 const { friend } = toRefs(props);
 </script>
@@ -12,16 +12,19 @@ const { friend } = toRefs(props);
 	<div class="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-800">
 		<div class="flex items-center gap-2">
 			<NuxtImg
-				:src="(friend as any).imageURL ? (friend as any).imageURL : getCdnUrlForAvatarId(friend.avatarImage)"
+				v-if="friend.isScid"
+				:src="getCdnUrlForAvatarId(friend.scidData!.avatarImage)"
 				width="40"
 				height="40"
 				class="w-10 h-10 rounded-full self-center bg-contain object-cover aspect-1"
 				loading="lazy"
 			/>
+			<UAvatar v-else :alt="friend.name" class="w-10 h-10" />
 			<div class="flex flex-col">
 				<span class="text-lg font-semibold">{{ friend.name }}</span>
 				<span class="text-sm text-gray-500 dark:text-gray-400 flex flex-row items-center gap-1.5">
 					<NuxtImg
+						v-if="friend.isScid"
 						:src="$colorMode.value === 'light' ? '/icons/scid/supercell-id-big.svg' : '/icons/scid/supercell-id-white.svg'"
 						alt="Supercell ID"
 						width="24"
@@ -29,10 +32,10 @@ const { friend } = toRefs(props);
 						class="inline-block object-scale-down w-[1.3em] h-[1.3em] [mask-size:100%_100%] !text-[revert]"
 						loading="lazy"
 					/>
-					{{ friend.handle }}
+					<UIcon v-else name="i-heroicons-user-circle-20-solid" class="w-[1.3em] h-[1.3em]" />
+					{{ friend.isScid ? friend.scidData!.handle || friend.scidData!.name : "Saved Tag" }}
 				</span>
 			</div>
 		</div>
-		<UBadge variant="subtle" :color="friend.presence ? 'green' : 'red'">{{ friend.presence ? `Online` : "Offline" }}</UBadge>
 	</div>
 </template>

@@ -8,7 +8,7 @@ const props = defineProps<{
 	brawlerCdnData: BrawlerData;
 }>();
 
-const showSuperRareGears = ref(true);
+const showSuperRareGears = ref(false);
 
 const { data: unfilteredGears } = await useFetch("/api/brawlers/gears");
 const gears = computed(() => {
@@ -29,6 +29,55 @@ const gears = computed(() => {
 </script>
 
 <template>
+	<UCard :ui="{ header: { padding: '!px-4 py-2.5' }, body: { base: 'h-full', padding: '!px-4 !py-1.5' } }">
+		<template #header>
+			<div class="flex items-center gap-3">
+				<NuxtImg
+					src="/icons/mythic-gear-icon.png"
+					width="35"
+					height="35"
+					alt="Attack icon"
+					fit="inside"
+					class="self-center bg-contain object-cover -ml-1"
+					format="webp"
+				/>
+				<h1 class="text-2xl font-bold tracking-tight -ml-1">Gears</h1>
+			</div>
+		</template>
+
+		<div v-if="Object.keys(gears).length !== 0" class="h-full">
+			<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+				These are only Epic and Mythic Gears, every brawlers inside the game will have access to the normal Super Rare Gears.
+			</p>
+
+			<div class="mt-3 mb-3 flex flex-col gap-4">
+				<div v-for="gear in gears" :key="gear.name">
+					<div class="flex flex-col gap-4 lg:flex-col">
+						<div class="w-full flex flex-row items-center gap-3">
+							<NuxtImg
+								:src="`${CDN_URL}/gears/${normalizeNameToCdnName(gear.name)}/icon.webp`"
+								class="self-center bg-contain object-cover lg:self-auto"
+								width="40"
+								height="40"
+							/>
+							<p class="text-lg font-bold tracking-tight w-full">{{ gear.name }}</p>
+						</div>
+						<div class="flex flex-col">
+							<p class="text-sm italics text-muted-foreground">{{ gear.description }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div v-else>
+			<div class="flex justify-center items-center">
+				<p class="mt-3 text-center text-md text-gray-500 dark:text-gray-400">This brawler doesn't have any special gears</p>
+			</div>
+		</div>
+	</UCard>
+
+	<!-- 
 	<div class="flex flex-col rounded-lg border border-border shadow">
 		<div class="flex flex-col p-4 py-2.5">
 			<div class="flex items-center gap-3">
@@ -44,11 +93,16 @@ const gears = computed(() => {
 				<h1 class="text-2xl font-bold tracking-tight -ml-1">Gears</h1>
 			</div>
 		</div>
-		<div class="h-full">
+
+		<div v-if="Object.keys(gears).length !== 0" class="h-full">
 			<div
-				class="px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded rounded-b-none rounded-t-none flex flex-row gap-2.5"
+				class="px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded rounded-b-none rounded-t-none"
 			>
-				<div class="mt-3 mb-3 grid grid-cols-3 gap-4 bg-card">
+				<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+					These are only Epic and Mythic Gears, every brawlers inside the game will have access to the normal Super Rare Gears.
+				</p>
+
+				<div class="mt-3 mb-3 flex flex-col gap-4">
 					<div v-for="gear in gears" :key="gear.name">
 						<div class="flex flex-col gap-4 lg:flex-col">
 							<div class="w-full flex flex-row items-center gap-3">
@@ -68,5 +122,14 @@ const gears = computed(() => {
 				</div>
 			</div>
 		</div>
-	</div>
+
+		<div v-else class="pb-2">
+			<div
+				class="flex justify-center items-center px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded rounded-b-none rounded-t-none"
+			>
+				<p class="mt-3 text-center text-md text-gray-500 dark:text-gray-400">This brawler doesn't have any special gears</p>
+			</div>
+		</div>
+	</div> 
+	-->
 </template>

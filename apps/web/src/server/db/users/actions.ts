@@ -41,6 +41,20 @@ export async function upsertSupercellIdDoc(userId: string, scidInfo: ScidConnect
 	}
 }
 
+export async function upsertUserDoc(userId: string, data: Partial<User>, databases: Databases) {
+	try {
+		return await databases.updateDocument("brawltrack", "users", userId, data, [
+			Permission.read(Role.user(userId)),
+			Permission.write(Role.user(userId)),
+		]);
+	} catch {
+		return await databases.createDocument("brawltrack", "users", userId, data, [
+			Permission.read(Role.user(userId)),
+			Permission.write(Role.user(userId)),
+		]);
+	}
+}
+
 export async function isSupercellIdConnected(userId: string, databases: Databases) {
 	try {
 		const data = await databases.getDocument<Document<ScidConnection>>("brawltrack", "scidConnections", userId);

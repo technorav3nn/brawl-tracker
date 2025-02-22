@@ -7,12 +7,12 @@ definePageMeta({
 	middleware: "loading-indicator-disabled",
 });
 
-const title = "Players Leaderboard";
-const description = "View the best players in Brawl Stars!";
+const title = "Brawler Leaderboard";
+const description = "View the brawlers and the players with their highest trophies in Brawl Stars!";
 
 useSeoMeta({
-	title: "Players Leaderboard",
-	description: "View the best players in Brawl Stars!",
+	title,
+	description,
 	ogTitle: title,
 	ogDescription: description,
 });
@@ -21,23 +21,20 @@ const router = useRouter();
 
 const query = computed(() => ({
 	location: (router.currentRoute.value.query.location as string) ?? "global",
-	type: "players",
+	type: "brawlers",
+	brawler: (router.currentRoute.value.query.brawler as string) ?? 16000000,
 }));
 
-const { data: leaderboards, status } = await useLazyFetch<(RankingsPlayer & { rank: number })[]>("/api/leaderboards", {
+const { data: leaderboards, status } = await useLazyFetch<RankingsPlayer[]>("/api/leaderboards", {
 	query,
 	transform: (data) => {
-		const items = (data as any).items as RankingsPlayer[];
-		return items.map((item, index) => ({
-			...item,
-			rank: index + 1,
-		}));
+		return (data as any).items as RankingsPlayer[];
 	},
 });
 
 const breadcrumb: BreadcrumbLink[] = [
 	{ label: "Leaderboards", to: "/leaderboards" },
-	{ label: "Players", to: "/leaderboards/players" },
+	{ label: "Brawlers", to: "/leaderboards/Brawlers" },
 ];
 
 const columns = [
@@ -56,7 +53,7 @@ const filteredRows = computed(() => {
 
 <template>
 	<UContainer>
-		<UPageHeader class="mb-12" title="Players" description="View the best players in Brawl Stars!">
+		<UPageHeader class="mb-12" title="Brawlers" :description="description">
 			<template #headline>
 				<UBreadcrumb :links="breadcrumb" />
 			</template>
@@ -64,6 +61,7 @@ const filteredRows = computed(() => {
 		<div class="flex mb-4 justify-start gap-2">
 			<UInput v-model="search" placeholder="Search for a player..." icon="i-heroicons-magnifying-glass-20-solid" />
 			<LeaderboardsLocationSelectMenu />
+			<LeaderboardsBrawlerSelectMenu />
 		</div>
 		<UTable
 			:loading="status === 'pending'"

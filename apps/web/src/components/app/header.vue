@@ -32,21 +32,25 @@ const links = computed<Link[]>(() => [
 	{
 		label: "Leaderboards",
 		icon: "i-heroicons-chart-bar",
+		to: "/leaderboards",
 		children: [
-			{
-				label: "Ranked",
-				to: "/leaderboards/ranked",
-				icon: "i-heroicons-trophy",
-			},
 			{
 				label: "Players",
 				to: "/leaderboards/players",
 				icon: "i-heroicons-users",
+				description: "View the best players!",
 			},
 			{
 				label: "Clubs",
 				to: "/leaderboards/clubs",
 				icon: "i-tabler-shield-star",
+				description: "View the clubs leaderboard!",
+			},
+			{
+				label: "Brawlers",
+				to: "/leaderboards/brawlers",
+				icon: "i-tabler-swords",
+				description: "View the leaderboards of brawlers!",
 			},
 		],
 	},
@@ -58,11 +62,13 @@ const links = computed<Link[]>(() => [
 				label: "Clubs",
 				icon: "i-tabler-shield-star",
 				to: "/clubs",
+				description: "Search and view your club or other clubs!",
 			},
 			{
-				label: "Brawl News",
+				label: "Brawl Stars Inbox",
 				icon: "i-heroicons-envelope",
 				to: "/inbox",
+				description: "Read the latest news about Brawl Stars!",
 			},
 		],
 	},

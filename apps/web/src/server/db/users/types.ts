@@ -1,8 +1,24 @@
 import type { Models } from "node-appwrite";
 
+export interface JSONSavedPlayer {
+	isScid?: boolean;
+	scidData?: {
+		avatarImage: string;
+		name: string;
+		handle?: string;
+		scid: string;
+	};
+	tag?: string;
+	name: string;
+}
+
 export interface User {
 	userId: string;
 	scidConnections: ScidConnection;
+	/**
+	 * JSON string, remember to parse it
+	 */
+	savedPlayers: string;
 }
 
 export interface UserPreferences extends Models.Preferences {

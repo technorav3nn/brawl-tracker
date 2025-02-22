@@ -63,7 +63,7 @@ const stats = computed(() => {
 
 <template>
 	<div class="rounded-lg border border-border p-4 shadow">
-		<div class="flex h-full w-full flex-col justify-between">
+		<div class="flex w-full flex-col justify-between">
 			<div class="flex items-center justify-between">
 				<h1 class="text-2xl font-bold tracking-tight">Overview</h1>
 				<USelectMenu

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ModalsConfirmationModal } from "#components";
-import ScidModal from "$components/features/auth/scid-modal.vue";
+import { ModalsConfirmationModal, AuthImportFriendsModal, AuthScidModal } from "#components";
 
 const user = useUser();
 const { data: databaseUser } = await useDatabaseUser();
@@ -34,7 +33,7 @@ async function deleteAccount() {
 }
 
 function connect() {
-	modal.open(ScidModal);
+	modal.open(AuthScidModal);
 }
 
 async function disconnect() {
@@ -45,6 +44,10 @@ async function disconnect() {
 	} else {
 		toast.add({ title: "Failed to disconnect from Supercell ID", color: "red" });
 	}
+}
+
+function importFriends() {
+	modal.open(AuthImportFriendsModal);
 }
 </script>
 
@@ -62,6 +65,11 @@ async function disconnect() {
 				Connect
 			</UButton>
 			<UButton v-else icon="i-tabler-unlink" class="mt-2" color="red" @click="disconnect">Disconnect</UButton>
+		</div>
+		<div>
+			<p class="font-medium text-md">Supercell Friends</p>
+			<p class="text-sm">Import your friends and view their profiles and stats easily!</p>
+			<UButton icon="i-heroicons-arrow-down-tray-20-solid" class="mt-2" @click="importFriends">Import Supercell Friends</UButton>
 		</div>
 		<div>
 			<p class="font-medium text-md text-red-400 dark:text-red-400">Delete Account</p>

@@ -9,12 +9,13 @@ export default eventHandler(async (event) => {
 		});
 	}
 
-	const { sessionToken } = event.context.user;
+	const { scidAccountToken } = useRuntimeConfig(event);
+	const sessionToken = await getCachedScidSessionToken(scidAccountToken);
 
-	if (!sessionToken) {
+	if (!sessionToken?.ok) {
 		throw createError({
-			statusCode: 400,
-			statusMessage: "User has no SCID token, not logged in with Supercell ID",
+			statusCode: 500,
+			message: "Dev user has no SCID token, not logged in with Supercell ID",
 		});
 	}
 
@@ -27,7 +28,7 @@ export default eventHandler(async (event) => {
 	}
 
 	const { scid } = params;
-	const profile = await getProfile(sessionToken, scid);
+	const profile = await getProfile(sessionToken!.token, scid);
 
 	if (!profile.ok) {
 		throw createError({
@@ -45,7 +46,7 @@ export default eventHandler(async (event) => {
 	}
 
 	const { applicationAccountId } = connectedSystem;
-	const tag = idToTag(highLowToId(applicationAccountId));
+	const tag = idToTag(highLowToId(applicationAccountId).toString());
 
 	return await sendRedirect(event, `/players/${encodeURIComponent(tag)}`, 302);
 });

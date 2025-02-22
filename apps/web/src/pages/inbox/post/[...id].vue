@@ -96,6 +96,7 @@ const links: PageLink[] = [
 			<UPageHeader :title="postProps.title" :ui="{ headline: 'flex flex-col gap-y-8 items-start' }">
 				<template #headline>
 					<UBreadcrumb
+						class="w-full"
 						:links="[
 							{
 								label: 'Inbox News',

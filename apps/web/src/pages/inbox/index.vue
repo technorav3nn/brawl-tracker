@@ -57,6 +57,13 @@ function getPropsForPost(post: Article, index: number): UBlogPostProps {
 					label: 'View RSS',
 					icon: 'i-heroicons-rss-16-solid',
 					to: 'https://github.com/skrwo/supercell-inbox-rss/tree/main/rss',
+					size: 'lg',
+					target: '_blank',
+				},
+				{
+					label: 'Visit In-game Inbox',
+					icon: 'i-heroicons-envelope-open-16-solid',
+					to: 'https://brawlstars.inbox.supercell.com/',
 					color: 'gray',
 					size: 'lg',
 					target: '_blank',

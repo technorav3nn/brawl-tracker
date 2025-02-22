@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import type { Button } from "#ui/types";
 
+const title = "BrawlTrack - The Intuitive Brawl Stars Stats Site";
+const description = "BrawlTrack is an open-source, comprehensive statistics and utilities site for Brawl Stars.";
+useSeoMeta({
+	title,
+	titleTemplate: "%s | BrawlTrack",
+	description,
+	ogTitle: title,
+	ogDescription: description,
+	ogSiteName: "BrawlTrack",
+});
+
 const heroLinks: Button[] = [
 	{
 		label: "Search For A Player",

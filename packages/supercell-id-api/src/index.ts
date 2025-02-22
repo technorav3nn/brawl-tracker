@@ -142,7 +142,7 @@ export async function getProfile(sessionToken: string, scid?: string) {
 	});
 }
 
-export async function listProfiles(sessionToken: string, list: string[], type: "appAccountIds" | "handles") {
+export async function listProfiles(sessionToken: string, list: string[], type: "appAccountIds" | "handles" | "scids") {
 	const uuid = randomUUID().toUpperCase();
 
 	const body = new URLSearchParams({
@@ -181,6 +181,84 @@ export async function getFriends(sessionToken: string, scid?: string) {
 	const rfp = generateRfpHeader("/api/social/v3/friends.list", "POST", body.toString(), headers);
 
 	return $fetch<ScidFriendsResponse>("https://id.supercell.com/api/social/v3/friends.list", {
+		method: "POST",
+		headers: {
+			...DEFAULT_HEADERS,
+			...headers,
+			"X-Supercell-Request-Forgery-Protection": rfp,
+		},
+		body,
+	});
+}
+
+export async function sendFriendRequest(sessionToken: string, scids: string[]) {
+	const body = new URLSearchParams({
+		scids: `[${scids.map((id) => `"${id}"`).join(",")}]`,
+	});
+
+	const uuid = randomUUID().toUpperCase();
+
+	const headers = {
+		Authorization: `Bearer ${sessionToken}`,
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+
+	const rfp = generateRfpHeader("/api/social/v3/friends.createRequest", "POST", body.toString(), headers);
+
+	return $fetch<{ data: Record<string, any>; ok: boolean }>("https://id.supercell.com/api/social/v3/friends.createRequest", {
+		method: "POST",
+		headers: {
+			...DEFAULT_HEADERS,
+			...headers,
+			"X-Supercell-Request-Forgery-Protection": rfp,
+		},
+		body,
+	});
+}
+
+export async function acceptFriendRequest(sessionToken: string, scids: string[]) {
+	const body = new URLSearchParams({
+		scids: `[${scids.map((id) => `"${id}"`).join(",")}]`,
+	});
+
+	const uuid = randomUUID().toUpperCase();
+
+	const headers = {
+		Authorization: `Bearer ${sessionToken}`,
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+
+	const rfp = generateRfpHeader("/api/social/v3/friends.acceptRequest", "POST", body.toString(), headers);
+
+	return $fetch<{ data: Record<string, any>; ok: boolean }>("https://id.supercell.com/api/social/v3/friends.acceptRequest", {
+		method: "POST",
+		headers: {
+			...DEFAULT_HEADERS,
+			...headers,
+			"X-Supercell-Request-Forgery-Protection": rfp,
+		},
+		body,
+	});
+}
+
+export async function removeFriend(sessionToken: string, scid: string) {
+	const body = new URLSearchParams({
+		scid,
+	});
+
+	const uuid = randomUUID().toUpperCase();
+
+	const headers = {
+		Authorization: `Bearer ${sessionToken}`,
+		"User-Agent": DEFAULT_USER_AGENT,
+		"X-Supercell-Device-Id": uuid,
+	};
+
+	const rfp = generateRfpHeader("/api/social/v3/friends.remove", "POST", body.toString(), headers);
+
+	return $fetch<{ data: Record<string, any>; ok: boolean }>("https://id.supercell.com/api/social/v3/friends.remove", {
 		method: "POST",
 		headers: {
 			...DEFAULT_HEADERS,

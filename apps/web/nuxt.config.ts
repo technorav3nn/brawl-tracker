@@ -33,28 +33,10 @@ export default defineNuxtConfig({
 	},
 	app: {
 		head: {
-			// eslint-disable-next-line unicorn/text-encoding-identifier-case
-			charset: "utf-8",
-			viewport: "width=device-width, initial-scale=1",
-			title: "BrawlTrack",
 			htmlAttrs: { lang: "en" },
-			titleTemplate: "%s | BrawlTrack",
 			meta: [
-				{ name: "viewport", content: "width=device-width, initial-scale=1" },
 				{ name: "theme-color", content: "#000000" },
-				{
-					name: "description",
-					content: "BrawlTrack is a website that allows you to track your Brawl Stars profile.",
-				},
-				{ name: "og:title", content: "BrawlTrack" },
-				{
-					name: "og:description",
-					content: "BrawlTrack is a website that allows you to track your Brawl Stars profile.",
-				},
-				{
-					name: "keywords",
-					content: "brawl stars, brawl, stars, brawltrack, brawl track, brawl stats",
-				},
+				{ name: "keywords", content: "brawl stars, brawl, stars, brawltrack, brawl track, brawl stats" },
 			],
 		},
 	},
@@ -97,6 +79,8 @@ export default defineNuxtConfig({
 		appwriteEndpoint: "https://cloud.appwrite.io/v1",
 		appwriteProjectId: "6786db24001e31cc452a",
 		scidAccountToken: "",
+		// not private, don't worry im not leaking anything
+		scidAccountId: "85-0e066b52-b348-4256-b6c1-4f12a18f54d9",
 	},
 	appwrite: {
 		endpoint: "https://cloud.appwrite.io/v1",

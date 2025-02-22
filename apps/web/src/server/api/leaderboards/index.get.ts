@@ -4,7 +4,7 @@ import type { CountryCodes } from "@brawltracker/brawl-stars-api";
 export default defineEventHandler((event) => {
 	const query = getQuery<{
 		location?: string;
-		type?: "brawlers" | "clubs" | "players" | "ranked";
+		type?: "brawlers" | "clubs" | "players";
 		brawler?: string;
 	}>(event);
 	const [location, type, brawler] = [query.location as CountryCodes | undefined, query.type, query.brawler];
