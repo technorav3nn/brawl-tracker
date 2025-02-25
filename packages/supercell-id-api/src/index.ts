@@ -1,6 +1,6 @@
 import { $fetch } from "ofetch";
 import { generateRfpHeader } from "./lib/generate-rfp";
-import type { ScidFriendsResponse, ScidProfileResponse, SupercellGame } from "./lib/types";
+import type { ScidFriendsResponse, ScidProfileResponse, ScidProfilesResponse, SupercellGame } from "./lib/types";
 
 export * from "./lib/types";
 
@@ -157,7 +157,7 @@ export async function listProfiles(sessionToken: string, list: string[], type: "
 	};
 
 	const rfp = generateRfpHeader("/api/social/v3/profiles.list", "POST", body.toString(), headers);
-	return $fetch<ScidProfileResponse>("https://id.supercell.com/api/social/v3/profiles.list", {
+	return $fetch<ScidProfilesResponse>("https://id.supercell.com/api/social/v3/profiles.list", {
 		method: "POST",
 		headers: {
 			...DEFAULT_HEADERS,

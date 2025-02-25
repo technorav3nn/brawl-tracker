@@ -15,7 +15,7 @@ router.afterEach(() => {
 		<NuxtLayout>
 			<NuxtLoadingIndicator
 				v-if="indicatorState"
-				color="repeating-linear-gradient(to right,rgb(var(--color-primary-DEFAULT)) 0%,#34cdfe 50%,#0047e1 100%)"
+				color="repeating-linear-gradient(to right,rgb(var(--color-primary-DEFAULT)) 0%,#fbcc24 50%,#fbde24 100%)"
 				:throttle="150"
 			/>
 			<NuxtPage />

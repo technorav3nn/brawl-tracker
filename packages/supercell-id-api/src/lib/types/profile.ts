@@ -3,6 +3,21 @@ export interface ScidProfileResponse {
 	ok: boolean;
 }
 
+export interface ScidProfilesResponse {
+	data: { profiles: ListProfile[] };
+	ok: boolean;
+}
+
+export interface ListProfile {
+	applicationAccountId?: string;
+	avatarImage: string;
+	handle: string;
+	imageURL: string;
+	name: string;
+	playerName?: string;
+	scid: string;
+}
+
 export interface Profile {
 	availableSystems: AvailableSystem[];
 	avatarImage: AvatarImage;

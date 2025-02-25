@@ -61,15 +61,17 @@ function importFriends() {
 		<div>
 			<p class="font-medium text-md">Supercell ID connection</p>
 			<p class="text-sm">Manage your Supercell ID connection</p>
-			<UButton v-if="!databaseUser?.scidConnections.isConnected" icon="i-tabler-link" class="mt-2" @click="connect">
+			<UButton v-if="!databaseUser?.scidConnections.isConnected" size="xs" icon="i-tabler-link" class="mt-2" @click="connect">
 				Connect
 			</UButton>
-			<UButton v-else icon="i-tabler-unlink" class="mt-2" color="red" @click="disconnect">Disconnect</UButton>
+			<UButton v-else size="xs" icon="i-tabler-unlink" class="mt-2" color="red" @click="disconnect">Disconnect</UButton>
 		</div>
 		<div>
 			<p class="font-medium text-md">Supercell Friends</p>
 			<p class="text-sm">Import your friends and view their profiles and stats easily!</p>
-			<UButton icon="i-heroicons-arrow-down-tray-20-solid" class="mt-2" @click="importFriends">Import Supercell Friends</UButton>
+			<UButton size="xs" icon="i-heroicons-arrow-down-tray-20-solid" class="mt-2" @click="importFriends"
+				>Import Supercell Friends</UButton
+			>
 		</div>
 		<div>
 			<p class="font-medium text-md text-red-400 dark:text-red-400">Delete Account</p>

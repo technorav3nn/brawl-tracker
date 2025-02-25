@@ -42,26 +42,6 @@ const replacements: Record<string, () => VNode> = {
 			height: 20,
 			class: "inline-block align-middle -translate-y-[1px]",
 		}),
-	"• E": () =>
-		h("div", { class: "space-x-1.5" }, [
-			h(Image, {
-				src: "/icons/cosmetics/exclusive-skin-icon.png",
-				width: 20,
-				height: 20,
-				class: "inline-block align-middle",
-			}),
-			h("span", { class: "inline-block" }, "Exclusive"),
-		]),
-	"• S": () =>
-		h("div", { class: "space-x-0.5" }, [
-			h(Image, {
-				src: "/icons/cosmetics/seasonal-skin-icon.png",
-				width: 25,
-				height: 25,
-				class: "inline-block align-middle -translate-y-[2.4px] -ml-0.5",
-			}),
-			h("span", { class: "inline-block" }, "Seasonal"),
-		]),
 };
 
 function splitStringBySeperators(string: string, seperators: string[]) {
@@ -85,7 +65,7 @@ function render(cost: string) {
 </script>
 
 <template>
-	<UPage v-if="brawler">
+	<UPage v-if="brawler" class="pb-20">
 		<section>
 			<UDashboardSection
 				class="mb-4"
@@ -96,7 +76,7 @@ function render(cost: string) {
 			<UCarousel v-slot="{ item }" arrows class="w-[105%] !h-96" :items="skins" :ui="{ container: 'gap-1' }">
 				<UCard
 					:ui="{ body: { base: '!p-2' }, header: { padding: 'px-4 py-3 sm:px-4', footer: 'px-4 py-3 sm:px-4' } }"
-					class="w-64 mt-2 ml-1 mr-1 mb-0.5"
+					class="w-64 mt-2 ml-1 mr-1 mb-0.5 h-[520px]"
 				>
 					<template #header>
 						<div class="flex justify-between items-center">
@@ -111,14 +91,28 @@ function render(cost: string) {
 							</UTooltip>
 						</div>
 					</template>
-					<div class="flex items-center justify-center">
-						<Image :src="item.url" width="180" height="180" loading="lazy" class="!object-scale-down" />
+					<div class="flex flex-col items-center justify-center">
+						<Image :src="item.url" width="180" height="180" loading="lazy" class="!object-scale-down h-80" />
+						<Image
+							v-if="item.cost?.includes('• S')"
+							class="self-start absolute bottom-[28%] -translate-x-2"
+							src="/icons/cosmetics/skin-seasonal.png"
+							width="50"
+							height="50"
+						/>
+						<Image
+							v-else-if="item.cost?.includes('• E')"
+							class="self-start absolute bottom-[28%] -translate-x-2"
+							src="/icons/cosmetics/skin-exclusive.png"
+							width="50"
+							height="50"
+						/>
 					</div>
 					<template #footer>
 						<div class="flex flex-row gap-2">
 							<div class="flex gap-1">
 								<div>
-									<component :is="render(item.cost)" v-if="item.cost" />
+									<component :is="render((item.cost as string).replaceAll('• S', '').replaceAll('• E', ''))" v-if="item.cost" />
 									<p v-else>Default Skin</p>
 								</div>
 							</div>

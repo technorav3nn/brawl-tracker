@@ -1,4 +1,5 @@
 import { createSessionClient } from "$lib/appwrite";
+import { omit } from "$lib/utils/common/objects.js";
 import { getUser } from "$server/db/users/actions";
 import type { User } from "$server/db/users/types";
 
@@ -12,6 +13,6 @@ export default defineEventHandler(async (event) => {
 
 	const { $id } = user;
 
-	const databaseUser = await getUser($id, databases);
-	return databaseUser as User;
+	const databaseUser = omit(await getUser($id, databases), ["savedPlayers"]);
+	return databaseUser as Omit<User, "savedPlayers">;
 });

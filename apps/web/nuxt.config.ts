@@ -59,6 +59,17 @@ export default defineNuxtConfig({
 			cdn: "https://cdn.deathblows.xyz",
 		},
 	},
+
+	icon: {
+		customCollections: [
+			{
+				prefix: "local",
+				dir: "./src/assets/icons",
+				height: 24,
+				width: 24,
+			},
+		],
+	},
 	sentry: {
 		sourceMapsUploadOptions: {
 			org: "technorav3nn",

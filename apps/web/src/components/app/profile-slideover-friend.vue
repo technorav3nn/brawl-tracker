@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { getCdnUrlForAvatarId } from "@brawltracker/supercell-id-api/browser";
 import type { JSONSavedPlayer } from "$server/db/users/types";
 
 const props = defineProps<{
@@ -13,7 +12,7 @@ const { friend } = toRefs(props);
 		<div class="flex items-center gap-2">
 			<NuxtImg
 				v-if="friend.isScid"
-				:src="getCdnUrlForAvatarId(friend.scidData!.avatarImage)"
+				:src="friend.scidData!.avatar"
 				width="40"
 				height="40"
 				class="w-10 h-10 rounded-full self-center bg-contain object-cover aspect-1"

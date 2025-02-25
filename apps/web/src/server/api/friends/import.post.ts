@@ -1,5 +1,7 @@
-import { acceptFriendRequest, getFriends } from "@brawltracker/supercell-id-api";
+import { acceptFriendRequest, getFriends, listProfiles, type Friend } from "@brawltracker/supercell-id-api";
+import { getCdnUrlForAvatarId, highLowToId, idToTag } from "@brawltracker/supercell-id-api/browser";
 import { createSessionClient } from "$lib/appwrite";
+import { chunk, wait } from "$lib/utils/common";
 import { getUser, upsertUserDoc } from "$server/db/users/actions";
 import type { JSONSavedPlayer } from "$server/db/users/types";
 
@@ -56,17 +58,25 @@ export default defineEventHandler(async (event) => {
 		throw createError({ statusCode: 500, message: "Failed to retrieve friends" });
 	}
 
-	const json = userFriends.data.friends.map((friend) => {
-		const { avatarImage, name, handle, scid } = friend;
+	const friendsListProfiles = await getFriendsListProfiles(userFriends.data.friends.map((friend) => friend.scid));
+	if (!friendsListProfiles) {
+		throw createError({ statusCode: 500, message: "Failed to retrieve friends profiles" });
+	}
+
+	const filteredFriends = friendsListProfiles.filter((friend) => friend.applicationAccountId && friend.playerName);
+
+	const json = filteredFriends.map((friend) => {
+		const { playerName, handle, scid } = friend;
 		return {
 			isScid: true,
 			scidData: {
-				avatarImage,
-				name,
+				avatar: (friend as any).imageURL ? (friend as any).imageURL : getCdnUrlForAvatarId(friend.avatarImage),
+				name: playerName!,
 				handle,
 				scid,
 			},
-			name,
+			name: playerName!,
+			tag: idToTag(highLowToId(friend.applicationAccountId!).toString()),
 		} satisfies JSONSavedPlayer;
 	});
 
@@ -76,3 +86,22 @@ export default defineEventHandler(async (event) => {
 		throw createError({ statusCode: 500, message: "Failed to update user" });
 	}
 });
+
+async function getFriendsListProfiles(scids: string[]) {
+	const { scidAccountToken } = useRuntimeConfig(useEvent());
+
+	const sessionToken = await getCachedScidSessionToken(scidAccountToken);
+
+	const chunks = chunk(scids, 50);
+
+	const results = await Promise.all(
+		chunks.map(async (chunk, index) => {
+			if (index !== 0) await wait(1000);
+			const result = await listProfiles(sessionToken!.token, chunk, "scids");
+			if (!result.ok) throw new Error((result as any)?.message);
+			return (result.data as any).profiles as Friend[];
+		})
+	);
+
+	return results.flat();
+}

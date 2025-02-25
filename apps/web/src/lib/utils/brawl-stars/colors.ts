@@ -29,3 +29,8 @@ export function parseColorTag(text: string): ParsedColor {
 
 	return { insideText, color: COLOR_TO_TAILWIND_COLOR[`c${color}`] ?? COLOR_TO_TAILWIND_COLOR.default };
 }
+
+export function convertHexToHexColor(hex: string) {
+	// 0xffcb5aff -> #ffcb5a
+	return `#${hex.slice(2, 8)}`;
+}

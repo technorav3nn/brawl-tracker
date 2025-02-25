@@ -40,3 +40,12 @@ export const groupBy = <T, K extends keyof any>(list: T[], getKey: (item: T) => 
 		{} as Record<K, T[]>
 	);
 };
+
+export function chunk<T>(array: T[], size: number) {
+	const result = [];
+	for (let i = 0; i < array.length; i += size) {
+		result.push(array.slice(i, i + size));
+	}
+
+	return result;
+}

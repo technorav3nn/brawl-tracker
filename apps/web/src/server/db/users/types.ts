@@ -3,7 +3,7 @@ import type { Models } from "node-appwrite";
 export interface JSONSavedPlayer {
 	isScid?: boolean;
 	scidData?: {
-		avatarImage: string;
+		avatar: string;
 		name: string;
 		handle?: string;
 		scid: string;

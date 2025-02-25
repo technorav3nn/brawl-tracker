@@ -7,7 +7,7 @@ const props = defineProps<{
 }>();
 
 const { data: mapStats, status } = useFetch(() => `/api/maps/${props.map.id}`, {
-	transform: (d) => d.stats.find((stat) => (stat.brawler as unknown as number) === props.brawler.id) ?? null,
+	transform: (d) => d!.stats.find((stat) => (stat.brawler as unknown as number) === props.brawler.id) ?? null,
 });
 </script>
 

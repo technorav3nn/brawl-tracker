@@ -2,6 +2,7 @@
 import { lowercaseFirstLetter } from "$lib/utils/common";
 import { createGetCachedData } from "$lib/utils/nuxt";
 
+const slideover = useSlideover();
 const nuxtApp = useNuxtApp();
 const { data: unfilteredFriends, status } = useLazyFetch("/api/saved-players", {
 	getCachedData: createGetCachedData(nuxtApp),
@@ -47,7 +48,7 @@ const {
 		<span class="text-gray-500 dark:text-gray-400 text-lg">Loading Friends</span>
 	</div>
 	<div v-if="friends?.length === 0 && search.trim() !== ''" class="px-4 mt-4">
-		<p class="text-gray-500 dark:text-gray-400 text-sm">You have no friends connected to Supercell ID</p>
+		<p class="text-gray-500 dark:text-gray-400 text-sm">You have no friends or saved tags</p>
 	</div>
 
 	<div class="px-4 flex flex-col">
@@ -78,8 +79,8 @@ const {
 					:style="{
 						height: '80px',
 					}"
-					external
-					:to="friend.isScid ? `/players/redirect/${encodeURIComponent(friend.scidData!.scid)}` : `/players/${friend.tag}`"
+					:to="`/players/${encodeURIComponent(friend.tag!)}`"
+					@click="if (slideover?.close) slideover.close();"
 				>
 					<LazyAppProfileSlideoverFriend :key="friend.name" :friend="friend" />
 				</NuxtLink>

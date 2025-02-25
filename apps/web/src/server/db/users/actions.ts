@@ -1,8 +1,8 @@
 import { Permission, Role, type Databases } from "node-appwrite";
 import { type ScidConnection, type User, type Document } from "./types";
 
-export async function getUser(userId: string, databases: Databases) {
-	return databases.getDocument<Document<User>>("brawltrack", "users", userId);
+export async function getUser(userId: string, databases: Databases, queries?: string[]) {
+	return databases.getDocument<Document<User>>("brawltrack", "users", userId, queries);
 }
 
 /**

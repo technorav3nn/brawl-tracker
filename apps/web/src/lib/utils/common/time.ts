@@ -1,5 +1,8 @@
 import { TimeTypes, type DurationFormatAssetsTime, DurationFormatter } from "@sapphire/duration";
 
+// eslint-disable-next-line no-promise-executor-return
+export const wait = async (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const FORMATTER_UNITS: DurationFormatAssetsTime = {
 	[TimeTypes.Day]: {
 		1: "d",

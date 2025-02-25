@@ -45,7 +45,7 @@ const router = useRouter();
 const user = useUser();
 
 router.beforeResolve((to, from, next) => {
-	if (to.path === "/settings" && from.path === router.currentRoute.value.path) {
+	if (to.path === "/settings" && from.path === router.currentRoute.value.path && import.meta) {
 		slideover.close();
 	}
 
@@ -54,51 +54,6 @@ router.beforeResolve((to, from, next) => {
 
 const { data: userInfo } = useDatabaseUser();
 const supercellInfo = computed(() => userInfo.value?.scidConnections);
-
-// const { data: profile } = useFetch("/api/auth/scid/my-profile");
-// const {
-// 	data: unfiltedFriends,
-// 	status: friendsStatus,
-// 	execute,
-// } = useFetch("/api/auth/scid/friends", {
-// 	transform: (d) => d.friends.filter((f) => Boolean(f.handle) && f.relationship.status === "FRIEND"),
-// 	immediate: false,
-// 	key: "friends",
-// 	getCachedData(key) {
-// 		return nuxtApp.payload.data[key] || nuxtApp.static.data[key];
-// 	},
-// });
-
-// const search = ref("");
-// const sortMode = ref<"ascending" | "descending" | "none" | "status">("none");
-
-// const friends = computed(() => {
-// 	if (!unfiltedFriends.value) return [];
-// 	return unfiltedFriends.value
-// 		.filter((f) => f.name.toLowerCase().includes(search.value.toLowerCase()) && f.applicationAccountId)
-// 		.sort((a, b) => {
-// 			if (sortMode.value === "status") return a.presence ? -1 : 1;
-// 			if (sortMode.value === "ascending") return a.name.localeCompare(b.name);
-// 			if (sortMode.value === "descending") return b.name.localeCompare(a.name);
-// 			return 0;
-// 		});
-// });
-
-// const dataIsCached = computed(() => nuxtApp.payload.data.friends || nuxtApp.static.data.friends);
-
-// watchEffect(() => {
-// 	if (tab.value === "friends" && friendsStatus.value === "idle") {
-// 		execute();
-// 	}
-// });
-
-// async function logout() {
-// 	slideover.close();
-// 	await $fetch("/api/auth/logout", { method: "POST" });
-// 	user.value = null;
-// 	await navigateTo("/");
-// 	toast.add({ title: "Logged out successfully", color: "primary" });
-// }
 </script>
 
 <template>
@@ -139,13 +94,34 @@ const supercellInfo = computed(() => userInfo.value?.scidConnections);
 					<p class="text-gray-500 dark:text-gray-400 text-sm">Logged in as {{ user!.name }}</p>
 				</div>
 				<div class="px-2 mt-2 flex flex-col gap-2">
-					<UButton color="gray" size="lg" block icon="i-heroicons-information-circle"> View My Profile </UButton>
-					<UButton color="gray" size="lg" block icon="i-tabler-shield-pin"> View My Club </UButton>
+					<UTooltip :text="!supercellInfo?.isConnected ? 'Connect your Supercell ID to view your profile!' : ''">
+						<UButton :disabled="!supercellInfo?.isConnected" color="gray" size="lg" block icon="i-heroicons-information-circle">
+							View My Profile
+						</UButton>
+					</UTooltip>
+					<UTooltip :text="!supercellInfo?.isConnected ? 'Connect your Supercell ID to view your club!' : ''">
+						<UButton :disabled="!supercellInfo?.isConnected" color="gray" size="lg" block icon="i-tabler-shield-pin">
+							View My Club
+						</UButton>
+					</UTooltip>
 				</div>
 			</div>
 
 			<div v-if="tab === 'friends'" class="overflow-none">
-				<ProfileSlideoverFriendsTab />
+				<ProfileSlideoverFriendsTab v-if="supercellInfo?.isConnected" />
+				<div v-else>
+					<div class="w-full py-5 px-4 border-b border-gray-200 dark:border-gray-800">
+						<h1 class="text-2xl font-semibold">Saved Players & Friends</h1>
+						<p class="text-gray-500 dark:text-gray-400 text-sm">
+							View your saved players and imported Supercell ID Friends, and manage your saved players
+						</p>
+					</div>
+
+					<!-- User doesnt have supercell id connect, show info -->
+					<p class="px-4 mt-4 text-gray-500 dark:text-gray-400 text-sm">
+						You must connect your Supercell ID to view your friends!
+					</p>
+				</div>
 				<!--
  <div
 					v-if="friendsStatus === 'pending' && !dataIsCached"

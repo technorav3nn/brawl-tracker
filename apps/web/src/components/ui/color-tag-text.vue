@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { parseColorTag } from "$lib/utils/brawl-stars/color-tags";
+import { parseColorTag } from "$lib/utils/brawl-stars/colors";
 
 const props = defineProps<{
 	colorTag: string;
