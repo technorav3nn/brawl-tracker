@@ -16,4 +16,5 @@ export interface Gear {
 	 * So it would be `null` for speed and damage, but an array of brawler IDs for reload speed
 	 */
 	brawlersAvaliableTo: number[] | null;
+	url: string;
 }

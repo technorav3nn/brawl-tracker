@@ -64,7 +64,7 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 		<!-- Menu open -->
 		<template v-if="showMenu" #header>
 			<NuxtImg
-				:src="event.map.environment.imageUrl"
+				:src="event.map?.environment ? event.map.environment.imageUrl : '/placeholder.webp'"
 				:alt="event.map.name"
 				loading="lazy"
 				height="100"
@@ -99,12 +99,14 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 				<div class="flex gap-1">
 					<NuxtImg
 						v-for="brawler in bestBrawlers"
-						:src="images![brawler.brawler].imageUrl"
+						:src="images[brawler.brawler] ? images[brawler.brawler].imageUrl : '/placeholder.webp'"
 						width="25"
 						height="25"
 						class="rounded-md"
 						format="webp"
 						loading="lazy"
+						:data-brawlerwergwergwr="brawler.brawler"
+						:alt="brawler.brawler"
 					/>
 				</div>
 				<div class="flex items-center gap-1">

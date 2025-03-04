@@ -17,6 +17,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ["Inter", ...fontFamily.sans],
+				brawlstars: ["Lilita One", "Inter", ...fontFamily.sans],
 			},
 			colors: {
 				border: "var(--color-border)",

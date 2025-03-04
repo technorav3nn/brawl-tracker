@@ -8,6 +8,7 @@ const nuxtApp = useNuxtApp();
 const { data: player } = await useFetch("/api/players", {
 	getCachedData: createGetCachedData(nuxtApp, `players-${route.params.tag}`),
 	query: { tag: route.params.tag },
+	key: `players-${route.params.tag}`,
 });
 
 const links: NavigationLink[] = [
@@ -23,9 +24,9 @@ const links: NavigationLink[] = [
 		to: `/players/${encodeURIComponent(route.params.tag)}/brawlers`,
 	},
 	{
-		label: "Matches",
+		label: "Battles",
 		icon: "i-heroicons-clipboard-document-list",
-		to: `/players/${encodeURIComponent(route.params.tag)}/matches`,
+		to: `/players/${encodeURIComponent(route.params.tag)}/battles`,
 	},
 ];
 </script>
@@ -46,17 +47,15 @@ const links: NavigationLink[] = [
 					<p class="dark:text-primary-400 text-primary-100">{{ player.name }}</p>
 				</template>
 				<template #description>
-					<div class="flex flex-col gap-2">
+					<div class="flex flex-row gap-2">
 						<div class="flex flex-row gap-x-0.5 items-center">
 							<p class="text-white text-opacity-80 font-bold text-sm">
 								{{ player!.tag }}
 							</p>
 						</div>
 						<div class="flex flex-row gap-x-2 items-center">
-							<UButton class="rounded-full text-black" size="xs" icon="i-heroicons-clipboard-document">Copy Tag</UButton>
-							<UButton class="rounded-full text-black [&>span]:scale-[1.35] [&>span]:mr-0.5" icon="local:scid" size="xs">
-								View Supercell ID
-							</UButton>
+							<UButton class="text-black [&>span]:scale-[1.15]" size="xs" icon="i-heroicons-clipboard-document"></UButton>
+							<UButton class="text-black [&>span]:scale-[1.20]" icon="local:scid" size="xs"> </UButton>
 						</div>
 					</div>
 				</template>
@@ -83,7 +82,7 @@ html[class="dark"] .header-bg-image {
 }
 html[class="light"] .header-bg-image {
 	background-image: 
-        /** lighten the yellow A LITTLE BIT , dont use 0.2 */
+        /** lighten the yellow a little bit */
 		linear-gradient(rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.3)), url("/brawlstars/profile-bg-light.webp");
 	background-size: cover;
 	background-position: center;

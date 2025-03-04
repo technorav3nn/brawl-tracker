@@ -4,7 +4,7 @@ const {
 } = useRoute("maps-map");
 
 const { data: map } = await useFetch(`/api/maps/${mapId}`);
-const { data: brawlers } = await useFetch("/api/brawlers", { transform: (s) => s.list });
+const { data: brawlers } = await useFetch("/api/brawlers", { transform: (s) => s.list, key: "brawlers" });
 
 const brawlerSortedUsage = computed(() => {
 	return map.value!.stats.sort((a, b) => b.useRate - a.useRate);

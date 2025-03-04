@@ -14,6 +14,7 @@ export interface BattlelogBattle {
 	result: BattleResult;
 	starPlayer: StarPlayer | null;
 	teams: BattlelogTeam[] | null;
+	trophyChange?: number;
 	type: BattleTypes;
 }
 

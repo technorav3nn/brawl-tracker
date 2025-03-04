@@ -59,7 +59,9 @@ export default defineNuxtConfig({
 			cdn: "https://cdn.deathblows.xyz",
 		},
 	},
-
+	colorMode: {
+		fallback: "dark",
+	},
 	icon: {
 		customCollections: [
 			{
@@ -71,10 +73,11 @@ export default defineNuxtConfig({
 		],
 	},
 	sentry: {
+		autoInjectServerSentry: "top-level-import",
 		sourceMapsUploadOptions: {
 			org: "technorav3nn",
 			project: "javascript-nuxt",
-			authToken: process.env.SENTRY_AUTH_TOKEN,
+			authToken: process.env.NUXT_SENTRY_AUTH_TOKEN,
 		},
 	},
 	runtimeConfig: {
@@ -92,6 +95,9 @@ export default defineNuxtConfig({
 		scidAccountToken: "",
 		// not private, don't worry im not leaking anything
 		scidAccountId: "85-0e066b52-b348-4256-b6c1-4f12a18f54d9",
+		public: {
+			sentryDsn: "https://76fedfafe72ede2cdf24b27f409a6e62@o4508064842514432.ingest.us.sentry.io/4508064854245376",
+		},
 	},
 	appwrite: {
 		endpoint: "https://cloud.appwrite.io/v1",
