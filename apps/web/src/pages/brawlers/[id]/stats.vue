@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { BrawlApiMap } from "@brawltracker/brawl-api";
-import { BrawlerMapStatsMapSlideover } from "#components";
+import { LazyBrawlerMapStatsMapSlideover } from "#components";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
 import { useFilteredMapStore } from "$components/features/brawler-map-stats/filtered-map-store";
 
@@ -14,7 +14,7 @@ if (!brawler) {
 
 function openSlideover(map: BrawlApiMap) {
 	slideover.close();
-	slideover.open(BrawlerMapStatsMapSlideover, { map, brawler: brawlerStore.brawler! });
+	slideover.open(LazyBrawlerMapStatsMapSlideover, { map, brawler: brawlerStore.brawler! });
 }
 
 const filterButtonId = useId();

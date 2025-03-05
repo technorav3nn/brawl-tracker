@@ -18,6 +18,7 @@ interface DataRecord {
 	x: number;
 	y: number;
 	trophyChange: number;
+	brawler: string;
 }
 
 const netTrophies = computed(() => {
@@ -38,6 +39,7 @@ const data = computed(() => {
 				x: index + 1,
 				y: base.value + battle.battle.trophyChange ?? 0,
 				trophyChange: battle.battle.trophyChange,
+				brawler: "",
 			});
 			base.value += battle.battle.trophyChange;
 		}
@@ -85,7 +87,7 @@ const template = (d: DataRecord) => `
 				color="primary"
 				icon="i-heroicons-exclamation-triangle"
 				title="No data to display"
-				description="The player has no battle log data to display"
+				description="The player has no battle log data to display. Only games with trophies earned are displayed."
 			>
 			</UAlert>
 		</template>

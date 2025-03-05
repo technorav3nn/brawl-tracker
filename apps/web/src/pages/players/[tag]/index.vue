@@ -27,7 +27,7 @@ const seasonReset = computed(() => {
 		return acc + brawler.trophies;
 	}, 0);
 
-	const seasonTrophiesGained = trophies - player.value!.trophies;
+	const seasonTrophiesGained = player.value!.trophies - trophies;
 
 	return {
 		trophiesAfterReset: trophies,
@@ -38,29 +38,41 @@ const seasonReset = computed(() => {
 const trophyBox = computed(() => {
 	if (!player.value) return;
 	const { seasonTrophiesGained } = toRefs(seasonReset.value);
-	if (seasonTrophiesGained.value < 100) {
+	// Small Trophy Box: 0 Season Trophies
+	// Big Trophy Box: 100 Season Trophies
+	// Mega Trophy Box: 400 Season Trophies
+	// Omega Trophy Box: 1000 Season Trophies
+	// Ultra Trophy Box: 3000 Season Trophies
+
+	if (seasonTrophiesGained.value >= 3000) {
 		return {
-			image: "/icons/player/trophy-boxes/small-trophy-box.png",
-			color: "!text-green-500 dark:!text-green-400",
-			name: "Small Trophy Box",
+			name: "Ultra Trophy Box",
+			image: "/icons/player/trophy-boxes/ultra-trophy-box.png",
+			color: "!text-cyan-500 dark:!text-cyan-400",
 		};
-	} else if (seasonTrophiesGained.value < 400) {
+	} else if (seasonTrophiesGained.value >= 1000) {
 		return {
+			name: "Omega Trophy Box",
+			image: "/icons/player/trophy-boxes/omega-trophy-box.png",
+			color: "!text-red-500 dark:!text-red-400",
+		};
+	} else if (seasonTrophiesGained.value >= 400) {
+		return {
+			name: "Mega Trophy Box",
+			image: "/icons/player/trophy-boxes/mega-trophy-box.png",
+			color: "!text-fuchsia-500 dark:!text-fuchsia-400",
+		};
+	} else if (seasonTrophiesGained.value >= 100) {
+		return {
+			name: "Big Trophy Box",
 			image: "/icons/player/trophy-boxes/big-trophy-box.png",
 			color: "!text-blue-500 dark:!text-blue-400",
-			name: "Big Trophy Box",
-		};
-	} else if (seasonTrophiesGained.value < 1000) {
-		return {
-			image: "/icons/player/trophy-boxes/mega-trophy-box.png",
-			color: "!text-purple-500 dark:!text-purple-400",
-			name: "Mega Trophy Box",
 		};
 	} else {
 		return {
-			image: "/icons/player/trophy-boxes/ultra-trophy-box.png",
-			color: "!text-yellow-500 dark:!text-yellow-400",
-			name: "Ultra Trophy Box",
+			name: "Small Trophy Box",
+			image: "/icons/player/trophy-boxes/small-trophy-box.png",
+			color: "!text-green-500 dark:!text-green-400",
 		};
 	}
 });
@@ -88,7 +100,7 @@ const playerStats = [
 		color: "!text-cyan-500 dark:!text-cyan-400",
 	},
 	{
-		stat: "Season Trophys Gained",
+		stat: "Season Trophies Gained",
 		value: format(seasonReset.value.seasonTrophiesGained),
 		image: "/icons/player/season-trophy.png",
 		color: "!text-cyan-500 dark:!text-cyan-400",

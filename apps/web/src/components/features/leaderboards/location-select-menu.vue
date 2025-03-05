@@ -55,12 +55,12 @@ watch(
 		class="w-48"
 	>
 		<template #label>
-			<Icon v-if="selected?.icon" :name="selected.icon" />
+			<LazyIcon v-if="selected?.icon" hydrateOnVisible :name="selected.icon" />
 			<span v-else-if="selected?.emoji">{{ selected.emoji }}</span>
 			<span>{{ selected?.name }}</span>
 		</template>
 		<template #option="{ option }">
-			<Icon v-if="option?.icon" :name="option.icon" />
+			<LazyIcon v-if="option?.icon" hydrateOnVisible :name="option.icon" />
 			<span v-else-if="option?.emoji">{{ option.emoji }}</span>
 			<span>{{ option.name }}</span>
 		</template>

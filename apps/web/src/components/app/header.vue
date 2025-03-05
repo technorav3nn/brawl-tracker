@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { AsideLink } from "@nuxt/ui-pro/types";
-import { AppHeaderProfileSlideover } from "#components";
+import { AppHeaderProfileSlideover, LazyAppHeaderProfileSlideover } from "#components";
 
 const toast = useToast();
 const slideover = useSlideover();
@@ -145,7 +145,7 @@ const items = computed(() => [
 					trailingIcon="i-heroicons-chevron-down-20-solid"
 					color="gray"
 					class="px-1.5"
-					@click="slideover.open(AppHeaderProfileSlideover)"
+					@click="slideover.open(LazyAppHeaderProfileSlideover)"
 				>
 					<NuxtImg v-if="avatar" class="rounded-full" width="28" height="28" :src="avatar" />
 					<UAvatar v-else class="w-7 h-7" :alt="user.name" />

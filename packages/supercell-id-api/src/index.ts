@@ -118,9 +118,9 @@ export async function initalizeSession(sessionToken: string, scidToken: string) 
 	});
 }
 
-export async function getProfile(sessionToken: string, scid?: string) {
+export async function getProfile(sessionToken: string, input?: string, type: "appAccountId" | "handle" | "scid" = "scid") {
 	const uuid = randomUUID().toUpperCase();
-	const body = scid ? `scid=${scid}` : `fetchGameData=false`;
+	const body = input ? `${type}=${encodeURIComponent(input)}` : "fetchGameData=false";
 
 	const headers = {
 		Authorization: `Bearer ${sessionToken}`,

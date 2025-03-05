@@ -6,7 +6,8 @@ import type { User } from "$server/db/users/types";
 export default defineEventHandler(async (event) => {
 	const user = event.context.user;
 	if (!user) {
-		throw createError({ statusMessage: "Unauthorized", statusCode: 401 });
+		// no content
+		return;
 	}
 
 	const { databases } = createSessionClient(event);

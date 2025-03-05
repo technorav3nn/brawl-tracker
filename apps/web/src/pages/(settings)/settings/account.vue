@@ -69,9 +69,9 @@ function importFriends() {
 		<div>
 			<p class="font-medium text-md">Supercell Friends</p>
 			<p class="text-sm">Import your friends and view their profiles and stats easily!</p>
-			<UButton size="xs" icon="i-heroicons-arrow-down-tray-20-solid" class="mt-2" @click="importFriends"
-				>Import Supercell Friends</UButton
-			>
+			<UButton size="xs" icon="i-heroicons-arrow-down-tray-20-solid" class="mt-2" @click="importFriends">
+				Import Supercell Friends
+			</UButton>
 		</div>
 		<div>
 			<p class="font-medium text-md text-red-400 dark:text-red-400">Delete Account</p>

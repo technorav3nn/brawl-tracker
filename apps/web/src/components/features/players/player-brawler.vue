@@ -29,13 +29,11 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${ran
 		:class="[brawler.rarity.name in rarityColorMap ? rarityColorMap[brawler.rarity.name] : 'bg-gray-200']"
 	>
 		<Image
-			class="group-hover:brightness-75 max-sm:object-cover h-[145px] block rounded-md"
+			class="relative group-hover:brightness-75 max-sm:object-cover h-[145px] block rounded-md"
 			:src="getBrawlerPortraitUrl(brawler.id.toString())"
 			:height="180"
 		/>
-		<p
-			class="text-lg absolute bottom-0 right-1 font-normal tracking-wide text-white font-brawlstars shadow-2xl brawler-name-text"
-		>
+		<p class="text-lg absolute bottom-0 right-1 font-normal tracking-wide text-white font-brawlstars uppercase brawlstars-text">
 			{{ brawler.name }}
 		</p>
 
@@ -63,10 +61,10 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${ran
 					height="70"
 					src="/icons/player/trophy-bars/normal-tier.png"
 				/>
-				<Image v-else class="-translate-x-2.5" width="120" height="70" src="/icons/player/trophy-bars/max-tier.png" />
+				<Image v-else class="-translate-x-4" width="120" height="70" src="/icons/player/trophy-bars/max-tier-full.png" />
 				<p
-					:class="[isMaxTier ? 'text-cyan-300  ' : 'text-yellow-400 ']"
-					class="text-center w-[120px] text-[16px] font-brawlstars absolute top-[50%] left-[50%] translate-x-[calc(-50%+0.9rem)] translate-y-[-50%]"
+					:class="[isMaxTier ? 'text-white  top-[48.9%]' : 'text-yellow-400 top-[50%] ']"
+					class="brawlstars-text text-center w-[120px] text-[16px] font-brawlstars absolute left-[50%] translate-x-[calc(-50%+0.3rem)] translate-y-[-50%]"
 				>
 					{{ playerBrawler.trophies }}
 				</p>
@@ -105,5 +103,13 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${ran
 	text-transform: uppercase;
 	text-shadow: 0px 2px 0px #000;
 	filter: drop-shadow(0 0 4px #000);
+}
+.brawlstars-text {
+	text-shadow:
+		0px 2.5px 0px #000,
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
 }
 </style>

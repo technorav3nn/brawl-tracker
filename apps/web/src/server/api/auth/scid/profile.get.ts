@@ -1,9 +1,10 @@
-import { getProfile } from "@brawltracker/supercell-id-api";
+import { listProfiles } from "@brawltracker/supercell-id-api";
 import { z } from "zod";
 import { getCachedScidSessionToken } from "$server/utils/session-token";
 
 const schema = z.object({
-	scid: z.string().optional(),
+	input: z.string(),
+	type: z.enum(["appAccountIds", "handles", "scids"]).optional().default("scids"),
 });
 
 export default defineEventHandler(async (event) => {
@@ -20,7 +21,12 @@ export default defineEventHandler(async (event) => {
 		throw createError({ statusCode: 500, statusMessage: "Failed to retrieve session" });
 	}
 
-	const { scid } = query.data;
+	const { input, type } = query.data;
+	console.log(`Fetching profile for ${type} ${input}`);
 
-	return await getProfile(sessionToken.token, scid);
+	try {
+		return await listProfiles(sessionToken.token, [input], type ?? "scids");
+	} catch {
+		throw createError({ statusCode: 500, statusMessage: "Failed to retrieve profile" });
+	}
 });

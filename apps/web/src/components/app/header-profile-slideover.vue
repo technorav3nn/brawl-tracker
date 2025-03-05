@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { NavigationLink } from "@nuxt/ui-pro/types";
-import { signout } from "$lib/utils/auth";
 
 const tabs = ["profile", "friends", "settings"] as const;
 const tab = ref<(typeof tabs)[number]>("profile");
@@ -54,6 +53,13 @@ router.beforeResolve((to, from, next) => {
 
 const { data: userInfo } = useDatabaseUser();
 const supercellInfo = computed(() => userInfo.value?.scidConnections);
+
+async function logout() {
+	await $fetch("/api/auth/signout", { method: "POST" });
+	slideover.close();
+	await refreshNuxtData(["user", "database-user"]);
+	await navigateTo("/");
+}
 </script>
 
 <template>
@@ -174,7 +180,7 @@ const supercellInfo = computed(() => userInfo.value?.scidConnections);
 						size="lg"
 						block
 						icon="i-heroicons-arrow-right-end-on-rectangle-20-solid"
-						@click="signout"
+						@click="logout"
 					>
 						Logout
 					</UButton>

@@ -11,7 +11,9 @@ const { data: player } = await useFetch("/api/players", {
 	key: `players-${route.params.tag}`,
 });
 
-const links: NavigationLink[] = [
+const brawlersActive = computed(() => route.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}/brawlers`));
+
+const links = computed<NavigationLink[]>(() => [
 	{
 		label: "Profile",
 		icon: "i-heroicons-user-circle",
@@ -22,13 +24,14 @@ const links: NavigationLink[] = [
 		label: "Brawlers",
 		icon: "i-heroicons-fire",
 		to: `/players/${encodeURIComponent(route.params.tag)}/brawlers`,
+		active: brawlersActive.value,
 	},
 	{
 		label: "Battles",
 		icon: "i-heroicons-clipboard-document-list",
 		to: `/players/${encodeURIComponent(route.params.tag)}/battles`,
 	},
-];
+]);
 </script>
 
 <template>

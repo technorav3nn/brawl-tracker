@@ -104,6 +104,9 @@ const ownedValues = computed(() => {
 </script>
 
 <template>
+	<UPageGrid v-if="status === 'pending'">
+		<USkeleton v-for="i in 5" :key="i" class="h-28 w-full" />
+	</UPageGrid>
 	<UPageGrid v-if="status === 'success'" :ui="{ wrapper: 'xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 gap-4' }">
 		<PlayersProgressionCard
 			title="Brawlers Unlocked"
@@ -131,8 +134,5 @@ const ownedValues = computed(() => {
 			:value="ownedStarPowers!"
 			:max="totalGadgetsAndStarPowers"
 		/>
-	</UPageGrid>
-	<UPageGrid v-else>
-		<USkeleton v-for="i in 5" :key="i" height="h-20" />
 	</UPageGrid>
 </template>

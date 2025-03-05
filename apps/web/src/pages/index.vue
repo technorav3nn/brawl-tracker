@@ -57,15 +57,15 @@ const finalLandingLinks: Button[] = [
 <template>
 	<UPage>
 		<ULandingHero
-			title="The Intutive Statistics Site"
+			title="The Intuitive Statistics Site"
 			description="BrawlTrack is an open-source, comprehensive statistics and utilities site for Brawl Stars."
 			:links="heroLinks"
 		>
 			<template #headline>
 				<UButton
 					color="gray"
-					to="https://volta.net/changelog"
-					label="See what's new in v1.17.0"
+					to="/inbox"
+					label="View the latest updates"
 					trailing-icon="i-heroicons-arrow-right"
 					size="sm"
 					class="rounded-full"
