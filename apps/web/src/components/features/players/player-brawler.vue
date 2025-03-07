@@ -69,19 +69,6 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${ran
 					{{ playerBrawler.trophies }}
 				</p>
 			</div>
-			<!-- 
-			<div
-				class="rounded bg-transparent border-[1.3px] border-gray-400/80 dark:border-gray-700 border-b-0 rounded-br-none -translate-x-2 h-5 w-28 flex justify-center items-center gap-1"
-			>
-				<Image width="20" height="20" :src="isMaxTier ? '/icons/player/season-trophy.png' : '/icons/player/trophy.webp'" />
-				<p
-					:class="[isMaxTier ? 'text-cyan-500 dark:text-cyan-300 ' : 'text-primary-600 dark:text-yellow-400']"
-					class="text-center text-[16px] font-brawlstars"
-				>
-					{{ playerBrawler.trophies }}
-				</p>
-			</div> 
-			-->
 		</div>
 
 		<div class="absolute bottom-[1.65rem] right-1">

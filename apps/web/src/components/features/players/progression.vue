@@ -8,7 +8,7 @@ const props = defineProps<{
 	player: Player;
 }>();
 
-const { data: gears, status } = await useLazyFetch("/api/brawlers/gears");
+const { data: gears, status } = await useFetch("/api/brawlers/gears");
 
 const totalGears = computed(() => {
 	if (!gears.value) return null;

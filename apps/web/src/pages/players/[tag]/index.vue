@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import { numberToRomanNumerals } from "$lib/utils/common/numbers";
-import { createGetCachedData } from "$lib/utils/nuxt";
 
-const nuxtApp = useNuxtApp();
 const route = useRoute("players-tag");
+
+useSeoMeta({
+	title: `Player Profile`,
+});
 
 const { data: player, status } = await useFetch(`/api/players`, {
 	key: `players-${route.params.tag}`,
 	query: { tag: route.params.tag },
-	getCachedData: createGetCachedData(nuxtApp),
 });
 const { data: brawlers } = await useFetch("/api/brawlers", {
 	key: "brawlers",
-	getCachedData: createGetCachedData(nuxtApp),
-	transform: (d) => d.list.filter((brawler) => brawler.released),
 });
 
 if (!player.value || status.value === "error") {
@@ -37,32 +36,32 @@ const seasonReset = computed(() => {
 
 const trophyBox = computed(() => {
 	if (!player.value) return;
-	const { seasonTrophiesGained } = toRefs(seasonReset.value);
+	const seasonTrophiesGained = seasonReset.value.seasonTrophiesGained;
 	// Small Trophy Box: 0 Season Trophies
 	// Big Trophy Box: 100 Season Trophies
 	// Mega Trophy Box: 400 Season Trophies
 	// Omega Trophy Box: 1000 Season Trophies
 	// Ultra Trophy Box: 3000 Season Trophies
 
-	if (seasonTrophiesGained.value >= 3000) {
+	if (seasonTrophiesGained >= 3000) {
 		return {
 			name: "Ultra Trophy Box",
 			image: "/icons/player/trophy-boxes/ultra-trophy-box.png",
 			color: "!text-cyan-500 dark:!text-cyan-400",
 		};
-	} else if (seasonTrophiesGained.value >= 1000) {
+	} else if (seasonTrophiesGained >= 1000) {
 		return {
 			name: "Omega Trophy Box",
 			image: "/icons/player/trophy-boxes/omega-trophy-box.png",
 			color: "!text-red-500 dark:!text-red-400",
 		};
-	} else if (seasonTrophiesGained.value >= 400) {
+	} else if (seasonTrophiesGained >= 400) {
 		return {
 			name: "Mega Trophy Box",
 			image: "/icons/player/trophy-boxes/mega-trophy-box.png",
 			color: "!text-fuchsia-500 dark:!text-fuchsia-400",
 		};
-	} else if (seasonTrophiesGained.value >= 100) {
+	} else if (seasonTrophiesGained >= 100) {
 		return {
 			name: "Big Trophy Box",
 			image: "/icons/player/trophy-boxes/big-trophy-box.png",
@@ -175,7 +174,7 @@ const recordStats = [
 	},
 	{
 		stat: "Brawler Progress",
-		value: `${player.value!.brawlers.length}/${brawlers.value!.length}`,
+		value: `${player.value!.brawlers.length}/${brawlers.value!.list.length}`,
 		image: "/icons/player/unlocked.png",
 		color: "!text-green-500 dark:!text-green-400",
 		// valueRender: () =>
@@ -231,7 +230,7 @@ const recordStats = [
 		orientation="vertical"
 	>
 		<div class="!pt-0">
-			<PlayersProgression :player="player!" :brawlers="brawlers!" />
+			<PlayersProgression :player="player!" :brawlers="brawlers!.list" />
 		</div>
 	</UDashboardSection>
 </template>

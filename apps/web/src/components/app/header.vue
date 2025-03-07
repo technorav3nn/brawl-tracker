@@ -5,7 +5,7 @@ import { AppHeaderProfileSlideover, LazyAppHeaderProfileSlideover } from "#compo
 const toast = useToast();
 const slideover = useSlideover();
 const user = useUser();
-const { data: databaseUser } = await useDatabaseUser();
+const databaseUser = useDatabaseUser();
 
 const avatar = computed<string | null>(() =>
 	databaseUser.value?.scidConnections.isConnected ? databaseUser.value!.scidConnections.avatar! : null

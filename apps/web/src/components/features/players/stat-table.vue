@@ -2,14 +2,15 @@
 import { Image } from "@unpic/vue";
 
 defineProps<{
-	title: string;
+	title?: string;
+	uneven?: boolean;
 	stats: { stat: string; value: any; color?: string; image?: string; valueImage?: string; valueRender?: Component }[];
 }>();
 </script>
 
 <template>
 	<section>
-		<div class="rounded-t-md bg-inherit border border-b-0 text-center border-gray-200 dark:border-gray-800">
+		<div v-if="title" class="rounded-t-md bg-inherit border border-b-0 text-center border-gray-200 dark:border-gray-800">
 			<h3 class="text-foreground font-semibold text-lg py-2 px-4">{{ title }}</h3>
 		</div>
 		<UTable
@@ -20,7 +21,7 @@ defineProps<{
 					base: '!whitespace-normal',
 					padding: 'py-2 px-3',
 				},
-				tr: { base: '[&_:nth-child(1)]:!font-semibold' },
+				tr: { base: `[&_:nth-child(1)]:!font-semibold ${uneven ? 'last:!border-border last:!border-b' : ''}` },
 				base: 'bg-inherit',
 			}"
 			:rows="stats"
@@ -28,7 +29,8 @@ defineProps<{
 				{ key: 'stat', label: 'Stat' },
 				{ key: 'value', label: 'Value' },
 			]"
-			class="h-full border border-gray-200 dark:border-gray-800 rounded-md rounded-t-none"
+			class="h-full border border-gray-200 dark:border-gray-800"
+			:class="[title ? 'rounded-b-md' : 'rounded-md']"
 		>
 			<template #stat-data="{ row }">
 				<div class="flex flex-row gap-x-2 items-center">

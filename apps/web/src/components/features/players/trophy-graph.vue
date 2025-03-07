@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Player } from "@brawltracker/brawl-stars-api";
 import { VisXYContainer, VisAxis, VisTooltip, VisCrosshair, VisLine, VisScatter } from "@unovis/vue";
+import { green, red, blue } from "tailwindcss/colors";
 
 const props = defineProps<{ player: Player }>();
 
@@ -55,9 +56,10 @@ const { format } = new Intl.NumberFormat("en-US");
 const x = (d: DataRecord) => d.x;
 const y = (d: DataRecord) => d.y;
 
-const label = (d: DataRecord) => `${d.trophyChange > 0 ? "+" : "-"}${d.trophyChange.toString().replace("-", "")}`;
+const label = (d: DataRecord) =>
+	`${d.trophyChange > 0 ? "+" : d.trophyChange < 0 ? "-" : ""}${d.trophyChange.toString().replace("-", "")}`;
 
-const labelColor = (d: DataRecord) => (d.trophyChange > 0 ? "green" : "red");
+const labelColor = (d: DataRecord) => (d.trophyChange > 0 ? green[500] : d.trophyChange < 0 ? red[500] : blue[500]);
 
 const template = (d: DataRecord) => `
 	<p class="font-medium">Battle #${d.x}</p>
@@ -106,8 +108,8 @@ const template = (d: DataRecord) => `
 	</UDashboardCard>
 </template>
 
-<style scoped lang="postcss">
-:root {
-	@apply text-red-500;
+<style scoped>
+.unovis-xy-container {
+	--vis-scatter-point-label-text-font-size: 14.5px;
 }
 </style>

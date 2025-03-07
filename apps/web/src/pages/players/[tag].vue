@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { formatTag } from "@brawltracker/supercell-api-utils";
 import type { NavigationLink } from "#ui-pro/types";
-import { createGetCachedData } from "$lib/utils/nuxt";
 
 const route = useRoute("players-tag");
 const nuxtApp = useNuxtApp();
 
 const { data: player } = await useFetch("/api/players", {
-	getCachedData: createGetCachedData(nuxtApp, `players-${route.params.tag}`),
 	query: { tag: route.params.tag },
 	key: `players-${route.params.tag}`,
+});
+
+useSeoMeta({
+	titleTemplate: () => `%s · ${player.value ? player.value.name : formatTag(route.params.tag)} · BrawlTrack`,
 });
 
 const brawlersActive = computed(() => route.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}/brawlers`));

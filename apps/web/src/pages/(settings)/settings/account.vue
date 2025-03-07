@@ -2,7 +2,7 @@
 import { ModalsConfirmationModal, AuthImportFriendsModal, AuthScidModal } from "#components";
 
 const user = useUser();
-const { data: databaseUser } = await useDatabaseUser();
+const databaseUser = useDatabaseUser();
 
 const modal = useModal();
 const toast = useToast();

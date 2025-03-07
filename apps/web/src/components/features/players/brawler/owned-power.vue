@@ -1,0 +1,97 @@
+<script setup lang="ts">
+/* eslint-disable @typescript-eslint/sort-type-constituents */
+import type { Gadget, Gear, StarPower } from "@brawltracker/brawl-stars-api";
+import { CDN_URL_V2, getAllGears } from "@brawltracker/cdn/v2";
+import { Image } from "@unpic/vue";
+
+const props = defineProps<{
+	title: string;
+	image: string;
+	powers: (Gadget | StarPower | Gear)[];
+	type: "gadgets" | "starPowers" | "gears";
+}>();
+
+const route = useRoute("players-tag-brawlers-id");
+
+function getUrlForGear(name: string) {
+	// conver the name to lowercase snake case
+	// Talk To The Hand => talk_to_the_hand
+	const newName = name.toLowerCase().replaceAll(/\s/g, "_");
+	return `${CDN_URL_V2}/gears/${newName}/icon.webp`;
+}
+
+// eslint-disable-next-line @typescript-eslint/promise-function-async
+const { data: gears } = await useAsyncData("gears", () => getAllGears());
+const { data: brawler } = await useFetch("/api/brawlers", {
+	key: "brawlers",
+	transform: (d) => d.list.find((brawler) => brawler.id.toString() === route.params.id),
+});
+
+const gearsForBrawler = computed(() => {
+	if (!brawler.value ?? !gears.value) return [];
+	return Object.values(gears.value).filter(
+		(g) => g.brawlersAvaliableTo === null || g.brawlersAvaliableTo.includes(brawler.value!.id)
+	);
+});
+
+const powersWithEmpties = computed(() => {
+	if (!brawler.value) return [];
+	if (!gears.value) return [];
+
+	const powers = props.powers;
+	if (props.type !== "gears") {
+		return brawler.value[props.type as "gadgets" | "starPowers"].map((p) => {
+			if (powers.some((power) => power.id === p.id)) {
+				return {
+					name: p.name,
+					image: `${CDN_URL_V2}/${props.type === "starPowers" ? "star-powers" : "gadgets"}/${p.id}.webp`,
+					owned: true,
+				};
+			} else {
+				return {
+					name: p.name,
+					image:
+						props.type === "starPowers"
+							? "/icons/player/brawler-powers/starpower-empty.webp"
+							: "/icons/player/brawler-powers/gadget-empty.png",
+					owned: false,
+				};
+			}
+		});
+	}
+
+	return gearsForBrawler.value.map((g) => {
+		if (powers.some((power) => power.name === g.name)) {
+			return {
+				name: g.name,
+				image: getUrlForGear(g.name),
+				owned: true,
+			};
+		} else {
+			return { name: g.name, image: "/icons/player/brawler-powers/gear-empty.png", owned: false };
+		}
+	});
+});
+</script>
+
+<template>
+	<UCard :ui="{ header: { padding: '!px-2.5 py-2.5' }, body: { base: 'h-full', padding: '!px-4 !py-1.5' } }">
+		<template #header>
+			<div class="flex gap-2 items-center">
+				<NuxtImg :src="image" width="30" height="30" loading="eager" />
+				<h3 class="truncate text-lg font-semibold leading-6 text-gray-900 dark:text-white">{{ title }}</h3>
+			</div>
+		</template>
+
+		<div class="py-2">
+			<div :class="[type === 'starPowers' || type === 'gadgets' ? 'grid-cols-2' : 'grid-cols-4']" class="grid gap-y-2">
+				<div v-for="power in powersWithEmpties" :key="power.name" class="flex flex-col items-center gap-1">
+					<Image :src="power.image" width="50" height="50" loading="eager" />
+					<span class="text-center text-sm font-semibold uppercase">{{ power.name }}</span>
+				</div>
+			</div>
+		</div>
+	</UCard>
+</template>
+
+<style scoped></style>

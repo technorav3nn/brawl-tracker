@@ -7,6 +7,14 @@ const router = useRouter();
 router.afterEach(() => {
 	indicatorState.value = true;
 });
+
+const colorMode = useColorMode();
+const color = computed(() => (colorMode.value === "dark" ? "#020420" : "white"));
+useHead({
+	titleTemplate: "%s · BrawlTrack",
+	meta: [{ name: "theme-color", content: color.value }],
+	title: "BrawlTrack - Brawl Stars Stats",
+});
 </script>
 
 <template>

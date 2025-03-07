@@ -1,14 +1,11 @@
 <script setup lang="ts">
 import { Image } from "@unpic/vue";
-import { createGetCachedData } from "$lib/utils/nuxt";
 
-const nuxtApp = useNuxtApp();
 const router = useRouter();
 
 const { data: brawlers, status } = await useLazyFetch("/api/brawlers", {
 	server: true,
 	transform: (data) => data.list.reverse(),
-	getCachedData: createGetCachedData(nuxtApp),
 });
 const selected = ref(
 	brawlers.value?.find((brawler) => brawler.id === Number(router.currentRoute.value.query.brawler ?? 16000000))

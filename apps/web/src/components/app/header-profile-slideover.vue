@@ -51,7 +51,7 @@ router.beforeResolve((to, from, next) => {
 	next();
 });
 
-const { data: userInfo } = useDatabaseUser();
+const userInfo = useDatabaseUser();
 const supercellInfo = computed(() => userInfo.value?.scidConnections);
 
 async function logout() {

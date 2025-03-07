@@ -1,6 +1,4 @@
 import { type Models } from "appwrite";
-import type { UseFetchOptions } from "nuxt/app";
-import { createGetCachedData } from "$lib/utils/nuxt";
 import { type User } from "$server/db/users/types";
 
 export const useUser = () => {
@@ -9,10 +7,8 @@ export const useUser = () => {
 	return user;
 };
 
-export function useDatabaseUser(options: UseFetchOptions<User> = {}) {
-	return useFetch<User>("/api/auth/database-user", {
-		key: "database-user",
-		getCachedData: createGetCachedData(useNuxtApp()),
-		...options,
-	});
+export function useDatabaseUser() {
+	// eslint-disable-next-line sonarjs/prefer-immediate-return
+	const dbUser = useState<Omit<User, "savedPlayers"> | null>("dbUser", () => null);
+	return dbUser;
 }

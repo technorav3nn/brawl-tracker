@@ -3,9 +3,10 @@ import type { Button } from "#ui/types";
 
 const title = "BrawlTrack - The Intuitive Brawl Stars Stats Site";
 const description = "BrawlTrack is an open-source, comprehensive statistics and utilities site for Brawl Stars.";
+
 useSeoMeta({
 	title,
-	titleTemplate: "%s | BrawlTrack",
+	titleTemplate: "%s · BrawlTrack",
 	description,
 	ogTitle: title,
 	ogDescription: description,
