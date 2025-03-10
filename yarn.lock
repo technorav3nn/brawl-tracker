@@ -598,7 +598,7 @@ __metadata:
     nuxt-appwrite: "npm:^1.1.1"
     nuxt-time: "npm:^1.0.3"
     pinia: "npm:^2.3.1"
-    tailwind-variants: "npm:^0.3.1"
+    tailwind-variants: "npm:^1.0.0"
     vite: "npm:*"
     zod: "npm:^3.24.1"
   languageName: unknown
@@ -17973,10 +17973,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-merge@npm:2.5.4":
-  version: 2.5.4
-  resolution: "tailwind-merge@npm:2.5.4"
-  checksum: 10/2bf6585a30c0ab2e4e8c4bfe0d0a14edbf8e1d88bb8ce68c79f7185e8a7e410893903a98f5819cf8843f1afbe87639e1989af28456cbb0240ddec3468f303727
+"tailwind-merge@npm:3.0.2":
+  version: 3.0.2
+  resolution: "tailwind-merge@npm:3.0.2"
+  checksum: 10/f5142ddd670018f4816b8510b0464e703be369018544c35eeb8bbba48b9dc320b5f86561ed9c84602b66d367213ee1508cd28b7c9c572420cfa5ecfc848f28c7
   languageName: node
   linkType: hard
 
@@ -17987,14 +17987,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-variants@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "tailwind-variants@npm:0.3.1"
+"tailwind-variants@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "tailwind-variants@npm:1.0.0"
   dependencies:
-    tailwind-merge: "npm:2.5.4"
+    tailwind-merge: "npm:3.0.2"
   peerDependencies:
     tailwindcss: "*"
-  checksum: 10/8d05a7025b32c8da499d44cd292bd3f6d29185ab1c02390fa7f6a1584f89aeb3e772b79769de4c490f5898767a78843624ee7723d5da0aa302b362342c966ac7
+  checksum: 10/67c70ef005a421d3acd5556fcdf78e9cde28f247c3b9a142affec2d739a4f42b33a4ac95b568639bbe747b6f31def5e83765909666e7907f480c891d68b37aed
   languageName: node
   linkType: hard
 
