@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 		"@nuxt/content",
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
-		"@sentry/nuxt/module",
+		// "@sentry/nuxt/module",
 		"nuxt-time",
 		"nuxt-appwrite",
 	],
@@ -22,10 +22,13 @@ export default defineNuxtConfig({
 	devtools: {
 		enabled: true,
 	},
-	// },
-	// uiPro: {
-	// 	routerOptions: false,
-	// },
+	routeRules: {
+		"/brawlers/**": { isr: 5000 },
+		"/brawlers": { prerender: true },
+		"/": { prerender: true },
+		leaderboards: { prerender: true },
+		"/leaderboards/*": { isr: 5000 },
+	},
 	fonts: {
 		defaults: {
 			preload: true,
@@ -58,6 +61,7 @@ export default defineNuxtConfig({
 		alias: {
 			cdn: "https://cdn.deathblows.xyz",
 		},
+		provider: "ipx",
 	},
 	colorMode: {
 		fallback: "dark",
@@ -72,14 +76,14 @@ export default defineNuxtConfig({
 			},
 		],
 	},
-	sentry: {
-		autoInjectServerSentry: "top-level-import",
-		sourceMapsUploadOptions: {
-			org: "technorav3nn",
-			project: "javascript-nuxt",
-			authToken: process.env.NUXT_SENTRY_AUTH_TOKEN,
-		},
-	},
+	// sentry: {
+	// 	autoInjectServerSentry: "top-level-import",
+	// 	sourceMapsUploadOptions: {
+	// 		org: "technorav3nn",
+	// 		project: "javascript-nuxt",
+	// 		authToken: process.env.NUXT_SENTRY_AUTH_TOKEN,
+	// 	},
+	// },
 	runtimeConfig: {
 		appwriteApiToken: "",
 		databaseUrl: "",

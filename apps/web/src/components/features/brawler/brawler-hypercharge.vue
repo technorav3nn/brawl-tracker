@@ -1,25 +1,38 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
-import { CDN_URL, type BrawlerData } from "@brawltracker/cdn";
+import { type CdnBrawler, CDN_URL_V2 } from "@brawltracker/cdn/v2";
 import { Image } from "@unpic/vue";
-// import { useKitAbilityStats } from "./brawler-composables";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
-	brawlerCdnData: BrawlerData;
+	brawlerCdnData: CdnBrawler;
 }>();
 const { brawlerCdnData } = toRefs(props);
-// const { basicStats } = useKitAbilityStats("hypercharge");
 
 const hypercharge = computed(() => brawlerCdnData.value.hypercharge);
-const hyperchargeIconUrl = computed(() => `${CDN_URL}${hypercharge.value!.path}`);
+
+const stats = computed(() => {
+	return hypercharge.value.stats
+		?.filter((s) => s.label !== "Hypercharge Multiplier")
+		.map((s) => {
+			if (!s.value.startsWith("+")) {
+				return {
+					...s,
+					value: `+${s.value}`,
+				};
+			}
+
+			return s;
+		});
+});
+const hyperchargeIconUrl = computed(() => `${CDN_URL_V2}/hypercharges/${props.brawler.id}.webp`);
 </script>
 
 <template>
 	<div v-if="hypercharge" class="flex flex-col rounded-lg border border-border shadow">
 		<div class="flex flex-col p-4 py-2.5">
 			<div class="flex items-center gap-2">
-				<NuxtImg
+				<Image
 					:src="hyperchargeIconUrl"
 					width="40"
 					height="40"
@@ -50,21 +63,21 @@ const hyperchargeIconUrl = computed(() => `${CDN_URL}${hypercharge.value!.path}`
 					>
 						<NuxtImg src="/icons/speed-icon.png" width="50" height="50" fit="inside" />
 						<p class="text-lg font-bold dark:text-green-400 text-green-600/80">SPEED</p>
-						<p class="text-xl font-bold">{{ hypercharge.stats.hyperchargespeed }}</p>
+						<p class="text-xl font-bold">{{ stats![0].value }}</p>
 					</div>
 					<div
 						class="p-1.5 rounded border border-border border-l-0 border-t-0 border-b-0 rounded-b-none rounded-t-none flex flex-col items-center justify-center gap-0.5"
 					>
 						<NuxtImg src="/icons/damage-icon.png" width="50" height="50" fit="inside" />
 						<p class="text-lg font-bold dark:text-red-400 text-red-600/80">DAMAGE</p>
-						<p class="text-xl font-bold">{{ hypercharge.stats.hyperchargedamage }}</p>
+						<p class="text-xl font-bold">{{ stats![1].value }}</p>
 					</div>
 					<div
 						class="p-1.5 rounded border border-border border-l-0 border-t-0 border-b-0 border-r-0 rounded-bl-none rounded-t-none flex flex-col items-center justify-center gap-0.5"
 					>
 						<NuxtImg src="/icons/shield-icon.png" width="50" height="50" fit="inside" />
 						<p class="text-lg font-bold dark:text-blue-400 text-blue-600/80">SHIELD</p>
-						<p class="text-xl font-bold">{{ hypercharge.stats.hyperchargeshield }}</p>
+						<p class="text-xl font-bold">{{ stats![2].value }}</p>
 					</div>
 				</div>
 			</div>

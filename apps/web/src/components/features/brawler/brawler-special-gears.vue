@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
-import { normalizeNameToCdnName, type BrawlerData, CDN_URL } from "@brawltracker/cdn";
+import { normalizeNameToCdnName, CDN_URL, getAllGears } from "@brawltracker/cdn";
+import type { CdnBrawler } from "@brawltracker/cdn/v2";
 import { typedObjectEntries } from "$lib/utils/common";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
-	brawlerCdnData: BrawlerData;
+	brawlerCdnData: CdnBrawler;
 }>();
 
 const showSuperRareGears = ref(false);
 
-const { data: unfilteredGears } = await useFetch("/api/brawlers/gears");
+// eslint-disable-next-line @typescript-eslint/promise-function-async
+const { data: unfilteredGears } = await useAsyncData("gears", () => getAllGears());
 const gears = computed(() => {
 	if (!unfilteredGears.value) return {};
 	return Object.fromEntries(

@@ -1,5 +1,5 @@
 import { createSessionClient } from "$lib/appwrite";
-import { upsertSupercellIdDoc } from "$server/db/users/actions";
+import { upsertProfileDoc } from "$server/db/users/actions";
 
 export default defineEventHandler(async (event) => {
 	if (!event.context.user) {
@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const { databases } = createSessionClient(event);
-	await upsertSupercellIdDoc(
+	await upsertProfileDoc(
 		event.context.user.$id,
 		{
 			isConnected: false,

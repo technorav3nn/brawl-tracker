@@ -29,9 +29,9 @@ const model = computed(() => getBrawlerModelUrl(props.brawler.id.toString()));
 		<template #header>
 			<h3 class="text-foreground font-semibold text-lg">{{ brawler!.name }}</h3>
 		</template>
-		<NuxtImg loading="eager" :src="model" width="180" height="180" fit="outside" format="webp" class="h-[263px] object-contain" />
+		<NuxtImg loading="eager" :src="model" width="200" height="200" fit="outside" format="webp" class="h-[280px] object-contain" />
 		<template #footer>
-			<div class="flex items-center gap-0">
+			<div class="mt-3 flex items-center justify-center gap-0">
 				<Image
 					loading="eager"
 					:width="playerBrawler!.rank === 51 ? 50 : 40"

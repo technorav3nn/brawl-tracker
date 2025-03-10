@@ -108,11 +108,10 @@ const links: (Button & { click?(): any })[] = [
 				</div>
 
 				<UButtonGroup :ui="{ rounded: 'rounded-lg' }" class="mt-4 flex justify-center items-start" size="xl">
-					<UFormGroup name="player">
+					<UFormGroup class="sm:w-96 w-11/12" name="player">
 						<UInput
 							id="search"
 							v-model="state.player"
-							class="w-96"
 							size="xl"
 							label="Search Player"
 							:placeholder="`Enter ${state.type === 'tag' ? 'Player Tag (e.g. #P800LV)' : 'Supercell ID Handle (e.g. BrawlMaster)'}`"

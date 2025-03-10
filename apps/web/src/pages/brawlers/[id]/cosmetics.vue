@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { CDN_URL } from "@brawltracker/cdn";
+import { CDN_URL_V2, type Skin } from "@brawltracker/cdn/v2";
 import { Image } from "@unpic/vue";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
-import { useBrawlerCosmeticsStore, type Skin } from "$components/features/brawler-cosmetics/brawler-cosmetics-store";
+import { useBrawlerCosmeticsStore } from "$components/features/brawler-cosmetics/brawler-cosmetics-store";
 import { normalCaseToKebabCase } from "$lib/utils/common";
 
 const { brawler, brawlerCdnData } = storeToRefs(useBrawlerStore());
@@ -13,7 +13,13 @@ if (!brawler || !brawlerCdnData) {
 }
 
 const unmappedSkins = computed<Skin[]>(() => brawlerCdnData.value!.skins);
-const skins = computed<Skin[]>(() => unmappedSkins.value.map((skin) => ({ ...skin, url: `${CDN_URL}${(skin as any).path}` })));
+console.log(unmappedSkins.value);
+const skins = computed<Skin[]>(() =>
+	unmappedSkins.value.map((skin) => ({
+		...skin,
+		url: `${CDN_URL_V2}/brawlers/${brawler.value!.id}/skins/${skin.name}/model.webp`,
+	}))
+);
 
 watchEffect(() => {
 	setSkins(skins.value);

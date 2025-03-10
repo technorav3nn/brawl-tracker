@@ -4,6 +4,9 @@ import { type GearData } from "./lib/types/gears";
 
 export const CDN_URL_V2 = "https://cdn.deathblows.xyz/v2";
 
+export * from "./lib/types/brawler-v2";
+export * from "./lib/types/gears";
+
 /**
  * Get brawler data from CDN
  *

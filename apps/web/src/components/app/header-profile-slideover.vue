@@ -52,13 +52,17 @@ router.beforeResolve((to, from, next) => {
 });
 
 const userInfo = useDatabaseUser();
-const supercellInfo = computed(() => userInfo.value?.scidConnections);
+const supercellInfo = computed(() => userInfo.value?.profile);
+const loading = ref(false);
 
 async function logout() {
+	loading.value = true;
 	await $fetch("/api/auth/signout", { method: "POST" });
 	slideover.close();
-	await refreshNuxtData(["user", "database-user"]);
+	user.value = null;
+	loading.value = false;
 	await navigateTo("/");
+	reloadNuxtApp();
 }
 </script>
 
@@ -81,7 +85,6 @@ async function logout() {
 				</div>
 			</div>
 		</template>
-
 		<UHorizontalNavigation
 			class="w-full border-b border-gray-200 dark:border-gray-800"
 			:ui="{ container: '!w-full px-1', inner: '!w-full', base: 'flex items-center justify-center', icon: { base: 'w-6 h-6' } }"
@@ -101,18 +104,20 @@ async function logout() {
 				</div>
 				<div class="px-2 mt-2 flex flex-col gap-2">
 					<UTooltip :text="!supercellInfo?.isConnected ? 'Connect your Supercell ID to view your profile!' : ''">
-						<UButton :disabled="!supercellInfo?.isConnected" color="gray" size="lg" block icon="i-heroicons-information-circle">
+						<UButton
+							:to="`/players/${encodeURIComponent(supercellInfo!.tag!)}`"
+							:disabled="!supercellInfo?.isConnected"
+							color="gray"
+							size="lg"
+							block
+							icon="i-heroicons-information-circle"
+							@click="slideover.close()"
+						>
 							View My Profile
-						</UButton>
-					</UTooltip>
-					<UTooltip :text="!supercellInfo?.isConnected ? 'Connect your Supercell ID to view your club!' : ''">
-						<UButton :disabled="!supercellInfo?.isConnected" color="gray" size="lg" block icon="i-tabler-shield-pin">
-							View My Club
 						</UButton>
 					</UTooltip>
 				</div>
 			</div>
-
 			<div v-if="tab === 'friends'" class="overflow-none">
 				<ProfileSlideoverFriendsTab v-if="supercellInfo?.isConnected" />
 				<div v-else>
@@ -122,50 +127,11 @@ async function logout() {
 							View your saved players and imported Supercell ID Friends, and manage your saved players
 						</p>
 					</div>
-
 					<!-- User doesnt have supercell id connect, show info -->
 					<p class="px-4 mt-4 text-gray-500 dark:text-gray-400 text-sm">
 						You must connect your Supercell ID to view your friends!
 					</p>
 				</div>
-				<!--
- <div
-					v-if="friendsStatus === 'pending' && !dataIsCached"
-					class="px-4 mt-4 flex flex-col gap-2 items-center justify-center"
-				>
-					<UiLoadingIndicator class="w-12 h-12" />
-					<span class="text-gray-500 dark:text-gray-400 text-lg">Loading Friends</span>
-				</div>
-				<div v-if="friends?.length === 0 && !search && sortMode === 'none'" class="px-4 mt-4">
-					<p class="text-gray-500 dark:text-gray-400 text-sm">You have no friends connected to Supercell ID</p>
-				</div> 
--->
-				<!--
- <div class="px-4 flex flex-col">
-					<div class="flex flex-row gap-1 mb-2">
-						<UInput
-							v-model="search"
-							class="mt-4 w-[56%]"
-							placeholder="Search friends"
-							icon="i-heroicons-magnifying-glass-20-solid"
-						/>
-						<USelect
-							:modelValue="capitalizeFirstLetter(sortMode)"
-							class="mt-4 w-[44%]"
-							:options="['None', 'Ascending', 'Descending', 'Status']"
-							icon="i-heroicons-adjustments-horizontal"
-							@change="sortMode = lowercaseFirstLetter($event) as typeof sortMode"
-						/>
-					</div>
-					<NuxtLink
-						v-for="friend in friends"
-						:key="friend.scid"
-						:to="`/players/${idToTag(highLowToId(friend.applicationAccountId!))}`"
-					>
-						<LazyAppProfileSlideoverFriend :key="friend.scid" :friend="friend" />
-					</NuxtLink>
-				</div> 
--->
 			</div>
 			<div v-if="tab === 'settings'">
 				<div class="w-full py-5 px-4 border-b border-gray-200 dark:border-gray-800">
@@ -180,6 +146,7 @@ async function logout() {
 						size="lg"
 						block
 						icon="i-heroicons-arrow-right-end-on-rectangle-20-solid"
+						:loading="loading"
 						@click="logout"
 					>
 						Logout

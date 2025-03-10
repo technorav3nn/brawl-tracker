@@ -12,13 +12,13 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const { databases } = createSessionClient(event);
-	const { scidConnections } = await getUser(user.$id, databases);
+	const { profile } = await getUser(user.$id, databases);
 
-	if (!scidConnections?.isConnected) {
+	if (!profile?.isConnected) {
 		throw createError({ statusCode: 400, message: "SCID not connected" });
 	}
 
-	const { scid } = scidConnections;
+	const { scid } = profile;
 	const { scidAccountToken } = useRuntimeConfig(event);
 
 	const sessionToken = await getCachedScidSessionToken(scidAccountToken);

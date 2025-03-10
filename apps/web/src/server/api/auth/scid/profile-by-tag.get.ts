@@ -28,9 +28,10 @@ export default defineEventHandler(async (event) => {
 		throw createError({ status: 404, message: "Profile not found" });
 	}
 
-	console.log(initalProfileData.data.profiles[0]);
-
 	const initialProfile = initalProfileData.data.profiles[0];
-
-	return await getProfile(sessionToken.token, initialProfile.scid, "scid");
+	try {
+		return await getProfile(sessionToken.token, initialProfile.scid, "scid");
+	} catch {
+		throw createError({ status: 500, message: "Failed to get profile" });
+	}
 });

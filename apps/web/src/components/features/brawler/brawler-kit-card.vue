@@ -34,24 +34,24 @@ const props = defineProps<{
 					divide: '!divide-y-0 ',
 					td: {
 						base: '!whitespace-normal ',
-						padding: 'px-2.5 py-1.5',
+						padding: 'px-2.5 py-2.5',
 					},
 					tr: { base: '[&_:nth-child(1)]:!text-foreground [&_:nth-child(1)]:!font-semibold ' },
 				}"
 				:columns="[
-					{ key: 'title', label: 'Name' },
+					{ key: 'label', label: 'Name' },
 					{ key: 'value', label: 'Value' },
 				]"
 				:rows="tableData"
-				class="w-full mt-2"
+				class="w-full"
 			>
-				<template #title-data="{ row }">
+				<template #label-data="{ row }">
 					<div v-if="row.isLevelStat">
 						<UTooltip :ui="{ base: '[@media(pointer:coarse)]:!block' }" text="This stat is level dependent">
-							<p class="underline decoration-dashed underline-offset-4">{{ row.title }}</p>
+							<p class="underline decoration-dashed underline-offset-4">{{ row.label }}</p>
 						</UTooltip>
 					</div>
-					<p v-else>{{ row.title }}</p>
+					<p v-else>{{ row.label }}</p>
 				</template>
 			</UTable>
 		</div>

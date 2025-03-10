@@ -44,6 +44,7 @@
 		"dom-parser": "^1.1.5",
 		"embla-carousel-vue": "^8.5.2",
 		"jwt-decode": "^4.0.0",
+		"lean-qr": "^2.4.1",
 		"luxon": "^3.5.0",
 		"node-appwrite": "^15.0.0",
 		"nuxt-appwrite": "^1.1.1",

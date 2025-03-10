@@ -8,7 +8,7 @@ const user = useUser();
 const databaseUser = useDatabaseUser();
 
 const avatar = computed<string | null>(() =>
-	databaseUser.value?.scidConnections.isConnected ? databaseUser.value!.scidConnections.avatar! : null
+	databaseUser.value?.profile.isConnected ? databaseUser.value!.profile.avatar! : null
 );
 
 type Link = AsideLink & { children?: AsideLink[] };

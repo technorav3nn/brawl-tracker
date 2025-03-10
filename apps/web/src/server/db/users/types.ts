@@ -14,7 +14,7 @@ export interface JSONSavedPlayer {
 
 export interface User {
 	userId: string;
-	scidConnections: ScidConnection;
+	profile: PlayerProfile;
 	/**
 	 * JSON string, remember to parse it
 	 */
@@ -26,8 +26,10 @@ export interface UserPreferences extends Models.Preferences {
 	savedTags: string[];
 }
 
-export interface ScidConnection {
+export interface PlayerProfile {
 	isConnected: boolean;
+	theme: string | null;
+	background: string | null;
 
 	// Below are fields that are only initalized when the user connects their SCID
 	username: string | null;

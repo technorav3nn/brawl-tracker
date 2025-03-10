@@ -6,6 +6,8 @@ const props = defineProps<{
 	brawler: BrawlApiBrawler;
 }>();
 
+const slideover = useSlideover();
+
 const { data: mapStats, status } = useFetch(() => `/api/maps/${props.map.id}`, {
 	transform: (d) => d!.stats.find((stat) => (stat.brawler as unknown as number) === props.brawler.id) ?? null,
 });
@@ -26,7 +28,7 @@ const { data: mapStats, status } = useFetch(() => `/api/maps/${props.map.id}`, {
 			/>
 			<div v-if="status === 'success' && Boolean(mapStats)" class="space-y-4 mb-2">
 				<div class="flex flex-row gap-2">
-					<NuxtImg width="40" height="40" :src="brawler.imageUrl" :alt="brawler.name" />
+					<NuxtImg class="object-none" fit="inside" width="45" height="45" :src="brawler.imageUrl" :alt="brawler.name" />
 					<div class="flex flex-col">
 						<div class="flex flex-col gap-1">
 							<div class="flex flex-row gap-1">
@@ -53,7 +55,9 @@ const { data: mapStats, status } = useFetch(() => `/api/maps/${props.map.id}`, {
 		</div>
 		<template #footer>
 			<div class="flex flex-col w-full gap-2">
-				<UButton block icon="i-heroicons-arrow-top-right-on-square-20-solid">View Map</UButton>
+				<UButton :to="`/maps/${map.id}`" block icon="i-heroicons-arrow-top-right-on-square-20-solid" @click="slideover.close()"
+					>View Map</UButton
+				>
 				<p class="text-gray-500 dark:text-gray-400 text-sm">
 					Stats are collected by
 					<NuxtLink to="https://brawlify.com" target="_blank" class="text-primary-500 dark:text-primary-400">Brawlify</NuxtLink>

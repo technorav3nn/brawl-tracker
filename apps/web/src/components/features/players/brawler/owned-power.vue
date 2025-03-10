@@ -53,7 +53,7 @@ const powersWithEmpties = computed(() => {
 					image:
 						props.type === "starPowers"
 							? "/icons/player/brawler-powers/starpower-empty.webp"
-							: "/icons/player/brawler-powers/gadget-empty.png",
+							: "/icons/player/brawler-powers/gadget-empty.webp",
 					owned: false,
 				};
 			}
@@ -78,16 +78,24 @@ const powersWithEmpties = computed(() => {
 	<UCard :ui="{ header: { padding: '!px-2.5 py-2.5' }, body: { base: 'h-full', padding: '!px-4 !py-1.5' } }">
 		<template #header>
 			<div class="flex gap-2 items-center">
-				<NuxtImg :src="image" width="30" height="30" loading="eager" />
+				<Image :src="image" width="30" height="30" loading="eager" />
 				<h3 class="truncate text-lg font-semibold leading-6 text-gray-900 dark:text-white">{{ title }}</h3>
 			</div>
 		</template>
 
 		<div class="py-2">
-			<div :class="[type === 'starPowers' || type === 'gadgets' ? 'grid-cols-2' : 'grid-cols-4']" class="grid gap-y-2">
-				<div v-for="power in powersWithEmpties" :key="power.name" class="flex flex-col items-center gap-1">
+			<div
+				:class="[type === 'starPowers' || type === 'gadgets' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-1' : 'grid-cols-4']"
+				class="grid gap-8 sm:gap-2"
+			>
+				<div
+					v-for="power in powersWithEmpties"
+					:key="power.name"
+					:class="[type === 'starPowers' || type === 'gadgets' ? 'flex-col xl:flex-row xl:gap-2' : 'flex-col']"
+					class="flex items-center gap-1"
+				>
 					<Image :src="power.image" width="50" height="50" loading="eager" />
-					<span class="text-center text-sm font-semibold uppercase">{{ power.name }}</span>
+					<p class="text-center text-sm font-bold uppercase">{{ power.name }}</p>
 				</div>
 			</div>
 		</div>

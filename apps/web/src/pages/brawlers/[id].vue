@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type BrawlApiBrawler } from "@brawltracker/brawl-api";
-import { normalizeNameToCdnName } from "@brawltracker/cdn";
+import { getBrawlerData } from "@brawltracker/cdn/v2";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
 
 definePageMeta({
@@ -27,8 +27,10 @@ if (apiError.value) {
 	});
 }
 
-const cdnName = computed(() => normalizeNameToCdnName(brawler.value!.name));
-const { data: brawlerCdnData, error: cdnError } = await useFetch(`/api/brawlers/cdn/${cdnName.value}`);
+// eslint-disable-next-line @typescript-eslint/promise-function-async
+const { data: brawlerCdnData, error: cdnError } = await useAsyncData(`brawlers-cdn-${brawlerId}`, () =>
+	getBrawlerData(brawlerId)
+);
 
 if (cdnError.value) {
 	throw createError({
@@ -59,6 +61,16 @@ const links = [
 		label: "Cosmetics",
 		icon: "i-heroicons-swatch",
 		to: createTabLink("cosmetics"),
+	},
+	{
+		label: "Tips",
+		icon: "i-heroicons-light-bulb",
+		to: createTabLink("tips"),
+	},
+	{
+		label: "Changes",
+		icon: "i-heroicons-scale",
+		to: createTabLink("changes"),
 	},
 ];
 

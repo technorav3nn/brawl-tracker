@@ -4,7 +4,7 @@ export default cachedEventHandler(
 		return await brawlApi.brawlers.getAllBrawlers();
 	},
 	{
-		maxAge: 60 * 60,
+		maxAge: 60 * 60, // 1 hour
 		swr: true,
 		name: "brawlers-data",
 	}

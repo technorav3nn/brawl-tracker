@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Player } from "@brawltracker/brawl-stars-api";
 import { VisXYContainer, VisAxis, VisTooltip, VisCrosshair, VisLine, VisScatter } from "@unovis/vue";
-import { green, red, blue } from "tailwindcss/colors";
 
 const props = defineProps<{ player: Player }>();
 
@@ -13,6 +12,7 @@ const {
 	error,
 } = await useLazyFetch("/api/players/battlelog", {
 	query: { tag: route.params.tag },
+	key: `battlelog-${route.params.tag}`,
 });
 
 interface DataRecord {
@@ -59,7 +59,8 @@ const y = (d: DataRecord) => d.y;
 const label = (d: DataRecord) =>
 	`${d.trophyChange > 0 ? "+" : d.trophyChange < 0 ? "-" : ""}${d.trophyChange.toString().replace("-", "")}`;
 
-const labelColor = (d: DataRecord) => (d.trophyChange > 0 ? green[500] : d.trophyChange < 0 ? red[500] : blue[500]);
+const labelColor = (d: DataRecord) =>
+	d.trophyChange > 0 ? "rgb(34, 197, 94)" : d.trophyChange < 0 ? "rgb(239, 68, 68)" : "rgb(96, 165, 250)";
 
 const template = (d: DataRecord) => `
 	<p class="font-medium">Battle #${d.x}</p>

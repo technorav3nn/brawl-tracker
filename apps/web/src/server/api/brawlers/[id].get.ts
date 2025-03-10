@@ -1,5 +1,3 @@
-import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
-
 export default cachedEventHandler(
 	async (event) => {
 		const brawlerId = event.context.params?.id;
@@ -13,6 +11,13 @@ export default cachedEventHandler(
 	{
 		maxAge: 60 * 60,
 		swr: true,
-		name: "brawler-by-id-data",
+		getKey: (event) => {
+			const brawlerId = event.context.params?.id;
+			if (!brawlerId) {
+				throw createError({ statusCode: 400, statusMessage: "Missing id for brawler" });
+			}
+
+			return `brawler-${brawlerId}`;
+		},
 	}
 );

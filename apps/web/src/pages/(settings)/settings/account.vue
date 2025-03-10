@@ -61,7 +61,7 @@ function importFriends() {
 		<div>
 			<p class="font-medium text-md">Supercell ID connection</p>
 			<p class="text-sm">Manage your Supercell ID connection</p>
-			<UButton v-if="!databaseUser?.scidConnections.isConnected" size="xs" icon="i-tabler-link" class="mt-2" @click="connect">
+			<UButton v-if="!databaseUser?.profile.isConnected" size="xs" icon="i-tabler-link" class="mt-2" @click="connect">
 				Connect
 			</UButton>
 			<UButton v-else size="xs" icon="i-tabler-unlink" class="mt-2" color="red" @click="disconnect">Disconnect</UButton>

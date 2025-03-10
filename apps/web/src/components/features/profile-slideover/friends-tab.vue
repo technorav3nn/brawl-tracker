@@ -45,7 +45,7 @@ const {
 	</div>
 	<div v-if="status === 'pending'" class="px-4 mt-4 flex flex-col gap-2 items-center justify-center">
 		<UiLoadingIndicator class="w-12 h-12" />
-		<span class="text-gray-500 dark:text-gray-400 text-lg">Loading Friends</span>
+		<span class="text-gray-500 dark:text-gray-400 text-lg">Loading...</span>
 	</div>
 	<div v-if="friends?.length === 0 && search.trim() !== ''" class="px-4 mt-4">
 		<p class="text-gray-500 dark:text-gray-400 text-sm">You have no friends or saved tags</p>

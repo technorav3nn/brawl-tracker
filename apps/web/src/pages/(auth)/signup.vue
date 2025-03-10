@@ -9,6 +9,7 @@ async function onSubmit(body: { username: string; password: string; email: strin
 		await $fetch("/api/auth/signup", { method: "POST", body: new URLSearchParams(body) });
 		loading.value = false;
 		await navigateTo("/");
+		reloadNuxtApp();
 	} catch (error) {
 		validationError.value = (error as any).message;
 		loading.value = false;

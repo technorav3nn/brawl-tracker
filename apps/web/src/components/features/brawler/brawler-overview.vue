@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
-import { normalizeNameToCdnName, getBrawlerModelUrl, type BrawlerData } from "@brawltracker/cdn";
+import { getBrawlerModelUrl, type CdnBrawler } from "@brawltracker/cdn/v2";
 import { useBrawlerStore } from "./brawler-store";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
-	brawlerCdnData: BrawlerData;
+	brawlerCdnData: CdnBrawler;
 }>();
 
 const { brawler } = toRefs(props);
-
 const brawlerStore = useBrawlerStore();
 
-const cdnName = computed(() => normalizeNameToCdnName(brawler.value.name));
-const modelImage = computed(() => getBrawlerModelUrl(encodeURIComponent(cdnName.value)));
+const modelImage = computed(() => getBrawlerModelUrl(brawler.value.id.toString()));
 
 const brawlerModelSize = computed(() => {
-	if (brawler.value.name === "Clancy") return { width: 1000, height: 1200 };
 	return { width: 200, height: 400 };
 });
 
@@ -82,6 +79,8 @@ const stats = computed(() => {
 					:width="brawlerModelSize.width"
 					format="webp"
 					fit="outside"
+					loading="eager"
+					preload
 				/>
 
 				<UDivider class="w-[102.8%] lg:hidden xl:block" />

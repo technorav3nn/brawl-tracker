@@ -24,7 +24,10 @@ async function login(body: { username: string; password: string }) {
 		// eslint-disable-next-line n/prefer-global/url-search-params
 		body: new URLSearchParams(body),
 	})
-		.then(async () => await navigateTo("/"))
+		.then(async () => {
+			await navigateTo("/");
+			reloadNuxtApp();
+		})
 		.catch((error) => {
 			const { statusMessage } = error as FetchError;
 			validationError.value = statusMessage!;

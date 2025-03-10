@@ -15,7 +15,7 @@ export default cachedEventHandler(
 	},
 	{
 		swr: true,
-		maxAge: 86_400, // 24 hours
+		maxAge: 60 * 60 * 24, // 1 day
 		name: "brawler-cdn-data",
 	}
 );

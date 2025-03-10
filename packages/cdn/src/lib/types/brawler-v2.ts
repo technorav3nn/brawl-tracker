@@ -13,9 +13,11 @@ export interface CdnBrawler {
 	avatar: Avatar;
 	skins: Skin[];
 	history: History[];
-	gadgets: Attack[];
-	starpowers: Attack[];
+	gadgets: Power[];
+	starpowers: Power[];
 }
+
+export type Power = Attack & { id: string };
 
 export interface Attack {
 	name: string;

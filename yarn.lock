@@ -591,6 +591,7 @@ __metadata:
     eslint: "npm:^8.57.0"
     eslint-config-neon: "npm:^0.1.62"
     jwt-decode: "npm:^4.0.0"
+    lean-qr: "npm:^2.4.1"
     luxon: "npm:^3.5.0"
     node-appwrite: "npm:^15.0.0"
     nuxt: "npm:^3.15.4"
@@ -12416,6 +12417,15 @@ __metadata:
   version: 1.7.1
   resolution: "leaflet@npm:1.7.1"
   checksum: 10/457db6f11ef0b13d131213272c1d83941cecb1a319c0fb1ba478fc7f44ab53d77b8c376e8db30c9c10579387bfb48f5c5eb158dcdcf433850fda3747a93a4beb
+  languageName: node
+  linkType: hard
+
+"lean-qr@npm:^2.4.1":
+  version: 2.4.1
+  resolution: "lean-qr@npm:2.4.1"
+  bin:
+    lean-qr: cli.mjs
+  checksum: 10/96f1cc11bf16d0b29070b43a02564a7123093c5293ff95cffdd926b5ce2c754c47b8922f56913bcab603d62ea742f79550b8be87402fae53440925adf392f058
   languageName: node
   linkType: hard
 

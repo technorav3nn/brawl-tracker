@@ -2,7 +2,7 @@ import { listProfiles } from "@brawltracker/supercell-id-api";
 import { getCdnUrlForAvatarId, idToHighLow, tagToId } from "@brawltracker/supercell-id-api/browser";
 import { z } from "zod";
 import { createSessionClient } from "$lib/appwrite";
-import { upsertSupercellIdDoc } from "$server/db/users/actions";
+import { upsertProfileDoc, userWithTagExists } from "$server/db/users/actions";
 import { getCachedScidSessionToken } from "$server/utils/session-token";
 
 const schema = z.object({
@@ -41,19 +41,29 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const profile = profiles.data.profiles[0];
-
 	const { databases } = createSessionClient(event);
-	await upsertSupercellIdDoc(
-		event.context.user.$id,
-		{
-			avatar: getCdnUrlForAvatarId(profile.avatarImage),
-			isConnected: true,
-			scid: profile.scid,
-			username: profile.name,
-			tag: player.tag,
-		},
-		databases
-	);
+	const userExists = await userWithTagExists(player.tag, databases);
+
+	if (userExists) {
+		throw createError({ status: 409, statusMessage: "User with tag already exists, only one account can have one player tag" });
+	}
+
+	try {
+		await upsertProfileDoc(
+			event.context.user.$id,
+			{
+				avatar: getCdnUrlForAvatarId(profile.avatarImage),
+				isConnected: true,
+				scid: profile.scid,
+				username: profile.name,
+				tag: player.tag,
+			},
+			databases
+		);
+	} catch (error) {
+		console.error(error);
+		throw createError({ status: 500, statusMessage: "Failed to update profile" });
+	}
 
 	return { success: true };
 });

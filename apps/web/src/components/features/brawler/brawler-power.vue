@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
-import { type BrawlerData, CDN_URL } from "@brawltracker/cdn";
+import { CDN_URL_V2, type CdnBrawler } from "@brawltracker/cdn/v2";
+import { Image } from "@unpic/vue";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
-	brawlerCdnData: BrawlerData;
+	brawlerCdnData: CdnBrawler;
 	type: "gadgets" | "starpowers";
 }>();
 const powers = computed(() =>
@@ -16,14 +17,12 @@ const powers = computed(() =>
 	<div class="flex flex-col rounded-lg border border-border shadow">
 		<div class="flex flex-col p-4 py-2.5">
 			<div class="flex items-center gap-3">
-				<NuxtImg
+				<Image
 					:src="`/icons/powers/${props.type}-empty.png`"
 					width="38"
 					height="38"
 					alt="Attack icon"
-					fit="inside"
 					class="self-center bg-contain object-cover -ml-1"
-					format="webp"
 				/>
 				<h1 class="text-2xl font-bold tracking-tight -ml-1">
 					{{ props.type === "gadgets" ? "Gadgets" : "Star Powers" }}
@@ -38,8 +37,8 @@ const powers = computed(() =>
 					<div v-for="power in powers" :key="power.id">
 						<div class="flex flex-col gap-4 lg:flex-col">
 							<div class="w-full flex flex-row items-center gap-3">
-								<NuxtImg
-									:src="`${CDN_URL}${power.path}`"
+								<Image
+									:src="`${CDN_URL_V2}/${props.type === 'gadgets' ? 'gadgets' : 'star-powers'}/${power.id}.webp`"
 									class="self-center bg-contain object-cover lg:self-auto"
 									width="40"
 									height="40"

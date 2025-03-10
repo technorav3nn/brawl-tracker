@@ -1,6 +1,4 @@
-import type { BrawlerData } from "@brawltracker/cdn";
-
-export type Skin = BrawlerData["skins"] extends (infer K)[] ? K : never & { url: string };
+import type { Skin } from "@brawltracker/cdn/v2";
 
 export const useBrawlerCosmeticsStore = defineStore("brawler-cosmetics", () => {
 	const skins = ref<Skin[]>([]);

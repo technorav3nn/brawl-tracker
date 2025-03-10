@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { PlayerBrawler } from "@brawltracker/brawl-stars-api";
-import { getBrawlerTotalLevelPrice, type GearSlot } from "$lib/utils/brawl-stars/max-calculator";
+import { getBrawlerTotalLevelPrice } from "$lib/utils/brawl-stars/max-calculator";
 
 const props = defineProps<{
 	playerBrawler: PlayerBrawler;
@@ -16,19 +16,20 @@ const seasonTrophieContribution = computed(() => {
 
 const progressToMax = computed(() => {
 	if (!playerBrawler.value) return;
-	const gears = {
-		slot1: (playerBrawler.value.gears.length === 1 ? { price: 1000, type: "super_rare" } : undefined) as GearSlot | undefined,
-		slot2: (playerBrawler.value.gears.length === 2 ? { price: 1000, type: "super_rare" as GearSlot["type"] } : undefined) as
-			| GearSlot
-			| undefined,
-	};
+
 	const value = getBrawlerTotalLevelPrice({
 		currentLevel: playerBrawler.value!.power,
 		wantedLevel: 11,
 		hypercharge: false,
-		gadgets: playerBrawler.value!.gadgets.length,
-		starPowers: playerBrawler.value!.starPowers.length,
-		gears,
+		gadgets: playerBrawler.value!.gadgets.length > 0 ? 0 : 1,
+		starPowers: playerBrawler.value!.starPowers.length > 0 ? 0 : 1,
+		gears: {
+			slot1: playerBrawler.value.gears.length >= 1 ? undefined : { price: 1000, type: "super_rare" },
+			slot2:
+				playerBrawler.value.gears.length < 1 && playerBrawler.value.gears.length >= 2
+					? undefined
+					: { price: 1000, type: "super_rare" },
+		},
 	});
 	return { coins: value.coins, powerpoints: value.powerpoints };
 });

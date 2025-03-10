@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Image } from "@unpic/vue";
 import type { JSONSavedPlayer } from "$server/db/users/types";
 
 const props = defineProps<{
@@ -10,7 +11,7 @@ const { friend } = toRefs(props);
 <template>
 	<div class="flex items-center justify-between py-3 border-b border-gray-200 dark:border-gray-800">
 		<div class="flex items-center gap-2">
-			<NuxtImg
+			<Image
 				v-if="friend.isScid"
 				:src="friend.scidData!.avatar"
 				width="40"
@@ -22,7 +23,7 @@ const { friend } = toRefs(props);
 			<div class="flex flex-col">
 				<span class="text-lg font-semibold">{{ friend.name }}</span>
 				<span class="text-sm text-gray-500 dark:text-gray-400 flex flex-row items-center gap-1.5">
-					<NuxtImg
+					<Image
 						v-if="friend.isScid"
 						:src="$colorMode.value === 'light' ? '/icons/scid/supercell-id-big.svg' : '/icons/scid/supercell-id-white.svg'"
 						alt="Supercell ID"

@@ -1,5 +1,4 @@
 import { useBrawlerStore } from "./brawler-store";
-import { STAT_NAME_CONVERSIONS, getNameConversions } from "./brawler-utils";
 
 export function useKitAbilityStats(ability: "attack" | "hypercharge" | "super") {
 	const { brawlerCdnData, level } = storeToRefs(useBrawlerStore());
@@ -10,12 +9,12 @@ export function useKitAbilityStats(ability: "attack" | "hypercharge" | "super") 
 
 	if (!brawlerCdnData.value) return { basicStats: null, levelStats: null };
 
-	const basicStats = computed(() => getNameConversions(STAT_NAME_CONVERSIONS, brawlerCdnData.value![ability]!.stats));
+	const basicStats = computed(() => brawlerCdnData.value![ability]!.stats);
 	const levelStats = computed(() => {
 		if (ability === "hypercharge") return null;
-		return brawlerCdnData.value![ability]!.statsByLevel.map((s) => ({
-			title: s.name,
-			value: s.list[level.value - 1],
+		return brawlerCdnData.value![ability]!.statsByLevel!.map((s) => ({
+			label: s.name,
+			value: s.values[level.value - 1],
 			isLevelStat: true,
 		}));
 	});
