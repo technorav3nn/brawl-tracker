@@ -34,6 +34,7 @@ export default defineEventHandler(async (event) => {
 			},
 			databases
 		);
+		return { background, theme };
 	} catch (error) {
 		console.error(error);
 		throw createError({ status: 500, message: "Failed to update profile" });
