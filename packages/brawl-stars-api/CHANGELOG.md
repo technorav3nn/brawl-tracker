@@ -1,5 +1,16 @@
 # @brawltracker/brawl-stars-api
 
+## 1.4.0
+
+### Minor Changes
+
+- a609a3a: Update packages
+
+### Patch Changes
+
+- Updated dependencies [a609a3a]
+  - @brawltracker/supercell-api-utils@1.3.0
+
 ## 1.3.3
 
 ### Patch Changes
