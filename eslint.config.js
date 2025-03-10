@@ -125,6 +125,7 @@ export default tseslint.config(
 			"**/.next/",
 			"**/.nuxt/",
 			"**/.output/",
+			"**/.vercel/",
 			"**/__old__/",
 			"apps/web/src/components/ui/carousel/index.vue",
 		],
