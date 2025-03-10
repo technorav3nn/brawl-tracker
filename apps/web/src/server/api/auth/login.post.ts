@@ -10,7 +10,6 @@ export default defineEventHandler(async (event) => {
 	const { account } = createAdminClient();
 
 	const session = await account.createEmailPasswordSession(email, password);
-	console.log(session.$id, useRuntimeConfig(event));
 
 	setCookie(event, SESSION_COOKIE, session.secret, {
 		expires: new Date(session.expire),

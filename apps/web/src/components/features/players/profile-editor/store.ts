@@ -9,7 +9,6 @@ export const useProfileConfigStore = defineStore("profile-editor-store", () => {
 	const selectedTheme = ref<string | null>(null);
 
 	async function applyChanges() {
-		console.log("Applying changes to profile");
 		try {
 			await $fetch("/api/profiles/update-config", {
 				method: "PATCH",

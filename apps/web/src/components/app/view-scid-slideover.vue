@@ -55,7 +55,7 @@ watchEffect(() => {
 				<USkeleton class="w-10 h-10 rounded-full" />
 				<div class="flex flex-col gap-2">
 					<USkeleton class="w-20 h-4" />
-					<USkeleton class="w-10 h-4" />
+					<USkeleton class="w-10 h-3" />
 				</div>
 			</div>
 			<div v-else class="flex items-center">
@@ -79,7 +79,7 @@ watchEffect(() => {
 				</div>
 			</div>
 		</template>
-		<div v-if="status === 'pending'" class="h-full px-4 py-4 flex flex-col gap-2 items-center">
+		<div v-if="status === 'pending'" class="h-full px-4 py-3 flex flex-col gap-2 items-center">
 			<USkeleton class="w-full h-full" />
 		</div>
 		<div v-else>

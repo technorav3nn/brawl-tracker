@@ -29,8 +29,8 @@ async function login(body: { username: string; password: string }) {
 			reloadNuxtApp();
 		})
 		.catch((error) => {
-			const { statusMessage } = error as FetchError;
-			validationError.value = statusMessage!;
+			const { message } = error as FetchError;
+			validationError.value = message!;
 		})
 		.finally(() => {
 			loading.value = false;

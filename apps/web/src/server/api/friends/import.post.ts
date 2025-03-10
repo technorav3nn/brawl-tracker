@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const friends = await getFriends(sessionToken!.token);
-	console.log(friends);
+
 	if (!friends.ok) {
 		throw createError({ statusCode: 500, message: "Failed to retrieve friends" });
 	}

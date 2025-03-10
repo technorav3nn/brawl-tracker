@@ -23,10 +23,7 @@ export function pick<T extends Record<string, any>>(
 	return result;
 }
 
-export function omit<T extends Record<string, any>>(
-	obj: T,
-	keys: T extends Record<string, any> ? (keyof T)[] : never
-): Record<string, any> {
+export function omit<T extends Record<string, any>>(obj: T, keys: string[]): Record<string, any> {
 	const result: Record<string, any> = {};
 	for (const key in obj) {
 		if (!keys.includes(key)) {

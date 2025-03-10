@@ -61,6 +61,10 @@ export default defineNuxtConfig({
 		alias: {
 			cdn: "https://cdn.deathblows.xyz",
 		},
+		screens: {
+			300: 300,
+			600: 600,
+		},
 		provider: "vercel",
 	},
 	colorMode: {

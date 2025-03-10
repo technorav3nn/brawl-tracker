@@ -61,7 +61,6 @@ const appConfig = useAppConfig();
 
 function initalizeConfig() {
 	if (config.value) {
-		console.log("config exists");
 		if (config.value.background) {
 			background.value = BACKGROUNDS.find((bg) => bg.name === config.value!.background)!;
 			selectedBackground.value = background.value;

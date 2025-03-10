@@ -13,7 +13,6 @@ if (!brawler || !brawlerCdnData) {
 }
 
 const unmappedSkins = computed<Skin[]>(() => brawlerCdnData.value!.skins);
-console.log(unmappedSkins.value);
 const skins = computed<Skin[]>(() =>
 	unmappedSkins.value.map((skin) => ({
 		...skin,
