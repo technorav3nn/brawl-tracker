@@ -34,7 +34,7 @@
 		"@unovis/ts": "^1.5.0",
 		"@unovis/vue": "^1.5.0",
 		"@unpic/vue": "^1.0.0",
-		"@vueuse/nuxt": "^12.5.0",
+		"@vueuse/nuxt": "^13.0.0",
 		"@zag-js/pin-input": "^0.82.1",
 		"@zag-js/tags-input": "^0.82.1",
 		"@zag-js/vue": "^0.82.1",
