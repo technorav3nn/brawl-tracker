@@ -22,13 +22,7 @@ export default defineNuxtConfig({
 	devtools: {
 		enabled: true,
 	},
-	routeRules: {
-		"/brawlers/**": { isr: 5000 },
-		"/brawlers": { prerender: true },
-		"/": { prerender: true },
-		leaderboards: { prerender: true },
-		"/leaderboards/*": { isr: 5000 },
-	},
+	routeRules: {},
 	fonts: {
 		defaults: {
 			preload: true,
@@ -65,7 +59,6 @@ export default defineNuxtConfig({
 			300: 300,
 			600: 600,
 		},
-		provider: "vercel",
 	},
 	colorMode: {
 		fallback: "dark",
@@ -112,7 +105,7 @@ export default defineNuxtConfig({
 		project: "6786db24001e31cc452a",
 	},
 	nitro: {
-		preset: "vercel",
+		preset: "",
 	},
 	alias: {
 		$assets: resolve("./src/assets"),

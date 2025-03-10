@@ -23,8 +23,8 @@ useHead({
 		<NuxtLayout>
 			<NuxtLoadingIndicator
 				v-if="indicatorState"
-				color="repeating-linear-gradient(to right,rgb(var(--color-primary-DEFAULT)) 0%,#fbcc24 50%,#fbde24 100%)"
 				:throttle="380"
+				color="repeating-linear-gradient(to right, rgb(var(--color-primary-DEFAULT)) 0%, var(--primary-lighter) 50%, var(--primary-light) 100%)"
 			/>
 			<NuxtPage />
 		</NuxtLayout>
@@ -36,6 +36,12 @@ useHead({
 </template>
 
 <style global>
+:root {
+	--primary-lighter: color-mix(in srgb, rgb(var(--color-primary-DEFAULT)) 20%, white);
+	--primary-light: color-mix(in srgb, rgb(var(--color-primary-DEFAULT)) 50%, white);
+	--primary: var(--color-primary-DEFAULT);
+}
+
 .unovis-xy-container {
 	--vis-crosshair-line-stroke-color: rgb(var(--color-primary-500));
 	--vis-crosshair-circle-stroke-color: #fff;

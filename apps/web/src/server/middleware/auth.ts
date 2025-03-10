@@ -15,7 +15,9 @@ export default defineEventHandler(async (event) => {
 			User,
 			"savedPlayers"
 		>;
-	} catch {}
+	} catch {
+		// Ignore error
+	}
 });
 
 declare module "h3" {
