@@ -3,7 +3,10 @@ export default defineNuxtRouteMiddleware(async () => {
 	const dbUserState = useDatabaseUser();
 	const headers = useRequestHeaders(["Cookie"]);
 
+	console.log(useRequestHeaders());
+
 	if (!headers.cookie) {
+		console.log("couldnt find cookie, returning");
 		return;
 	}
 
