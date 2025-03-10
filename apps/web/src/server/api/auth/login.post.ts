@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
 		path: "/",
 		httpOnly: true,
 		secure: true,
-		sameSite: "strict",
+		sameSite: "none",
 	});
 
 	await sendRedirect(event, "/");
