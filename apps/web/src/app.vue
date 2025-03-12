@@ -37,8 +37,8 @@ useHead({
 
 <style global>
 :root {
-	--primary-lighter: color-mix(in srgb, rgb(var(--color-primary-DEFAULT)) 20%, white);
-	--primary-light: color-mix(in srgb, rgb(var(--color-primary-DEFAULT)) 50%, white);
+	--primary-lighter: color-mix(in srgb, rgb(var(--color-primary-DEFAULT)) 80%, white);
+	--primary-light: color-mix(in srgb, rgb(var(--color-primary-DEFAULT)) 60%, white);
 	--primary: var(--color-primary-DEFAULT);
 }
 

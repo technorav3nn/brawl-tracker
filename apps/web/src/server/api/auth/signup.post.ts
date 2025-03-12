@@ -9,6 +9,17 @@ export default defineEventHandler(async (event) => {
 	const email = formData.get("email") as string;
 	const password = formData.get("password") as string;
 	const name = formData.get("username") as string;
+	const turnstileToken = formData.get("token") as string | null;
+
+	if (!turnstileToken) {
+		throw createError({ status: 401, message: "No turnstile token provided" });
+	}
+
+	const result = await verifyTurnstileToken(turnstileToken);
+	if (!result.success) {
+		console.log(result["error-codes"], result.hostname, result);
+		throw createError({ status: 401, message: "Invalid turnstile token" });
+	}
 
 	const { account, users, databases } = createAdminClient();
 

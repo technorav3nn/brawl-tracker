@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="p-2">
-			<div class="grid grid-cols-3 gap-px">
+			<div class="grid grid-cols-3 gap-1">
 				<PlayersProfileEditorColorPickerPill
 					v-for="color in primaryColors"
 					:key="color.value"

@@ -142,7 +142,6 @@ const items = computed(() => [
 					v-if="user"
 					:ui="{ gap: { sm: 'gap-x-[0.095rem]' } }"
 					variant="ghost"
-					trailingIcon="i-heroicons-chevron-down-20-solid"
 					color="gray"
 					class="px-1.5"
 					@click="slideover.open(LazyAppHeaderProfileSlideover)"

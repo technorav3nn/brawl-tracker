@@ -14,7 +14,7 @@
 		class="flex gap-2"
 		@click.stop.prevent="$emit('select')"
 	>
-		<span class="inline-block w-3 h-3 rounded-full" :style="{ backgroundColor: color.hex }"> </span>
+		<span class="inline-block w-3.5 h-3.5 rounded-full" :style="{ backgroundColor: color.hex }"> </span>
 		<span class="capitalize">{{ color.value }}</span>
 	</UButton>
 </template>

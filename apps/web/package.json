@@ -10,7 +10,7 @@
 		"postinstall": "nuxt prepare",
 		"nuxt:prepare": "nuxt prepare",
 		"lint": "eslint . ",
-		"start": "node --env-file=.env --import ./.output/server/sentry.server.config.mjs .output/server/index.mjs"
+		"start": "node --env-file=.env .output/server/index.mjs"
 	},
 	"dependencies": {
 		"@brawltracker/brawl-api": "workspace:*",
@@ -26,11 +26,14 @@
 		"@nuxt/devtools": "^1.7.0",
 		"@nuxt/image": "^1.9.0",
 		"@nuxt/kit": "^3.15.4",
+		"@nuxt/scripts": "^0.11.1",
 		"@nuxt/ui-pro": "patch:@nuxt/ui-pro@npm%3A1.7.0#~/.yarn/patches/@nuxt-ui-pro-npm-1.7.0-cd893573cc.patch",
+		"@nuxtjs/turnstile": "^0.9.15",
 		"@pinia/nuxt": "^0.9.0",
 		"@sapphire/duration": "^1.1.4",
 		"@sapphire/time-utilities": "^1.7.14",
 		"@sentry/nuxt": "^8.50.0",
+		"@unhead/vue": "2.0.0-rc.10",
 		"@unovis/ts": "^1.5.0",
 		"@unovis/vue": "^1.5.0",
 		"@unpic/vue": "^1.0.0",
@@ -64,5 +67,6 @@
 	},
 	"volta": {
 		"extends": "../../package.json"
-	}
+	},
+	"packageManager": "yarn@4.6.0"
 }

@@ -1,0 +1,14 @@
+node_modules
+scripts
+.nuxt
+.nitro/
+.cache
+.output
+dist
+*.log*
+.data
+.vscode
+.idea
+.github
+.design
+cache

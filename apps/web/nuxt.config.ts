@@ -12,9 +12,9 @@ export default defineNuxtConfig({
 		"@nuxt/image",
 		"@nuxt/ui",
 		"@nuxt/content",
+		"@nuxtjs/turnstile",
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
-		"@sentry/nuxt/module",
 		"nuxt-time",
 		"nuxt-appwrite",
 	],
@@ -27,6 +27,9 @@ export default defineNuxtConfig({
 		defaults: {
 			preload: true,
 		},
+	},
+	turnstile: {
+		siteKey: "0x4AAAAAAA_43EZEMfkIqXqY",
 	},
 	app: {
 		head: {
@@ -73,14 +76,14 @@ export default defineNuxtConfig({
 			},
 		],
 	},
-	sentry: {
-		autoInjectServerSentry: "top-level-import",
-		sourceMapsUploadOptions: {
-			org: "technorav3nn",
-			project: "javascript-nuxt",
-			authToken: process.env.NUXT_SENTRY_AUTH_TOKEN,
-		},
-	},
+	// sentry: {
+	// 	autoInjectServerSentry: "top-level-import",
+	// 	sourceMapsUploadOptions: {
+	// 		org: "technorav3nn",
+	// 		project: "javascript-nuxt",
+	// 		authToken: process.env.NUXT_SENTRY_AUTH_TOKEN,
+	// 	},
+	// },
 	runtimeConfig: {
 		appwriteApiToken: "",
 		databaseUrl: "",
@@ -98,6 +101,11 @@ export default defineNuxtConfig({
 		scidAccountId: "85-0e066b52-b348-4256-b6c1-4f12a18f54d9",
 		public: {
 			sentryDsn: "https://76fedfafe72ede2cdf24b27f409a6e62@o4508064842514432.ingest.us.sentry.io/4508064854245376",
+		},
+		turnstile: {
+			// This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
+			// environment variable.
+			secretKey: "",
 		},
 	},
 	appwrite: {

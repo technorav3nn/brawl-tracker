@@ -88,15 +88,14 @@ function initalizeConfig() {
 	appConfig.ui.primary = theme.value;
 }
 
-const router = useRouter();
-
 initalizeConfig();
+const router = useRouter();
 router.afterEach((s) => {
 	if (!s.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}`)) return;
 	initalizeConfig();
 });
-router.beforeResolve((s) => {
-	// Only let it work if the path starst wit /players/tag
+router.afterEach((s) => {
+	// Only let it work if the path starst with /players/tag
 	if (!s.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}`)) {
 		// Reset everyting to default
 		selectedTheme.value = "amber";
@@ -110,6 +109,7 @@ router.beforeResolve((s) => {
 	<header
 		v-if="player && selectedBackground"
 		:style="{
+			'background-position': selectedBackground.backgroundPosition ?? 'center',
 			'--background-image-light': selectedBackground.hasColorModeVariants
 				? `url(/backgrounds/${selectedBackground.name}-light.${selectedBackground.fileFormat})`
 				: `url(/backgrounds/${selectedBackground.name}.${selectedBackground.fileFormat})`,
@@ -134,8 +134,8 @@ router.beforeResolve((s) => {
 				</div>
 				<template #icon>
 					<NuxtImg
-						width="110"
-						height="110"
+						width="120"
+						height="120"
 						:src="`https://cdn.brawlify.com/profile-icons/regular/${player.icon.id}.png`"
 						:alt="player.name"
 					/>
@@ -198,6 +198,7 @@ html[class="dark"] .header-bg-image-dark {
 	background-position: center;
 }
 html[class="light"] .header-bg-image-light {
+	background-position: var(--background-position);
 	background-image: 
         /** lighten the yellow a little bit */
 		/** linear-gradient(rgba(255, 255, 255, 0.04), rgba(0, 0, 0, 0.3)), url("/backgrounds/yellow-bg-light.webp"); */
