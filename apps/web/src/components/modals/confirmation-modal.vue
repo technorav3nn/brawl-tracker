@@ -15,7 +15,7 @@ const modal = useModal();
 
 <template>
 	<UModal>
-		<UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
+		<UCard :ui="{ ring-3: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
 			<template #header>
 				<h1 class="text-lg font-semibold">Are you sure?</h1>
 			</template>

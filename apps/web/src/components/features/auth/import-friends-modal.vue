@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const modal = useModal();
+const modal = useOverlay();
 const error = ref<string | null>(null);
 const loading = ref(false);
 const toast = useToast();
@@ -25,7 +25,7 @@ async function importFriends() {
 
 <template>
 	<UModal>
-		<UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800', footer: { padding: 'px-0 py-3.5' } }">
+		<UCard :ui="{ header: 'divide-y divide-gray-100 dark:divide-gray-800', footer: 'px-0 py-3.5' }">
 			<template #header>
 				<div class="flex items-center justify-between">
 					<h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
@@ -34,11 +34,17 @@ async function importFriends() {
 							alt="Supercell ID"
 							width="24"
 							height="24"
-							class="inline-block object-scale-down mr-1 w-[2em] h-[2em] [mask-size:100%_100%] !text-[revert]"
+							class="inline-block object-scale-down mr-1 w-[2em] h-[2em] [mask-size:100%_100%] text-[revert]!"
 						/>
 						Import Supercell Friends
 					</h3>
-					<UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="modal.close()" />
+					<UButton
+						color="neutral"
+						variant="ghost"
+						icon="i-heroicons-x-mark-20-solid"
+						class="-my-1"
+						@click="modal.close(modal.overlays[0].id)"
+					/>
 				</div>
 			</template>
 			<div class="flex justify-center items-center flex-col">
@@ -47,7 +53,7 @@ async function importFriends() {
 				</p>
 				<p class="mt-2 text-sm text-gray-500 dark:text-gray-400">When finished, click the "Continue" button below to continue.</p>
 				<NuxtImg src="/scid/qr-code.png" alt="Supercell ID QR Code" width="150" height="150" class="mt-4" />
-				<UDivider class="mt-4 w-full">or</UDivider>
+				<USeparator class="mt-4 w-full">or</USeparator>
 				<NuxtLink
 					external
 					target="_blank"
@@ -56,7 +62,7 @@ async function importFriends() {
 				>
 					<UButton icon="i-heroicons-link-20-solid" class="mt-4">Open In Brawl Stars</UButton>
 				</NuxtLink>
-				<UDivider class="mt-4 w-full">or</UDivider>
+				<USeparator class="mt-4 w-full">or</USeparator>
 				<p class="mt-2 prose prose-primary dark:prose-invert max-w-none">Add <code>BrawlTrackDev</code> to your friends list</p>
 			</div>
 
@@ -68,7 +74,7 @@ async function importFriends() {
 					<UAlert
 						v-if="error"
 						variant="subtle"
-						color="red"
+						color="error"
 						icon="i-heroicons-information-circle-20-solid"
 						:title="error"
 						class="mt-4 py-2.5"

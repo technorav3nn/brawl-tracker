@@ -27,7 +27,7 @@ watch(selected, () => {
 	>
 		<template #label>
 			<div v-if="selected" class="flex flex-row items-center gap-2">
-				<Image :src="selected?.imageUrl2" class="rounded-sm" width="20" height="20" />
+				<Image :src="selected?.imageUrl2" class="rounded-xs" width="20" height="20" />
 				<span>{{ selected?.name }}</span>
 			</div>
 			<span v-else>Select a brawler...</span>

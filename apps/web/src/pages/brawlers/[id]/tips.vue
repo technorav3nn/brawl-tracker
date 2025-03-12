@@ -12,8 +12,8 @@ const tips = computed(() => brawlerCdnData.value!.tips ?? []);
 </script>
 
 <template>
-	<UDashboardSection title="Tips" description="View tips on how to play this brawler!" orientation="vertical" class="!divide-y-0">
-		<div class="w-full !pt-0">
+	<UDashboardSection title="Tips" description="View tips on how to play this brawler!" orientation="vertical" class="divide-y-0!">
+		<div class="w-full pt-0!">
 			<div v-if="tips.length === 0" class="flex justify-center items-center h-32">
 				<p class="text-gray-500 dark:text-gray-400">No tips available</p>
 			</div>

@@ -51,7 +51,7 @@ if (!brawler.value) {
 					<BrawlerPower type="starpowers" class="h-full" :brawler :brawlerCdnData />
 					<BrawlerSpecialGears class="block md:hidden" :brawler :brawlerCdnData />
 				</div>
-				<BrawlerHypercharge class="h-[30]" :brawler :brawlerCdnData />
+				<BrawlerHypercharge class="h-30" :brawler :brawlerCdnData />
 			</div>
 		</div>
 	</UPage>

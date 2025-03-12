@@ -70,7 +70,7 @@ async function nextStage() {
 
 <template>
 	<UModal :modelValue="open" @update:model-value="$emit('update:open', $event)">
-		<UCard :ui="{ ring: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
+		<UCard :ui="{ ring-3: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
 			<template #header>
 				<div class="flex items-center justify-between">
 					<h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
@@ -79,7 +79,7 @@ async function nextStage() {
 							alt="Supercell ID"
 							width="24"
 							height="24"
-							class="inline-block object-scale-down mr-1 w-[2em] h-[2em] [mask-size:100%_100%] !text-[revert]"
+							class="inline-block object-scale-down mr-1 w-[2em] h-[2em] [mask-size:100%_100%] text-[revert]!"
 						/>
 						Supercell ID
 					</h3>
@@ -98,7 +98,7 @@ async function nextStage() {
 				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">The profile picture will be a brawler you own.</p>
 
 				<label class="text-sm font-medium text-gray-500 dark:text-gray-400">Enter your player tag</label>
-				<UInput v-model="tag" label="playerTag" placeholder="Your tag..." class="!w-full" />
+				<UInput v-model="tag" label="playerTag" placeholder="Your tag..." class="w-full!" />
 				<UButton block class="mt-2" :loading="status === 'pending'" @click="async () => await nextStage()">Next</UButton>
 				<UAlert
 					v-if="status === 'error'"
@@ -127,7 +127,7 @@ async function nextStage() {
 				/>
 			</div>
 
-			<UDivider class="mt-4" size="xs" />
+			<USeparator class="mt-4" size="xs" />
 			<UProgress
 				class="mt-3"
 				:value="progress"

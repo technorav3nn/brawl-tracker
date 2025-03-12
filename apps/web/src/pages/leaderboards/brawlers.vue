@@ -76,7 +76,7 @@ const filteredRows = computed(() => {
 				animation: 'carousel',
 			}"
 			:ui="{ divide: 'divide-gray-200 dark:divide-gray-800', td: { padding: 'py-2 px-4' } }"
-			class="w-full border border-gray-200 dark:border-gray-800 rounded h-max mb-12"
+			class="w-full border border-gray-200 dark:border-gray-800 rounded-sm h-max mb-12"
 		>
 			<template #rank-data="{ row }">
 				<p class="text-gray-900 dark:text-white font-semibold">#{{ row.rank }}</p>
@@ -87,14 +87,14 @@ const filteredRows = computed(() => {
 						:src="`https://cdn.brawlify.com/profile-icons/regular/${row.icon.id}.png`"
 						:alt="row.name"
 						loading="lazy"
-						class="rounded-sm"
+						class="rounded-xs"
 						provider="none"
 						width="35"
 						height="35"
 					/>
 					<NuxtLink
 						:to="`/players/${encodeURIComponent(row.tag)}`"
-						class="hover:!text-primary transition-colors duration-[90ms] text-base text-gray-900 dark:text-white font-semibold"
+						class="hover:text-(--ui-primary)! transition-colors duration-[90ms] text-base text-gray-900 dark:text-white font-semibold"
 					>
 						{{ row.name }}
 					</NuxtLink>

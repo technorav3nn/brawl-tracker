@@ -16,12 +16,12 @@ defineProps<{
 		<UTable
 			:ui="{
 				thead: 'border-b-0 hidden',
-				divide: '!divide-y-0 ',
+				divide: 'divide-y-0! ',
 				td: {
-					base: '!whitespace-normal',
+					base: 'whitespace-normal!',
 					padding: 'py-2 px-3',
 				},
-				tr: { base: `[&_:nth-child(1)]:!font-semibold ${uneven ? 'last:!border-border last:!border-b' : ''}` },
+				tr: { base: `[&_:nth-child(1)]:font-semibold! ${uneven ? 'last:border-border! last:border-b!' : ''}` },
 				base: 'bg-inherit',
 			}"
 			:rows="stats"

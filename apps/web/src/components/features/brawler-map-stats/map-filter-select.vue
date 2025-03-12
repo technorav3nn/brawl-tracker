@@ -59,7 +59,7 @@ const toggleFilterSwitchId = useId();
 </script>
 
 <template>
-	<UPopover :popper="{ placement: 'bottom-start' }" :ui="{ trigger: '!w-auto', base: '!overflow-visible' }">
+	<UPopover :popper="{ placement: 'bottom-start' }" :ui="{ trigger: 'w-auto!', base: 'overflow-visible!' }">
 		<UButton
 			color="white"
 			label="Filter"

@@ -1,5 +1,4 @@
 import { createResolver } from "@nuxt/kit";
-// import { isDevelopment } from "std-env";
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const { resolve } = createResolver(import.meta.url);
@@ -19,6 +18,7 @@ export default defineNuxtConfig({
 		"nuxt-appwrite",
 	],
 	srcDir: "src/",
+	css: ["$assets/css/main.css", "$assets/css/global.css"],
 	devtools: {
 		enabled: true,
 	},

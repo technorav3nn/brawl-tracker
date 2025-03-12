@@ -14,7 +14,7 @@ function openMapViewer() {
 </script>
 
 <template>
-	<UCard :ui="{ body: { padding: '!p-0' } }" class="h-min">
+	<UCard :ui="{ body: { padding: 'p-0!' } }" class="h-min">
 		<div class="flex flex-col sm:flex-row gap-0 flex-nowrap">
 			<div>
 				<NuxtImg
@@ -28,7 +28,7 @@ function openMapViewer() {
 			</div>
 			<div class="p-3.5 flex flex-col items-start justify-between gap-2 w-[60%] sm:gap-0">
 				<div class="flex gap-2 items-center">
-					<Image :src="map!.gameMode.imageUrl" :alt="map!.name" class="!object-scale-down" width="32" height="32" />
+					<Image :src="map!.gameMode.imageUrl" :alt="map!.name" class="object-scale-down!" width="32" height="32" />
 					<div class="flex flex-col">
 						<h1 class="text-md font-semibold">{{ map!.name }}</h1>
 						<p class="text-sm">{{ map!.gameMode.name }}</p>

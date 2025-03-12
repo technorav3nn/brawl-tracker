@@ -60,7 +60,9 @@ const { data: mapStats, status } = useFetch(() => `/api/maps/${props.map.id}`, {
 				>
 				<p class="text-gray-500 dark:text-gray-400 text-sm">
 					Stats are collected by
-					<NuxtLink to="https://brawlify.com" target="_blank" class="text-primary-500 dark:text-primary-400">Brawlify</NuxtLink>
+					<NuxtLink to="https://brawlify.com" target="_blank" class="text-(--ui-primary)-500 dark:text-(--ui-primary)-400"
+						>Brawlify</NuxtLink
+					>
 				</p>
 			</div>
 		</template>

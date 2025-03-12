@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { NavigationLink } from "@nuxt/ui-pro/types";
+import type { PageLink } from "@nuxt/ui-pro";
 
 const tabs = ["profile", "friends", "settings"] as const;
 const tab = ref<(typeof tabs)[number]>("profile");
 const oldTab = ref<(typeof tabs)[number]>("profile");
 
-const links = computed<NavigationLink[]>(() => [
+const links = computed<PageLink[]>(() => [
 	{
 		icon: "i-heroicons-user-circle-20-solid",
 		click: () => setTab("profile"),
@@ -39,13 +39,13 @@ function setTab(value: (typeof tabs)[number]) {
 	tab.value = value;
 }
 
-const slideover = useSlideover();
+const slideover = useOverlay();
 const router = useRouter();
 const user = useUser();
 
 router.beforeResolve((to, from, next) => {
 	if (to.path === "/settings" && from.path === router.currentRoute.value.path && import.meta) {
-		slideover.close();
+		slideover.close(slideover.overlays[0].id);
 	}
 
 	next();
@@ -58,7 +58,7 @@ const loading = ref(false);
 async function logout() {
 	loading.value = true;
 	await $fetch("/api/auth/signout", { method: "POST" });
-	slideover.close();
+	slideover.close(slideover.overlays[0].id);
 	user.value = null;
 	loading.value = false;
 	await navigateTo("/");
@@ -67,7 +67,7 @@ async function logout() {
 </script>
 
 <template>
-	<UDashboardSlideover :ui="{ width: '!max-w-sm', body: { base: '!overflow-y-auto', padding: 'p-0' } }">
+	<UDashboardSlideover :ui="{ width: 'max-w-sm!', body: { base: 'overflow-y-auto!', padding: 'p-0' } }">
 		<template #title>
 			<div class="flex items-center">
 				<NuxtImg
@@ -87,7 +87,7 @@ async function logout() {
 		</template>
 		<UHorizontalNavigation
 			class="w-full border-b border-gray-200 dark:border-gray-800"
-			:ui="{ container: '!w-full px-1', inner: '!w-full', base: 'flex items-center justify-center', icon: { base: 'w-6 h-6' } }"
+			:ui="{ container: 'w-full! px-1', inner: 'w-full!', base: 'flex items-center justify-center', icon: { base: 'w-6 h-6' } }"
 			:links="links"
 		/>
 		<TransitionGroup
@@ -107,11 +107,12 @@ async function logout() {
 						<UButton
 							:to="`/players/${encodeURIComponent(supercellInfo!.tag!)}`"
 							:disabled="!supercellInfo?.isConnected"
-							color="gray"
+							color="neutral"
+							variant="subtle"
 							size="lg"
 							block
 							icon="i-heroicons-information-circle"
-							@click="slideover.close()"
+							@click="slideover.close(slideover.overlays[0].id)"
 						>
 							View My Profile
 						</UButton>
@@ -139,9 +140,9 @@ async function logout() {
 					<p class="text-gray-500 dark:text-gray-400 text-sm">Edit everything about your account, or logout of it</p>
 				</div>
 				<div class="px-2 mt-2 flex flex-col gap-2">
-					<UButton color="gray" size="lg" block icon="i-heroicons-cog" to="/settings">Go to Settings</UButton>
+					<UButton color="neutral" size="lg" block icon="i-heroicons-cog" to="/settings">Go to Settings</UButton>
 					<UButton
-						color="red"
+						color="neutral"
 						variant="solid"
 						size="lg"
 						block

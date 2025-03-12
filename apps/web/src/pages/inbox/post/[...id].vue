@@ -126,7 +126,7 @@ const links: PageLink[] = [
 					<UContentToc :links="tocs">
 						<template #bottom>
 							<div class="hidden lg:block space-y-6">
-								<UDivider v-if="tocs.length !== 0" />
+								<USeparator v-if="tocs.length !== 0" />
 								<UPageLinks title="More" :links="links" />
 							</div>
 						</template>

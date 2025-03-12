@@ -57,7 +57,7 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 <template>
 	<UPageCard
 		ref="target"
-		:ui="{ header: { base: '!p-0' }, body: { base: '!py-2 !px-4 has-[section]:h-full' }, footer: { base: '!py-1.5 !px-2' } }"
+		:ui="{ header: { base: 'p-0!' }, body: { base: 'py-2! px-4! has-[section]:h-full' }, footer: { base: 'py-1.5! px-2!' } }"
 		:class="!showMenu ? HOVER_CLASS : ''"
 		@click="onCardClick"
 	>
@@ -127,7 +127,7 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 					loading="lazy"
 					width="40"
 					height="40"
-					class="-ml-1.5 h-10 w-10 self-center bg-contain !object-contain"
+					class="-ml-1.5 h-10 w-10 self-center bg-contain object-contain!"
 				/>
 				<div class="flex flex-1 flex-col">
 					<h1 class="flex flex-row items-center gap-2 text-lg font-bold uppercase leading-snug">

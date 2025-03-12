@@ -14,7 +14,7 @@ const powers = computed(() =>
 </script>
 
 <template>
-	<div class="flex flex-col rounded-lg border border-border shadow">
+	<div class="flex flex-col rounded-lg border border-border shadow-sm">
 		<div class="flex flex-col p-4 py-2.5">
 			<div class="flex items-center gap-3">
 				<Image
@@ -31,7 +31,7 @@ const powers = computed(() =>
 		</div>
 		<div class="h-full">
 			<div
-				class="px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded rounded-b-none rounded-t-none flex flex-row gap-2.5"
+				class="px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded-sm rounded-b-none rounded-t-none flex flex-row gap-2.5"
 			>
 				<div class="mt-3 mb-3 flex flex-col gap-4 bg-card">
 					<div v-for="power in powers" :key="power.id">

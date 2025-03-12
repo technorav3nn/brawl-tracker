@@ -80,7 +80,7 @@ filteredMapStore.setFilteredMaps(maps.value);
 				v-for="map in filteredMaps"
 				:key="map.id"
 				v-memo="[map]"
-				:ui="{ body: { base: '!p-0  ' }, header: { padding: 'px-4 py-3 sm:px-4' } }"
+				:ui="{ body: { base: 'p-0!  ' }, header: { padding: 'px-4 py-3 sm:px-4' } }"
 				class="w-full hover:cursor-pointer hover:ring-2 hover:ring-primary-500 dark:hover:ring-primary-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
 				@click="openSlideover(map)"
 			>

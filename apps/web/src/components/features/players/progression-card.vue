@@ -11,7 +11,7 @@ const { format } = new Intl.NumberFormat("en-US", { notation: "compact" });
 </script>
 
 <template>
-	<UDashboardCard :title :ui="{ body: { padding: '!pt-2.5 !pb-3.5' } }">
+	<UDashboardCard :title :ui="{ body: { padding: 'pt-2.5! pb-3.5!' } }">
 		<UProgress class="mb-4" :value :max />
 
 		<div class="flex items-center gap-2">

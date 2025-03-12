@@ -92,7 +92,7 @@ const breadcrumbLinks = [
 						width="100"
 						:alt="brawler.name"
 						format="webp"
-						class="rounded border border-border"
+						class="rounded-sm border border-border"
 						loading="eager"
 						preload
 					/>
@@ -114,7 +114,7 @@ const breadcrumbLinks = [
 					{{ brawler.description }}
 				</p>
 				<UHorizontalNavigation
-					:ui="{ after: 'after:w-full after:!inset-x-0' /* base: '!h-[2.8rem]' */ }"
+					:ui="{ after: 'after:w-full after:inset-x-0!' /* base: 'h-[2.8rem]!' */ }"
 					:links="links"
 					class="border-b border-gray-200 dark:border-gray-800"
 				/>

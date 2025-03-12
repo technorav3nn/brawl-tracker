@@ -48,16 +48,16 @@ const sortedStats = computed(() => {
 		<UPageHero
 			:title="`${map!.name}`"
 			:description="`View the best brawlers and their stats for ${map!.name}.`"
-			:ui="{ wrapper: 'sm:!pt-16 sm:!pb-8 !pt-8 !pb-4' }"
+			:ui="{ wrapper: 'sm:pt-16! sm:pb-8! pt-8! pb-4!' }"
 		>
 			<template #description>
 				<p>View the best brawlers and their stats for {{ map!.name }}.</p>
 				<UButton class="mt-4" icon="i-heroicons-arrow-top-right-on-square-20-solid">View Map Info</UButton>
 			</template>
 		</UPageHero>
-		<UDivider />
+		<USeparator />
 		<UPage>
-			<UPageBody class="!mt-8">
+			<UPageBody class="mt-8!">
 				<div class="flex justify-center items-center"></div>
 				<ClientOnly>
 					<MapsBrawlerBarChart class="mt-8" :data="chartData as any" />
@@ -83,8 +83,8 @@ const sortedStats = computed(() => {
 							v-for="{ brawler: brawlerId, useRate, winRate } in sortedStats"
 							:key="brawlerId"
 							:ui="{
-								header: { padding: '!p-0' },
-								body: { padding: '!p-1.5' },
+								header: { padding: 'p-0!' },
+								body: { padding: 'p-1.5!' },
 							}"
 							:to="`/brawlers/${brawlerId}`"
 						>

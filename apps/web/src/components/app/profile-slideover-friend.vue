@@ -29,7 +29,7 @@ const { friend } = toRefs(props);
 						alt="Supercell ID"
 						width="24"
 						height="24"
-						class="inline-block object-scale-down w-[1.3em] h-[1.3em] [mask-size:100%_100%] !text-[revert]"
+						class="inline-block object-scale-down w-[1.3em] h-[1.3em] [mask-size:100%_100%] text-[revert]!"
 						loading="lazy"
 					/>
 					<UIcon v-else name="i-heroicons-user-circle-20-solid" class="w-[1.3em] h-[1.3em]" />

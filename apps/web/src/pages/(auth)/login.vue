@@ -48,7 +48,7 @@ async function login(body: { username: string; password: string }) {
 					title="Login"
 					description="Enter your information to access your account."
 					align="bottom"
-					class="!max-w-sm"
+					class="max-w-sm!"
 					icon="i-heroicons-user-circle"
 					:fields="[
 						{
@@ -74,7 +74,7 @@ async function login(body: { username: string; password: string }) {
 					@submit="login"
 				>
 					<template #description>
-						Don't have an account? <NuxtLink to="/signup" class="text-primary font-medium">Sign up</NuxtLink>.
+						Don't have an account? <NuxtLink to="/signup" class="text-(--ui-primary) font-medium">Sign up</NuxtLink>.
 					</template>
 					<template v-if="validationError" #validation>
 						<NuxtTurnstile v-model="token" :options="{ theme: $colorMode.value as any, size: 'flexible' }" />

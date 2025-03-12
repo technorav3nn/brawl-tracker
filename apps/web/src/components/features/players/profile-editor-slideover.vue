@@ -63,8 +63,8 @@ async function onApplyClick() {
 	<UDashboardSlideover
 		title="Edit Profile"
 		:ui="{
-			width: '!max-w-sm',
-			body: { base: '!overflow-y-auto', padding: 'p-0' },
+			width: 'max-w-sm!',
+			body: { base: 'overflow-y-auto!', padding: 'p-0' },
 			footer: {
 				base: 'z-50 bg-white dark:bg-gray-900',
 			},
@@ -72,7 +72,7 @@ async function onApplyClick() {
 	>
 		<UHorizontalNavigation
 			class="w-full border-b border-gray-200 dark:border-gray-800 sticky top-0 z-10 bg-white dark:bg-gray-900"
-			:ui="{ container: '!w-full px-1', inner: '!w-full', base: 'flex items-center justify-center', icon: { base: 'w-6 h-6' } }"
+			:ui="{ container: 'w-full! px-1', inner: 'w-full!', base: 'flex items-center justify-center', icon: { base: 'w-6 h-6' } }"
 			:links="links"
 		/>
 		<TransitionGroup

@@ -70,7 +70,7 @@ const template = (d: DataRecord) => `
 </script>
 
 <template>
-	<UDashboardCard :ui="{ body: { padding: '!px-2 !py-2' } as any }">
+	<UDashboardCard :ui="{ body: { padding: 'px-2! py-2!' } as any }">
 		<template v-if="status === 'pending'">
 			<USkeleton class="w-full h-[300px]" />
 		</template>

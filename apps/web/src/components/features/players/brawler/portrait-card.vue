@@ -19,11 +19,11 @@ const model = computed(() => getBrawlerModelUrl(props.brawler.id.toString()));
 		:ui="{
 			footer: {
 				padding: isMaxTier
-					? 'sm:!pl-3 sm:!pr-0 !py-1 !px-32 max-[450px]:!px-20 max-[380px]:!px-10 max-[200px]:!px-4'
-					: 'sm:!px-3 !py-1 sm:!pr-1.5 !px-24',
+					? 'sm:pl-3! sm:pr-0! py-1! px-32! max-[450px]:px-20! max-[380px]:px-10! max-[200px]:px-4!'
+					: 'sm:px-3! py-1! sm:pr-1.5! px-24!',
 			},
 			body: { base: 'flex justify-center ' },
-			header: { base: '!px-4 !py-2' },
+			header: { base: 'px-4! py-2!' },
 		}"
 	>
 		<template #header>

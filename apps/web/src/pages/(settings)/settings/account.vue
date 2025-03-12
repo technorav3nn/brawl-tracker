@@ -55,7 +55,7 @@ function importFriends() {
 	<section>
 		<p class="font-medium text-lg">Account</p>
 		<p class="text-sm">Manage anything about your accounts details</p>
-		<UDivider class="mt-4 w-full" />
+		<USeparator class="mt-4 w-full" />
 	</section>
 	<section class="mt-4 flex gap-4 flex-col">
 		<div>

@@ -31,7 +31,7 @@ const gears = computed(() => {
 </script>
 
 <template>
-	<UCard :ui="{ header: { padding: '!px-4 py-2.5' }, body: { base: 'h-full', padding: '!px-4 !py-1.5' } }">
+	<UCard :ui="{ header: { padding: 'px-4! py-2.5' }, body: { base: 'h-full', padding: 'px-4! py-1.5!' } }">
 		<template #header>
 			<div class="flex items-center gap-3">
 				<NuxtImg
@@ -80,7 +80,7 @@ const gears = computed(() => {
 	</UCard>
 
 	<!-- 
-	<div class="flex flex-col rounded-lg border border-border shadow">
+	<div class="flex flex-col rounded-lg border border-border shadow-sm">
 		<div class="flex flex-col p-4 py-2.5">
 			<div class="flex items-center gap-3">
 				<NuxtImg
@@ -98,7 +98,7 @@ const gears = computed(() => {
 
 		<div v-if="Object.keys(gears).length !== 0" class="h-full">
 			<div
-				class="px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded rounded-b-none rounded-t-none"
+				class="px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded-sm rounded-b-none rounded-t-none"
 			>
 				<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
 					These are only Epic and Mythic Gears, every brawlers inside the game will have access to the normal Super Rare Gears.
@@ -127,7 +127,7 @@ const gears = computed(() => {
 
 		<div v-else class="pb-2">
 			<div
-				class="flex justify-center items-center px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded rounded-b-none rounded-t-none"
+				class="flex justify-center items-center px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded-sm rounded-b-none rounded-t-none"
 			>
 				<p class="mt-3 text-center text-md text-gray-500 dark:text-gray-400">This brawler doesn't have any special gears</p>
 			</div>

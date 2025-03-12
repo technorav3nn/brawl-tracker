@@ -48,7 +48,7 @@ useSeoMeta({
 		:description="`View ${player!.name}'s stats for ${foundBrawler!.name}`"
 		orientation="vertical"
 	>
-		<div class="!pt-0 grid grid-cols-5 gap-4">
+		<div class="pt-0! grid grid-cols-5 gap-4">
 			<PlayersBrawlerPortraitCard
 				v-if="fullStatus"
 				:brawler="foundBrawler!"
@@ -85,7 +85,7 @@ useSeoMeta({
 			</div>
 		</div>
 		<!--
- <div v-else class="!pt-0 grid grid-cols-5 gap-4">
+ <div v-else class="pt-0! grid grid-cols-5 gap-4">
 			<div class="col-span-5 sm:col-span-2 lg:col-span-1 h-full w-full min-[340px]:w-[revert]">
 				<USkeleton height="263" width="180" />
 			</div>

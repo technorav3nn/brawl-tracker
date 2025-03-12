@@ -21,7 +21,7 @@ function setBackground() {
 		<UCard
 			class="relative"
 			:class="[background.name === selectedBackground?.name ? 'filter brightness-[0.70]' : '']"
-			:ui="{ body: { padding: '!p-0' } }"
+			:ui="{ body: { padding: 'p-0!' } }"
 			role="button"
 		>
 			<NuxtImg
@@ -31,7 +31,7 @@ function setBackground() {
 				:alt="background.name"
 				width="400"
 				height="180"
-				class="rounded cursor-pointer hover:ring-2 hover:ring-primary-500 dark:hover:ring-primary-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+				class="rounded-sm cursor-pointer hover:ring-2 hover:ring-primary-500 dark:hover:ring-primary-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
 			/>
 		</UCard>
 		<div

@@ -27,8 +27,8 @@ const color = computed(() => {
 	<UPageCard
 		class="overflow-hidden w-full"
 		:ui="{
-			header: { padding: '!p-0' },
-			body: { padding: '!p-1.5' },
+			header: { padding: 'p-0!' },
+			body: { padding: 'p-1.5!' },
 		}"
 		:to="`/brawlers/${props.brawler.id}`"
 		prefetch
@@ -53,7 +53,7 @@ const color = computed(() => {
 					{{ props.brawler.name }}
 				</p>
 				<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">{{ props.brawler.class.name }}</p>
-				<UBadge v-if="showRarity" :ui="{ rounded: 'rounded-full' }" class="w-max h-5 text-[0.70rem] mt-1" :class="color">
+				<UBadge v-if="showRarity" :ui="{ rounded-sm: 'rounded-full' }" class="w-max h-5 text-[0.70rem] mt-1" :class="color">
 					{{ props.brawler.rarity.name }}
 				</UBadge>
 			</div>

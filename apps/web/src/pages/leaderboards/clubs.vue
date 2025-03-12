@@ -73,7 +73,7 @@ const numberFormatter = new Intl.NumberFormat("en-US");
 				animation: 'carousel',
 			}"
 			:ui="{ divide: 'divide-gray-200 dark:divide-gray-800', td: { padding: 'py-2 px-4' } }"
-			class="w-full border border-gray-200 dark:border-gray-800 rounded h-max mb-12"
+			class="w-full border border-gray-200 dark:border-gray-800 rounded-sm h-max mb-12"
 		>
 			<template #rank-data="{ row }">
 				<p class="text-gray-900 dark:text-white font-semibold">#{{ row.rank }}</p>
@@ -84,14 +84,14 @@ const numberFormatter = new Intl.NumberFormat("en-US");
 						:src="`https://cdn.brawlify.com/club-badges/regular/${row.badgeId}.png`"
 						:alt="row.name"
 						loading="lazy"
-						class="rounded-sm"
+						class="rounded-xs"
 						provider="none"
 						width="30"
 						height="30"
 					/>
 					<NuxtLink
 						:to="`/clubs/${encodeURIComponent(row.tag)}`"
-						class="hover:!text-primary transition-colors duration-[90ms] text-base text-gray-900 dark:text-white font-semibold"
+						class="hover:text-(--ui-primary)! transition-colors duration-[90ms] text-base text-gray-900 dark:text-white font-semibold"
 					>
 						{{ row.name }}
 					</NuxtLink>

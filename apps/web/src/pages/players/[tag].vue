@@ -120,7 +120,7 @@ router.afterEach((s) => {
 		class="header-bg-image-dark header-bg-image-light"
 	>
 		<UContainer>
-			<UPageHeader class="!border-0" :ui="{ wrapper: 'first-child-row', description: 'mt-2' }">
+			<UPageHeader class="border-0!" :ui="{ wrapper: 'first-child-row', description: 'mt-2' }">
 				<div class="absolute top-2 right-0">
 					<UTooltip :text="player.tag !== user?.profile.tag ? 'You can only edit your own profile' : 'Edit Profile'">
 						<UButton
@@ -141,7 +141,7 @@ router.afterEach((s) => {
 					/>
 				</template>
 				<template #title>
-					<p class="dark:text-primary-400 text-primary-100">{{ player.name }}</p>
+					<p class="dark:text-(--ui-primary)-400 text-(--ui-primary)-100">{{ player.name }}</p>
 				</template>
 				<template #description>
 					<div class="flex flex-row gap-2">
@@ -178,7 +178,7 @@ router.afterEach((s) => {
 		</UContainer>
 	</header>
 	<section class="border-b border-gray-200 dark:border-gray-800">
-		<UContainer class="!px-[1.42rem]">
+		<UContainer class="px-[1.42rem]!">
 			<UHorizontalNavigation :links="links" />
 		</UContainer>
 	</section>

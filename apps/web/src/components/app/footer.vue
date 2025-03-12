@@ -5,7 +5,7 @@
 			// @ts-expect-error Not sure why it's erroring
 			bottom: {
 				wrapper: 'border-t border-gray-200 dark:border-gray-800',
-				container: '!py-6',
+				container: 'py-6!',
 			},
 			top: { wrapper: 'border-t border-gray-200 dark:border-gray-800', container: 'py-8 lg:py-12' },
 		}"
@@ -47,7 +47,7 @@
 				class="text-sm text-gray-500 dark:text-gray-400 flex items-center"
 			>
 				© 2024 Death_Blows
-				<div class="h-5 w-0 rounded border-gray-700 border-l-2 mx-2 translate-x-[0.02rem]" />
+				<div class="h-5 w-0 rounded-sm border-gray-700 border-l-2 mx-2 translate-x-[0.02rem]" />
 				Made with <UIcon name="i-heroicons-heart-solid" class="text-red-500 size-5 ml-1" />
 			</NuxtLink>
 		</template>

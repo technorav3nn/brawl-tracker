@@ -51,7 +51,7 @@ const ownedBrawlers = computed(() => {
 		:title="`Brawlers &nbsp;(${ownedBrawlers!.length} / ${brawlers!.list.length})`"
 		description="Select one of the players brawlers to view their stats"
 		orientation="vertical"
-		:ui="{ inner: 'w-full [&>div]:!w-full ' }"
+		:ui="{ inner: 'w-full [&>div]:w-full! ' }"
 	>
 		<template #description>
 			<div class="flex flex-col sm:flex-row gap-4 justify-between w-full items-start">
@@ -83,7 +83,7 @@ const ownedBrawlers = computed(() => {
 
 		<UPageGrid
 			v-if="player && brawlers"
-			class="!pt-7 px-[4px] sm:px-0"
+			class="pt-7! px-[4px] sm:px-0"
 			:ui="{ wrapper: 'xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-y-12' }"
 		>
 			<NuxtLink

@@ -38,9 +38,9 @@ const items = computed<(AccordionItem | null)[]>(() =>
 		title="Changes"
 		description="View the changes made to this brawler over time!"
 		orientation="vertical"
-		class="!divide-y-0 !space-y-2"
+		class="divide-y-0! space-y-2!"
 	>
-		<div class="!pt-0 flex flex-col gap-4">
+		<div class="pt-0! flex flex-col gap-4">
 			<div class="flex justify-end">
 				<USelectMenu
 					v-model="selectedType"
@@ -62,7 +62,7 @@ const items = computed<(AccordionItem | null)[]>(() =>
 					<UButton
 						color="gray"
 						variant="ghost"
-						class="px-2 !py-2.5 border-b border-t border-gray-200 dark:border-gray-800 rounded-b-none"
+						class="px-2 py-2.5! border-b border-t border-gray-200 dark:border-gray-800 rounded-b-none"
 					>
 						<template #leading>
 							<NuxtImg

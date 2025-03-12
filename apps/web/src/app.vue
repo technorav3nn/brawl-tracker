@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import "$assets/css/global.css";
-
 const indicatorState = useLoadingIndicatorState();
 
 const router = useRouter();
@@ -18,21 +16,20 @@ useHead({
 </script>
 
 <template>
-	<AppHeader />
-	<UMain>
-		<NuxtLayout>
-			<NuxtLoadingIndicator
-				v-if="indicatorState"
-				:throttle="380"
-				color="repeating-linear-gradient(to right, rgb(var(--color-primary-DEFAULT)) 0%, var(--primary-lighter) 50%, var(--primary-light) 100%)"
-			/>
-			<NuxtPage />
-		</NuxtLayout>
-	</UMain>
-	<AppFooter />
-	<UNotifications />
-	<UModals />
-	<USlideovers />
+	<UApp>
+		<AppHeader />
+		<UMain>
+			<NuxtLayout>
+				<NuxtLoadingIndicator
+					v-if="indicatorState"
+					:throttle="380"
+					color="repeating-linear-gradient(to right, rgb(var(--color-primary-DEFAULT)) 0%, var(--primary-lighter) 50%, var(--primary-light) 100%)"
+				/>
+				<NuxtPage />
+			</NuxtLayout>
+		</UMain>
+		<AppFooter />
+	</UApp>
 </template>
 
 <style global>

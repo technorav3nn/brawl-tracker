@@ -31,7 +31,7 @@ const replacements: Record<string, () => VNode> = {
 			src: "/icons/cosmetics/gems-icon.png",
 			width: 20,
 			height: 20,
-			class: "inline-block !object-scale-down",
+			class: "inline-block object-scale-down!",
 		}),
 	Bling: () =>
 		h(Image, {
@@ -78,9 +78,9 @@ function render(cost: string) {
 				:description="`View all of the skins for ${brawler.name}`"
 				orientation="vertical"
 			/>
-			<UCarousel v-slot="{ item }" arrows class="w-[105%] !h-96" :items="skins" :ui="{ container: 'gap-1' }">
+			<UCarousel v-slot="{ item }" arrows class="w-[105%] h-96!" :items="skins" :ui="{ container: 'gap-1' }">
 				<UCard
-					:ui="{ body: { base: '!p-2' }, header: { padding: 'px-4 py-3 sm:px-4', footer: 'px-4 py-3 sm:px-4' } }"
+					:ui="{ body: { base: 'p-2!' }, header: { padding: 'px-4 py-3 sm:px-4', footer: 'px-4 py-3 sm:px-4' } }"
 					class="w-64 mt-2 ml-1 mr-1 mb-0.5 h-[520px]"
 				>
 					<template #header>
@@ -91,13 +91,13 @@ function render(cost: string) {
 									:src="`/icons/cosmetics/${normalCaseToKebabCase(item.rarity ?? 'none').toLowerCase()}-skin-icon.png`"
 									width="35"
 									height="35"
-									class="!object-scale-down"
+									class="object-scale-down!"
 								/>
 							</UTooltip>
 						</div>
 					</template>
 					<div class="flex flex-col items-center justify-center">
-						<Image :src="item.url" width="180" height="180" loading="lazy" class="!object-scale-down h-80" />
+						<Image :src="item.url" width="180" height="180" loading="lazy" class="object-scale-down! h-80" />
 						<Image
 							v-if="item.cost?.includes('• S')"
 							class="self-start absolute bottom-[28%] -translate-x-2"

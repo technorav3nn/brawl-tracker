@@ -2,7 +2,7 @@ import { tv } from "tailwind-variants";
 
 export const theme = tv({
 	slots: {
-		root: "relative focus:outline-none",
+		root: "relative focus:outline-hidden",
 		viewport: "overflow-hidden",
 		container: "flex items-start",
 		item: "min-w-0 shrink-0 basis-full",

@@ -70,15 +70,15 @@ const type = computed<"active" | "upcoming">(() => items[selected.value].label.t
 
 <template>
 	<UContainer>
-		<UPageHero title="Events" :ui="{ wrapper: 'sm:!pt-16 sm:!pb-1 !pt-8 !pb-2' }">
+		<UPageHero title="Events" :ui="{ wrapper: 'sm:pt-16! sm:pb-1! pt-8! pb-2!' }">
 			<template #description>
 				<p>View the modes and maps happening now, or later!</p>
 			</template>
 		</UPageHero>
 		<UPage>
-			<UPageBody class="!mt-4">
+			<UPageBody class="mt-4!">
 				<UTabs v-model="selected" class="w-80" :items />
-				<UPageGrid class="!gap-5 mt-8">
+				<UPageGrid class="gap-5! mt-8">
 					<EventsEventCard v-for="(event, index) in events" :key="event.map.name" :event :type :images="images!" :index />
 				</UPageGrid>
 			</UPageBody>

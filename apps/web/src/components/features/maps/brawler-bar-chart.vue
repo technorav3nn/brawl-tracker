@@ -42,7 +42,7 @@ const template = (d: DataRecord) => `
 </script>
 
 <template>
-	<UDashboardCard :ui="{ body: { padding: '!pb-3 !px-4' } as any }">
+	<UDashboardCard :ui="{ body: { padding: 'pb-3! px-4!' } as any }">
 		<template #header>
 			<div>
 				<p class="text-xl text-gray-900 dark:text-white font-semibold">Brawler Data</p>

@@ -49,7 +49,7 @@ watchEffect(() => {
 </script>
 
 <template>
-	<UDashboardSlideover :ui="{ width: '!max-w-sm', body: { base: '!overflow-y-auto', padding: 'p-0' } }">
+	<UDashboardSlideover :ui="{ width: 'max-w-sm!', body: { base: 'overflow-y-auto!', padding: 'p-0' } }">
 		<template #title>
 			<div v-if="status === 'pending'" class="flex items-center gap-2">
 				<USkeleton class="w-10 h-10 rounded-full" />

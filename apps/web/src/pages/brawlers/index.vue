@@ -29,7 +29,7 @@ const rarityColorClasses = {
 		<UPageHero
 			title="Brawlers"
 			description="Every Brawler in Brawl Stars, select one to get detailed information."
-			:ui="{ wrapper: 'sm:!pt-16 sm:!pb-8 !pt-8 !pb-4' }"
+			:ui="{ wrapper: 'sm:pt-16! sm:pb-8! pt-8! pb-4!' }"
 		/>
 		<UPage>
 			<UPageBody v-if="brawlers">

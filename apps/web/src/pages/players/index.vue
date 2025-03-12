@@ -2,7 +2,8 @@
 import { verifyTag } from "@brawltracker/supercell-api-utils";
 import type { FetchError } from "ofetch";
 import { z, type Schema } from "zod";
-import type { Button, Form } from "#ui/types";
+import type { ButtonProps } from "#ui/components/Button.vue";
+import type { Form } from "#ui/types";
 
 const state = reactive({
 	player: undefined,
@@ -64,7 +65,7 @@ async function onSubmit() {
 	return await navigateTo(`/players/${resolvedTag.value.replace("#", "")}`);
 }
 
-const links: (Button & { click?(): any })[] = [
+const links: (ButtonProps & { click?(): any })[] = [
 	{
 		label: "Search For Player",
 		icon: "i-heroicons-magnifying-glass",
@@ -80,7 +81,7 @@ const links: (Button & { click?(): any })[] = [
 		label: "View Top Players",
 		to: "/leaderboards/players",
 		icon: "i-heroicons-chart-bar",
-		color: "gray",
+		color: "neutral",
 	},
 ];
 </script>
@@ -97,7 +98,7 @@ const links: (Button & { click?(): any })[] = [
 			>
 			</UPageHero>
 
-			<UForm ref="form" :validate="validate as any" :state :validateOn="['submit']" @submit="onSubmit">
+			<UForm ref="form" :validate="validate as any" :state @submit="void onSubmit()">
 				<div class="flex items-center justify-center">
 					<USelectMenu
 						class="w-48"
@@ -107,8 +108,8 @@ const links: (Button & { click?(): any })[] = [
 					/>
 				</div>
 
-				<UButtonGroup :ui="{ rounded: 'rounded-lg' }" class="mt-4 flex justify-center items-start" size="xl">
-					<UFormGroup class="sm:w-96 w-11/12" name="player">
+				<UButtonGroup class="mt-4 flex justify-center items-start" size="xl">
+					<UFormField class="sm:w-96 w-11/12" name="player">
 						<UInput
 							id="search"
 							v-model="state.player"
@@ -116,8 +117,15 @@ const links: (Button & { click?(): any })[] = [
 							label="Search Player"
 							:placeholder="`Enter ${state.type === 'tag' ? 'Player Tag (e.g. #P800LV)' : 'Supercell ID Handle (e.g. BrawlMaster)'}`"
 						/>
-					</UFormGroup>
-					<UButton :loading="loading" class="h-full" type="submit" size="xl" color="gray" icon="i-heroicons-magnifying-glass" />
+					</UFormField>
+					<UButton
+						:loading="loading"
+						class="h-full"
+						type="submit"
+						size="xl"
+						color="neutral"
+						icon="i-heroicons-magnifying-glass"
+					/>
 				</UButtonGroup>
 			</UForm>
 		</UContainer>

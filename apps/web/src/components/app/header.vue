@@ -80,7 +80,7 @@ const items = computed(() => [
 			label: "placeholder",
 			avatar: {
 				alt: "placeholder avatar",
-				class: "dark:!bg-gray-600",
+				class: "dark:bg-gray-600!",
 			},
 		},
 	],
@@ -120,7 +120,7 @@ const items = computed(() => [
 	>
 		<template #logo>
 			<div class="flex items-center">
-				<UIcon name="i-heroicons-star-solid" class="text-primary size-6" />
+				<UIcon name="i-heroicons-star-solid" class="text-(--ui-primary) size-6" />
 				<span class="ml-2 text-xl font-bold">BrawlTrack</span>
 			</div>
 		</template>
