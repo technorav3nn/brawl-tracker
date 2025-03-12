@@ -5,8 +5,8 @@ import { createResolver } from "@nuxt/kit";
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
-	extends: ["@nuxt/ui-pro"],
 	modules: [
+		"@nuxt/ui-pro",
 		"@nuxt/devtools",
 		"@nuxt/fonts",
 		"@nuxt/image",
