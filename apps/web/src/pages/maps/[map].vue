@@ -45,73 +45,78 @@ const sortedStats = computed(() => {
 
 <template>
 	<UContainer>
-		<UPageHero
+		<UPageHeader
 			:title="`${map!.name}`"
 			:description="`View the best brawlers and their stats for ${map!.name}.`"
-			:ui="{ wrapper: 'sm:pt-16! sm:pb-8! pt-8! pb-4!' }"
+			:ui="{ wrapper: 'pt-10', root: 'border-0 pt-8 pb-6' }"
 		>
 			<template #description>
 				<p>View the best brawlers and their stats for {{ map!.name }}.</p>
 				<UButton class="mt-4" icon="i-heroicons-arrow-top-right-on-square-20-solid">View Map Info</UButton>
 			</template>
-		</UPageHero>
+		</UPageHeader>
 		<USeparator />
 		<UPage>
-			<UPageBody class="mt-8!">
-				<div class="flex justify-center items-center"></div>
+			<UPageBody class="mt-8 space-y-0">
+				<div class="flex items-center justify-center"></div>
 				<ClientOnly>
 					<MapsBrawlerBarChart class="mt-8" :data="chartData as any" />
 				</ClientOnly>
-				<div class="flex flex-col mt-8 gap-4">
-					<div class="flex justify-end items-end w-full gap-2.5">
-						<UInput v-model="search" placeholder="Search Brawlers" />
+				<div class="mt-8 flex flex-col gap-4">
+					<div class="flex w-full items-end justify-end gap-2.5">
+						<UInput v-model="search" placeholder="Search Brawlers" icon="i-heroicons-magnifying-glass-20-solid" />
 						<UButtonGroup>
-							<USelectMenu v-model="selectedSort" class="min-w-28" :options="['Win Rate', 'Use Rate']" />
+							<USelect v-model="selectedSort" class="min-w-28" :items="['Win Rate', 'Use Rate']" />
 							<UButton
 								:icon="direction === 'asc' ? 'i-uil-sort-amount-up' : 'i-uil-sort-amount-down'"
 								square
 								size="md"
-								color="gray"
+								color="neutral"
+								variant="subtle"
 								@click="direction = direction === 'asc' ? 'desc' : 'asc'"
 							/>
 						</UButtonGroup>
 					</div>
 					<div
-						class="grid grid-cols-3 min-[400px]:grid-cols-3 min-[500px]:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-9 gap-4"
+						class="grid grid-cols-3 gap-4 min-[400px]:grid-cols-3 min-[500px]:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-9"
 					>
-						<UPageCard
+						<NuxtLink
 							v-for="{ brawler: brawlerId, useRate, winRate } in sortedStats"
 							:key="brawlerId"
-							:ui="{
-								header: { padding: 'p-0!' },
-								body: { padding: 'p-1.5!' },
-							}"
 							:to="`/brawlers/${brawlerId}`"
 						>
-							<template #header>
-								<NuxtImg
-									:src="brawlers?.find((b) => b.id === Number(brawlerId))?.imageUrl2"
-									:alt="brawlerId.toString()"
-									class="w-full h-full rounded-lg rounded-b-none"
-									width="80"
-									height="80"
-									loading="lazy"
-								/>
-							</template>
-							<div class="flex flex-col items-start justify-center">
-								<p class="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">
-									{{ brawlers?.find((b) => b.id === Number(brawlerId))?.name }}
-								</p>
-								<div class="flex justify-between w-full">
-									<p class="text-[0.820rem] font-semibold truncate text-gray-500 dark:text-gray-300">Use Rate</p>
-									<p class="text-[0.820rem] text-gray-500 dark:text-gray-300">{{ useRate }}%</p>
+							<UCard
+								:ui="{
+									header: 'p-0!',
+									body: 'p-1.5!',
+								}"
+								class="cursor-pointer hover:bg-neutral-100/50 hover:ring-2 hover:ring-primary-500 dark:hover:bg-neutral-800/50 dark:hover:ring-primary-400"
+							>
+								<template #header>
+									<NuxtImg
+										:src="brawlers?.find((b) => b.id === Number(brawlerId))?.imageUrl2"
+										:alt="brawlerId.toString()"
+										class="h-full w-full rounded-lg rounded-b-none"
+										width="80"
+										height="80"
+										loading="lazy"
+									/>
+								</template>
+								<div class="flex flex-col items-start justify-center">
+									<p class="overflow-hidden text-sm font-semibold text-ellipsis whitespace-nowrap">
+										{{ brawlers?.find((b) => b.id === Number(brawlerId))?.name }}
+									</p>
+									<div class="flex w-full justify-between">
+										<p class="truncate text-[0.820rem] font-semibold text-neutral-500 dark:text-neutral-300">Use Rate</p>
+										<p class="text-[0.820rem] text-neutral-500 dark:text-neutral-300">{{ useRate }}%</p>
+									</div>
+									<div class="flex w-full justify-between">
+										<p class="truncate text-[0.820rem] font-semibold text-neutral-500 dark:text-neutral-300">Win Rate</p>
+										<p class="text-[0.820rem] text-neutral-500 dark:text-neutral-300">{{ winRate }}%</p>
+									</div>
 								</div>
-								<div class="flex justify-between w-full">
-									<p class="text-[0.820rem] font-semibold truncate text-gray-500 dark:text-gray-300">Win Rate</p>
-									<p class="text-[0.820rem] text-gray-500 dark:text-gray-300">{{ winRate }}%</p>
-								</div>
-							</div>
-						</UPageCard>
+							</UCard>
+						</NuxtLink>
 					</div>
 				</div>
 			</UPageBody>

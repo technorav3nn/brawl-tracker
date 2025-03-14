@@ -4,16 +4,13 @@ import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
 const props = defineProps<{ brawler: BrawlApiBrawler; showRarity?: boolean }>();
 
 const rarityToColor = /* ui */ {
-	Mythic:
-		"bg-red-50 dark:bg-red-400 dark:bg-opacity-10 text-red-500 dark:text-red-400 ring-1 ring-inset ring-red-500 dark:ring-red-400 ring-opacity-25 dark:ring-opacity-25",
+	Mythic: "ring-1 ring-inset dark:ring-red-400/40! ring-red-400/60 text-red-400! bg-red-400/10",
 	Legendary:
-		"bg-yellow-50 dark:bg-yellow-400 dark:bg-opacity-10 text-yellow-600/90 dark:text-yellow-400 ring-1 ring-inset ring-yellow-500 dark:ring-yellow-400 ring-opacity-25 dark:ring-opacity-25",
-	Epic: "bg-purple-50 dark:bg-purple-400 dark:bg-opacity-10 text-purple-500 dark:text-purple-400 ring-1 ring-inset ring-purple-500 dark:ring-purple-400 ring-opacity-25 dark:ring-opacity-25",
-	Rare: "bg-green-50 dark:bg-green-400 dark:bg-opacity-10 text-green-500 dark:text-green-400 ring-1 ring-inset ring-green-500 dark:ring-green-400 ring-opacity-25 dark:ring-opacity-25",
-	"Super Rare":
-		"bg-blue-50 dark:bg-blue-400 dark:bg-opacity-10 text-blue-500 dark:text-blue-400 ring-1 ring-inset ring-blue-500 dark:ring-blue-400 ring-opacity-25 dark:ring-opacity-25",
-	Common:
-		"bg-gray-50 dark:bg-gray-400 dark:bg-opacity-10 text-gray-500 dark:text-gray-400 ring-1 ring-inset ring-gray-500 dark:ring-gray-400 ring-opacity-25 dark:ring-opacity-25",
+		"ring-1 ring-inset dark:ring-yellow-400/40 ring-yellow-400/60 dark:text-yellow-400 text-yellow-600/85 bg-yellow-400/10",
+	Epic: "ring-1 ring-inset dark:ring-purple-400/40 ring-purple-400/60 text-purple-400 bg-purple-400/10",
+	Rare: "ring-1 ring-inset dark:ring-green-400/40 ring-green-400/60 dark:text-green-400 text-green-600/80 bg-green-400/10",
+	"Super Rare": "ring-1 ring-inset dark:ring-blue-400/40 ring-blue-400/60 text-blue-400 bg-blue-400/10",
+	Common: "ring-1 ring-inset dark:ring-neutral-400/40 ring-neutral-400/60 text-neutral-400 bg-neutral-400/10",
 };
 
 const rarity = computed(() => props.brawler.rarity.name);
@@ -25,13 +22,13 @@ const color = computed(() => {
 
 <template>
 	<UPageCard
-		class="overflow-hidden w-full"
+		class="w-full overflow-hidden"
 		:ui="{
-			header: { padding: 'p-0!' },
-			body: { padding: 'p-1.5!' },
+			container: 'p-0!',
+			header: 'mb-0',
 		}"
 		:to="`/brawlers/${props.brawler.id}`"
-		prefetch
+		variant="outline"
 	>
 		<template #header>
 			<NuxtImg
@@ -48,12 +45,12 @@ const color = computed(() => {
 		</template>
 
 		<template #title>
-			<div class="flex flex-col justify-start">
-				<p class="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">
+			<div class="flex flex-col justify-start px-2 py-2">
+				<p class="overflow-hidden text-sm font-semibold text-ellipsis whitespace-nowrap">
 					{{ props.brawler.name }}
 				</p>
-				<p class="text-xs text-gray-500 dark:text-gray-400 font-medium">{{ props.brawler.class.name }}</p>
-				<UBadge v-if="showRarity" :ui="{ rounded-sm: 'rounded-full' }" class="w-max h-5 text-[0.70rem] mt-1" :class="color">
+				<p class="text-xs font-medium text-neutral-500 dark:text-neutral-400">{{ props.brawler.class.name }}</p>
+				<UBadge :class="color" class="mt-1 h-5 w-max rounded-full text-[0.70rem]">
 					{{ props.brawler.rarity.name }}
 				</UBadge>
 			</div>

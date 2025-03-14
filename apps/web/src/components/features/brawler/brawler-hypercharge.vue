@@ -29,7 +29,7 @@ const hyperchargeIconUrl = computed(() => `${CDN_URL_V2}/hypercharges/${props.br
 </script>
 
 <template>
-	<div v-if="hypercharge" class="flex flex-col rounded-lg border border-border shadow-sm">
+	<div v-if="hypercharge" class="flex flex-col rounded-lg border border-(--ui-border) shadow-sm">
 		<div class="flex flex-col p-4 py-2.5">
 			<div class="flex items-center gap-2">
 				<Image
@@ -38,45 +38,45 @@ const hyperchargeIconUrl = computed(() => `${CDN_URL_V2}/hypercharges/${props.br
 					height="40"
 					alt="Attack icon"
 					fit="inside"
-					class="self-center bg-contain object-cover -ml-1"
+					class="-ml-1 self-center bg-contain object-cover"
 					format="webp"
 				/>
-				<h1 class="text-2xl font-bold tracking-tight -ml-1">HYPERCHARGE: {{ hypercharge.name }}</h1>
+				<h1 class="-ml-1 text-2xl font-bold tracking-tight">HYPERCHARGE: {{ hypercharge.name }}</h1>
 			</div>
 		</div>
 		<div class="h-full">
-			<div class="flex flex-col w-full h-full">
+			<div class="flex h-full w-full flex-col">
 				<div class="flex flex-row">
 					<div
-						class="p-2.5 border border-border border-l-0 border-r-0 w-full rounded-sm rounded-b-none rounded-t-none flex flex-row gap-2.5"
+						class="flex w-full flex-row gap-2.5 rounded-sm rounded-t-none rounded-b-none border border-r-0 border-l-0 border-(--ui-border) p-2.5"
 					>
 						<Image src="/icons/super-icon-2.png" width="65" height="55" />
 						<div class="flex flex-col">
-							<p class="text-md font-bold dark:text-yellow-400 text-yellow-600/80">SUPER</p>
+							<p class="text-md font-bold text-yellow-600/80 dark:text-yellow-400">SUPER</p>
 							<p class="text-sm font-medium">{{ hypercharge.description }}</p>
 						</div>
 					</div>
 				</div>
-				<div class="flex flex-row *:flex-1 flex-wrap w-full h-full my-2.5">
+				<div class="my-2.5 flex h-full w-full flex-row flex-wrap *:flex-1">
 					<div
-						class="p-1.5 rounded-sm border border-border border-t-0 border-b-0 rounded-br-none border-l-0 rounded-t-none flex flex-col items-center justify-center gap-0.5"
+						class="flex flex-col items-center justify-center gap-0.5 rounded-sm rounded-t-none rounded-br-none border border-t-0 border-b-0 border-l-0 border-(--ui-border) p-1.5"
 					>
 						<NuxtImg src="/icons/speed-icon.png" width="50" height="50" fit="inside" />
-						<p class="text-lg font-bold dark:text-green-400 text-green-600/80">SPEED</p>
+						<p class="text-lg font-bold text-green-600/80 dark:text-green-400">SPEED</p>
 						<p class="text-xl font-bold">{{ stats![0].value }}</p>
 					</div>
 					<div
-						class="p-1.5 rounded-sm border border-border border-l-0 border-t-0 border-b-0 rounded-b-none rounded-t-none flex flex-col items-center justify-center gap-0.5"
+						class="flex flex-col items-center justify-center gap-0.5 rounded-sm rounded-t-none rounded-b-none border border-t-0 border-b-0 border-l-0 border-(--ui-border) p-1.5"
 					>
 						<NuxtImg src="/icons/damage-icon.png" width="50" height="50" fit="inside" />
-						<p class="text-lg font-bold dark:text-red-400 text-red-600/80">DAMAGE</p>
+						<p class="text-lg font-bold text-red-600/80 dark:text-red-400">DAMAGE</p>
 						<p class="text-xl font-bold">{{ stats![1].value }}</p>
 					</div>
 					<div
-						class="p-1.5 rounded-sm border border-border border-l-0 border-t-0 border-b-0 border-r-0 rounded-bl-none rounded-t-none flex flex-col items-center justify-center gap-0.5"
+						class="flex flex-col items-center justify-center gap-0.5 rounded-sm rounded-t-none rounded-bl-none border border-t-0 border-r-0 border-b-0 border-l-0 border-(--ui-border) p-1.5"
 					>
 						<NuxtImg src="/icons/shield-icon.png" width="50" height="50" fit="inside" />
-						<p class="text-lg font-bold dark:text-blue-400 text-blue-600/80">SHIELD</p>
+						<p class="text-lg font-bold text-blue-600/80 dark:text-blue-400">SHIELD</p>
 						<p class="text-xl font-bold">{{ stats![2].value }}</p>
 					</div>
 				</div>

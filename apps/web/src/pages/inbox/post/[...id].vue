@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /* eslint-disable vue/no-v-html */
 import type { TocLink } from "@nuxt/content";
-import type { PageLink } from "@nuxt/ui-pro/types";
+import type { PageLink } from "@nuxt/ui-pro";
 import { load } from "cheerio";
 import { capitalizeLetters, kebabCaseToNormalCase } from "$lib/utils/common";
 
@@ -36,7 +36,7 @@ function cleanTocTag(heading: string) {
 }
 
 const tocs = computed<TocLink[]>(() => {
-	const headings = $("h3");
+	const headings = $("h3, h2");
 	if (!headings) return [];
 
 	return headings
@@ -44,21 +44,22 @@ const tocs = computed<TocLink[]>(() => {
 			const title = cleanTocTag($(el).text());
 			const tagId = cleanTocTag($(el).attr("id") ?? title.toLowerCase().replaceAll(/\s/g, "-"));
 
-			$(el)
-				.parent()
-				.attr("id", tagId)
-				.each((_, el) => void (el.tagName = "h3"));
+			console.log($(el).parent().html());
+
+			$(el).parent().attr("id", tagId);
+
+			console.log(el);
 
 			return { depth: 0, id: tagId, text: title } satisfies TocLink;
 		})
 		.get();
 });
 
-const links: PageLink[] = [
+const links: (PageLink & { onSelect?(): any })[] = [
 	{
 		label: "Share",
 		icon: "i-heroicons-share",
-		click: async () => {
+		onSelect: async () => {
 			// eslint-disable-next-line n/prefer-global/url
 			const url = new URL(window.location.href);
 			url.hash = "";
@@ -87,6 +88,35 @@ const links: PageLink[] = [
 		target: "_blank",
 	},
 ];
+
+const html = computed(() => {
+	const images = $("img");
+	images.each((_, el) => {
+		// make them smaller if they are too big
+		const $el = $(el);
+		const width = Number($el.attr("width") ?? "0");
+		const height = Number($el.attr("height") ?? "0");
+
+		$el.attr("width", (width / 2).toString());
+		$el.attr("height", (height / 2).toString());
+
+		// make them lazy load
+		$el.attr("loading", "lazy");
+	});
+
+	const headings = $("h3, h2");
+	if (!headings) return $.html();
+
+	headings.each((_, el) => {
+		const title = $(el).text();
+		const tagId = title.toLowerCase().replaceAll(/\s/g, "-");
+		$(el).attr("id", tagId);
+	});
+
+	$("[data-test-id='tagline']").remove();
+
+	return $.html();
+});
 </script>
 
 <template>
@@ -97,7 +127,7 @@ const links: PageLink[] = [
 				<template #headline>
 					<UBreadcrumb
 						class="w-full"
-						:links="[
+						:items="[
 							{
 								label: 'Inbox News',
 								icon: 'i-heroicons-newspaper',
@@ -119,13 +149,13 @@ const links: PageLink[] = [
 			</UPageHeader>
 
 			<UPage>
-				<UPageBody prose>
-					<article v-html="$.html()" />
+				<UPageBody>
+					<article class="prose max-w-full dark:prose-invert" v-html="html" />
 				</UPageBody>
 				<template #right>
 					<UContentToc :links="tocs">
 						<template #bottom>
-							<div class="hidden lg:block space-y-6">
+							<div class="hidden space-y-6 lg:block">
 								<USeparator v-if="tocs.length !== 0" />
 								<UPageLinks title="More" :links="links" />
 							</div>

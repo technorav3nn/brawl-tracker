@@ -33,18 +33,18 @@ const links = [
 
 <template>
 	<UFooterColumns
-		:links="links"
+		:columns="links"
 		:ui="{
 			left: 'max-w-xl col-span-2',
 			center: 'xl:grid-cols-2 xl:col-span-1',
 		}"
 	>
 		<template #left>
-			<div class="flex h-full gap-2.5 flex-col">
+			<div class="flex h-full flex-col gap-2.5">
 				<div>
-					<div class="flex gap-2 flex-row items-center">
-						<UIcon name="i-heroicons-star-solid" class="text-(--ui-primary) size-8" />
-						<p class="font-bold text-xl">BrawlTrack</p>
+					<div class="flex flex-row items-center gap-2">
+						<UIcon name="i-heroicons-star-solid" class="size-8 text-(--ui-primary)" />
+						<p class="text-xl font-bold">BrawlTrack</p>
 					</div>
 				</div>
 				<p class="text-xs text-gray-400">

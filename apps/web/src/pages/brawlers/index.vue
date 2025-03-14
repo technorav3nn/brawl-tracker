@@ -26,51 +26,36 @@ const rarityColorClasses = {
 
 <template>
 	<UContainer>
-		<UPageHero
+		<UPageHeader
+			:ui="{ wrapper: 'pt-10' }"
 			title="Brawlers"
 			description="Every Brawler in Brawl Stars, select one to get detailed information."
-			:ui="{ wrapper: 'sm:pt-16! sm:pb-8! pt-8! pb-4!' }"
 		/>
 		<UPage>
-			<UPageBody v-if="brawlers">
+			<UPageBody v-if="brawlers" class="space-y-0">
 				<div class="flex justify-between">
 					<UInput
 						v-model="search"
 						icon="i-heroicons-magnifying-glass-20-solid"
-						size="sm"
-						color="white"
+						size="md"
 						:trailing="false"
 						placeholder="Search..."
 					/>
-					<USelectMenu
+					<USelect
 						v-model="brawlerList.groupingMode"
-						:options="['None', 'Class', 'Rarity']"
+						:items="['None', 'Class', 'Rarity']"
 						icon="i-heroicons-adjustments-horizontal"
 						placeholder="Group by"
 						class="w-36"
 					>
-					</USelectMenu>
+					</USelect>
 				</div>
-				<UPageGrid
-					v-if="(groupingMode === 'None' || groupingMode === '') && Array.isArray(groupedBrawlers)"
-					:class="gridClasses"
-				>
-					<BrawlerListCard
-						v-for="brawler in groupedBrawlers"
-						:key="brawler.id"
-						:brawler="brawler"
-						showRarity
-					/>
+				<UPageGrid v-if="(groupingMode === 'None' || groupingMode === '') && Array.isArray(groupedBrawlers)" :class="gridClasses">
+					<BrawlerListCard v-for="brawler in groupedBrawlers" :key="brawler.id" :brawler="brawler" showRarity />
 				</UPageGrid>
-				<div
-					v-else-if="groupingMode !== 'None' && !Array.isArray(groupedBrawlers)"
-					class="flex flex-col gap-3 mt-2"
-				>
+				<div v-else-if="groupingMode !== 'None' && !Array.isArray(groupedBrawlers)" class="mt-2 flex flex-col gap-3">
 					<div v-for="(group, value) in groupedBrawlers" :key="value">
-						<h2
-							:class="rarityColorClasses[value as keyof typeof rarityColorClasses]"
-							class="text-2xl font-medium"
-						>
+						<h2 :class="rarityColorClasses[value as keyof typeof rarityColorClasses]" class="text-2xl font-medium">
 							{{ value }}
 							<span class="text-sm font-medium text-gray-400 dark:text-gray-500">({{ group.length }})</span>
 						</h2>

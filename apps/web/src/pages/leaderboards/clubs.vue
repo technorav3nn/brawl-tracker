@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { type RankingClub } from "@brawltracker/brawl-stars-api";
 import { Image } from "@unpic/vue";
-import { type BreadcrumbLink } from "#ui/types";
+import { NuxtLink } from "#components";
+import type { BreadcrumbItem, TableColumn } from "#ui/types";
+import { createSortingButton } from "$lib/utils/table";
 
 definePageMeta({
 	middleware: "loading-indicator-disabled",
@@ -29,15 +31,61 @@ const { data: leaderboards, status } = await useLazyFetch<RankingClub[]>("/api/l
 	transform: (d) => (d as any).items as RankingClub[],
 });
 
-const breadcrumb: BreadcrumbLink[] = [
+const breadcrumb: BreadcrumbItem[] = [
 	{ label: "Leaderboards", to: "/leaderboards" },
 	{ label: "Clubs", to: "/leaderboards/clubs" },
 ];
 
-const columns = [
-	{ label: "Rank", key: "rank", sortable: true },
-	{ label: "Name", key: "name", sortable: true },
-	{ label: "Trophies", key: "trophies", sortable: true },
+const formatter = new Intl.NumberFormat("en-US");
+
+const columns: TableColumn<RankingClub>[] = [
+	{
+		header: ({ column }) => {
+			return createSortingButton(column, "Rank");
+		},
+		accessorKey: "rank",
+		enableSorting: true,
+		cell: ({ row }) => {
+			return h("p", { class: "font-semibold text-gray-900 dark:text-white" }, `#${row.original.rank}`);
+		},
+	},
+	{
+		header: "Name",
+		accessorKey: "name",
+		enableSorting: true,
+		cell: ({ row }) => {
+			return h("div", { class: "flex flex-row items-center gap-4" }, [
+				h(Image, {
+					src: `https://cdn.brawlify.com/club-badges/regular/${row.original.badgeId}.png`,
+					alt: row.original.name,
+					loading: "lazy",
+					class: "rounded-xs",
+					provider: "none",
+					width: "30",
+					height: "30",
+				}),
+				h(
+					NuxtLink,
+					{
+						to: `/clubs/${encodeURIComponent(row.original.tag)}`,
+						class:
+							"text-base font-semibold text-gray-900 transition-colors duration-[90ms] hover:text-(--ui-primary)! dark:text-white",
+					},
+					row.original.name
+				),
+			]);
+		},
+	},
+	{
+		header: ({ column }) => {
+			return createSortingButton(column, "Rank");
+		},
+		accessorKey: "trophies",
+		enableSorting: true,
+		cell: ({ row }) => {
+			return h("p", { class: "font-semibold text-yellow-500 dark:text-yellow-500" }, formatter.format(row.original.trophies));
+		},
+	},
 ];
 
 const search = ref("");
@@ -45,8 +93,6 @@ const filteredRows = computed(() => {
 	if (!leaderboards.value) return [];
 	return leaderboards.value.filter((row) => row.name.toLowerCase().includes(search.value.toLowerCase()));
 });
-
-const numberFormatter = new Intl.NumberFormat("en-US");
 </script>
 
 <template>
@@ -56,13 +102,13 @@ const numberFormatter = new Intl.NumberFormat("en-US");
 				<UBreadcrumb :links="breadcrumb" />
 			</template>
 		</UPageHeader>
-		<div class="flex mb-4 justify-start gap-2">
+		<div class="mb-4 flex justify-start gap-2">
 			<UInput v-model="search" placeholder="Search for a player..." icon="i-heroicons-magnifying-glass-20-solid" />
 			<LeaderboardsLocationSelectMenu />
 		</div>
 		<UTable
 			:loading="status === 'pending'"
-			:rows="status === 'pending' ? [] : filteredRows"
+			:data="status === 'pending' ? [] : filteredRows"
 			:columns="columns"
 			:loading-state="{
 				icon: 'i-heroicons-arrow-path-20-solid',
@@ -72,34 +118,8 @@ const numberFormatter = new Intl.NumberFormat("en-US");
 				color: 'primary',
 				animation: 'carousel',
 			}"
-			:ui="{ divide: 'divide-gray-200 dark:divide-gray-800', td: { padding: 'py-2 px-4' } }"
-			class="w-full border border-gray-200 dark:border-gray-800 rounded-sm h-max mb-12"
-		>
-			<template #rank-data="{ row }">
-				<p class="text-gray-900 dark:text-white font-semibold">#{{ row.rank }}</p>
-			</template>
-			<template #name-data="{ row }">
-				<div class="flex flex-row gap-4 items-center">
-					<Image
-						:src="`https://cdn.brawlify.com/club-badges/regular/${row.badgeId}.png`"
-						:alt="row.name"
-						loading="lazy"
-						class="rounded-xs"
-						provider="none"
-						width="30"
-						height="30"
-					/>
-					<NuxtLink
-						:to="`/clubs/${encodeURIComponent(row.tag)}`"
-						class="hover:text-(--ui-primary)! transition-colors duration-[90ms] text-base text-gray-900 dark:text-white font-semibold"
-					>
-						{{ row.name }}
-					</NuxtLink>
-				</div>
-			</template>
-			<template #trophies-data="{ row }">
-				<p class="text-yellow-500 dark:text-yellow-500 font-semibold">{{ numberFormatter.format(row.trophies) }}</p>
-			</template>
-		</UTable>
+			:ui="{ td: 'py-2 px-4' }"
+			class="mb-12 h-max w-full rounded-sm border border-(--ui-border-accented)"
+		/>
 	</UContainer>
 </template>

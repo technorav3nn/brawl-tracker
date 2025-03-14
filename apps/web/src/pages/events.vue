@@ -10,6 +10,10 @@ const items = [
 		label: "Upcoming",
 		icon: "i-heroicons-clock-20-solid",
 	},
+	{
+		label: "Ranked",
+		icon: "i-heroicons-fire-20-solid",
+	},
 ];
 
 const router = useRouter();
@@ -19,18 +23,18 @@ const selected = computed({
 	get() {
 		const index = items.findIndex((item) => item.label === route.query.tab);
 		if (index === -1) {
-			return 0;
+			return "0";
 		}
 
-		return index;
+		return index.toString();
 	},
 	set(value) {
 		// Hash is specified here to prevent the page from scrolling to the top
-		router.replace({ query: { tab: items[value].label } });
+		router.replace({ query: { tab: items[Number(value)].label } });
 	},
 });
 
-const item = computed(() => items[selected.value].label.toLowerCase());
+const item = computed(() => items[Number(selected.value)].label.toLowerCase());
 
 const { data: events } = await useFetch(() => "/api/events", {
 	query: {
@@ -55,7 +59,7 @@ const { data: images } = await useFetch("/api/brawlers", {
 });
 
 if (!selected.value) {
-	selected.value = 0;
+	selected.value = "0";
 }
 
 if (!images) {
@@ -65,20 +69,20 @@ if (!images) {
 	});
 }
 
-const type = computed<"active" | "upcoming">(() => items[selected.value].label.toLowerCase() as "active" | "upcoming");
+const type = computed<"active" | "upcoming">(() => items[Number(selected.value)].label.toLowerCase() as "active" | "upcoming");
 </script>
 
 <template>
 	<UContainer>
-		<UPageHero title="Events" :ui="{ wrapper: 'sm:pt-16! sm:pb-1! pt-8! pb-2!' }">
-			<template #description>
-				<p>View the modes and maps happening now, or later!</p>
-			</template>
-		</UPageHero>
+		<UPageHeader
+			:ui="{ wrapper: 'pt-10', root: 'border-0 pt-8 pb-4' }"
+			title="Brawlers"
+			description="View the modes and maps happening now, or later!"
+		/>
 		<UPage>
 			<UPageBody class="mt-4!">
-				<UTabs v-model="selected" class="w-80" :items />
-				<UPageGrid class="gap-5! mt-8">
+				<UTabs v-model="selected" variant="link" :content="false" class="w-full" :items />
+				<UPageGrid class="mt-8 gap-5!">
 					<EventsEventCard v-for="(event, index) in events" :key="event.map.name" :event :type :images="images!" :index />
 				</UPageGrid>
 			</UPageBody>

@@ -2,7 +2,7 @@
 import { lowercaseFirstLetter } from "$lib/utils/common";
 import { createGetCachedData } from "$lib/utils/nuxt";
 
-const slideover = useSlideover();
+const slideover = useOverlay();
 const nuxtApp = useNuxtApp();
 const { data: unfilteredFriends, status } = useLazyFetch("/api/saved-players", {
 	getCachedData: createGetCachedData(nuxtApp),
@@ -34,43 +34,47 @@ const {
 	itemHeight: 80,
 	itemWidth: 200,
 });
+
+const closeSlideover = () => slideover.close(slideover.overlays[0].id);
 </script>
 
 <template>
-	<div class="w-full py-5 px-4 border-b border-gray-200 dark:border-gray-800">
+	<div class="w-full border-b border-neutral-200 px-4 py-5 dark:border-neutral-800">
 		<h1 class="text-2xl font-semibold">Saved Players & Friends</h1>
-		<p class="text-gray-500 dark:text-gray-400 text-sm">
+		<p class="text-sm text-neutral-500 dark:text-neutral-400">
 			View your saved players and imported Supercell ID Friends, and manage your saved players
 		</p>
 	</div>
-	<div v-if="status === 'pending'" class="px-4 mt-4 flex flex-col gap-2 items-center justify-center">
-		<UiLoadingIndicator class="w-12 h-12" />
-		<span class="text-gray-500 dark:text-gray-400 text-lg">Loading...</span>
-	</div>
-	<div v-if="friends?.length === 0 && search.trim() !== ''" class="px-4 mt-4">
-		<p class="text-gray-500 dark:text-gray-400 text-sm">You have no friends or saved tags</p>
-	</div>
 
-	<div class="px-4 flex flex-col">
-		<div class="flex flex-row gap-1 mb-2">
+	<div class="flex flex-col px-4">
+		<div class="mb-2 flex flex-row gap-1">
 			<UInput
 				v-model="rawSearch"
+				:disabled="status === 'pending'"
 				class="mt-4 w-[56%]"
 				placeholder="Search friends"
 				icon="i-heroicons-magnifying-glass-20-solid"
 			/>
 			<USelect
+				:disabled="status === 'pending'"
 				:modelValue="humanSort"
 				class="mt-4 w-[44%]"
-				:options="['None', 'Ascending', 'Descending', 'Status']"
+				:items="['None', 'Ascending', 'Descending', 'Status']"
 				icon="i-heroicons-adjustments-horizontal"
-				@change="
+				@update:model-value="
 					sort = lowercaseFirstLetter($event);
-					humanSort = $event as string;
+					humanSort = $event;
 				"
 			/>
 		</div>
-		<div v-bind="containerProps" class="h-200px overflow-auto">
+		<div v-if="status === 'pending'" class="mt-4 flex flex-col items-center justify-center gap-2 px-4">
+			<UiLoadingIndicator class="h-12 w-12" />
+			<span class="text-lg text-neutral-500 dark:text-neutral-400">Loading...</span>
+		</div>
+		<div v-else-if="friends?.length === 0 && search.trim() !== ''" class="mt-4 px-4">
+			<p class="text-sm text-neutral-500 dark:text-neutral-400">You have no friends or saved tags</p>
+		</div>
+		<div v-else v-bind="containerProps" class="h-200px overflow-auto">
 			<div v-bind="wrapperProps">
 				<NuxtLink
 					v-for="{ data: friend } in friends"
@@ -80,7 +84,7 @@ const {
 						height: '80px',
 					}"
 					:to="`/players/${encodeURIComponent(friend.tag!)}`"
-					@click="if (slideover?.close) slideover.close();"
+					@click="closeSlideover"
 				>
 					<LazyAppProfileSlideoverFriend :key="friend.name" :friend="friend" />
 				</NuxtLink>

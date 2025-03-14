@@ -12,18 +12,18 @@ const tips = computed(() => brawlerCdnData.value!.tips ?? []);
 </script>
 
 <template>
-	<UDashboardSection title="Tips" description="View tips on how to play this brawler!" orientation="vertical" class="divide-y-0!">
+	<UiPageSection title="Tips" description="View tips on how to play this brawler!" orientation="vertical" class="divide-y-0!">
 		<div class="w-full pt-0!">
-			<div v-if="tips.length === 0" class="flex justify-center items-center h-32">
+			<div v-if="tips.length === 0" class="flex h-32 items-center justify-center">
 				<p class="text-gray-500 dark:text-gray-400">No tips available</p>
 			</div>
-			<article class="prose prose-primary dark:prose-invert max-w-none">
-				<ul>
-					<li v-for="tip in tips" :key="tip">
+			<article class="max-w-none">
+				<ProseUl>
+					<ProseLi v-for="tip in tips" :key="tip">
 						{{ tip }}
-					</li>
-				</ul>
+					</ProseLi>
+				</ProseUl>
 			</article>
 		</div>
-	</UDashboardSection>
+	</UiPageSection>
 </template>

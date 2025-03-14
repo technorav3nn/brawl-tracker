@@ -49,7 +49,8 @@ function getPropsForPost(post: Article, index: number): UBlogPostProps {
 
 <template>
 	<UContainer v-if="news">
-		<UPageHero
+		<UPageHeader
+			:ui="{ wrapper: 'pt-10', root: 'border-0 pt-8 pb-4' }"
 			title="Brawl News"
 			description="The latest relevant news from your Inbox in Brawl Stars, right here!"
 			:links="[
@@ -59,37 +60,46 @@ function getPropsForPost(post: Article, index: number): UBlogPostProps {
 					to: 'https://github.com/skrwo/supercell-inbox-rss/tree/main/rss',
 					size: 'lg',
 					target: '_blank',
+					color: 'primary',
+					variant: 'solid',
 				},
 				{
 					label: 'Visit In-game Inbox',
 					icon: 'i-heroicons-envelope-open-16-solid',
 					to: 'https://brawlstars.inbox.supercell.com/',
-					color: 'gray',
+					color: 'neutral',
+					variant: 'subtle',
 					size: 'lg',
 					target: '_blank',
 				},
 			]"
 		>
-		</UPageHero>
+		</UPageHeader>
 		<UPageBody>
-			<UBlogList>
-				<UBlogPost v-for="(post, index) in news!.articles" :key="post.title" v-bind="getPropsForPost(post as Article, index)" />
-			</UBlogList>
+			<UBlogPosts class="gap-x-7 gap-y-3.5 lg:gap-y-6">
+				<UBlogPost
+					v-for="(post, index) in news!.articles"
+					:key="post.title"
+					variant="naked"
+					v-bind="getPropsForPost(post as Article, index)"
+					:ui="{ body: 'p-0 sm:p-0 py-4!' }"
+				/>
+			</UBlogPosts>
 
-			<div class="flex justify-center mt-8">
+			<div class="mt-8 flex justify-center">
 				<UPagination
-					v-model="page"
+					v-model:page="page"
 					:total="news?.pageNumbers.length"
-					:pageCount="1"
+					:pageCount="6"
 					:to="(p: number) => ({ query: { page: p } })"
-					@update:model-value="scrollToTop"
+					@update:page="scrollToTop"
 				/>
 			</div>
 
-			<div class="flex flex-col items-center justify-center flex-1 mt-16">
-				<UIcon name="i-heroicons-envelope-open-20-solid" class="w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4" />
-				<p class="text-sm text-center text-gray-900 dark:text-white mb-4">No more posts to show</p>
-				<UButton icon="i-heroicons-arrow-up" color="gray" size="sm" @click="scrollToTop"> Scroll To Top </UButton>
+			<div class="mt-16 flex flex-1 flex-col items-center justify-center">
+				<UIcon name="i-heroicons-envelope-open-20-solid" class="mx-auto mb-4 h-6 w-6 text-gray-400 dark:text-gray-500" />
+				<p class="mb-4 text-center text-sm text-gray-900 dark:text-white">No more posts to show</p>
+				<UButton icon="i-heroicons-arrow-up" size="sm" @click="scrollToTop"> Scroll To Top </UButton>
 			</div>
 		</UPageBody>
 	</UContainer>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { BrawlApiMap } from "@brawltracker/brawl-api";
-import { LazyBrawlerMapStatsMapSlideover } from "#components";
+import { LazyBrawlerMapStatsMapSlideover, UiPageSection } from "#components";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
 import { useFilteredMapStore } from "$components/features/brawler-map-stats/filtered-map-store";
 
-const slideover = useSlideover();
+const slideover = useOverlay();
 const brawlerStore = useBrawlerStore();
 const { brawler } = storeToRefs(useBrawlerStore());
 
@@ -13,8 +13,15 @@ if (!brawler) {
 }
 
 function openSlideover(map: BrawlApiMap) {
-	slideover.close();
-	slideover.open(LazyBrawlerMapStatsMapSlideover, { map, brawler: brawlerStore.brawler! });
+	if (slideover.overlays[0]) slideover.close(slideover.overlays[0].id);
+	slideover
+		.create(LazyBrawlerMapStatsMapSlideover, {
+			props: {
+				map,
+				brawler: brawlerStore.brawler!,
+			},
+		})
+		.open();
 }
 
 const filterButtonId = useId();
@@ -38,20 +45,27 @@ filteredMapStore.setFilteredMaps(maps.value);
 
 <template>
 	<UPage v-if="brawler">
-		<UDashboardSection
+		<UiPageSection
 			title="Stats"
 			description="Click or tap on a card to get a brawlers stats on a certain map."
 			orientation="vertical"
 		>
 			<template #links>
-				<div class="flex gap-4 flex-row">
-					<UButtonGroup class="sm:mt-4 min-w-40">
-						<UInput v-model="search" size="md" color="white" class="w-full" placeholder="Search..." />
-						<UButton icon="i-heroicons-magnifying-glass" size="md" color="gray" />
+				<div class="flex flex-row gap-4">
+					<UButtonGroup class="min-w-40 sm:mt-4">
+						<UInput v-model="search" size="md" variant="outline" class="w-full" placeholder="Search..." />
+						<UButton icon="i-heroicons-magnifying-glass" size="md" color="neutral" variant="subtle" />
 					</UButtonGroup>
 					<UButtonGroup class="sm:mt-4">
 						<BrawlerMapStatsMapFilterSelect :id="filterButtonId" />
-						<UButton icon="i-heroicons-funnel" size="md" color="gray" class="rounded-none rounded-r-md" @click="openFilterMenu" />
+						<UButton
+							icon="i-heroicons-funnel"
+							size="md"
+							variant="subtle"
+							color="neutral"
+							class="rounded-none rounded-r-md"
+							@click="openFilterMenu"
+						/>
 					</UButtonGroup>
 					<!--
  <UButtonGroup class="sm:mt-4 min-w-40">
@@ -73,24 +87,23 @@ filteredMapStore.setFilteredMaps(maps.value);
 -->
 				</div>
 			</template>
-		</UDashboardSection>
+		</UiPageSection>
 
-		<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+		<div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
 			<UCard
 				v-for="map in filteredMaps"
 				:key="map.id"
-				v-memo="[map]"
-				:ui="{ body: { base: 'p-0!  ' }, header: { padding: 'px-4 py-3 sm:px-4' } }"
-				class="w-full hover:cursor-pointer hover:ring-2 hover:ring-primary-500 dark:hover:ring-primary-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+				:ui="{ body: 'p-0!', header: 'px-4 py-3 sm:px-4' }"
+				class="w-full hover:cursor-pointer hover:bg-neutral-100/50 hover:ring-2 hover:ring-primary-500 dark:hover:bg-neutral-800/50 dark:hover:ring-primary-400"
 				@click="openSlideover(map)"
 			>
 				<template #header>
-					<div class="flex gap-2 items-center">
+					<div class="flex items-center gap-2">
 						<NuxtImg :src="map.gameMode.imageUrl" :alt="map.name" class="object-scale-down" width="30" height="30" />
-						<h1 class="text-md lg:text-md font-semibold truncate">{{ map.name }}</h1>
+						<h1 class="text-md lg:text-md truncate font-semibold">{{ map.name }}</h1>
 					</div>
 				</template>
-				<div class="flex items-center justify-center h-full mx-auto">
+				<div class="mx-auto flex h-full items-center justify-center">
 					<NuxtImg
 						:src="map.imageUrl"
 						:alt="map.name"

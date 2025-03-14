@@ -2,6 +2,7 @@
 <script setup lang="ts">
 /* eslint-disable promise/prefer-await-to-callbacks */
 /* eslint-disable promise/prefer-await-to-then */
+import type { FormSubmitEvent } from "@nuxt/ui";
 import type { FetchError } from "ofetch";
 
 definePageMeta({
@@ -18,13 +19,14 @@ const validationError = ref<string | null>(null);
 const loading = ref(false);
 const token = ref<string>();
 
-async function login(body: { username: string; password: string }) {
+async function login(event: FormSubmitEvent<{ username: string; password: string }>) {
 	if (!token.value) return (validationError.value = "Please complete the captcha.");
 	loading.value = true;
+	// eslint-disable-next-line n/prefer-global/url-search-params
+	const body = new URLSearchParams({ ...event.data, token: token.value });
 	$fetch("/api/auth/login", {
 		method: "POST",
-		// eslint-disable-next-line n/prefer-global/url-search-params
-		body: new URLSearchParams(body),
+		body,
 	})
 		.then(async () => {
 			await navigateTo("/");
@@ -53,10 +55,9 @@ async function login(body: { username: string; password: string }) {
 					:fields="[
 						{
 							name: 'email',
-							type: 'email',
+							type: 'text',
 							label: 'Email',
 							placeholder: 'Enter your email',
-							// @ts-expect-error - Bug
 							color: 'gray',
 							required: true,
 						},
@@ -65,20 +66,19 @@ async function login(body: { username: string; password: string }) {
 							type: 'password',
 							label: 'Password',
 							placeholder: 'Enter your password',
-							// @ts-expect-error - Bug
 							color: 'gray',
 							required: true,
 						},
 					]"
 					:loading="loading"
-					@submit="login"
+					@submit="login($event as FormSubmitEvent<{ username: string; password: string }>)"
 				>
 					<template #description>
 						Don't have an account? <NuxtLink to="/signup" class="text-(--ui-primary) font-medium">Sign up</NuxtLink>.
 					</template>
 					<template v-if="validationError" #validation>
 						<NuxtTurnstile v-model="token" :options="{ theme: $colorMode.value as any, size: 'flexible' }" />
-						<UAlert color="red" variant="subtle" icon="i-heroicons-information-circle-20-solid" :title="validationError" />
+						<UAlert color="error" variant="subtle" icon="i-heroicons-information-circle-20-solid" :title="validationError" />
 					</template>
 				</UAuthForm>
 			</UCard>

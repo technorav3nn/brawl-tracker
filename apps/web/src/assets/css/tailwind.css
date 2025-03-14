@@ -1,5 +1,6 @@
 @import "tailwindcss" theme(static);
 @import "@nuxt/ui-pro";
+@plugin '@tailwindcss/typography';
 
 @theme {
 	--font-sans:
@@ -9,6 +10,14 @@
 		"Noto Color Emoji";
 
 	--color-border: var(--color-border);
+}
+
+:root {
+	--ui-primary: var(--ui-color-primary-600);
+}
+
+.dark {
+	--ui-primary: var(--ui-color-primary-400);
 }
 
 /*

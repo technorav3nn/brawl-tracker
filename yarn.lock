@@ -517,6 +517,7 @@ __metadata:
     "@sapphire/duration": "npm:^1.1.4"
     "@sapphire/time-utilities": "npm:^1.7.14"
     "@sentry/nuxt": "npm:^8.50.0"
+    "@tailwindcss/typography": "npm:^0.5.16"
     "@types/luxon": "npm:^3.4.2"
     "@unhead/vue": "npm:2.0.0-rc.10"
     "@unovis/ts": "npm:^1.5.0"
@@ -538,8 +539,6 @@ __metadata:
     nuxt-appwrite: "npm:^1.1.1"
     nuxt-time: "npm:^1.0.3"
     pinia: "npm:^2.3.1"
-    tailwind-variants: "npm:^1.0.0"
-    tailwindcss: "npm:^4.0.13"
     vite: "npm:*"
     zod: "npm:^3.24.1"
   languageName: unknown
@@ -4558,6 +4557,20 @@ __metadata:
     postcss: "npm:^8.4.41"
     tailwindcss: "npm:4.0.13"
   checksum: 10/0d6d92db1b33c537b8fccdd2b7f6e294d31f373a4ad3cf95bd6ed49698e81cc0b0d9f31f3da0ada462a47d96b64937a553c4b4b7ce5f1352ad6c1ac9fbda7e82
+  languageName: node
+  linkType: hard
+
+"@tailwindcss/typography@npm:^0.5.16":
+  version: 0.5.16
+  resolution: "@tailwindcss/typography@npm:0.5.16"
+  dependencies:
+    lodash.castarray: "npm:^4.4.0"
+    lodash.isplainobject: "npm:^4.0.6"
+    lodash.merge: "npm:^4.6.2"
+    postcss-selector-parser: "npm:6.0.10"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 10/ca6cca2c824b4124223dd28d4bd5cc21dd261fe53a9654b9802bb958badd637313118d8e81978c3509df7dac1826317050fb034bc4357085b451371e31adff6d
   languageName: node
   linkType: hard
 
@@ -12934,6 +12947,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.castarray@npm:^4.4.0":
+  version: 4.4.0
+  resolution: "lodash.castarray@npm:4.4.0"
+  checksum: 10/fca8c7047e0ae2738b0b2503fb00157ae0ff6d8a1b716f87ed715b22560e09de438c75b65e01a7e44ceb41c5b31dce2eb576e46db04beb9c699c498e03cbd00f
+  languageName: node
+  linkType: hard
+
 "lodash.debounce@npm:^4.0.8":
   version: 4.0.8
   resolution: "lodash.debounce@npm:4.0.8"
@@ -12952,6 +12972,13 @@ __metadata:
   version: 3.1.0
   resolution: "lodash.isarguments@npm:3.1.0"
   checksum: 10/e5186d5fe0384dcb0652501d9d04ebb984863ebc9c9faa2d4b9d5dfd81baef9ffe8e2887b9dc471d62ed092bc0788e5f1d42e45c72457a2884bbb54ac132ed92
+  languageName: node
+  linkType: hard
+
+"lodash.isplainobject@npm:^4.0.6":
+  version: 4.0.6
+  resolution: "lodash.isplainobject@npm:4.0.6"
+  checksum: 10/29c6351f281e0d9a1d58f1a4c8f4400924b4c79f18dfc4613624d7d54784df07efaff97c1ff2659f3e085ecf4fff493300adc4837553104cef2634110b0d5337
   languageName: node
   linkType: hard
 
@@ -15919,6 +15946,16 @@ __metadata:
   peerDependencies:
     postcss: ^8.4.31
   checksum: 10/1c369a1be820a80e8bf06376476190fe2ae5a0b5a7459257d7d9b5bc0c9aed79f46026e8558fca088f7a814e632c678f67749b246901a3839f2d50b7b9ec2d41
+  languageName: node
+  linkType: hard
+
+"postcss-selector-parser@npm:6.0.10":
+  version: 6.0.10
+  resolution: "postcss-selector-parser@npm:6.0.10"
+  dependencies:
+    cssesc: "npm:^3.0.0"
+    util-deprecate: "npm:^1.0.2"
+  checksum: 10/f8ad9beb764a64b51a8027650e745a44ed7198f0b968b823db9563a54990924bcf9eb6fb59fbbb7eb05a89b2b6a24b81b2b7d60ecadda15b04a0024c7663f436
   languageName: node
   linkType: hard
 

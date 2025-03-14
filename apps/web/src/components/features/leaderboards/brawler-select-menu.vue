@@ -19,13 +19,13 @@ watch(selected, () => {
 	<USelectMenu
 		v-model="selected"
 		:loading="status === 'pending'"
-		:options="brawlers ?? []"
+		:items="brawlers ?? []"
 		optionAttribute="name"
 		searchable
 		searchable-placeholder="Search for a brawler..."
 		class="w-48"
 	>
-		<template #label>
+		<template #default>
 			<div v-if="selected" class="flex flex-row items-center gap-2">
 				<Image :src="selected?.imageUrl2" class="rounded-xs" width="20" height="20" />
 				<span>{{ selected?.name }}</span>

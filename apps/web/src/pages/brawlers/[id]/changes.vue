@@ -15,7 +15,7 @@ const selectedType = ref<string | undefined>(undefined);
 
 const items = computed<(AccordionItem | null)[]>(() =>
 	changes
-		.value!.map((change) => {
+		.value!.map((change, index) => {
 			if (!change.description) return null;
 			return {
 				// Feb 2nd, 2022 format
@@ -26,6 +26,7 @@ const items = computed<(AccordionItem | null)[]>(() =>
 				}),
 				type: change.kind,
 				content: change.description,
+				value: index.toString(),
 			};
 		})
 		.filter(Boolean)
@@ -34,65 +35,59 @@ const items = computed<(AccordionItem | null)[]>(() =>
 </script>
 
 <template>
-	<UDashboardSection
+	<UiPageSection
 		title="Changes"
 		description="View the changes made to this brawler over time!"
 		orientation="vertical"
-		class="divide-y-0! space-y-2!"
+		class="space-y-2! divide-y-0!"
 	>
-		<div class="pt-0! flex flex-col gap-4">
+		<div class="flex flex-col gap-4 pt-0!">
 			<div class="flex justify-end">
-				<USelectMenu
+				<USelect
 					v-model="selectedType"
-					:options="['None', 'Buff', 'Nerf', 'Neutral']"
+					:items="['None', 'Buff', 'Nerf', 'Neutral']"
 					class="w-36"
 					placeholder="Filter by type"
 					:disabled="!items.length"
 				/>
 			</div>
-			<div v-if="!items.length" class="text-center text-gray-500 dark:text-gray-400">No changes found.</div>
+			<div v-if="!items.length" class="text-center text-neutral-500 dark:text-neutral-400">No changes found.</div>
 			<UAccordion
 				v-else
-				defaultOpen
+				collapsible
+				type="multiple"
 				multiple
 				:items="items as AccordionItem[]"
-				:ui="{ wrapper: ' flex flex-col w-full border border-border border-t-0 rounded-md ' }"
+				:defaultValue="items.map((i) => i?.value) as string[]"
 			>
-				<template #default="{ item, index, open }">
-					<UButton
-						color="gray"
-						variant="ghost"
-						class="px-2 py-2.5! border-b border-t border-gray-200 dark:border-gray-800 rounded-b-none"
-					>
-						<template #leading>
-							<NuxtImg
-								:src="
-									item.type === 'Buff'
-										? '/icons/changes/buff.webp'
-										: item.type === 'Nerf'
-											? '/icons/changes/nerf.webp'
-											: '/icons/changes/neutral.webp'
-								"
-								width="25"
-								height="25"
-							/>
-						</template>
-
-						<span class="truncate">{{ index + 1 }}. {{ item.label }}</span>
-
-						<template #trailing>
-							<UIcon
-								name="i-heroicons-chevron-right-20-solid"
-								class="w-5 h-5 ms-auto transform transition-transform duration-200"
-								:class="[open && 'rotate-90']"
-							/>
-						</template>
-					</UButton>
+				<template #default="{ item, index }">
+					<span class="truncate">{{ index + 1 }}. {{ item.label }}</span>
 				</template>
 				<template #item="{ item }">
-					<p class="px-2 text-black dark:text-gray-300">{{ item.content }}</p>
+					<p class="px-2 text-black dark:text-neutral-300">{{ item.content }}</p>
+				</template>
+				<template #leading="{ item }">
+					<NuxtImg
+						:src="
+							(item as any).type === 'Buff'
+								? '/icons/changes/buff.webp'
+								: (item as any).type === 'Nerf'
+									? '/icons/changes/nerf.webp'
+									: '/icons/changes/neutral.webp'
+						"
+						width="25"
+						height="25"
+					/>
+				</template>
+
+				<template #trailing="{ open }">
+					<UIcon
+						name="i-heroicons-chevron-right-20-solid"
+						class="ms-auto h-5 w-5 transform transition-transform duration-200"
+						:class="[open && 'rotate-90']"
+					/>
 				</template>
 			</UAccordion>
 		</div>
-	</UDashboardSection>
+	</UiPageSection>
 </template>

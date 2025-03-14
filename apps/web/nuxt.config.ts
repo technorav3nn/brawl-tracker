@@ -9,7 +9,6 @@ export default defineNuxtConfig({
 		"@nuxt/devtools",
 		"@nuxt/fonts",
 		"@nuxt/image",
-		"@nuxt/ui",
 		"@nuxt/content",
 		"@nuxtjs/turnstile",
 		"@pinia/nuxt",
@@ -18,7 +17,7 @@ export default defineNuxtConfig({
 		"nuxt-appwrite",
 	],
 	srcDir: "src/",
-	css: ["$assets/css/main.css", "$assets/css/global.css"],
+	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
 	devtools: {
 		enabled: true,
 	},
