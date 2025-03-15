@@ -1,9 +1,9 @@
 <template>
-	<UDashboardSection
+	<UiPageSection
 		class="divide-y-0"
 		title="Battlelog"
 		description="View all of the past 25 battles of the player"
 		orientation="vertical"
 	>
-	</UDashboardSection>
+	</UiPageSection>
 </template>

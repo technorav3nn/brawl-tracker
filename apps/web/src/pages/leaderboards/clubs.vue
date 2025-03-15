@@ -88,11 +88,7 @@ const columns: TableColumn<RankingClub>[] = [
 	},
 ];
 
-const search = ref("");
-const filteredRows = computed(() => {
-	if (!leaderboards.value) return [];
-	return leaderboards.value.filter((row) => row.name.toLowerCase().includes(search.value.toLowerCase()));
-});
+const globalFilter = ref("");
 </script>
 
 <template>
@@ -103,12 +99,13 @@ const filteredRows = computed(() => {
 			</template>
 		</UPageHeader>
 		<div class="mb-4 flex justify-start gap-2">
-			<UInput v-model="search" placeholder="Search for a player..." icon="i-heroicons-magnifying-glass-20-solid" />
+			<UInput v-model="globalFilter" placeholder="Search for a player..." icon="i-heroicons-magnifying-glass-20-solid" />
 			<LeaderboardsLocationSelectMenu />
 		</div>
 		<UTable
+			v-model:globalFilter="globalFilter"
 			:loading="status === 'pending'"
-			:data="status === 'pending' ? [] : filteredRows"
+			:data="status === 'pending' ? [] : leaderboards!"
 			:columns="columns"
 			:loading-state="{
 				icon: 'i-heroicons-arrow-path-20-solid',

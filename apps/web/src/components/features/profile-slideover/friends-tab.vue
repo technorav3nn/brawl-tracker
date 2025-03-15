@@ -2,7 +2,8 @@
 import { lowercaseFirstLetter } from "$lib/utils/common";
 import { createGetCachedData } from "$lib/utils/nuxt";
 
-const slideover = useOverlay();
+const emit = defineEmits<{ close: [boolean] }>();
+
 const nuxtApp = useNuxtApp();
 const { data: unfilteredFriends, status } = useLazyFetch("/api/saved-players", {
 	getCachedData: createGetCachedData(nuxtApp),
@@ -35,7 +36,7 @@ const {
 	itemWidth: 200,
 });
 
-const closeSlideover = () => slideover.close(slideover.overlays[0].id);
+const closeSlideover = () => emit("close", true);
 </script>
 
 <template>

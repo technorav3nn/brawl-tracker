@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from "@nuxt/ui";
 
+const emit = defineEmits<{ close: [boolean] }>();
+
 const tabs = ["profile", "friends", "settings"] as const;
 const tab = ref<(typeof tabs)[number]>("profile");
 const oldTab = ref<(typeof tabs)[number]>("profile");
@@ -39,13 +41,12 @@ function setTab(value: (typeof tabs)[number]) {
 	tab.value = value;
 }
 
-const slideover = useOverlay();
 const router = useRouter();
 const user = useUser();
 
 router.beforeResolve((to, from, next) => {
 	if (to.path === "/settings" && from.path === router.currentRoute.value.path && import.meta) {
-		slideover.close(slideover.overlays[0].id);
+		emit("close", true);
 	}
 
 	next();
@@ -58,7 +59,7 @@ const loading = ref(false);
 async function logout() {
 	loading.value = true;
 	await $fetch("/api/auth/signout", { method: "POST" });
-	slideover.close(slideover.overlays[0].id);
+	emit("close", true);
 	user.value = null;
 	loading.value = false;
 	await navigateTo("/");
@@ -116,7 +117,7 @@ async function logout() {
 								size="lg"
 								block
 								icon="i-heroicons-information-circle"
-								@click="slideover.close(slideover.overlays[0].id)"
+								@click="emit('close', true)"
 							>
 								View My Profile
 							</UButton>
@@ -124,7 +125,7 @@ async function logout() {
 					</div>
 				</div>
 				<div v-if="tab === 'friends'" class="overflow-none">
-					<ProfileSlideoverFriendsTab v-if="supercellInfo?.isConnected" />
+					<ProfileSlideoverFriendsTab v-if="supercellInfo?.isConnected" @close="emit('close', true)" />
 					<div v-else>
 						<div class="w-full border-b border-neutral-200 px-4 py-5 dark:border-neutral-800">
 							<h1 class="text-2xl font-semibold">Saved Players & Friends</h1>

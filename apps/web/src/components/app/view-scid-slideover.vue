@@ -1,15 +1,14 @@
 <script setup lang="ts">
-import type { Player } from "@brawltracker/brawl-stars-api";
 import { getCdnUrlForAvatarId, idToHighLow, tagToId } from "@brawltracker/supercell-id-api/browser";
 import { Image } from "@unpic/vue";
 import { generate } from "lean-qr";
 import { createGetCachedData } from "$lib/utils/nuxt";
 
 const props = defineProps<{
-	player: Player;
+	playerTag: string;
 }>();
 
-const tag = computed(() => props.player.tag);
+const tag = computed(() => props.playerTag);
 
 const nuxtApp = useNuxtApp();
 const { data: scidData, status } = useLazyFetch("/api/auth/scid/profile-by-tag", {
@@ -49,13 +48,13 @@ watchEffect(() => {
 </script>
 
 <template>
-	<UDashboardSlideover :ui="{ width: 'max-w-sm!', body: { base: 'overflow-y-auto!', padding: 'p-0' } }">
+	<USlideover :ui="{ content: 'max-w-sm!', body: 'overflow-y-auto! p-0!', header: 'py-2.5 px-4!' }">
 		<template #title>
 			<div v-if="status === 'pending'" class="flex items-center gap-2">
-				<USkeleton class="w-10 h-10 rounded-full" />
+				<USkeleton class="h-10 w-10 rounded-full" />
 				<div class="flex flex-col gap-2">
-					<USkeleton class="w-20 h-4" />
-					<USkeleton class="w-10 h-3" />
+					<USkeleton class="h-4 w-20" />
+					<USkeleton class="h-3 w-10" />
 				</div>
 			</div>
 			<div v-else class="flex items-center">
@@ -67,57 +66,61 @@ watchEffect(() => {
 					"
 					width="40"
 					height="40"
-					class="w-10 h-10 rounded-full"
+					class="h-10 w-10 rounded-full"
 					loading="eager"
 				/>
 				<div class="inline-flex flex-col">
 					<span class="ml-2 text-xl font-bold">{{ scidData?.data?.name }}</span>
 					<div class="ml-2 flex flex-row items-center gap-1.5">
 						<UIcon name="local:scid" class="size-[1.15rem]" />
-						<span class="text-xs text-gray-500 dark:text-gray-400">{{ scidData?.data?.handle }}</span>
+						<span class="text-xs text-neutral-500 dark:text-neutral-400">{{ scidData?.data?.handle }}</span>
 					</div>
 				</div>
 			</div>
 		</template>
-		<div v-if="status === 'pending'" class="h-full px-4 py-3 flex flex-col gap-2 items-center">
-			<USkeleton class="w-full h-full" />
-		</div>
-		<div v-else>
-			<div class="w-full py-5 px-4 dark:border-gray-800 border-b flex flex-row justify-between items-center">
-				<div class="flex gap-1 items-center">
-					<Image width="40" height="40" src="/icons/player/brawl-pass-plus.png" loading="eager" />
-					<h1 class="text-base font-semibold">Brawl Pass Active</h1>
-				</div>
-				<UBadge variant="subtle" :color="seasonPassOwned ? 'green' : 'red'">
-					{{ seasonPassOwned ? "Active" : "Not Active" }}
-				</UBadge>
+		<template #body>
+			<div v-if="status === 'pending'" class="flex h-full flex-col items-center gap-2 px-4 py-3">
+				<USkeleton class="h-full w-full" />
 			</div>
-			<div class="w-full py-5 px-4 gap-2 dark:border-gray-800 border-b flex flex-row justify-between items-center">
-				<div class="flex gap-2 items-center">
-					<Image width="30" height="30" src="/icons/player/friends.png" loading="eager" />
-					<h1 class="text-base font-semibold">Block Friend Requests</h1>
+			<div v-else>
+				<div class="flex w-full flex-row items-center justify-between border-b px-4 py-5 dark:border-neutral-800">
+					<div class="flex items-center gap-1">
+						<Image width="40" height="40" src="/icons/player/brawl-pass-plus.png" loading="eager" />
+						<h1 class="text-base font-semibold">Brawl Pass Active</h1>
+					</div>
+					<UBadge variant="subtle" :color="seasonPassOwned ? 'success' : 'error'">
+						{{ seasonPassOwned ? "Active" : "Not Active" }}
+					</UBadge>
 				</div>
-				<UBadge variant="subtle" :color="blockFriendRequests ? 'red' : 'green'">
-					{{ blockFriendRequests ? "Enabled" : "Disabled" }}
-				</UBadge>
-			</div>
-			<div class="w-full py-5 px-4 gap-2 dark:border-gray-800 border-b flex flex-col justify-between items-center">
-				<div class="flex flex-col items-center justify-center text-center">
-					<h1 class="text-base font-semibold">Add Friend</h1>
-					<p class="text-gray-500 dark:text-gray-400 text-sm">Scan the QR code to add this player as a friend in Brawl Stars.</p>
+				<div class="flex w-full flex-row items-center justify-between gap-2 border-b px-4 py-5 dark:border-neutral-800">
+					<div class="flex items-center gap-2">
+						<Image width="30" height="30" src="/icons/player/friends.png" loading="eager" />
+						<h1 class="text-base font-semibold">Block Friend Requests</h1>
+					</div>
+					<UBadge variant="subtle" :color="blockFriendRequests ? 'error' : 'success'">
+						{{ blockFriendRequests ? "Enabled" : "Disabled" }}
+					</UBadge>
 				</div>
-				<canvas ref="qrCodeCanvas" class="-mt-6" style="image-rendering: pixelated; width: 90%" />
-				<UButton
-					:to="universalLink"
-					target="_blank"
-					rel="noopener noreferrer"
-					block
-					icon="i-heroicons-arrow-top-right-on-square"
-					class="-mt-4"
-				>
-					Add Friend In Brawl Stars
-				</UButton>
+				<div class="flex w-full flex-col items-center justify-between gap-2 border-b px-4 py-5 dark:border-neutral-800">
+					<div class="flex flex-col items-center justify-center text-center">
+						<h1 class="text-base font-semibold">Add Friend</h1>
+						<p class="text-sm text-neutral-500 dark:text-neutral-400">
+							Scan the QR code to add this player as a friend in Brawl Stars.
+						</p>
+					</div>
+					<canvas ref="qrCodeCanvas" class="-mt-6" style="image-rendering: pixelated; width: 90%" />
+					<UButton
+						:to="universalLink"
+						target="_blank"
+						rel="noopener noreferrer"
+						block
+						icon="i-heroicons-arrow-top-right-on-square"
+						class="-mt-4"
+					>
+						Add Friend In Brawl Stars
+					</UButton>
+				</div>
 			</div>
-		</div>
-	</UDashboardSlideover>
+		</template>
+	</USlideover>
 </template>

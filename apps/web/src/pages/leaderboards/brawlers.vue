@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { type RankingsPlayer } from "@brawltracker/brawl-stars-api";
+import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
 import { Image } from "@unpic/vue";
 import { NuxtLink, UiColorTagText } from "#components";
 import type { BreadcrumbItem, TableColumn } from "#ui/types";
+import { createSortingButton } from "$lib/utils/table";
 
 definePageMeta({
 	middleware: "loading-indicator-disabled",
@@ -40,7 +42,7 @@ const breadcrumb: BreadcrumbItem[] = [
 
 const columns: TableColumn<RankingsPlayer>[] = [
 	{
-		header: "Rank",
+		header: ({ column }) => createSortingButton(column, "Rank"),
 		accessorKey: "rank",
 		enableSorting: true,
 		cell: (d) => h("p", { class: "font-semibold text-neutral-900 dark:text-white" }, `#${d.row.original.rank}`),
@@ -52,7 +54,7 @@ const columns: TableColumn<RankingsPlayer>[] = [
 		cell: (d) =>
 			h("div", { class: "flex flex-row items-center gap-4" }, [
 				h(Image, {
-					src: `https://cdn.brawlify.com/profile-icons/regular/${d.row.original.icon.id}.png`,
+					src: `${CDN_URL_V2}/brawlify/profile-icons/regular/${d.row.original.icon.id}.png`,
 					alt: d.row.original.name,
 					loading: "lazy",
 					class: "rounded-xs",
@@ -82,9 +84,8 @@ const columns: TableColumn<RankingsPlayer>[] = [
 		},
 	},
 	{
-		header: "Trophies",
+		header: ({ column }) => createSortingButton(column, "Trophies"),
 		accessorKey: "trophies",
-
 		cell: (d) => {
 			return h(
 				"p",
@@ -95,11 +96,7 @@ const columns: TableColumn<RankingsPlayer>[] = [
 	},
 ];
 
-const search = ref("");
-const filteredRows = computed(() => {
-	if (!leaderboards.value) return [];
-	return leaderboards.value.filter((row) => row.name.toLowerCase().includes(search.value.toLowerCase()));
-});
+const globalFilter = ref("");
 </script>
 
 <template>
@@ -110,13 +107,14 @@ const filteredRows = computed(() => {
 			</template>
 		</UPageHeader>
 		<div class="mb-4 flex justify-start gap-2">
-			<UInput v-model="search" placeholder="Search for a player..." icon="i-heroicons-magnifying-glass-20-solid" />
+			<UInput v-model="globalFilter" placeholder="Search for a player..." icon="i-heroicons-magnifying-glass-20-solid" />
 			<LeaderboardsLocationSelectMenu />
 			<LeaderboardsBrawlerSelectMenu />
 		</div>
 		<UTable
+			v-model:globalFilter="globalFilter"
 			:loading="status === 'pending'"
-			:data="status === 'pending' ? [] : filteredRows"
+			:data="status === 'pending' ? [] : leaderboards!"
 			:columns="columns"
 			:loading-state="{
 				icon: 'i-heroicons-arrow-path-20-solid',

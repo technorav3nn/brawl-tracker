@@ -7,7 +7,7 @@ const props = defineProps<{
 	brawler: BrawlApiBrawler;
 }>();
 
-const slideover = useOverlay();
+const emit = defineEmits<{ close: [boolean] }>();
 
 // eslint-disable-next-line vue/no-setup-props-destructure
 const { data: mapStats, status } = useFetch(() => `/api/maps/${props.map.id}`, {
@@ -22,7 +22,7 @@ const { data: mapStats, status } = useFetch(() => `/api/maps/${props.map.id}`, {
 		<template #title>
 			<div class="flex flex-row items-center gap-2">
 				<NuxtImg width="30" height="30" :src="map.gameMode.imageUrl" />
-				<p class="flex min-w-0 items-center gap-x-1.5 font-semibold text-gray-900 dark:text-white">{{ map.name }}</p>
+				<p class="flex min-w-0 items-center gap-x-1.5 font-semibold text-neutral-900 dark:text-white">{{ map.name }}</p>
 			</div>
 		</template>
 		<template #body>
@@ -39,14 +39,14 @@ const { data: mapStats, status } = useFetch(() => `/api/maps/${props.map.id}`, {
 						<div class="flex flex-col">
 							<div class="flex flex-col gap-1">
 								<div class="flex flex-row gap-1">
-									<p class="font-semibold text-gray-900 dark:text-white">{{ brawler.name }}'s Win Rate:</p>
-									<p class="text-gray-900 dark:text-white">{{ mapStats!.winRate }}%</p>
+									<p class="font-semibold text-neutral-900 dark:text-white">{{ brawler.name }}'s Win Rate:</p>
+									<p class="text-neutral-900 dark:text-white">{{ mapStats!.winRate }}%</p>
 								</div>
 							</div>
 							<div class="flex flex-col gap-1">
 								<div class="flex flex-row gap-1">
-									<p class="font-semibold text-gray-900 dark:text-white">{{ brawler.name }}'s Use Rate:</p>
-									<p class="text-gray-900 dark:text-white">{{ mapStats!.useRate }}%</p>
+									<p class="font-semibold text-neutral-900 dark:text-white">{{ brawler.name }}'s Use Rate:</p>
+									<p class="text-neutral-900 dark:text-white">{{ mapStats!.useRate }}%</p>
 								</div>
 							</div>
 						</div>
@@ -54,24 +54,19 @@ const { data: mapStats, status } = useFetch(() => `/api/maps/${props.map.id}`, {
 				</div>
 				<div v-if="status === 'pending'" class="flex items-center justify-center gap-2">
 					<UiLoadingIndicator />
-					<p class="text-lg text-gray-500 dark:text-gray-400">Loading...</p>
+					<p class="text-lg text-neutral-500 dark:text-neutral-400">Loading...</p>
 				</div>
 				<div v-if="!mapStats && status === 'success'">
-					<p class="text-sm text-gray-500 dark:text-gray-400">No stats for {{ brawler.name }} found for this map.</p>
+					<p class="text-sm text-neutral-500 dark:text-neutral-400">No stats for {{ brawler.name }} found for this map.</p>
 				</div>
 			</div>
 		</template>
 		<template #footer>
 			<div class="flex w-full flex-col gap-2">
-				<UButton
-					:to="`/maps/${map.id}`"
-					block
-					icon="i-heroicons-arrow-top-right-on-square-20-solid"
-					@click="slideover.close(slideover.overlays[0].id)"
-				>
+				<UButton :to="`/maps/${map.id}`" block icon="i-heroicons-arrow-top-right-on-square-20-solid" @click="emit('close', true)">
 					View Map
 				</UButton>
-				<p class="text-sm text-gray-500 dark:text-gray-400">
+				<p class="text-sm text-neutral-500 dark:text-neutral-400">
 					Stats are collected by
 					<NuxtLink to="https://brawlify.com" target="_blank" class="text-(--ui-primary)-500 dark:text-(--ui-primary)-400">
 						Brawlify

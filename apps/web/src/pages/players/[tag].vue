@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { formatTag } from "@brawltracker/supercell-api-utils";
 import { Image } from "@unpic/vue";
-import { PlayersProfileEditorSlideover, AppViewScidSlideover } from "#components";
-import type { NavigationLink } from "#ui-pro/types";
+import { LazyPlayersProfileEditorSlideover, LazyAppViewScidSlideover } from "#components";
+import type { NavigationMenuItem } from "#ui/types";
 import { useProfileConfigStore } from "$components/features/players/profile-editor/store";
 import { BACKGROUNDS } from "$lib/backgrounds";
 
@@ -19,7 +19,7 @@ useSeoMeta({
 
 const brawlersActive = computed(() => route.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}/brawlers`));
 
-const links = computed<NavigationLink[]>(() => [
+const links = computed<NavigationMenuItem[]>(() => [
 	{
 		label: "Profile",
 		icon: "i-heroicons-user-circle",
@@ -39,17 +39,17 @@ const links = computed<NavigationLink[]>(() => [
 	},
 ]);
 
-const slideover = useSlideover();
+const slideover = useOverlay();
 function openScidSlideover() {
 	if (!player.value) return;
-	slideover.open(AppViewScidSlideover, { player: player.value });
+	slideover.create(LazyAppViewScidSlideover, { props: { playerTag: player.value.tag } }).open();
 }
 
 const user = useDatabaseUser();
 function openProfileEdtiorSlideover() {
 	if (!player.value) return;
 	if (player.value.tag !== user?.value?.profile.tag) return;
-	slideover.open(PlayersProfileEditorSlideover, { player: player.value });
+	slideover.create(LazyPlayersProfileEditorSlideover, { props: { player: player.value } }).open();
 }
 
 const { data: config } = await useFetch(() => `/api/profiles/${encodeURIComponent(route.params.tag)}/config`, {
@@ -85,7 +85,7 @@ function initalizeConfig() {
 		selectedTheme.value = theme.value;
 	}
 
-	appConfig.ui.primary = theme.value;
+	appConfig.ui.colors.primary = selectedTheme.value;
 }
 
 initalizeConfig();
@@ -100,7 +100,7 @@ router.afterEach((s) => {
 		// Reset everyting to default
 		selectedTheme.value = "amber";
 		theme.value = "amber";
-		appConfig.ui.primary = "amber";
+		appConfig.ui.colors.primary = "amber";
 	}
 });
 </script>
@@ -120,46 +120,59 @@ router.afterEach((s) => {
 		class="header-bg-image-dark header-bg-image-light"
 	>
 		<UContainer>
-			<UPageHeader class="border-0!" :ui="{ wrapper: 'first-child-row', description: 'mt-2' }">
+			<UPageHeader class="border-0!" :ui="{ wrapper: 'first-child-row', description: 'mt-2', root: 'flex gap-6' }">
 				<div class="absolute top-2 right-0">
-					<UTooltip :text="player.tag !== user?.profile.tag ? 'You can only edit your own profile' : 'Edit Profile'">
+					<UTooltip
+						:delayDuration="0"
+						:text="player.tag !== user?.profile.tag ? 'You can only edit your own profile' : 'Edit Profile'"
+					>
 						<UButton
 							icon="i-heroicons-pencil"
-							size="sm"
+							size="md"
 							:disabled="player.tag !== user?.profile.tag"
-							class="text-black"
+							class="bg-primary-300! text-black dark:bg-(--ui-primary)!"
 							@click="openProfileEdtiorSlideover"
 						/>
 					</UTooltip>
 				</div>
-				<template #icon>
+				<template #headline>
 					<NuxtImg
-						width="120"
-						height="120"
+						width="110"
+						height="110"
 						:src="`https://cdn.brawlify.com/profile-icons/regular/${player.icon.id}.png`"
 						:alt="player.name"
 					/>
 				</template>
 				<template #title>
-					<p class="dark:text-(--ui-primary)-400 text-(--ui-primary)-100">{{ player.name }}</p>
+					<p class="tracking-tight text-primary-300 dark:text-(--ui-primary)">{{ player.name }}</p>
 				</template>
 				<template #description>
 					<div class="flex flex-row gap-2">
-						<div class="flex flex-row gap-x-0.5 items-center">
-							<p class="text-white text-opacity-80 font-bold text-sm">
+						<div class="flex flex-row items-center gap-x-0.5">
+							<p class="text-opacity-80 text-sm font-bold text-white">
 								{{ player!.tag }}
 							</p>
 						</div>
-						<div class="flex flex-row gap-x-2 items-center">
-							<UiCopyButton tooltipContent="Copy Tag" :text="player.tag" class="text-black [&>span]:scale-[1.15]" size="xs" />
-							<UTooltip text="View Supercell ID Profile">
-								<UButton class="text-black [&>span]:scale-[1.20]" icon="local:scid" size="xs" @click="openScidSlideover" />
+						<div class="flex flex-row items-center gap-x-2">
+							<UiCopyButton
+								tooltipContent="Copy Tag"
+								:text="player.tag"
+								class="bg-primary-300! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.15]"
+								size="sm"
+							/>
+							<UTooltip :delayDuration="0" text="View Supercell ID Profile">
+								<UButton
+									class="bg-primary-300! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.20]"
+									icon="local:scid"
+									size="sm"
+									@click="openScidSlideover"
+								/>
 							</UTooltip>
 						</div>
 					</div>
-					<div class="flex gap-1 flex-row items-center">
+					<div class="flex flex-row items-center gap-1">
 						<Image
-							class="object-scale-down object-bottom size-8"
+							class="size-8 object-scale-down object-bottom"
 							width="20"
 							height="20"
 							src="/icons/player/club.webp"
@@ -168,7 +181,7 @@ router.afterEach((s) => {
 						<NuxtLink
 							prefetch
 							:to="`/clubs/${encodeURIComponent(player.club?.tag)}`"
-							class="mt-2 text-white text-opacity-80 font-bold text-base"
+							class="text-opacity-80 mt-2 text-base font-bold text-white"
 						>
 							{{ player.club?.name || "No Club" }}
 						</NuxtLink>
@@ -177,9 +190,20 @@ router.afterEach((s) => {
 			</UPageHeader>
 		</UContainer>
 	</header>
-	<section class="border-b border-gray-200 dark:border-gray-800">
+	<section class="border-b border-neutral-200 dark:border-neutral-800">
 		<UContainer class="px-[1.42rem]!">
-			<UHorizontalNavigation :links="links" />
+			<UNavigationMenu
+				variant="pill"
+				highlight
+				:items="links"
+				:ui="{
+					link: 'after:h-[2px] after:absolute after:-bottom-2 after:inset-x-0 ',
+					linkLabel: 'overflow-clip text-wrap',
+					linkLeadingIcon: 'size-[15px] sm:size-5',
+				}"
+				class="data-[orientation=vertical]:w-48"
+				:links="links"
+			/>
 		</UContainer>
 	</section>
 	<UContainer class="mt-3">

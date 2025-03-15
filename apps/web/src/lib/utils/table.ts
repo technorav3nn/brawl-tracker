@@ -9,9 +9,9 @@ export function createSortingButton(column: Column<any>, header: string) {
 		label: header,
 		icon: isSorted
 			? isSorted === "asc"
-				? "i-heroicons-bars-arrow-up"
-				: "i-heroicons-bars-arrow-down"
-			: "i-heroicons-arrows-up-down",
+				? "i-heroicons-bars-arrow-up-20-solid"
+				: "i-heroicons-bars-arrow-down-20-solid"
+			: "i-heroicons-arrows-up-down-20-solid",
 		class: "-mx-2.5",
 		onClick: () => column.toggleSorting(column.getIsSorted() === "asc"),
 	});

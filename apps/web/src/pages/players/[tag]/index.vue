@@ -188,20 +188,20 @@ const recordStats = [
 </script>
 
 <template>
-	<UDashboardSection
+	<UiPageSection
 		class="divide-y-0"
 		title="General Stats"
 		description="General information about the player"
 		orientation="vertical"
 	>
 		<div class="pt-0!">
-			<div class="flex flex-col md:flex-row gap-4">
-				<PlayersStatTable title="Player Stats" class="flex flex-col w-full md:w-1/2" :stats="playerStats" />
-				<PlayersStatTable title="Record Stats" class="flex flex-col w-full md:w-1/2" :stats="recordStats" />
+			<div class="flex flex-col gap-4 md:flex-row">
+				<PlayersStatTable title="Player Stats" class="flex w-full flex-col md:w-1/2" :stats="playerStats" />
+				<PlayersStatTable title="Record Stats" class="flex w-full flex-col md:w-1/2" :stats="recordStats" />
 			</div>
 		</div>
-	</UDashboardSection>
-	<UDashboardSection
+	</UiPageSection>
+	<UiPageSection
 		class="divide-y-0"
 		title="Trophy Graph"
 		description="View the player's trophy's change over their trophy road battle log"
@@ -213,7 +213,7 @@ const recordStats = [
 				<template #error="{ error }">
 					<UAlert
 						variant="subtle"
-						color="red"
+						color="error"
 						icon="i-heroicons-exclamation-triangle"
 						title="An error occured when loading the graph"
 						:description="error"
@@ -222,8 +222,8 @@ const recordStats = [
 				</template>
 			</NuxtErrorBoundary>
 		</div>
-	</UDashboardSection>
-	<UDashboardSection
+	</UiPageSection>
+	<UiPageSection
 		class="divide-y-0 pb-8"
 		title="Brawler Progress"
 		description="View the players progress on brawlers and their accessories"
@@ -232,5 +232,5 @@ const recordStats = [
 		<div class="pt-0!">
 			<PlayersProgression :player="player!" :brawlers="brawlers!.list" />
 		</div>
-	</UDashboardSection>
+	</UiPageSection>
 </template>

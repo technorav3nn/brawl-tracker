@@ -10,50 +10,60 @@ defineProps<{
 
 <template>
 	<section>
-		<div v-if="title" class="rounded-t-md bg-inherit border border-b-0 text-center border-gray-200 dark:border-gray-800">
-			<h3 class="text-foreground font-semibold text-lg py-2 px-4">{{ title }}</h3>
+		<div v-if="title" class="rounded-t-md border border-b-0 border-neutral-200 bg-inherit text-center dark:border-neutral-800">
+			<h3 class="text-foreground px-4 py-2 text-lg font-semibold">{{ title }}</h3>
 		</div>
 		<UTable
 			:ui="{
 				thead: 'border-b-0 hidden',
-				divide: 'divide-y-0! ',
-				td: {
-					base: 'whitespace-normal!',
-					padding: 'py-2 px-3',
-				},
-				tr: { base: `[&_:nth-child(1)]:font-semibold! ${uneven ? 'last:border-border! last:border-b!' : ''}` },
-				base: 'bg-inherit',
+				td: 'whitespace-normal! py-2 px-3',
+				tr: `[&_:nth-child(1)]:font-semibold! ${uneven ? 'last:border-border! last:border-b!' : ''}`,
+				base: 'bg-inherit divide-y-0',
 			}"
-			:rows="stats"
+			:data="stats"
 			:columns="[
-				{ key: 'stat', label: 'Stat' },
-				{ key: 'value', label: 'Value' },
-			]"
-			class="h-full border border-gray-200 dark:border-gray-800"
-			:class="[title ? 'rounded-b-md' : 'rounded-md']"
-		>
-			<template #stat-data="{ row }">
-				<div class="flex flex-row gap-x-2 items-center">
-					<Image v-if="row.image" :alt="row.stat" :src="row.image" width="30" height="30" class="object-scale-down size-[24px]" />
-					<p class="text-foreground font-semibold text-sm">{{ row.stat }}</p>
-				</div>
-			</template>
+				{
+					accessorKey: 'stat',
+					header: 'Stat',
+					cell: ({ row }) => {
+						return h('div', { class: 'flex flex-row items-center gap-x-2' }, [
+							h(Image, {
+								alt: row.original.stat,
+								src: row.original.image ?? '',
+								width: 30,
+								height: 30,
+								class: 'size-[24px] object-scale-down',
+							}),
+							h('p', { class: 'text-foreground text-sm font-semibold text-(--ui-text)' }, row.original.stat),
+						]);
+					},
+				},
+				{
+					accessorKey: 'value',
+					header: 'Value',
 
-			<template #value-data="{ row }">
-				<p v-if="row.color" :class="[row.color ?? '', row.valueImage ? 'flex flex-row gap-x-2 items-center' : '']">
-					<Image
-						v-if="row.valueImage"
-						:alt="row.value"
-						:src="row.valueImage"
-						width="25"
-						height="25"
-						class="object-scale-down size-[24px]"
-					/>
-					{{ row.value }}
-				</p>
-				<component :is="row.valueRender" v-else-if="row.valueRender" />
-				<template v-else>{{ row.value }}</template>
-			</template>
-		</UTable>
+					cell: ({ row }) => {
+						return h(
+							'p',
+							{ class: [row.original.color ?? '', row.original.valueImage ? 'flex flex-row items-center gap-x-2' : ''] },
+							[
+								row.original.valueImage
+									? h(Image, {
+											alt: row.original.value,
+											src: row.original.valueImage,
+											width: 25,
+											height: 25,
+											class: 'size-[24px] object-scale-down',
+										})
+									: null,
+								row.original.value,
+							]
+						);
+					},
+				},
+			]"
+			class="h-full border border-neutral-200 dark:border-neutral-800"
+			:class="[title ? 'rounded-b-md' : 'rounded-md']"
+		/>
 	</section>
 </template>

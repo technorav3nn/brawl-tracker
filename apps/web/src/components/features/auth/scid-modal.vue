@@ -1,8 +1,5 @@
 <script setup lang="ts">
-defineProps<{ open: boolean }>();
-const $emit = defineEmits(["update:open"]);
-
-const modal = useModal();
+const $emit = defineEmits<{ close: [boolean] }>();
 
 const tag = ref<string>("");
 
@@ -51,8 +48,8 @@ async function verify() {
 	});
 	verifyLoading.value = false;
 	if (result) {
-		$emit("update:open", false);
-		modal.close();
+		$emit("close", true);
+
 		await navigateTo("/");
 		refreshNuxtData(["user", "database-user"]);
 	} else {
@@ -69,71 +66,73 @@ async function nextStage() {
 </script>
 
 <template>
-	<UModal :modelValue="open" @update:model-value="$emit('update:open', $event)">
-		<UCard :ui="{ ring-3: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
-			<template #header>
-				<div class="flex items-center justify-between">
-					<h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
-						<NuxtImg
-							src="/icons/scid/supercell-id-big.svg"
-							alt="Supercell ID"
-							width="24"
-							height="24"
-							class="inline-block object-scale-down mr-1 w-[2em] h-[2em] [mask-size:100%_100%] text-[revert]!"
+	<UModal>
+		<template #content>
+			<UCard :ui="{ header: 'divide-y divide-neutral-100 dark:divide-neutral-800' }">
+				<template #header>
+					<div class="flex items-center justify-between">
+						<div class="flex items-center gap-2 text-base leading-6 font-semibold text-neutral-900 dark:text-white">
+							<NuxtImg
+								:src="$colorMode.value === 'light' ? '/icons/scid/supercell-id-big.svg' : '/icons/scid/supercell-id-white.svg'"
+								alt="Supercell ID"
+								width="24"
+								height="24"
+								class="mr-1 inline-block h-[2em] w-[2em] object-scale-down text-[revert]! [mask-size:100%_100%]"
+							/>
+							Connect Supercell ID
+						</div>
+						<UButton
+							color="neutral"
+							variant="ghost"
+							icon="i-heroicons-x-mark-20-solid"
+							class="-my-1"
+							@click="$emit('close', true)"
 						/>
-						Supercell ID
-					</h3>
-					<UButton
-						color="gray"
-						variant="ghost"
-						icon="i-heroicons-x-mark-20-solid"
-						class="-my-1"
-						@click="$emit('update:open', false)"
+					</div>
+				</template>
+
+				<div v-if="stageOne">
+					<p class="text-md font-medium">To verify, you need to change your profile picture into something else</p>
+					<p class="mb-2 text-sm text-neutral-500 dark:text-neutral-400">The profile picture will be a brawler you own.</p>
+
+					<label class="text-sm font-medium text-neutral-500 dark:text-neutral-400">Enter your player tag</label>
+					<UInput v-model="tag" label="playerTag" placeholder="Your tag..." class="w-full!" />
+					<UButton block class="mt-2" :loading="status === 'pending'" @click="async () => await nextStage()">Next</UButton>
+					<UAlert
+						v-if="status === 'error'"
+						color="error"
+						class="mt-4"
+						icon="i-heroicons-information-circle-20-solid"
+						:title="error?.data.statusMessage"
 					/>
 				</div>
-			</template>
 
-			<div v-if="stageOne">
-				<p class="text-md font-medium">To verify, you need to change your profile picture into something else</p>
-				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2">The profile picture will be a brawler you own.</p>
-
-				<label class="text-sm font-medium text-gray-500 dark:text-gray-400">Enter your player tag</label>
-				<UInput v-model="tag" label="playerTag" placeholder="Your tag..." class="w-full!" />
-				<UButton block class="mt-2" :loading="status === 'pending'" @click="async () => await nextStage()">Next</UButton>
-				<UAlert
-					v-if="status === 'error'"
-					color="red"
-					class="mt-4"
-					icon="i-heroicons-information-circle-20-solid"
-					:title="error?.data.statusMessage"
-				/>
-			</div>
-
-			<div v-if="stageTwo && status !== 'error' && status === 'success'">
-				<div class="flex flex-row justify-between items-center">
-					<NuxtImg width="100" height="100" :src="originalIcon!"></NuxtImg>
-					<UIcon name="i-heroicons-arrow-right-20-solid" class="text-gray-500 dark:text-gray-400 size-20" />
-					<NuxtImg width="100" height="100" :src="randomIcon?.imageUrl2"></NuxtImg>
+				<div v-if="stageTwo && status !== 'error' && status === 'success'">
+					<div class="flex flex-row items-center justify-between">
+						<NuxtImg width="100" height="100" :src="originalIcon!"></NuxtImg>
+						<UIcon name="i-heroicons-arrow-right-20-solid" class="size-20 text-neutral-500 dark:text-neutral-400" />
+						<NuxtImg width="100" height="100" :src="randomIcon?.imageUrl2"></NuxtImg>
+					</div>
+					<p class="text-md mt-2 text-center font-medium">Change your profile picture to the brawler on the right</p>
+					<p class="mb-2 text-center text-sm text-neutral-500 dark:text-neutral-400">You can change it back after verifying</p>
+					<UButton block class="mt-2" :loading="verifyLoading" @click="verify">Verify</UButton>
+					<UAlert
+						v-if="!!errorMessage"
+						color="error"
+						class="mt-4"
+						icon="i-heroicons-information-circle-20-solid"
+						:title="errorMessage"
+					/>
 				</div>
-				<p class="text-md font-medium mt-2 text-center">Change your profile picture to the brawler on the right</p>
-				<p class="text-sm text-gray-500 dark:text-gray-400 mb-2 text-center">You can change it back after verifying</p>
-				<UButton block class="mt-2" :loading="verifyLoading" @click="verify">Verify</UButton>
-				<UAlert
-					v-if="!!errorMessage"
-					color="red"
-					class="mt-4"
-					icon="i-heroicons-information-circle-20-solid"
-					:title="errorMessage"
-				/>
-			</div>
 
-			<USeparator class="mt-4" size="xs" />
-			<UProgress
-				class="mt-3"
-				:value="progress"
-				:max="['empty step', 'Step 1: Enter your email', 'Step 2: Enter the code from your inbox', 'empty step']"
-				:ui="{ step: { align: 'text-start' } }"
-			/>
-		</UCard>
+				<USeparator class="mt-4" size="xs" />
+				<UProgress
+					class="mt-3"
+					:modelValue="progress"
+					:max="['empty step', 'Step 1: Enter your tag', 'Step 2: Verify with changing your profile picture', 'empty step']"
+					:ui="{ step: 'first' }"
+				/>
+			</UCard>
+		</template>
 	</UModal>
 </template>

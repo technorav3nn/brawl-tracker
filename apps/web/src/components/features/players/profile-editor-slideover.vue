@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Player } from "@brawltracker/brawl-stars-api";
-import type { NavigationLink } from "@nuxt/ui-pro/types";
 import { useProfileConfigStore } from "./profile-editor/store";
-import { PlayersProfileEditorBackgroundCard, UDashboardSlideover } from "#components";
+import { PlayersProfileEditorBackgroundCard } from "#components";
+import type { NavigationMenuItem } from "#ui/types";
 import { BACKGROUNDS } from "$lib/backgrounds";
 
 defineProps<{
@@ -13,16 +13,16 @@ const tabs = ["background", "theme"] as const;
 const tab = ref<(typeof tabs)[number]>("background");
 const oldTab = ref<(typeof tabs)[number]>("background");
 
-const links = computed<NavigationLink[]>(() => [
+const links = computed<NavigationMenuItem[]>(() => [
 	{
 		icon: "i-heroicons-photo-20-solid",
-		click: () => setTab("background"),
+		onSelect: () => setTab("background"),
 		active: tab.value === "background",
 		label: "Background",
 	},
 	{
 		icon: "i-heroicons-swatch-20-solid",
-		click: () => setTab("theme"),
+		onSelect: () => setTab("theme"),
 		active: tab.value === "theme",
 		label: "Theme",
 	},
@@ -60,59 +60,62 @@ async function onApplyClick() {
 </script>
 
 <template>
-	<UDashboardSlideover
+	<USlideover
 		title="Edit Profile"
 		:ui="{
-			width: 'max-w-sm!',
-			body: { base: 'overflow-y-auto!', padding: 'p-0' },
-			footer: {
-				base: 'z-50 bg-white dark:bg-gray-900',
-			},
+			content: 'max-w-sm!',
+			body: 'overflow-y-auto! p-0!',
+			footer: 'z-50 bg-white dark:bg-neutral-900',
 		}"
 	>
-		<UHorizontalNavigation
-			class="w-full border-b border-gray-200 dark:border-gray-800 sticky top-0 z-10 bg-white dark:bg-gray-900"
-			:ui="{ container: 'w-full! px-1', inner: 'w-full!', base: 'flex items-center justify-center', icon: { base: 'w-6 h-6' } }"
-			:links="links"
-		/>
-		<TransitionGroup
-			name="tabs"
-			tag="div"
-			:style="{
-				'--transform-data': `translateX(${computeTabsDirection() === 'none' ? 0 : computeTabsDirection() === 'right' ? 18 : -18}px)`,
-			}"
-		>
-			<div v-if="tab === 'background'">
-				<div class="w-full py-5 px-4 border-b border-gray-200 dark:border-gray-800">
-					<h1 class="text-2xl font-semibold">Background</h1>
-					<p class="text-gray-500 dark:text-gray-400 text-sm">Choose a background to change on your profile</p>
+		<template #body>
+			<UNavigationMenu
+				class="sticky top-0 z-10 w-full border-b border-neutral-200 bg-(--ui-bg) dark:border-neutral-800"
+				:ui="{ root: 'w-full! px-1 [&_:nth-child(1)]:w-full', item: 'w-full!', content: 'w-full', link: 'after:h-[2px]' }"
+				:items="links"
+				variant="link"
+				highlight
+			/>
+			<TransitionGroup
+				name="tabs"
+				tag="div"
+				:style="{
+					'--transform-data': `translateX(${computeTabsDirection() === 'none' ? 0 : computeTabsDirection() === 'right' ? 18 : -18}px)`,
+				}"
+			>
+				<div v-if="tab === 'background'">
+					<div class="w-full border-b border-neutral-200 px-4 py-5 dark:border-neutral-800">
+						<h1 class="text-2xl font-semibold">Background</h1>
+						<p class="text-sm text-neutral-500 dark:text-neutral-400">Choose a background to change on your profile</p>
+					</div>
+					<div class="flex flex-col gap-2.5 p-4">
+						<PlayersProfileEditorBackgroundCard
+							v-for="background in BACKGROUNDS"
+							:key="background.name"
+							:background
+							type="button"
+							class="focus:outline-2 focus:outline-primary-500 dark:focus:outline-primary-400"
+						/>
+					</div>
 				</div>
-				<div class="flex flex-col gap-2.5 p-4">
-					<PlayersProfileEditorBackgroundCard
-						v-for="background in BACKGROUNDS"
-						:key="background.name"
-						:background
-						type="button"
-						class="focus:outline-2 focus:outline-primary-500 dark:focus:outline-primary-400"
-					/>
+				<div v-if="tab === 'theme'">
+					<div class="w-full border-b border-neutral-200 px-4 py-5 dark:border-neutral-800">
+						<h1 class="text-2xl font-semibold">Theme</h1>
+						<p class="text-sm text-neutral-500 dark:text-neutral-400">Change your profiles theme color to anything you choose!</p>
+					</div>
+					<div class="flex flex-col gap-2.5 p-4">
+						<PlayersProfileEditorColorPicker />
+					</div>
 				</div>
-			</div>
-			<div v-if="tab === 'theme'">
-				<div class="w-full py-5 px-4 border-b border-gray-200 dark:border-gray-800">
-					<h1 class="text-2xl font-semibold">Theme</h1>
-					<p class="text-gray-500 dark:text-gray-400 text-sm">Change your profiles theme color to anything you choose!</p>
-				</div>
-				<div class="flex flex-col gap-2.5 p-4">
-					<PlayersProfileEditorColorPicker />
-				</div>
-			</div>
-		</TransitionGroup>
+			</TransitionGroup>
+		</template>
+
 		<template #footer>
 			<UButton :disabled="buttonText === 'Applied!'" :icon="buttonIcon" :loading block @click="onApplyClick">
 				{{ buttonText }}
 			</UButton>
 		</template>
-	</UDashboardSlideover>
+	</USlideover>
 </template>
 
 <style scoped>

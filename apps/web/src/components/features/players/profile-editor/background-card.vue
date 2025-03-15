@@ -20,8 +20,8 @@ function setBackground() {
 	>
 		<UCard
 			class="relative"
-			:class="[background.name === selectedBackground?.name ? 'filter brightness-[0.70]' : '']"
-			:ui="{ body: { padding: 'p-0!' } }"
+			:class="[background.name === selectedBackground?.name ? 'brightness-[0.70] filter' : '']"
+			:ui="{ body: 'p-0!' }"
 			role="button"
 		>
 			<NuxtImg
@@ -31,14 +31,14 @@ function setBackground() {
 				:alt="background.name"
 				width="400"
 				height="180"
-				class="rounded-sm cursor-pointer hover:ring-2 hover:ring-primary-500 dark:hover:ring-primary-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+				class="cursor-pointer rounded-sm hover:bg-neutral-100/50 hover:ring-2 hover:ring-primary-500 dark:hover:bg-neutral-800/50 dark:hover:ring-primary-400"
 			/>
 		</UCard>
 		<div
 			v-if="background.name === selectedBackground?.name"
 			style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)"
 		>
-			<UIcon name="i-heroicons-photo" class="text-white size-10" />
+			<UIcon name="i-heroicons-photo" class="size-10 text-white" />
 		</div>
 	</button>
 </template>

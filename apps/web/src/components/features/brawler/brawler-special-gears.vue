@@ -48,7 +48,7 @@ const gears = computed(() => {
 		</template>
 
 		<div v-if="Object.keys(gears).length !== 0" class="h-full">
-			<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+			<p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
 				These are only Epic and Mythic Gears, every brawlers inside the game will have access to the normal Super Rare Gears.
 			</p>
 
@@ -74,7 +74,7 @@ const gears = computed(() => {
 
 		<div v-else>
 			<div class="flex items-center justify-center">
-				<p class="text-md mt-3 text-center text-gray-500 dark:text-gray-400">This brawler doesn't have any special gears</p>
+				<p class="text-md mt-3 text-center text-neutral-500 dark:text-neutral-400">This brawler doesn't have any special gears</p>
 			</div>
 		</div>
 	</UCard>
@@ -100,7 +100,7 @@ const gears = computed(() => {
 			<div
 				class="px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded-sm rounded-b-none rounded-t-none"
 			>
-				<p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+				<p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
 					These are only Epic and Mythic Gears, every brawlers inside the game will have access to the normal Super Rare Gears.
 				</p>
 
@@ -129,7 +129,7 @@ const gears = computed(() => {
 			<div
 				class="flex justify-center items-center px-4 py-1.5 border border-border border-l-0 border-r-0 border-b-0 w-full h-full rounded-sm rounded-b-none rounded-t-none"
 			>
-				<p class="mt-3 text-center text-md text-gray-500 dark:text-gray-400">This brawler doesn't have any special gears</p>
+				<p class="mt-3 text-center text-md text-neutral-500 dark:text-neutral-400">This brawler doesn't have any special gears</p>
 			</div>
 		</div>
 	</div> 

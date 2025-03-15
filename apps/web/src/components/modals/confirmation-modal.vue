@@ -4,28 +4,31 @@ defineProps<{
 	description: string;
 }>();
 
-const emit = defineEmits(["success"]);
+const emit = defineEmits<{ close: [boolean]; success: [] }>();
 
 function onSuccess() {
+	emit("close", true);
 	emit("success");
 }
-
-const modal = useModal();
 </script>
 
 <template>
 	<UModal>
-		<UCard :ui="{ ring-3: '', divide: 'divide-y divide-gray-100 dark:divide-gray-800' }">
-			<template #header>
-				<h1 class="text-lg font-semibold">Are you sure?</h1>
-			</template>
+		<template #content>
+			<UCard :ui="{ header: 'divide-y divide-gray-100 dark:divide-gray-800' }">
+				<template #header>
+					<h1 class="text-lg font-semibold">Are you sure?</h1>
+				</template>
 
-			<p class="text-sm">{{ description }}</p>
+				<p class="text-sm">{{ description }}</p>
 
-			<div class="flex justify-end mt-8 gap-2">
-				<UButton class="w-1/2 text-center" color="gray" block @click="modal.close()">{{ labels[0] }}</UButton>
-				<UButton class="w-1/2 text-center" color="red" block @click="onSuccess">{{ labels[1] }}</UButton>
-			</div>
-		</UCard>
+				<div class="mt-8 flex justify-end gap-2">
+					<UButton class="w-1/2 text-center" color="neutral" variant="subtle" block @click="emit('close', true)">{{
+						labels[0]
+					}}</UButton>
+					<UButton class="w-1/2 text-center" color="error" block @click="onSuccess">{{ labels[1] }}</UButton>
+				</div>
+			</UCard>
+		</template>
 	</UModal>
 </template>

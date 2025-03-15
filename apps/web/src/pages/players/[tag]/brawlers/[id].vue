@@ -36,47 +36,47 @@ useSeoMeta({
 <template>
 	<UButton
 		variant="link"
-		icon="i-heroicons-chevron-double-left-20-solid"
+		icon="i-heroicons-arrow-left-20-solid"
 		:to="`/players/${encodeURIComponent(route.params.tag)}/brawlers`"
 	>
 		Go Back
 	</UButton>
-	<UDashboardSection
+	<UiPageSection
 		v-if="foundBrawler && playerBrawler"
-		class="divide-y-0"
+		class="divide-y-0 *:pt-2!"
 		:title="foundBrawler.name"
 		:description="`View ${player!.name}'s stats for ${foundBrawler!.name}`"
 		orientation="vertical"
 	>
-		<div class="pt-0! grid grid-cols-5 gap-4">
+		<div class="grid grid-cols-5 gap-4 pt-0!">
 			<PlayersBrawlerPortraitCard
 				v-if="fullStatus"
 				:brawler="foundBrawler!"
 				:playerBrawler="playerBrawler!"
-				class="col-span-5 sm:col-span-2 lg:col-span-1 h-full w-full min-[340px]:w-[revert]"
+				class="col-span-5 h-full w-full min-[340px]:w-[revert] sm:col-span-2 lg:col-span-1"
 			/>
 			<PlayersBrawlerStatsTable
 				v-if="fullStatus"
 				:playerBrawler="playerBrawler!"
-				class="col-span-5 sm:col-span-3 lg:col-span-2 flex flex-col w-full"
+				class="col-span-5 flex w-full flex-col sm:col-span-3 lg:col-span-2"
 			/>
-			<div v-if="fullStatus" class="col-span-5 lg:col-span-2 grid grid-cols-2 gap-4">
+			<div v-if="fullStatus" class="col-span-5 grid grid-cols-2 gap-4 lg:col-span-2">
 				<PlayersBrawlerOwnedPower
-					class="w-full h-full col-span-1"
+					class="col-span-1 h-full w-full"
 					image="/icons/player/brawler-powers/gadget-big.png"
 					title="Owned Gadgets"
 					type="gadgets"
 					:powers="playerBrawler!.gadgets"
 				/>
 				<PlayersBrawlerOwnedPower
-					class="w-full h-full col-span-1"
+					class="col-span-1 h-full w-full"
 					image="/icons/player/brawler-powers/starpower-big.png"
 					title="Owned Star Powers"
 					type="starPowers"
 					:powers="playerBrawler!.starPowers"
 				/>
 				<PlayersBrawlerOwnedPower
-					class="w-full h-full col-span-2"
+					class="col-span-2 h-full w-full"
 					image="/icons/player/brawler-powers/gear-big.png"
 					title="Owned Gears"
 					type="gears"
@@ -105,7 +105,7 @@ useSeoMeta({
 			</div>
 		</div> 
 -->
-	</UDashboardSection>
+	</UiPageSection>
 </template>
 
 <style>

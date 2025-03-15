@@ -8,7 +8,7 @@
 					</slot>
 				</div>
 
-				<div>
+				<div :class="[fullWidth && 'w-full']">
 					<p v-if="title || $slots.title" :class="config.title">
 						<slot name="title">
 							{{ title }}
@@ -63,6 +63,9 @@ const props = defineProps({
 		type: [String, Object, Array] as PropType<any>,
 		default: undefined,
 	},
+	fullWidth: {
+		type: Boolean,
+	},
 });
 
 defineOptions({
@@ -83,7 +86,7 @@ const config = computed(() => {
 	return {
 		wrapper,
 		container,
-		inner: "flex items-start gap-4",
+		inner: `flex items-start gap-4 ${props.fullWidth ? "w-full" : ""}`,
 		title: "text-neutral-900 dark:text-white font-semibold",
 		description: "mt-1 text-sm text-neutral-500 dark:text-neutral-400",
 		links: "flex flex-wrap items-center gap-1.5",

@@ -1,24 +1,37 @@
 <script setup lang="ts">
-import { ModalsConfirmationModal, AuthImportFriendsModal, AuthScidModal } from "#components";
+import { LazyModalsConfirmationModal, LazyAuthImportFriendsModal, LazyAuthScidModal } from "#components";
 
 const user = useUser();
 const databaseUser = useDatabaseUser();
 
-const modal = useModal();
+const modal = useOverlay();
 const toast = useToast();
 
 function beginDeleteAccountProcess() {
-	modal.open(ModalsConfirmationModal, {
-		onSuccess: () =>
-			modal.open(ModalsConfirmationModal, {
+	modal.create(LazyModalsConfirmationModal).open({
+		onSuccess: () => {
+			modal.create(LazyModalsConfirmationModal).open({
 				onSuccess: deleteAccount,
 				labels: ["Cancel", "Delete"],
 				description: "Again, are you sure? This is irreversible!",
-			}),
+			});
+		},
 		labels: ["Cancel", "Delete"],
 		description:
 			"Are you sure you want to delete your account? This action is irreversible! You will lose all your data and settings. Your Supercell ID will now be unlinked from your account aswell.",
 	});
+
+	// modal.open(LazyModalsConfirmationModal, {
+	// 	onSuccess: () =>
+	// 		modal.open(LazyModalsConfirmationModal, {
+	// 			onSuccess: deleteAccount,
+	// 			labels: ["Cancel", "Delete"],
+	// 			description: "Again, are you sure? This is irreversible!",
+	// 		}),
+	// 	labels: ["Cancel", "Delete"],
+	// 	description:
+	// 		"Are you sure you want to delete your account? This action is irreversible! You will lose all your data and settings. Your Supercell ID will now be unlinked from your account aswell.",
+	// });
 }
 
 async function deleteAccount() {
@@ -33,7 +46,7 @@ async function deleteAccount() {
 }
 
 function connect() {
-	modal.open(AuthScidModal);
+	modal.create(LazyAuthScidModal).open();
 }
 
 async function disconnect() {
@@ -42,42 +55,42 @@ async function disconnect() {
 		toast.add({ title: "Disconnected from Supercell ID!", color: "primary" });
 		refreshNuxtData(["user", "database-user"]);
 	} else {
-		toast.add({ title: "Failed to disconnect from Supercell ID", color: "red" });
+		toast.add({ title: "Failed to disconnect from Supercell ID", color: "error" });
 	}
 }
 
 function importFriends() {
-	modal.open(AuthImportFriendsModal);
+	modal.create(LazyAuthImportFriendsModal).open();
 }
 </script>
 
 <template>
 	<section>
-		<p class="font-medium text-lg">Account</p>
+		<p class="text-lg font-medium">Account</p>
 		<p class="text-sm">Manage anything about your accounts details</p>
 		<USeparator class="mt-4 w-full" />
 	</section>
-	<section class="mt-4 flex gap-4 flex-col">
+	<section class="mt-4 flex flex-col gap-4">
 		<div>
-			<p class="font-medium text-md">Supercell ID connection</p>
+			<p class="text-md font-medium">Supercell ID connection</p>
 			<p class="text-sm">Manage your Supercell ID connection</p>
-			<UButton v-if="!databaseUser?.profile.isConnected" size="xs" icon="i-tabler-link" class="mt-2" @click="connect">
+			<UButton v-if="!databaseUser?.profile.isConnected" size="sm" icon="i-tabler-link" class="mt-2" @click="connect">
 				Connect
 			</UButton>
-			<UButton v-else size="xs" icon="i-tabler-unlink" class="mt-2" color="red" @click="disconnect">Disconnect</UButton>
+			<UButton v-else size="sm" icon="i-tabler-unlink" class="mt-2" color="error" @click="disconnect">Disconnect</UButton>
 		</div>
 		<div>
-			<p class="font-medium text-md">Supercell Friends</p>
+			<p class="text-md font-medium">Supercell Friends</p>
 			<p class="text-sm">Import your friends and view their profiles and stats easily!</p>
-			<UButton size="xs" icon="i-heroicons-arrow-down-tray-20-solid" class="mt-2" @click="importFriends">
+			<UButton size="sm" icon="i-heroicons-arrow-down-tray-20-solid" class="mt-2" @click="importFriends">
 				Import Supercell Friends
 			</UButton>
 		</div>
 		<div>
-			<p class="font-medium text-md text-red-400 dark:text-red-400">Delete Account</p>
+			<p class="text-md font-medium text-red-400 dark:text-red-400">Delete Account</p>
 			<p class="text-sm">Warning: Deleting your account is irreversible</p>
 			<div class="mt-3">
-				<UButton color="red" size="xs" icon="i-heroicons-trash-20-solid" @click="beginDeleteAccountProcess">
+				<UButton color="error" size="sm" icon="i-heroicons-trash-20-solid" @click="beginDeleteAccountProcess">
 					Delete Account
 				</UButton>
 			</div>

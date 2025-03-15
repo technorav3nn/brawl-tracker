@@ -17,17 +17,16 @@ const model = computed(() => getBrawlerModelUrl(props.brawler.id.toString()));
 <template>
 	<UCard
 		:ui="{
-			footer: {
-				padding: isMaxTier
-					? 'sm:pl-3! sm:pr-0! py-1! px-32! max-[450px]:px-20! max-[380px]:px-10! max-[200px]:px-4!'
-					: 'sm:px-3! py-1! sm:pr-1.5! px-24!',
-			},
-			body: { base: 'flex justify-center ' },
-			header: { base: 'px-4! py-2!' },
+			footer: isMaxTier
+				? 'sm:pl-3! sm:pr-0! py-1! px-32! max-[450px]:px-20! max-[380px]:px-10! max-[200px]:px-4!'
+				: 'sm:px-3! py-1! sm:pr-1.5! px-24!',
+
+			body: 'flex justify-center ',
+			header: 'px-4! py-2!',
 		}"
 	>
 		<template #header>
-			<h3 class="text-foreground font-semibold text-lg">{{ brawler!.name }}</h3>
+			<h3 class="text-foreground text-lg font-semibold">{{ brawler!.name }}</h3>
 		</template>
 		<NuxtImg loading="eager" :src="model" width="200" height="200" fit="outside" format="webp" class="h-[280px] object-contain" />
 		<template #footer>
@@ -39,7 +38,7 @@ const model = computed(() => getBrawlerModelUrl(props.brawler.id.toString()));
 					:src="rankUrl"
 					class="z-10 size-[50px] object-contain"
 				/>
-				<div class="relative -translate-x-[26px] w-full -mr-5">
+				<div class="relative -mr-5 w-full -translate-x-[26px]">
 					<NuxtImg
 						v-if="!isMaxTier"
 						loading="eager"
@@ -59,8 +58,8 @@ const model = computed(() => getBrawlerModelUrl(props.brawler.id.toString()));
 						src="/icons/player/trophy-bars/max-tier-full.png"
 					/>
 					<p
-						:class="[isMaxTier ? 'text-white  top-[48.9%]' : 'text-yellow-400 top-[50%] ']"
-						class="flex gap-0.5 justify-center items-center brawlstars-text text-center w-[120px] text-[16px] font-brawlstars absolute left-[50%] translate-x-[calc(-50%-0.4rem)] translate-y-[-50%]"
+						:class="[isMaxTier ? 'top-[48.9%]  text-white' : 'top-[50%] text-yellow-400 ']"
+						class="brawlstars-text absolute left-[50%] flex w-[120px] translate-x-[calc(-50%-0.4rem)] translate-y-[-50%] items-center justify-center gap-0.5 text-center font-brawlstars text-[16px]"
 					>
 						<span>
 							<Image
