@@ -30,7 +30,7 @@ const mode = computed(() => colorMode.value);
 			<UCard class="max-w-sm w-full">
 				<UAuthForm
 					title="Sign Up"
-					class="!max-w-sm"
+					class="max-w-sm!"
 					description="Enter your information to create an account."
 					align="bottom"
 					icon="i-heroicons-user-circle"
@@ -67,7 +67,7 @@ const mode = computed(() => colorMode.value);
 					@submit="onSubmit"
 				>
 					<template #description>
-						Already have an account? <NuxtLink to="/login" class="text-primary font-medium">Log In</NuxtLink>.
+						Already have an account? <NuxtLink to="/login" class="text-(--ui-primary) font-medium">Log In</NuxtLink>.
 					</template>
 					<template #validation>
 						<NuxtTurnstile v-model="token" :options="{ theme: mode as any, size: 'flexible' }" />

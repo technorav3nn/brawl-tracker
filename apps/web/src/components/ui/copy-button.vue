@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { UTooltip, type UButton } from "#components";
+import { UTooltip } from "#components";
 
 const props = defineProps<{
 	text: string;
@@ -28,7 +28,7 @@ const attrs = useAttrs();
 </script>
 
 <template>
-	<UTooltip :text="content">
+	<UTooltip disableClosingTrigger :delayDuration="0" :text="content">
 		<UButton :size="(props as any).size" v-bind="attrs" :icon="icon" @click="onClick" />
 	</UTooltip>
 </template>

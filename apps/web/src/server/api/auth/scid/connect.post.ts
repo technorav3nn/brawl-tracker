@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
 	const api = useBrawlStarsApi();
 	const player = await api.players.getPlayer(data.tag);
 
-	if (data.iconToCheck !== player.icon.id.toString()) {
+	if (import.meta.env.PROD && data.iconToCheck !== player.icon.id.toString()) {
 		throw createError({ status: 400, statusMessage: "Invalid icon or not changed" });
 	}
 

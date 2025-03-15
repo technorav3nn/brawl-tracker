@@ -59,21 +59,21 @@ const stats = computed(() => {
 </script>
 
 <template>
-	<div class="rounded-lg border border-border p-4 shadow">
+	<div class="rounded-lg border border-(--ui-border) p-4 shadow-sm">
 		<div class="flex w-full flex-col justify-between">
 			<div class="flex items-center justify-between">
 				<h1 class="text-2xl font-bold tracking-tight">Overview</h1>
-				<USelectMenu
+				<USelect
 					v-model="selectedLevel"
 					class="min-w-24"
-					:options="levelSelectOptions"
+					:items="levelSelectOptions"
 					valueAttribute="value"
 					optionAttribute="label"
 				/>
 			</div>
-			<div class="flex flex-col justify-between gap-3 sm:flex-col md:flex-col xl:flex-col items-center w-full">
+			<div class="flex w-full flex-col items-center justify-between gap-3 sm:flex-col md:flex-col xl:flex-col">
 				<NuxtImg
-					class="mt-2 aspect-square w-full self-center !object-scale-down !h-[revert-layer]"
+					class="mt-2 aspect-square h-[revert-layer]! w-full self-center object-scale-down!"
 					:src="modelImage"
 					:height="brawlerModelSize.height"
 					:width="brawlerModelSize.width"
@@ -83,21 +83,27 @@ const stats = computed(() => {
 					preload
 				/>
 
-				<UDivider class="w-[102.8%] lg:hidden xl:block" />
+				<USeparator class="w-[102.8%] lg:hidden xl:block" />
 
 				<UTable
 					:ui="{
 						thead: 'border-b-0 hidden',
-						divide: '!divide-y-0 ',
-						td: {
-							base: '!whitespace-normal',
-							padding: 'px-2.5 py-2.5',
-						},
-						tr: { base: '[&_:nth-child(1)]:!text-foreground [&_:nth-child(1)]:!font-semibold' },
+						base: 'divide-y-0!',
+						td: 'whitespace-normal! px-2.5 py-2.5',
+						tr: '[&_:nth-child(1)]:text-(--ui-text) [&_:nth-child(1)]:font-semibold!',
 					}"
-					:rows="stats"
-					:columns="undefined"
-					class="!w-full"
+					:data="stats"
+					:columns="[
+						{
+							accessorKey: 'title',
+							header: 'Stat',
+						},
+						{
+							accessorKey: 'value',
+							header: 'Value',
+						},
+					]"
+					class="w-full!"
 				>
 				</UTable>
 			</div>
