@@ -1,16 +1,14 @@
 import { createResolver } from "@nuxt/kit";
-// import { isDevelopment } from "std-env";
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
-	extends: ["@nuxt/ui-pro"],
 	modules: [
+		"@nuxt/ui-pro",
 		"@nuxt/devtools",
 		"@nuxt/fonts",
 		"@nuxt/image",
-		"@nuxt/ui",
 		"@nuxt/content",
 		"@nuxtjs/turnstile",
 		"@pinia/nuxt",
@@ -19,6 +17,7 @@ export default defineNuxtConfig({
 		"nuxt-appwrite",
 	],
 	srcDir: "src/",
+	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
 	devtools: {
 		enabled: true,
 	},

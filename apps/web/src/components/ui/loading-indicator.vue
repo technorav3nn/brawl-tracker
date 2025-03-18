@@ -6,7 +6,7 @@ const attrs = useAttrs() as any;
 
 <template>
 	<UIcon
-		:class="twMerge('pointer-events-none text-gray-400 dark:text-gray-500 h-5 w-5 animate-spin stroke-2', attrs.class)"
+		:class="twMerge('pointer-events-none h-5 w-5 animate-spin stroke-2 text-neutral-400 dark:text-neutral-500', attrs.class)"
 		name="i-heroicons-arrow-path-20-solid"
 	/>
 </template>

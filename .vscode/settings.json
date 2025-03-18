@@ -1,13 +1,10 @@
 {
-	"eslint.workingDirectories": [
-		{
-			"mode": "auto"
-		}
-	],
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
 	"editor.quickSuggestions": {
 		"strings": "on"
 	},
-	"css.lint.unknownAtRules": "ignore",
 	"tailwindCSS.experimental.classRegex": [
 		["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
 		["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
@@ -18,18 +15,12 @@
 		["uiMenu:\\s*{([^)]*)\\s*}", "[\"'`]([^\"'`]*).*?[\"'`]"],
 		["/\\*\\s?ui\\s?\\*/\\s*{([^;]*)}", ":\\s*[\"'`]([^\"'`]*).*?[\"'`]"]
 	],
-	"files.associations": {
-		"*.css": "tailwindcss"
-	},
-	"tailwindCSS.classAttributes": ["class", "className", "ngClass", "ui"],
-	"typescript.tsdk": "node_modules/typescript/lib",
-	"tailwindCSS.experimental.configFile": "./apps/web/tailwind.config.ts",
+	// "tailwindCSS.experimental.configFile": "./apps/web/src/assets/css/tailwind.css",
 	"search.exclude": {
 		"**/node_modules": true,
 		"**/bower_components": true,
 		"**/*.code-search": true,
 		// "**/__old__": true,
 		"**/.yarn/releases": true
-	},
-	"stylua.targetReleaseVersion": "latest"
+	}
 }

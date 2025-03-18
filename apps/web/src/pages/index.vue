@@ -57,7 +57,7 @@ const finalLandingLinks: Button[] = [
 
 <template>
 	<UPage>
-		<ULandingHero
+		<!-- <ULandingHero
 			title="The Intuitive Statistics Site"
 			description="BrawlTrack is an open-source, comprehensive statistics and utilities site for Brawl Stars."
 			:links="heroLinks"
@@ -74,7 +74,7 @@ const finalLandingLinks: Button[] = [
 			</template>
 		</ULandingHero>
 		<ULandingSection
-			class="bg-gradient-to-b to-gray-50 dark:to-gray-950/50 from-white dark:from-gray-900"
+			class="bg-linear-to-b to-gray-50 dark:to-gray-950/50 from-white dark:from-gray-900"
 			title="Features"
 			description="BrawlTrack offers a variety of features to help you track your progress and improve your gameplay."
 		>
@@ -112,7 +112,7 @@ const finalLandingLinks: Button[] = [
 		<ULandingSection
 			title="Free & Open Source Forever"
 			description="BrawlTrack is and always will be free and open-source with zero ads. It's a great way to learn how to code and contribute to a project!"
-			class="bg-gradient-to-b from-gray-50 dark:from-gray-950/50 to-white dark:to-gray-900"
+			class="bg-linear-to-b from-gray-50 dark:from-gray-950/50 to-white dark:to-gray-900"
 			:links="openSourceLandingLinks"
 		/>
 		<ULandingSection
@@ -120,6 +120,8 @@ const finalLandingLinks: Button[] = [
 			description="Start using BrawlTrack today and enjoy the benefits of tracking your progress and improving your gameplay!"
 			:links="finalLandingLinks"
 			class="bg-gray-950/30 border-t border-border"
-		/>
+		/> -->
+
+		THIS PAGE IS BEING REDONE - WIP
 	</UPage>
 </template>

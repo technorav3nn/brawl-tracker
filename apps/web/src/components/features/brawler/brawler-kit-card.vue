@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { UTooltip } from "#components";
+
 const props = defineProps<{
 	title: string;
 	tableData: Record<any, any>[];
@@ -9,7 +11,7 @@ const props = defineProps<{
 </script>
 
 <template>
-	<div class="flex flex-col gap-4 rounded-lg border border-border p-4 shadow">
+	<div class="flex flex-col gap-4 rounded-lg border border-(--ui-border) p-4 shadow-sm">
 		<div class="flex items-center justify-between">
 			<div class="flex items-center gap-2">
 				<NuxtImg
@@ -26,34 +28,41 @@ const props = defineProps<{
 			</div>
 		</div>
 		<div>
-			<p class="text-sm text-muted-foreground">{{ description }}</p>
-			<UDivider class="mt-4 -scale-x-[1.042]" />
+			<p class="text-muted-foreground text-sm">{{ description }}</p>
+			<USeparator class="mt-4 -scale-x-[1.042]" />
 			<UTable
 				:ui="{
 					thead: 'border-b-0 hidden',
-					divide: '!divide-y-0 ',
-					td: {
-						base: '!whitespace-normal ',
-						padding: 'px-2.5 py-2.5',
-					},
-					tr: { base: '[&_:nth-child(1)]:!text-foreground [&_:nth-child(1)]:!font-semibold ' },
+					base: 'divide-y-0!',
+					td: 'whitespace-normal! px-2.5 py-2.5',
+					tr: '[&_:nth-child(1)]:text-(--ui-text) [&_:nth-child(1)]:font-semibold!',
 				}"
 				:columns="[
-					{ key: 'label', label: 'Name' },
-					{ key: 'value', label: 'Value' },
+					{
+						accessorKey: 'label',
+						cell: (d) => {
+							const data = d.row.original;
+							if (data.isLevelStat) {
+								return h(
+									UTooltip,
+									{
+										text: 'This stat is level dependent',
+										delayDuration: 0,
+										content: { align: 'center', side: 'bottom', positionStrategy: 'absolute' },
+									},
+									{
+										default: () => h('p', { class: 'underline decoration-dashed underline-offset-4 !w-fit' }, data.label),
+									}
+								);
+							}
+							return h('p', {}, data.label);
+						},
+					},
+					{ accessorKey: 'value', header: 'Value' },
 				]"
-				:rows="tableData"
+				:data="tableData"
 				class="w-full"
-			>
-				<template #label-data="{ row }">
-					<div v-if="row.isLevelStat">
-						<UTooltip :ui="{ base: '[@media(pointer:coarse)]:!block' }" text="This stat is level dependent">
-							<p class="underline decoration-dashed underline-offset-4">{{ row.label }}</p>
-						</UTooltip>
-					</div>
-					<p v-else>{{ row.label }}</p>
-				</template>
-			</UTable>
+			/>
 		</div>
 	</div>
 </template>

@@ -4,7 +4,7 @@
 			<div class="grid grid-cols-3 gap-1">
 				<PlayersProfileEditorColorPickerPill
 					v-for="color in primaryColors"
-					:key="color.value"
+					:key="color"
 					:color="color"
 					:selected="primary!"
 					@select="primary = color"
@@ -15,30 +15,25 @@
 </template>
 
 <script setup lang="ts">
+import colors from "tailwindcss/colors";
 import { useProfileConfigStore } from "./store";
 import { PlayersProfileEditorColorPickerPill } from "#components";
-import colors from "#tailwind-config/theme/colors";
+import { omit } from "#ui/utils";
+
+const neutralColors = ["slate", "gray", "zinc", "neutral", "stone"];
+const colorsToOmit = ["inherit", "current", "transparent", "black", "white", ...neutralColors];
+const primaryColors = Object.keys(omit(colors, colorsToOmit as any));
 
 const appConfig = useAppConfig();
-const colorMode = useColorMode();
 const { selectedTheme } = storeToRefs(useProfileConfigStore());
 
-const primaryColors = computed(() =>
-	appConfig.ui.colors
-		.filter((color) => color !== "primary")
-		.map((color) => ({
-			value: color,
-			text: color,
-			hex: colors[color as keyof typeof colors][colorMode.value === "dark" ? 400 : 500],
-		}))
-);
 const primary = computed({
 	get() {
-		return primaryColors.value.find((option) => option.value === appConfig.ui.primary);
+		return appConfig.ui.colors.primary;
 	},
 	set(option) {
-		selectedTheme.value = option!.value;
-		appConfig.ui.primary = option!.value;
+		selectedTheme.value = option!;
+		appConfig.ui.colors.primary = option!;
 	},
 });
 </script>

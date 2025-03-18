@@ -34,6 +34,17 @@ export function omit<T extends Record<string, any>>(obj: T, keys: string[]): Rec
 	return result;
 }
 
+export function typesafeOmit<T extends Record<string, any>, K extends keyof T>(obj: T, keys: K[]): Omit<T, K> {
+	const result: Record<string, any> = {};
+	for (const key in obj) {
+		if (!keys.includes(key as unknown as K)) {
+			result[key] = obj[key];
+		}
+	}
+
+	return result as Omit<T, K>;
+}
+
 export type Entries<T> = { [K in keyof T]: [K, T[K]] }[keyof T];
 /**
  * Simple Object.entries that is typed
