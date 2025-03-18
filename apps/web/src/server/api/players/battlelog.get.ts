@@ -11,9 +11,6 @@ export default defineEventHandler(async (event) => {
 	try {
 		return await api.players.getPlayerBattleLog((query.tag as string).replaceAll("%23", ""));
 	} catch {
-		throw createError({
-			statusCode: 404,
-			message: "Player battlelog with that tag was not found",
-		});
+		return [];
 	}
 });

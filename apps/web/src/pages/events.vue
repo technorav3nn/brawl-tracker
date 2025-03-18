@@ -83,7 +83,7 @@ const type = computed<"active" | "upcoming">(() => items[Number(selected.value)]
 			<UPageBody class="mt-4!">
 				<UTabs v-model="selected" variant="link" :content="false" class="w-full" :items />
 				<UPageGrid class="mt-8 gap-5!">
-					<EventsEventCard v-for="(event, index) in events" :key="event.map.name" :event :type :images="images!" :index />
+					<EventsEventCard v-for="(event, index) in events" :key="event.map.id" :event :type :images="images!" :index />
 				</UPageGrid>
 			</UPageBody>
 		</UPage>

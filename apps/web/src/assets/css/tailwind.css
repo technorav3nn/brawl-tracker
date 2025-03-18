@@ -13,7 +13,7 @@
 }
 
 :root {
-	--ui-primary: var(--ui-color-primary-600);
+	--ui-primary: var(--ui-color-primary-500);
 }
 
 .dark {

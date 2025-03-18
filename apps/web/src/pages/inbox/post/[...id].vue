@@ -120,7 +120,15 @@ const html = computed(() => {
 </script>
 
 <template>
-	<NuxtImg v-if="postProps" :src="postProps.hero" :alt="postProps.title" width="2000" height="400" loading="eager" preload />
+	<NuxtImg
+		v-if="postProps"
+		:src="postProps.hero ?? '/backgrounds/yellow-bg-dark.webp'"
+		:alt="postProps.title"
+		width="2000"
+		height="400"
+		loading="eager"
+		preload
+	/>
 	<UContainer v-if="post && postProps">
 		<UPage>
 			<UPageHeader :title="postProps.title" :ui="{ headline: 'flex flex-col gap-y-8 items-start' }">

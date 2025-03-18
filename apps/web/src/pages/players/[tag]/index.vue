@@ -83,38 +83,38 @@ const playerStats = [
 	{
 		stat: "Trophies",
 		value: format(player.value!.trophies),
-		image: "/icons/player/trophy.webp",
+		image: { src: "/icons/player/trophy.webp" },
 		color: "text-(--ui-primary)! dark:text-(--ui-primary)-400!",
 	},
 	{
 		stat: "Highest Trophies",
 		value: format(player.value!.highestTrophies),
-		image: "/icons/player/highest-trophies.png",
+		image: { src: "/icons/player/highest-trophies.png" },
 		color: "text-blue-500! dark:text-blue-400!",
 	},
 	{
 		stat: "Trophies After Reset",
 		value: format(seasonReset.value.trophiesAfterReset),
-		image: "/icons/player/season-trophy.png",
+		image: { src: "/icons/player/season-trophy.png" },
 		color: "text-cyan-500! dark:text-cyan-400!",
 	},
 	{
 		stat: "Season Trophies Gained",
 		value: format(seasonReset.value.seasonTrophiesGained),
-		image: "/icons/player/season-trophy.png",
+		image: { src: "/icons/player/season-trophy.png" },
 		color: "text-cyan-500! dark:text-cyan-400!",
 	},
 	{
 		stat: "Trophy Box",
 		value: `${trophyBox.value!.name}`,
-		valueImage: trophyBox.value!.image,
-		image: "/icons/player/trophy-boxes/trophy-box-pin.png",
+		valueImage: { src: trophyBox.value!.image },
+		image: { src: "/icons/player/trophy-boxes/trophy-box-pin.png" },
 		color: trophyBox.value!.color,
 	},
 	{
 		stat: "Level",
 		value: player.value!.expLevel,
-		image: "/icons/player/player-level.png",
+		image: { src: "/icons/player/player-level.png" },
 		color: "text-sky-500! dark:text-sky-400!",
 	},
 ];
@@ -145,37 +145,37 @@ const recordStats = [
 	{
 		stat: "3v3 Victories",
 		value: format(player.value!["3vs3Victories"]),
-		image: "/icons/player/3v3.png",
+		image: { src: "/icons/player/3v3.png" },
 		color: "text-rose-500! dark:text-rose-400!",
 	},
 	{
 		stat: "Solo Showdown Victories",
 		value: format(player.value!.soloVictories),
-		image: "/icons/player/solo.png",
+		image: { src: "/icons/player/solo.png" },
 		color: "text-green-500! dark:text-green-400!",
 	},
 	{
 		stat: "Duo Showdown Victories",
 		value: format(player.value!.duoVictories),
-		image: "/icons/player/duo.png",
+		image: { src: "/icons/player/duo.png" },
 		color: "text-emerald-500! dark:text-emerald-400!",
 	},
 	{
 		stat: "Highest Robo Rumble Level",
 		value: roboRumbleLevel.value,
-		image: "/icons/player/robo-rumble.webp",
+		image: { src: "/icons/player/robo-rumble.webp" },
 		color: "text-red-500! dark:text-red-400!",
 	},
 	{
 		stat: "Qualified from Championship Challenge",
 		value: player.value?.isQualifiedFromChampionshipChallenge ? "Qualified" : "Not Qualified",
-		image: "/icons/player/bs-cup-challenge.png",
+		image: { src: "/icons/player/bs-cup-challenge.png" },
 		color: "text-orange-500! dark:text-orange-400!",
 	},
 	{
 		stat: "Brawler Progress",
-		value: `${player.value!.brawlers.length}/${brawlers.value!.list.length}`,
-		image: "/icons/player/unlocked.png",
+		value: `${player.value!.brawlers.length}/${brawlers.value!.list.length} Brawlers`,
+		image: { src: "/icons/player/unlocked.png" },
 		color: "text-green-500! dark:text-green-400!",
 		// valueRender: () =>
 		// 	h(UProgress, {
@@ -195,9 +195,11 @@ const recordStats = [
 		orientation="vertical"
 	>
 		<div class="pt-0!">
+			<PlayersStatTable title="Player Stats" class="mb-4 flex w-full flex-col lg:hidden lg:w-[25%]" :stats="playerStats" />
 			<div class="flex flex-col gap-4 md:flex-row">
-				<PlayersStatTable title="Player Stats" class="flex w-full flex-col md:w-1/2" :stats="playerStats" />
-				<PlayersStatTable title="Record Stats" class="flex w-full flex-col md:w-1/2" :stats="recordStats" />
+				<PlayersStatTable title="Player Stats" class="hidden w-full flex-col lg:flex lg:w-[35%]" :stats="playerStats" />
+				<PlayersStatTable title="Record Stats" class="flex w-full flex-col lg:w-[40%]" :stats="recordStats" />
+				<PlayersRankedStatsTable class="flex w-full flex-col lg:w-[25%]" />
 			</div>
 		</div>
 	</UiPageSection>

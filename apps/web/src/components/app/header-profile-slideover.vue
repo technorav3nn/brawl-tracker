@@ -91,7 +91,6 @@ async function logout() {
 				:items="links"
 				class="w-full border-b border-neutral-200 dark:border-neutral-800"
 				:ui="{ root: 'w-full! px-1 [&_:nth-child(1)]:w-full', item: 'w-full!', content: 'w-full', link: 'after:h-[2px]' }"
-				:links="links"
 				variant="pill"
 				highlight
 			/>

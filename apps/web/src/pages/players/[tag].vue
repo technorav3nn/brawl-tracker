@@ -121,7 +121,8 @@ router.afterEach((s) => {
 	>
 		<UContainer>
 			<UPageHeader class="border-0!" :ui="{ wrapper: 'first-child-row', description: 'mt-2', root: 'flex gap-6' }">
-				<div class="absolute top-2 right-0">
+				<div class="absolute right-0 bottom-2 flex h-min gap-2 sm:top-2">
+					<PlayersLegacyInformationPopover />
 					<UTooltip
 						:delayDuration="0"
 						:text="player.tag !== user?.profile.tag ? 'You can only edit your own profile' : 'Edit Profile'"
@@ -195,14 +196,13 @@ router.afterEach((s) => {
 			<UNavigationMenu
 				variant="pill"
 				highlight
-				:items="links"
 				:ui="{
 					link: 'after:h-[2px] after:absolute after:-bottom-2 after:inset-x-0 ',
 					linkLabel: 'overflow-clip text-wrap',
 					linkLeadingIcon: 'size-[15px] sm:size-5',
 				}"
 				class="data-[orientation=vertical]:w-48"
-				:links="links"
+				:items="links"
 			/>
 		</UContainer>
 	</section>

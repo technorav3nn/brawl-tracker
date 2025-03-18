@@ -33,7 +33,7 @@ const rarityColorClasses = {
 		/>
 		<UPage>
 			<UPageBody v-if="brawlers" class="space-y-0">
-				<div class="flex justify-between">
+				<div class="flex justify-between gap-1.5">
 					<UInput
 						v-model="search"
 						icon="i-heroicons-magnifying-glass-20-solid"

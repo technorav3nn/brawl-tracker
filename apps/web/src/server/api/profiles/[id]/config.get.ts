@@ -22,7 +22,10 @@ export default defineEventHandler(async (event) => {
 				theme: profile.theme,
 			};
 		}
-
-		throw createError({ status: 404, message: "Profile not found" });
 	}
+
+	return {
+		background: null,
+		theme: null,
+	};
 });

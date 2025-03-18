@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { BrawlApiEvent } from "@brawltracker/brawl-api";
+import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
 import { Image } from "@unpic/vue";
 import { Duration } from "luxon";
 import { useEventsStore } from "./events-store";
@@ -89,28 +90,27 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 		<!-- Menu not open -->
 		<template v-if="!showMenu" #header>
 			<NuxtImg
+				:id="event.map.id"
 				:src="event.map.environment.imageUrl"
 				:alt="event.map.name"
 				height="100"
 				width="500"
 				class="h-full w-full rounded-t-lg object-cover object-top"
 				format="webp"
-				:placeholder
 			/>
 		</template>
 		<template v-if="!showMenu" #footer>
 			<div class="flex flex-row justify-between">
 				<div class="flex gap-1">
-					<NuxtImg
+					<Image
 						v-for="brawler in bestBrawlers"
-						:src="images[brawler.brawler] ? images[brawler.brawler].imageUrl : '/placeholder.webp'"
+						:src="`${CDN_URL_V2}/brawlify/brawlers/borderless/${brawler.brawler}.png`"
 						width="25"
 						height="25"
-						class="rounded-md"
+						class="rounded"
 						format="webp"
 						loading="lazy"
-						:data-brawlerwergwergwr="brawler.brawler"
-						:alt="brawler.brawler"
+						:alt="brawler.brawler.toString()"
 					/>
 				</div>
 				<div class="flex items-center gap-1">

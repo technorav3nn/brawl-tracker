@@ -90,7 +90,8 @@ function getPropsForPost(post: Article, index: number): UBlogPostProps {
 				<UPagination
 					v-model:page="page"
 					:total="news?.pageNumbers.length"
-					:pageCount="6"
+					:itemsPerPage="1"
+					showEdges
 					:to="(p: number) => ({ query: { page: p } })"
 					@update:page="scrollToTop"
 				/>

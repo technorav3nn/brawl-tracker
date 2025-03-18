@@ -4,7 +4,26 @@ import { Image } from "@unpic/vue";
 defineProps<{
 	title?: string;
 	uneven?: boolean;
-	stats: { stat: string; value: any; color?: string; image?: string; valueImage?: string; valueRender?: Component }[];
+	loading?: boolean;
+	stats: {
+		stat: string;
+		value: any;
+		color?: string;
+		valueImage?: {
+			src?: string;
+			width?: number;
+			height?: number;
+			class?: string;
+		};
+		image?: {
+			src?: string;
+			width?: number;
+			height?: number;
+			class?: string;
+		};
+		valueImageClass?: string;
+		valueRender?: Component;
+	}[];
 }>();
 </script>
 
@@ -13,7 +32,10 @@ defineProps<{
 		<div v-if="title" class="rounded-t-md border border-b-0 border-neutral-200 bg-inherit text-center dark:border-neutral-800">
 			<h3 class="text-foreground px-4 py-2 text-lg font-semibold">{{ title }}</h3>
 		</div>
+
+		<USkeleton v-if="loading" class="h-full w-full rounded-t-none border border-(--ui-border)" />
 		<UTable
+			v-else
 			:ui="{
 				thead: 'border-b-0 hidden',
 				td: 'whitespace-normal! py-2 px-3',
@@ -29,10 +51,10 @@ defineProps<{
 						return h('div', { class: 'flex flex-row items-center gap-x-2' }, [
 							h(Image, {
 								alt: row.original.stat,
-								src: row.original.image ?? '',
-								width: 30,
-								height: 30,
-								class: 'size-[24px] object-scale-down',
+								src: row.original.image?.src ?? '',
+								width: row.original.image?.width ?? 25,
+								height: row.original.image?.height ?? 25,
+								class: [row.original.image?.class, 'size-[24px] object-scale-down'],
 							}),
 							h('p', { class: 'text-foreground text-sm font-semibold text-(--ui-text)' }, row.original.stat),
 						]);
@@ -49,11 +71,11 @@ defineProps<{
 							[
 								row.original.valueImage
 									? h(Image, {
-											alt: row.original.value,
-											src: row.original.valueImage,
-											width: 25,
-											height: 25,
-											class: 'size-[24px] object-scale-down',
+											alt: row.original.stat,
+											src: row.original.valueImage.src ?? '',
+											width: row.original.valueImage.width ?? 25,
+											height: row.original.valueImage.height ?? 25,
+											class: [row.original.valueImage.class, 'size-[24px] object-scale-down'],
 										})
 									: null,
 								row.original.value,

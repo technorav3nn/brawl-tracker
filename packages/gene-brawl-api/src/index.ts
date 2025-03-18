@@ -1,5 +1,5 @@
 import { $fetch, FetchError } from "ofetch";
-import type { ApiProfile, ApiProfileResponse, ApiUnresolvedProfileStats, ResolvedProfileStats } from "./lib/types/profile";
+import type { ApiProfileResponse, ApiUnresolvedProfileStats } from "./lib/types/profile";
 import type { ShopResponse } from "./lib/types/shop";
 
 export * from "./lib/types/profile";
@@ -17,31 +17,57 @@ export async function getPlayerProfile(tag: string) {
 		throw new FetchError("Invalid player tag");
 	}
 
-	(data.response.Stats as unknown as ApiProfile<ResolvedProfileStats>["Stats"]) = resolveStats(data.response.Stats);
-	return data as unknown as ApiProfileResponse<ResolvedProfileStats>;
+	if (!data.response) {
+		return data as unknown as ApiProfileResponse<ReturnType<typeof resolveStats>>;
+	}
+
+	(data.response.Stats as unknown as ReturnType<typeof resolveStats>) = resolveStats(data.response.Stats);
+	return data as unknown as ApiProfileResponse<ReturnType<typeof resolveStats>>;
 }
 
-function resolveStats(stats: ApiUnresolvedProfileStats): ResolvedProfileStats {
+function resolveStats(stats: ApiUnresolvedProfileStats) {
 	return {
 		"3v3Wins": stats[1],
-		duoWins: stats[11],
-		soloWins: stats[8],
+		expPoints: stats[2],
 		trophies: stats[3],
-		bossFightMaxDifficulty: stats[12],
-		roboRumble: stats[9],
-		powerPlayHighestRank: stats[14],
-		cityRampageMaxDifficulty: stats[16],
-		challengeWins: stats[15],
+		highestTrophies: stats[4],
 		brawlersOwned: stats[5],
-		fame: stats[20],
-		clubLeague: stats[19],
+		soloWins: stats[8],
+		duoWins: stats[11],
+		roboRumbleMaxDifficulty: stats[9],
+		bossFightMaxDifficulty: stats[12],
+		powerLeagueTeamHighestRank: stats[17],
+		powerLeagueSoloHighestRank: stats[18],
+		totalFame: stats[20],
+		legacyExpPoints: stats[21],
+		accountCreationDate: stats[27],
 		currentRankedRank: stats[23],
 		highestRankedRank: stats[22],
-		experiencePoints: stats[2],
-		highestTrophies: stats[4],
-		legacyExperiencePoints: stats[21],
-		powerPlayHighest: stats[13],
-		powerLeagueSolo: stats[18],
-		powerLeagueTeam: stats[17],
+		currentRankedElo: stats[24],
+		highestRankedElo: stats[25],
+		legacyRank35s: stats[28],
+		seasonHighTrophies: stats[29],
+		prestige: stats[30],
+
+		// "3v3Wins": stats[1],
+		// duoWins: stats[11],
+		// soloWins: stats[8],
+		// trophies: stats[3],
+		// bossFightMaxDifficulty: stats[12],
+		// roboRumble: stats[9],
+		// powerPlayHighestRank: stats[14],
+		// cityRampageMaxDifficulty: stats[16],
+		// challengeWins: stats[15],
+		// brawlersOwned: stats[5],
+		// fame: stats[20],
+		// clubLeague: stats[19],
+		// currentRankedRank: stats[23],
+		// highestRankedRank: stats[22],
+		// experiencePoints: stats[2],
+		// highestTrophies: stats[4],
+		// legacyExperiencePoints: stats[21],
+		// powerPlayHighest: stats[13],
+		// powerLeagueSolo: stats[18],
+		// powerLeagueTeam: stats[17],
 	};
 }
