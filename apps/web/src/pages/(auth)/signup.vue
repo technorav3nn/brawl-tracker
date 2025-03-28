@@ -41,8 +41,8 @@ const links: ButtonProps[] = [
 		class: "sm:hidden",
 	},
 	{
-		label: "Forgot password?",
-		to: "/forgot-password",
+		label: "Not satisfied?",
+		to: "/signup#features",
 		variant: "subtle",
 		color: "neutral",
 		icon: "i-heroicons-question-mark-circle",

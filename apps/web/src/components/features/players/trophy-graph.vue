@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { Player } from "@brawltracker/brawl-stars-api";
 import { VisXYContainer, VisAxis, VisTooltip, VisCrosshair, VisLine, VisScatter } from "@unovis/vue";
+import { createGetCachedData } from "$lib/utils/nuxt";
 
 const props = defineProps<{ player: Player }>();
 
 const route = useRoute("players-tag");
+const nuxtApp = useNuxtApp();
 
 const {
 	data: battlelog,
@@ -13,6 +15,7 @@ const {
 } = await useLazyFetch("/api/players/battlelog", {
 	query: { tag: route.params.tag },
 	key: `battlelog-${route.params.tag}`,
+	getCachedData: createGetCachedData(nuxtApp),
 });
 
 interface DataRecord {

@@ -123,6 +123,7 @@ const links: (ButtonProps & { click?(): any })[] = [
 							size="xl"
 							label="Search Player"
 							:placeholder="`Enter ${state.type === 'tag' ? 'Player Tag (e.g. #P800LV)' : 'Supercell ID Handle (e.g. BrawlMaster)'}`"
+							@input="($event.target as HTMLInputElement).value = ($event.target as HTMLInputElement).value.toUpperCase()"
 						/>
 					</UFormField>
 					<UButton

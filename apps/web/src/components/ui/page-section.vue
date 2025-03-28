@@ -1,6 +1,6 @@
 <template>
-	<div :class="[config.wrapper, props.class]">
-		<div :class="config.container">
+	<div :class="[props.class, config.wrapper]">
+		<div :class="[props.containerClass, config.container]">
 			<div :class="config.inner">
 				<div v-if="icon || $slots.icon" :class="config.icon.wrapper">
 					<slot name="icon">
@@ -60,6 +60,10 @@ const props = defineProps({
 		default: "vertical",
 	},
 	class: {
+		type: [String, Object, Array] as PropType<any>,
+		default: undefined,
+	},
+	containerClass: {
 		type: [String, Object, Array] as PropType<any>,
 		default: undefined,
 	},

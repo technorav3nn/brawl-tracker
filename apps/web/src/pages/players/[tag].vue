@@ -5,12 +5,25 @@ import { LazyPlayersProfileEditorSlideover, LazyAppViewScidSlideover } from "#co
 import type { NavigationMenuItem } from "#ui/types";
 import { useProfileConfigStore } from "$components/features/players/profile-editor/store";
 import { BACKGROUNDS } from "$lib/backgrounds";
+import { createGetCachedData } from "$lib/utils/nuxt";
+
+definePageMeta({
+	middleware: (to) => {
+		// remove the %23 from the tag
+		const params = to.params as Record<string, string>;
+		if (params.tag.startsWith("#")) {
+			return navigateTo(`/players/${decodeURIComponent(params.tag.slice(1)).replace("#", "")}`);
+		}
+	},
+});
 
 const route = useRoute("players-tag");
 
+const nuxtApp = useNuxtApp();
 const { data: player } = await useFetch("/api/players", {
 	query: { tag: route.params.tag },
 	key: `players-${route.params.tag}`,
+	getCachedData: createGetCachedData(nuxtApp),
 });
 
 useSeoMeta({
@@ -59,25 +72,12 @@ const { data: config } = await useFetch(() => `/api/profiles/${encodeURIComponen
 const { background, selectedBackground, theme, selectedTheme } = storeToRefs(useProfileConfigStore());
 const appConfig = useAppConfig();
 
-function initalizeConfig() {
+function initializeConfig() {
 	if (config.value) {
-		if (config.value.background) {
-			background.value = BACKGROUNDS.find((bg) => bg.name === config.value!.background)!;
-			selectedBackground.value = background.value;
-		} else {
-			background.value = BACKGROUNDS[0];
-			selectedBackground.value = background.value;
-		}
-
-		if (config.value.theme) {
-			theme.value = config.value.theme;
-			selectedTheme.value = theme.value;
-		} else {
-			theme.value = "amber";
-			selectedTheme.value = theme.value;
-		}
-
+		background.value = BACKGROUNDS.find((bg) => bg.name === config.value?.background) || BACKGROUNDS[0];
 		selectedBackground.value = background.value;
+		theme.value = config.value.theme || "amber";
+		selectedTheme.value = theme.value;
 	} else {
 		background.value = BACKGROUNDS[0];
 		selectedBackground.value = background.value;
@@ -88,34 +88,44 @@ function initalizeConfig() {
 	appConfig.ui.colors.primary = selectedTheme.value;
 }
 
-initalizeConfig();
+initializeConfig();
+
 const router = useRouter();
-router.afterEach((s) => {
-	if (!s.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}`)) return;
-	initalizeConfig();
-});
-router.afterEach((s) => {
-	// Only let it work if the path starst with /players/tag
-	if (!s.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}`)) {
-		// Reset everyting to default
-		selectedTheme.value = "amber";
-		theme.value = "amber";
-		appConfig.ui.colors.primary = "amber";
+
+const handlers = [
+	router.afterEach((s) => {
+		if (!s.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}`)) return;
+		initializeConfig();
+	}),
+	router.afterEach((s) => {
+		// Only let it work if the path starst with /players/tag
+		if (!s.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}`)) {
+			// Reset everyting to default
+			selectedTheme.value = "amber";
+			theme.value = "amber";
+			appConfig.ui.colors.primary = "amber";
+		}
+	}),
+];
+
+onUnmounted(() => {
+	for (const destroy of handlers) {
+		destroy();
 	}
 });
 </script>
 
 <template>
 	<header
-		v-if="player && selectedBackground"
+		v-if="player"
 		:style="{
-			'background-position': selectedBackground.backgroundPosition ?? 'center',
-			'--background-image-light': selectedBackground.hasColorModeVariants
-				? `url(/backgrounds/${selectedBackground.name}-light.${selectedBackground.fileFormat})`
-				: `url(/backgrounds/${selectedBackground.name}.${selectedBackground.fileFormat})`,
-			'--background-image-dark': selectedBackground.hasColorModeVariants
-				? `url(/backgrounds/${selectedBackground.name}-dark.${selectedBackground.fileFormat})`
-				: `url(/backgrounds/${selectedBackground.name}.${selectedBackground.fileFormat})`,
+			'background-position': selectedBackground?.backgroundPosition ?? 'center',
+			'--background-image-light': selectedBackground?.hasColorModeVariants
+				? `url(/backgrounds/${selectedBackground?.name}-light.${selectedBackground.fileFormat})`
+				: `url(/backgrounds/${selectedBackground?.name}.${selectedBackground?.fileFormat})`,
+			'--background-image-dark': selectedBackground?.hasColorModeVariants
+				? `url(/backgrounds/${selectedBackground?.name}-dark.${selectedBackground.fileFormat})`
+				: `url(/backgrounds/${selectedBackground?.name}.${selectedBackground?.fileFormat})`,
 		}"
 		class="header-bg-image-dark header-bg-image-light"
 	>
@@ -135,6 +145,10 @@ router.afterEach((s) => {
 							@click="openProfileEdtiorSlideover"
 						/>
 					</UTooltip>
+				</div>
+				<div class="absolute right-0 bottom-4">
+					<!-- <USkeleton class="h-20 w-20" /> -->
+					<PlayersPlayerFame />
 				</div>
 				<template #headline>
 					<NuxtImg
@@ -206,7 +220,7 @@ router.afterEach((s) => {
 			/>
 		</UContainer>
 	</section>
-	<UContainer class="mt-3">
+	<UContainer :class="[route.fullPath.includes('/battles') && '']" class="mt-3">
 		<NuxtPage />
 	</UContainer>
 </template>

@@ -71,7 +71,7 @@ const columns: TableColumn<RankingClub>[] = [
 						class:
 							"text-base font-semibold text-gray-900 transition-colors duration-[90ms] hover:text-(--ui-primary)! dark:text-white",
 					},
-					row.original.name
+					() => row.original.name
 				),
 			]);
 		},

@@ -15,6 +15,7 @@ export default defineNuxtConfig({
 		"@vueuse/nuxt",
 		"nuxt-time",
 		"nuxt-appwrite",
+		"./src/modules/auto-imports",
 	],
 	srcDir: "src/",
 	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
@@ -61,6 +62,8 @@ export default defineNuxtConfig({
 			300: 300,
 			600: 600,
 		},
+		provider: "none",
+		ipx: {},
 	},
 	colorMode: {
 		fallback: "dark",
@@ -112,7 +115,7 @@ export default defineNuxtConfig({
 		project: "6786db24001e31cc452a",
 	},
 	nitro: {
-		preset: "",
+		preset: "node-server",
 	},
 	alias: {
 		$assets: resolve("./src/assets"),
@@ -123,6 +126,14 @@ export default defineNuxtConfig({
 		$composables: resolve("./src/hooks"),
 		$lib: resolve("./src/lib"),
 		$: resolve("./src"),
+	},
+	imports: {
+		presets: [
+			{
+				from: "@tanstack/vue-query",
+				imports: ["useQuery", "useMutation", "useInfiniteQuery", "useQueryClient"],
+			},
+		],
 	},
 	components: [{ path: "$components/features", extensions: [".vue"], prefix: "" }, "$components"],
 	hooks: {

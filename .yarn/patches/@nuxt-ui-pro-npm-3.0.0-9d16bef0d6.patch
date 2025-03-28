@@ -1,0 +1,437 @@
+diff --git a/dist/module.cjs b/dist/module.cjs
+index cf45a8871e78703fe6f27e7bf785b0475dbdb204..a234fb3227bfa9f97f2171998a45d02179bdd679 100644
+--- a/dist/module.cjs
++++ b/dist/module.cjs
+@@ -1,116 +1,106 @@
+-'use strict';
++"use strict";
+ 
+-const defu = require('defu');
+-const consola = require('consola');
+-const utils = require('consola/utils');
+-const kit = require('@nuxt/kit');
+-const _package = require('./shared/ui-pro.BVl-N_q5.cjs');
+-require('node:url');
+-require('scule');
+-require('ofetch');
+-require('pkg-types');
++const defu = require("defu");
++const consola = require("consola");
++const utils = require("consola/utils");
++const kit = require("@nuxt/kit");
++const _package = require("./shared/ui-pro.BVl-N_q5.cjs");
++require("node:url");
++require("scule");
++require("ofetch");
++require("pkg-types");
+ 
+-var _documentCurrentScript = typeof document !== 'undefined' ? document.currentScript : null;
++var _documentCurrentScript = typeof document !== "undefined" ? document.currentScript : null;
+ const module$1 = kit.defineNuxtModule({
+-  meta: {
+-    name: "ui-pro",
+-    configKey: "uiPro",
+-    compatibility: {
+-      nuxt: ">=3.16.0"
+-    }
+-  },
+-  defaults: {
+-    license: "",
+-    mdc: false,
+-    content: false
+-  },
+-  async setup(options, nuxt) {
+-    if (!kit.hasNuxtModule("@nuxt/ui")) {
+-      await kit.installModule("@nuxt/ui");
+-    }
+-    const { resolve } = kit.createResolver((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('module.cjs', document.baseURI).href)));
+-    nuxt.options.alias["#ui-pro"] = resolve("./runtime");
+-    nuxt.options.appConfig.ui = defu.defu(nuxt.options.appConfig.ui || {}, {
+-      icons: _package.icons
+-    });
+-    nuxt.options.router.options.scrollBehaviorType = "smooth";
+-    if (kit.hasNuxtModule("@nuxtjs/mdc") || options.mdc || (kit.hasNuxtModule("@nuxt/content") || options.content)) {
+-      nuxt.options.mdc = defu.defu(nuxt.options.mdc, {
+-        highlight: {
+-          theme: {
+-            light: "material-theme-lighter",
+-            default: "material-theme",
+-            dark: "material-theme-palenight"
+-          }
+-        },
+-        components: {
+-          map: {
+-            "accordion": "ProseAccordion",
+-            "accordion-item": "ProseAccordionItem",
+-            "badge": "ProseBadge",
+-            "callout": "ProseCallout",
+-            "card": "ProseCard",
+-            "card-group": "ProseCardGroup",
+-            "caution": "ProseCaution",
+-            "code-collapse": "ProseCodeCollapse",
+-            "code-group": "ProseCodeGroup",
+-            "code-icon": "ProseCodeIcon",
+-            "code-preview": "ProseCodePreview",
+-            "code-tree": "ProseCodeTree",
+-            "collapsible": "ProseCollapsible",
+-            "field": "ProseField",
+-            "field-group": "ProseFieldGroup",
+-            "icon": "ProseIcon",
+-            "kbd": "ProseKbd",
+-            "note": "ProseNote",
+-            "steps": "ProseSteps",
+-            "tabs": "ProseTabs",
+-            "tabs-item": "ProseTabsItem",
+-            "tip": "ProseTip",
+-            "warning": "ProseWarning"
+-          }
+-        }
+-      });
+-      kit.addComponentsDir({
+-        path: resolve("./runtime/components/prose"),
+-        prefix: "Prose",
+-        pathPrefix: false,
+-        global: true
+-      });
+-    }
+-    if (kit.hasNuxtModule("@nuxt/content") || options.content) {
+-      kit.addComponentsDir({
+-        path: resolve("./runtime/components/content"),
+-        pathPrefix: false,
+-        prefix: nuxt.options.ui?.prefix || "U"
+-      });
+-    }
+-    kit.addComponentsDir({
+-      path: resolve("./runtime/components"),
+-      pathPrefix: false,
+-      prefix: nuxt.options.ui?.prefix || "U",
+-      ignore: ["content/**", "prose/**"]
+-    });
+-    kit.addImportsDir(resolve("./runtime/composables"));
+-    _package.addTemplates(options, nuxt);
+-    const theme = _package.theme || { env: "NUXT_UI_PRO_LICENSE", link: "https://ui.nuxt.com/pro" };
+-    const key = process.env[theme.env] || nuxt.options.uiPro?.license;
+-    if (nuxt.options.dev || nuxt.options._prepare || nuxt.options.test) {
+-      if (nuxt.options.dev && !key) {
+-        consola.consola.box(
+-          utils.colors.greenBright("Nuxt UI Pro") + `
+-
+-Missing \`${theme.env}\` env variable, please add it to your \`.env\`.
+-
+-` + utils.colors.blueBright(`Purchase Nuxt UI Pro at ${theme.link} to build your app in production.`)
+-        );
+-      }
+-      return;
+-    }
+-    nuxt.hook("build:before", async () => {
+-      await _package.validateLicense({ key, theme, dir: nuxt.options.rootDir });
+-    });
+-  }
++	meta: {
++		name: "ui-pro",
++		configKey: "uiPro",
++		compatibility: {
++			nuxt: ">=3.16.0",
++		},
++	},
++	defaults: {
++		license: "",
++		mdc: false,
++		content: false,
++	},
++	async setup(options, nuxt) {
++		if (!kit.hasNuxtModule("@nuxt/ui")) {
++			await kit.installModule("@nuxt/ui");
++		}
++		const { resolve } = kit.createResolver(
++			typeof document === "undefined"
++				? require("u" + "rl").pathToFileURL(__filename).href
++				: (_documentCurrentScript &&
++						_documentCurrentScript.tagName.toUpperCase() === "SCRIPT" &&
++						_documentCurrentScript.src) ||
++						new URL("module.cjs", document.baseURI).href
++		);
++		nuxt.options.alias["#ui-pro"] = resolve("./runtime");
++		nuxt.options.appConfig.ui = defu.defu(nuxt.options.appConfig.ui || {}, {
++			icons: _package.icons,
++		});
++		nuxt.options.router.options.scrollBehaviorType = "smooth";
++		if (kit.hasNuxtModule("@nuxtjs/mdc") || options.mdc || kit.hasNuxtModule("@nuxt/content") || options.content) {
++			nuxt.options.mdc = defu.defu(nuxt.options.mdc, {
++				highlight: {
++					theme: {
++						light: "material-theme-lighter",
++						default: "material-theme",
++						dark: "material-theme-palenight",
++					},
++				},
++				components: {
++					map: {
++						accordion: "ProseAccordion",
++						"accordion-item": "ProseAccordionItem",
++						badge: "ProseBadge",
++						callout: "ProseCallout",
++						card: "ProseCard",
++						"card-group": "ProseCardGroup",
++						caution: "ProseCaution",
++						"code-collapse": "ProseCodeCollapse",
++						"code-group": "ProseCodeGroup",
++						"code-icon": "ProseCodeIcon",
++						"code-preview": "ProseCodePreview",
++						"code-tree": "ProseCodeTree",
++						collapsible: "ProseCollapsible",
++						field: "ProseField",
++						"field-group": "ProseFieldGroup",
++						icon: "ProseIcon",
++						kbd: "ProseKbd",
++						note: "ProseNote",
++						steps: "ProseSteps",
++						tabs: "ProseTabs",
++						"tabs-item": "ProseTabsItem",
++						tip: "ProseTip",
++						warning: "ProseWarning",
++					},
++				},
++			});
++			kit.addComponentsDir({
++				path: resolve("./runtime/components/prose"),
++				prefix: "Prose",
++				pathPrefix: false,
++				global: true,
++			});
++		}
++		if (kit.hasNuxtModule("@nuxt/content") || options.content) {
++			kit.addComponentsDir({
++				path: resolve("./runtime/components/content"),
++				pathPrefix: false,
++				prefix: nuxt.options.ui?.prefix || "U",
++			});
++		}
++		kit.addComponentsDir({
++			path: resolve("./runtime/components"),
++			pathPrefix: false,
++			prefix: nuxt.options.ui?.prefix || "U",
++			ignore: ["content/**", "prose/**"],
++		});
++		kit.addImportsDir(resolve("./runtime/composables"));
++		_package.addTemplates(options, nuxt);
++	},
+ });
+ 
+ module.exports = module$1;
+diff --git a/dist/module.mjs b/dist/module.mjs
+index 60733a58defe4bd08e730d889a27d92a7bad0356..22a1d15f5e0bb7b19cb0aa2c0e39faf09151ab45 100644
+--- a/dist/module.mjs
++++ b/dist/module.mjs
+@@ -1,113 +1,103 @@
+-import { defu } from 'defu';
+-import { consola } from 'consola';
+-import { colors } from 'consola/utils';
+-import { defineNuxtModule, hasNuxtModule, installModule, createResolver, addComponentsDir, addImportsDir } from '@nuxt/kit';
+-import { i as icons, a as addTemplates, t as theme, v as validateLicense } from './shared/ui-pro.CqnQuCPp.mjs';
+-import 'node:url';
+-import 'scule';
+-import 'ofetch';
+-import 'pkg-types';
++import { defu } from "defu";
++import { consola } from "consola";
++import { colors } from "consola/utils";
++import {
++	defineNuxtModule,
++	hasNuxtModule,
++	installModule,
++	createResolver,
++	addComponentsDir,
++	addImportsDir,
++} from "@nuxt/kit";
++import { i as icons, a as addTemplates, t as theme, v as validateLicense } from "./shared/ui-pro.CqnQuCPp.mjs";
++import "node:url";
++import "scule";
++import "ofetch";
++import "pkg-types";
+ 
+ const module = defineNuxtModule({
+-  meta: {
+-    name: "ui-pro",
+-    configKey: "uiPro",
+-    compatibility: {
+-      nuxt: ">=3.16.0"
+-    }
+-  },
+-  defaults: {
+-    license: "",
+-    mdc: false,
+-    content: false
+-  },
+-  async setup(options, nuxt) {
+-    if (!hasNuxtModule("@nuxt/ui")) {
+-      await installModule("@nuxt/ui");
+-    }
+-    const { resolve } = createResolver(import.meta.url);
+-    nuxt.options.alias["#ui-pro"] = resolve("./runtime");
+-    nuxt.options.appConfig.ui = defu(nuxt.options.appConfig.ui || {}, {
+-      icons
+-    });
+-    nuxt.options.router.options.scrollBehaviorType = "smooth";
+-    if (hasNuxtModule("@nuxtjs/mdc") || options.mdc || (hasNuxtModule("@nuxt/content") || options.content)) {
+-      nuxt.options.mdc = defu(nuxt.options.mdc, {
+-        highlight: {
+-          theme: {
+-            light: "material-theme-lighter",
+-            default: "material-theme",
+-            dark: "material-theme-palenight"
+-          }
+-        },
+-        components: {
+-          map: {
+-            "accordion": "ProseAccordion",
+-            "accordion-item": "ProseAccordionItem",
+-            "badge": "ProseBadge",
+-            "callout": "ProseCallout",
+-            "card": "ProseCard",
+-            "card-group": "ProseCardGroup",
+-            "caution": "ProseCaution",
+-            "code-collapse": "ProseCodeCollapse",
+-            "code-group": "ProseCodeGroup",
+-            "code-icon": "ProseCodeIcon",
+-            "code-preview": "ProseCodePreview",
+-            "code-tree": "ProseCodeTree",
+-            "collapsible": "ProseCollapsible",
+-            "field": "ProseField",
+-            "field-group": "ProseFieldGroup",
+-            "icon": "ProseIcon",
+-            "kbd": "ProseKbd",
+-            "note": "ProseNote",
+-            "steps": "ProseSteps",
+-            "tabs": "ProseTabs",
+-            "tabs-item": "ProseTabsItem",
+-            "tip": "ProseTip",
+-            "warning": "ProseWarning"
+-          }
+-        }
+-      });
+-      addComponentsDir({
+-        path: resolve("./runtime/components/prose"),
+-        prefix: "Prose",
+-        pathPrefix: false,
+-        global: true
+-      });
+-    }
+-    if (hasNuxtModule("@nuxt/content") || options.content) {
+-      addComponentsDir({
+-        path: resolve("./runtime/components/content"),
+-        pathPrefix: false,
+-        prefix: nuxt.options.ui?.prefix || "U"
+-      });
+-    }
+-    addComponentsDir({
+-      path: resolve("./runtime/components"),
+-      pathPrefix: false,
+-      prefix: nuxt.options.ui?.prefix || "U",
+-      ignore: ["content/**", "prose/**"]
+-    });
+-    addImportsDir(resolve("./runtime/composables"));
+-    addTemplates(options, nuxt);
+-    const theme$1 = theme || { env: "NUXT_UI_PRO_LICENSE", link: "https://ui.nuxt.com/pro" };
+-    const key = process.env[theme$1.env] || nuxt.options.uiPro?.license;
+-    if (nuxt.options.dev || nuxt.options._prepare || nuxt.options.test) {
+-      if (nuxt.options.dev && !key) {
+-        consola.box(
+-          colors.greenBright("Nuxt UI Pro") + `
+-
+-Missing \`${theme$1.env}\` env variable, please add it to your \`.env\`.
+-
+-` + colors.blueBright(`Purchase Nuxt UI Pro at ${theme$1.link} to build your app in production.`)
+-        );
+-      }
+-      return;
+-    }
+-    nuxt.hook("build:before", async () => {
+-      await validateLicense({ key, theme: theme$1, dir: nuxt.options.rootDir });
+-    });
+-  }
++	meta: {
++		name: "ui-pro",
++		configKey: "uiPro",
++		compatibility: {
++			nuxt: ">=3.16.0",
++		},
++	},
++	defaults: {
++		license: "",
++		mdc: false,
++		content: false,
++	},
++	async setup(options, nuxt) {
++		if (!hasNuxtModule("@nuxt/ui")) {
++			await installModule("@nuxt/ui");
++		}
++		const { resolve } = createResolver(import.meta.url);
++		nuxt.options.alias["#ui-pro"] = resolve("./runtime");
++		nuxt.options.appConfig.ui = defu(nuxt.options.appConfig.ui || {}, {
++			icons,
++		});
++		nuxt.options.router.options.scrollBehaviorType = "smooth";
++		if (hasNuxtModule("@nuxtjs/mdc") || options.mdc || hasNuxtModule("@nuxt/content") || options.content) {
++			nuxt.options.mdc = defu(nuxt.options.mdc, {
++				highlight: {
++					theme: {
++						light: "material-theme-lighter",
++						default: "material-theme",
++						dark: "material-theme-palenight",
++					},
++				},
++				components: {
++					map: {
++						accordion: "ProseAccordion",
++						"accordion-item": "ProseAccordionItem",
++						badge: "ProseBadge",
++						callout: "ProseCallout",
++						card: "ProseCard",
++						"card-group": "ProseCardGroup",
++						caution: "ProseCaution",
++						"code-collapse": "ProseCodeCollapse",
++						"code-group": "ProseCodeGroup",
++						"code-icon": "ProseCodeIcon",
++						"code-preview": "ProseCodePreview",
++						"code-tree": "ProseCodeTree",
++						collapsible: "ProseCollapsible",
++						field: "ProseField",
++						"field-group": "ProseFieldGroup",
++						icon: "ProseIcon",
++						kbd: "ProseKbd",
++						note: "ProseNote",
++						steps: "ProseSteps",
++						tabs: "ProseTabs",
++						"tabs-item": "ProseTabsItem",
++						tip: "ProseTip",
++						warning: "ProseWarning",
++					},
++				},
++			});
++			addComponentsDir({
++				path: resolve("./runtime/components/prose"),
++				prefix: "Prose",
++				pathPrefix: false,
++				global: true,
++			});
++		}
++		if (hasNuxtModule("@nuxt/content") || options.content) {
++			addComponentsDir({
++				path: resolve("./runtime/components/content"),
++				pathPrefix: false,
++				prefix: nuxt.options.ui?.prefix || "U",
++			});
++		}
++		addComponentsDir({
++			path: resolve("./runtime/components"),
++			pathPrefix: false,
++			prefix: nuxt.options.ui?.prefix || "U",
++			ignore: ["content/**", "prose/**"],
++		});
++		addImportsDir(resolve("./runtime/composables"));
++		addTemplates(options, nuxt);
++	},
+ });
+ 
+ export { module as default };

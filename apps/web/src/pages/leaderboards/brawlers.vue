@@ -7,7 +7,14 @@ import type { BreadcrumbItem, TableColumn } from "#ui/types";
 import { createSortingButton } from "$lib/utils/table";
 
 definePageMeta({
-	middleware: "loading-indicator-disabled",
+	middleware: [
+		"loading-indicator-disabled",
+		(to) => {
+			if (!to.query.brawler) {
+				return navigateTo({ query: { brawler: "16000000" }, name: "leaderboards-brawlers" });
+			}
+		},
+	],
 });
 
 const title = "Brawler Leaderboard";
@@ -68,7 +75,7 @@ const columns: TableColumn<RankingsPlayer>[] = [
 						to: `/players/${encodeURIComponent(d.row.original.tag)}`,
 						class: "text-base font-semibold text-neutral-900 transition-colors duration-90 hover:text-ui-primary dark:text-white",
 					},
-					d.row.original.name
+					() => d.row.original.name
 				),
 			]),
 	},
@@ -126,6 +133,13 @@ const globalFilter = ref("");
 			}"
 			:ui="{ td: 'py-2 px-4' }"
 			class="mb-12 h-max w-full rounded-sm border border-(--ui-border-accented)"
-		/>
+		>
+			<template #empty>
+				<UiLoadingIndicator class="size-8" />
+				<p class="text-center text-neutral-600 dark:text-neutral-400">
+					{{ status === "pending" ? "Loading..." : "No data found" }}
+				</p>
+			</template>
+		</UTable>
 	</UContainer>
 </template>

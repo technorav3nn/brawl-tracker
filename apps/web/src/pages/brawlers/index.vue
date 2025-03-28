@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { useBrawlerListStore } from "$components/features/brawler-list/brawler-list-store";
+import { createGetCachedData } from "$lib/utils/nuxt";
 
-const { data: brawlers } = await useFetch("/api/brawlers", { transform: (r) => r.list });
+const { data: brawlers, status } = await useLazyFetch("/api/brawlers", {
+	transform: (r) => r.list,
+	key: "brawlers",
+	getCachedData: createGetCachedData(useNuxtApp()),
+});
 
 const brawlerList = useBrawlerListStore();
 const { groupingMode, groupedBrawlers, search } = storeToRefs(brawlerList);
 
 watchEffect(() => {
-	if (brawlers) {
+	if (brawlers.value) {
 		brawlerList.setBrawlers(brawlers.value!);
 	}
 });
@@ -32,10 +37,12 @@ const rarityColorClasses = {
 			description="Every Brawler in Brawl Stars, select one to get detailed information."
 		/>
 		<UPage>
-			<UPageBody v-if="brawlers" class="space-y-0">
+			<UPageBody class="space-y-0">
 				<div class="flex justify-between gap-1.5">
 					<UInput
 						v-model="search"
+						:disabled="status === 'pending'"
+						:loading="status === 'pending'"
 						icon="i-heroicons-magnifying-glass-20-solid"
 						size="md"
 						:trailing="false"
@@ -43,6 +50,8 @@ const rarityColorClasses = {
 					/>
 					<USelect
 						v-model="brawlerList.groupingMode"
+						:disabled="status === 'pending'"
+						:loading="status === 'pending'"
 						:items="['None', 'Class', 'Rarity']"
 						icon="i-heroicons-adjustments-horizontal"
 						placeholder="Group by"
@@ -50,6 +59,14 @@ const rarityColorClasses = {
 					>
 					</USelect>
 				</div>
+				<UPageGrid v-if="status === 'pending'" :class="gridClasses" class="h-full! w-full!">
+					<div v-for="i in 60" :key="i" class="flex h-full! w-full! flex-col gap-1">
+						<USkeleton class="h-full! w-full! rounded-b-none">
+							<img width="300" height="300" src="" :alt="undefined" class="indent-[-200vw]!" />
+						</USkeleton>
+						<USkeleton class="h-[76px] w-full rounded-t-none" />
+					</div>
+				</UPageGrid>
 				<UPageGrid v-if="(groupingMode === 'None' || groupingMode === '') && Array.isArray(groupedBrawlers)" :class="gridClasses">
 					<BrawlerListCard v-for="brawler in groupedBrawlers" :key="brawler.id" :brawler="brawler" showRarity />
 				</UPageGrid>

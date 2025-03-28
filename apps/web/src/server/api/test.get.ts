@@ -1,4 +1,5 @@
-export default eventHandler(() => {
-	const storage = useStorage("cache");
-	return storage.getKeys();
+export default eventHandler(async () => {
+	// eslint-disable-next-line no-promise-executor-return
+	await new Promise((resolve) => setTimeout(resolve, 1000));
+	return Math.random();
 });

@@ -31,7 +31,7 @@ async function onSubmit({ password, email }: { password: string; email: string }
 const links: ButtonProps[] = [
 	{
 		label: "Don't have an account?",
-		to: "/login",
+		to: "/signup",
 		trailingIcon: "i-heroicons-arrow-right",
 		class: "hidden sm:flex",
 	},

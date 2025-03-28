@@ -76,16 +76,16 @@ const columns: TableColumn<RankingsPlayer & { rank: number }>[] = [
 						class:
 							"text-base font-semibold text-gray-900 transition-colors duration-[90ms] hover:text-(--ui-primary)! dark:text-white",
 					},
-					d.row.original.name
+					() => d.row.original.name
 				),
 			]),
 	},
 	{
 		header: "Club",
 		accessorKey: "club",
-		cell: (d) =>
+		cell: ({ row }) =>
 			h(UiColorTagText, {
-				colorTag: d.row.original.club?.name ?? "No club",
+				colorTag: row.original.club?.name ?? "No club",
 			}),
 	},
 	{
@@ -103,7 +103,7 @@ const columns: TableColumn<RankingsPlayer & { rank: number }>[] = [
 			return a.original.trophies - b.original.trophies;
 		},
 		cell: (d) => {
-			const { trophies } = d.row.original;
+			const trophies = d.row.getValue<number>("trophies");
 			const newTrophies = trophies === 1 ? `${formatter.format(100000)}+` : formatter.format(trophies);
 			return h("p", { class: "font-semibold text-yellow-500 dark:text-yellow-500" }, newTrophies);
 		},
@@ -139,6 +139,7 @@ const globalFilter = ref("");
 			}"
 			:ui="{ root: 'divide-neutral-200 dark:divide-neutral-800', td: 'py-2 px-4' }"
 			class="mb-12 h-max w-full rounded-sm border border-(--ui-border-accented)"
-		/>
+		>
+		</UTable>
 	</UContainer>
 </template>

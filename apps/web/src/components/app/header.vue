@@ -8,6 +8,12 @@ const avatar = computed<string | null>(() =>
 	databaseUser.value?.profile.isConnected ? databaseUser.value!.profile.avatar! : null
 );
 
+const overlay = useOverlay();
+function onProfileClick() {
+	for (const o of overlay.overlays) overlay.close(o.id);
+	overlay.create(LazyAppHeaderProfileSlideover).open();
+}
+
 const links = computed<any[]>(() => [
 	{
 		label: "Brawlers",
@@ -66,6 +72,12 @@ const links = computed<any[]>(() => [
 				to: "/inbox",
 				description: "Read the latest news about Brawl Stars!",
 			},
+			import.meta.env.DEV
+				? {
+						label: "test",
+						to: "/test",
+					}
+				: {},
 		],
 	},
 ]);
@@ -106,7 +118,7 @@ const linksWithoutIcons = computed(() => links.value.map((link) => ({ ...link, i
 				variant="ghost"
 				color="neutral"
 				class="px-1.5"
-				@click="useOverlay().create(LazyAppHeaderProfileSlideover).open()"
+				@click="onProfileClick"
 			>
 				<NuxtImg v-if="avatar" class="rounded-full" width="28" height="28" :src="avatar" />
 				<UAvatar v-else class="h-7 w-7" :alt="user.name" />

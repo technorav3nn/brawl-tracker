@@ -77,7 +77,7 @@ async function logout() {
 					width="40"
 					height="40"
 					class="h-10 w-10 rounded-full"
-					loading="lazy"
+					loading="eager"
 				/>
 				<UAvatar v-else :alt="user?.name" />
 				<div class="inline-flex flex-col">

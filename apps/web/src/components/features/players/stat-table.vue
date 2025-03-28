@@ -86,6 +86,10 @@ defineProps<{
 			]"
 			class="h-full border border-neutral-200 dark:border-neutral-800"
 			:class="[title ? 'rounded-b-md' : 'rounded-md']"
-		/>
+		>
+			<template #empty>
+				<p class="px-2">Data for this player is not available. Please check back later.</p>
+			</template>
+		</UTable>
 	</section>
 </template>

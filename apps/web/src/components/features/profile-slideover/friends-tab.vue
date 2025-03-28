@@ -68,27 +68,36 @@ const closeSlideover = () => emit("close", true);
 				"
 			/>
 		</div>
-		<div v-if="status === 'pending'" class="mt-4 flex flex-col items-center justify-center gap-2 px-4">
+		<!--
+ <div v-if="status === 'pending'" class="mt-4 flex flex-col items-center justify-center gap-2 px-4">
 			<UiLoadingIndicator class="h-12 w-12" />
 			<span class="text-lg text-neutral-500 dark:text-neutral-400">Loading...</span>
-		</div>
-		<div v-else-if="friends?.length === 0 && search.trim() !== ''" class="mt-4 px-4">
+		</div> 
+-->
+		<div v-if="friends?.length === 0 && search.trim() !== ''" class="mt-4 px-4">
 			<p class="text-sm text-neutral-500 dark:text-neutral-400">You have no friends or saved tags</p>
 		</div>
 		<div v-else v-bind="containerProps" class="h-200px overflow-auto">
-			<div v-bind="wrapperProps">
-				<NuxtLink
-					v-for="{ data: friend } in friends"
-					:key="friend.name"
-					class="block"
-					:style="{
-						height: '80px',
-					}"
-					:to="`/players/${encodeURIComponent(friend.tag!)}`"
-					@click="closeSlideover"
-				>
-					<LazyAppProfileSlideoverFriend :key="friend.name" :friend="friend" />
-				</NuxtLink>
+			<div v-bind="wrapperProps" :class="[status === 'pending' ? 'h-full!' : '']">
+				<template v-if="status === 'pending'">
+					<div v-for="index in 10" :key="index" class="block" style="height: 80px">
+						<LazyAppProfileSlideoverFriend class="block" style="height: 80px" />
+					</div>
+				</template>
+				<template v-else>
+					<NuxtLink
+						v-for="{ data: friend } in friends"
+						:key="friend.name"
+						class="block"
+						:style="{
+							height: '80px',
+						}"
+						:to="`/players/${encodeURIComponent(friend.tag!)}`"
+						@click="closeSlideover"
+					>
+						<LazyAppProfileSlideoverFriend :key="friend.name" :friend="friend" />
+					</NuxtLink>
+				</template>
 			</div>
 		</div>
 	</div>

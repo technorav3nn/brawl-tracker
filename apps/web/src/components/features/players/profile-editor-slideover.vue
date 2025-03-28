@@ -73,7 +73,7 @@ async function onApplyClick() {
 				class="sticky top-0 z-10 w-full border-b border-neutral-200 bg-(--ui-bg) dark:border-neutral-800"
 				:ui="{ root: 'w-full! px-1 [&_:nth-child(1)]:w-full', item: 'w-full!', content: 'w-full', link: 'after:h-[2px]' }"
 				:items="links"
-				variant="link"
+				variant="pill"
 				highlight
 			/>
 			<TransitionGroup

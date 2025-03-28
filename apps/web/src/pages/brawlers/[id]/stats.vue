@@ -99,7 +99,13 @@ filteredMapStore.setFilteredMaps(maps.value);
 			>
 				<template #header>
 					<div class="flex items-center gap-2">
-						<NuxtImg :src="map.gameMode.imageUrl" :alt="map.name" class="object-scale-down" width="30" height="30" />
+						<NuxtImg
+							:src="map.gameMode.imageUrl"
+							:alt="map.name"
+							class="h-[30px] w-[30px] object-scale-down"
+							width="30"
+							height="30"
+						/>
 						<h1 class="text-md lg:text-md truncate font-semibold">{{ map.name }}</h1>
 					</div>
 				</template>
@@ -112,6 +118,7 @@ filteredMapStore.setFilteredMaps(maps.value);
 						:modifiers="map.gameMode.name === 'Brawl Ball' ? { extract: '85_132_500_785' } : { trim: '{}' }"
 						:height="map.gameMode.name.includes('Showdown') ? 300 : 300"
 						loading="lazy"
+						provider="ipx"
 					/>
 				</div>
 			</UCard>

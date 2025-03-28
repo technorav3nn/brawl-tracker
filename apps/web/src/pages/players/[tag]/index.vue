@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { FetchResult } from "#app";
 import { numberToRomanNumerals } from "$lib/utils/common/numbers";
 
 const route = useRoute("players-tag");
@@ -7,15 +8,13 @@ useSeoMeta({
 	title: `Player Profile`,
 });
 
-const { data: player, status } = await useFetch(`/api/players`, {
-	key: `players-${route.params.tag}`,
-	query: { tag: route.params.tag },
-});
+const { data: player } = useNuxtData<FetchResult<"/api/players", "get">>(`players-${route.params.tag}`);
+
 const { data: brawlers } = await useFetch("/api/brawlers", {
 	key: "brawlers",
 });
 
-if (!player.value || status.value === "error") {
+if (!player.value) {
 	throw createError({ statusCode: 404, message: "Player not found", fatal: true });
 }
 

@@ -4,8 +4,9 @@ import { Image } from "@unpic/vue";
 import type { SelectMenuItem } from "#ui/types";
 
 const router = useRouter();
+const route = useRoute();
 
-const { data: brawlers, status } = await useLazyFetch("/api/brawlers", {
+const { data: brawlers, status } = await useFetch("/api/brawlers", {
 	server: true,
 	transform: (data) =>
 		data.list.reverse().map(
@@ -18,23 +19,23 @@ const { data: brawlers, status } = await useLazyFetch("/api/brawlers", {
 		),
 });
 
-const selected = ref(
-	brawlers.value?.find((brawler) => brawler.value === Number(router.currentRoute.value.query.brawler ?? 16000000))
-);
+const selected = ref(brawlers.value?.find((brawler) => brawler.value === Number(route.query.brawler)));
+
 watch(selected, () => {
-	router.push({ query: { ...router.currentRoute.value.query, brawler: selected.value?.value } });
+	router.push({ query: { ...route.query, brawler: selected.value?.value } });
 });
 </script>
 
 <template>
 	<USelectMenu
-		v-model="selected"
+		:modelValue="status === 'pending' ? undefined : selected"
 		:loading="status === 'pending'"
 		:items="brawlers ?? []"
 		optionAttribute="name"
 		searchable
 		searchable-placeholder="Search for a brawler..."
 		class="w-48"
+		@update:model-value="($event) => (selected = $event)"
 	>
 		<template #leading="{ modelValue, ui }">
 			<Image v-if="modelValue" width="20" height="20" v-bind="modelValue.avatar" :class="ui.leadingAvatar()" loading="lazy" />

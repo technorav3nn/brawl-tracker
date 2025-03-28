@@ -13,15 +13,19 @@ useHead({
 	meta: [{ name: "theme-color", content: color.value }],
 	title: "BrawlTrack - Brawl Stars Stats",
 });
+
+const nuxt = useNuxtApp();
 </script>
 <!-- color="repeating-linear-gradient(to right, rgb(var(--color-primary-DEFAULT)) 0%, var(--primary-lighter) 50%, var(--primary-light) 100%)" -->
 
 <template>
+	<Teleport to="#teleports">
+		<NuxtLoadingIndicator color="red" class="bg-gradient-to-r! from-(--ui-primary)! to-primary-500" :throttle="380" />
+	</Teleport>
 	<UApp>
 		<AppHeader />
 		<UMain>
 			<NuxtLayout>
-				<NuxtLoadingIndicator color="red" class="bg-gradient-to-r! from-(--ui-primary)! to-primary-500" :throttle="380" />
 				<NuxtPage />
 			</NuxtLayout>
 		</UMain>

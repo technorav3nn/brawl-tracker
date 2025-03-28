@@ -1,17 +1,8 @@
 <script setup lang="ts">
 import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
-import { createGetCachedData } from "$lib/utils/nuxt";
 
 const route = useRoute("players-tag");
-const { tag } = route.params;
-
-const nuxtApp = useNuxtApp();
-const { data: meowApiData, status } = await useLazyFetch(`/api/players/${tag}/meow-api`, {
-	key: `players-${tag}-meow-api`,
-	dedupe: "defer",
-	getCachedData: createGetCachedData(nuxtApp),
-	server: false,
-});
+const { data: meowApiData } = useNuxtData(`players-${route.params.tag}-meow-api`);
 
 const RANK_TO_COLOR: Record<number, string> = {
 	// 1, 2, 3: Bronze I, II, III
@@ -106,8 +97,15 @@ const stats = computed(() =>
 			]
 		: []
 );
+
+const loading = ref(!meowApiData.value);
+onMounted(() => {
+	setTimeout(() => {
+		loading.value = false;
+	}, 4000);
+});
 </script>
 
 <template>
-	<PlayersStatTable :loading="status === 'pending'" title="Ranked Stats" :stats />
+	<PlayersStatTable :loading title="Ranked Stats" :stats />
 </template>

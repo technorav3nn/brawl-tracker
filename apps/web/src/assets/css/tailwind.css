@@ -18,6 +18,7 @@
 
 .dark {
 	--ui-primary: var(--ui-color-primary-400);
+	/* oklch(83.69% 0.1644 84.43) */
 }
 
 /*
