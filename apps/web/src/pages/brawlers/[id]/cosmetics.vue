@@ -13,7 +13,7 @@ if (!brawler || !brawlerCdnData) {
 }
 
 const unmappedSkins = computed<Skin[]>(() => brawlerCdnData.value!.skins);
-const skins = computed<Skin[]>(() =>
+const skins = computed<(Skin & { url: string })[]>(() =>
 	unmappedSkins.value.map((skin) => ({
 		...skin,
 		url: `${CDN_URL_V2}/brawlers/${brawler.value!.id}/skins/${skin.name}/model.webp`,
@@ -31,7 +31,7 @@ const replacements: Record<string, () => VNode> = {
 			src: "/icons/cosmetics/gems-icon.png",
 			width: 20,
 			height: 20,
-			class: "inline-block !object-scale-down",
+			class: "inline-block object-scale-down!",
 		}),
 	Bling: () =>
 		h(Image, {
@@ -72,42 +72,51 @@ function render(cost: string) {
 <template>
 	<UPage v-if="brawler" class="pb-20">
 		<section>
-			<UDashboardSection
-				class="mb-4"
+			<UiPageSection
+				class="mb-4!"
 				title="Skins"
+				data-test
 				:description="`View all of the skins for ${brawler.name}`"
 				orientation="vertical"
 			/>
-			<UCarousel v-slot="{ item }" arrows class="w-[105%] !h-96" :items="skins" :ui="{ container: 'gap-1' }">
+			<UCarousel
+				v-slot="{ item }"
+				skipSnaps
+				wheelGestures
+				arrows
+				class="h-96! w-full overflow-x-visible"
+				:items="skins"
+				:ui="{ container: 'gap-1', item: 'basis-auto not-first:ps-1', prev: '-start-2', next: '-end-2' }"
+			>
 				<UCard
-					:ui="{ body: { base: '!p-2' }, header: { padding: 'px-4 py-3 sm:px-4', footer: 'px-4 py-3 sm:px-4' } }"
-					class="w-64 mt-2 ml-1 mr-1 mb-0.5 h-[520px]"
+					:ui="{ body: 'p-2!', header: 'px-4 py-3 sm:px-4', footer: 'px-4 py-3 sm:px-4' }"
+					class="mt-2 mr-1 mb-0.5 ml-1 h-[520px] w-64"
 				>
 					<template #header>
-						<div class="flex justify-between items-center">
-							<h2 class="text-lg font-bold truncate">{{ item.name }}</h2>
+						<div class="flex items-center justify-between">
+							<h2 class="truncate text-lg font-bold">{{ item.name }}</h2>
 							<UTooltip :text="item.rarity ?? 'No Rarity'" :popper="{ placement: 'top' }">
 								<Image
 									:src="`/icons/cosmetics/${normalCaseToKebabCase(item.rarity ?? 'none').toLowerCase()}-skin-icon.png`"
 									width="35"
 									height="35"
-									class="!object-scale-down"
+									class="object-scale-down!"
 								/>
 							</UTooltip>
 						</div>
 					</template>
 					<div class="flex flex-col items-center justify-center">
-						<Image :src="item.url" width="180" height="180" loading="lazy" class="!object-scale-down h-80" />
+						<Image :src="item.url" width="180" height="180" loading="lazy" class="h-80 object-scale-down!" />
 						<Image
 							v-if="item.cost?.includes('• S')"
-							class="self-start absolute bottom-[28%] -translate-x-2"
+							class="absolute bottom-[28%] -translate-x-2 self-start"
 							src="/icons/cosmetics/skin-seasonal.png"
 							width="50"
 							height="50"
 						/>
 						<Image
 							v-else-if="item.cost?.includes('• E')"
-							class="self-start absolute bottom-[28%] -translate-x-2"
+							class="absolute bottom-[28%] -translate-x-2 self-start"
 							src="/icons/cosmetics/skin-exclusive.png"
 							width="50"
 							height="50"

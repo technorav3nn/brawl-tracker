@@ -25,20 +25,20 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${ran
 
 <template>
 	<div
-		class="group relative rounded-md cursor-pointer border-[1.45px] border-[#1E263A] shadow-xl"
+		class="group relative cursor-pointer rounded-md border-[1.45px] border-[#1E263A] shadow-xl"
 		:class="[brawler.rarity.name in rarityColorMap ? rarityColorMap[brawler.rarity.name] : 'bg-gray-200']"
 	>
 		<Image
-			class="relative group-hover:brightness-75 max-sm:object-cover h-[145px] block rounded-md"
+			class="relative block h-[145px] rounded-md group-hover:brightness-75 max-sm:object-cover"
 			:src="getBrawlerPortraitUrl(brawler.id.toString())"
 			:height="180"
 		/>
-		<p class="text-lg absolute bottom-0 right-1 font-normal tracking-wide text-white font-brawlstars uppercase brawlstars-text">
+		<p class="brawlstars-text absolute right-1 bottom-0 font-brawlstars text-lg font-normal tracking-wide text-white uppercase">
 			{{ brawler.name }}
 		</p>
 
 		<!-- Powers -->
-		<div class="absolute top-[2px] right-[2px] flex gap-y-[2px] flex-col">
+		<div class="absolute top-[2px] right-[2px] flex flex-col gap-y-[2px]">
 			<Image v-if="playerBrawler.gadgets.length > 0" width="19" height="19" src="/icons/player/brawler-powers/gadget.png" />
 			<Image v-if="!!playerBrawler.gears?.[0]" width="19" height="19" src="/icons/player/brawler-powers/gear.png"></Image>
 			<Image v-if="playerBrawler.starPowers.length > 0" width="19" height="19" src="/icons/player/brawler-powers/starpower.png" />
@@ -61,22 +61,32 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${ran
 					height="70"
 					src="/icons/player/trophy-bars/normal-tier.png"
 				/>
-				<Image v-else class="-translate-x-4" width="120" height="70" src="/icons/player/trophy-bars/max-tier-full.png" />
+				<Image
+					v-else
+					class="-translate-x-2.5 object-fill!"
+					width="140"
+					height="70"
+					src="/icons/player/trophy-bars/max-tier-full.png"
+				/>
 				<p
-					:class="[isMaxTier ? 'text-white  top-[48.9%]' : 'text-yellow-400 top-[50%] ']"
-					class="brawlstars-text text-center w-[120px] text-[16px] font-brawlstars absolute left-[50%] translate-x-[calc(-50%+0.3rem)] translate-y-[-50%]"
+					:class="[
+						isMaxTier
+							? 'top-[48.9%]  translate-x-[calc(-50%+0.3rem)] text-white'
+							: 'top-[50%] translate-x-[calc(-50%+0.8rem)] text-yellow-400 ',
+					]"
+					class="brawlstars-text absolute left-[50%] w-[120px] translate-y-[-50%] text-center font-brawlstars text-[16px]"
 				>
 					{{ playerBrawler.trophies }}
 				</p>
 			</div>
 		</div>
 
-		<div class="absolute bottom-[1.65rem] right-1">
+		<div class="absolute right-1 bottom-[1.65rem]">
 			<div class="relative">
 				<Image class="size-8" src="/icons/power-level-base.png" />
 				<!-- Power level on image above -->
 				<p
-					class="font-brawlstars pr-[0.2px] absolute text-center top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-[15px] w-full text-white shadow-2xl brawler-name-text"
+					class="brawler-name-text absolute top-[50%] left-[50%] w-full translate-x-[-50%] translate-y-[-50%] pr-[0.2px] text-center font-brawlstars text-[15px] text-white shadow-2xl"
 				>
 					<span>{{ playerBrawler.power }}</span>
 				</p>

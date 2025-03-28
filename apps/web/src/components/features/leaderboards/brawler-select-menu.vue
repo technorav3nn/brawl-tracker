@@ -1,36 +1,47 @@
 <script setup lang="ts">
+import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
 import { Image } from "@unpic/vue";
+import type { SelectMenuItem } from "#ui/types";
 
 const router = useRouter();
+const route = useRoute();
 
-const { data: brawlers, status } = await useLazyFetch("/api/brawlers", {
+const { data: brawlers, status } = await useFetch("/api/brawlers", {
 	server: true,
-	transform: (data) => data.list.reverse(),
+	transform: (data) =>
+		data.list.reverse().map(
+			(b) =>
+				({
+					label: b.name,
+					value: b.id,
+					avatar: { src: `${CDN_URL_V2}/brawlify/brawlers/emoji/${b.id}.png` },
+				}) satisfies SelectMenuItem & { value: number }
+		),
 });
-const selected = ref(
-	brawlers.value?.find((brawler) => brawler.id === Number(router.currentRoute.value.query.brawler ?? 16000000))
-);
+
+const selected = ref(brawlers.value?.find((brawler) => brawler.value === Number(route.query.brawler)));
+
 watch(selected, () => {
-	router.push({ query: { ...router.currentRoute.value.query, brawler: selected.value?.id } });
+	router.push({ query: { ...route.query, brawler: selected.value?.value } });
 });
 </script>
 
 <template>
 	<USelectMenu
-		v-model="selected"
+		:modelValue="status === 'pending' ? undefined : selected"
 		:loading="status === 'pending'"
-		:options="brawlers ?? []"
+		:items="brawlers ?? []"
 		optionAttribute="name"
 		searchable
 		searchable-placeholder="Search for a brawler..."
 		class="w-48"
+		@update:model-value="($event) => (selected = $event)"
 	>
-		<template #label>
-			<div v-if="selected" class="flex flex-row items-center gap-2">
-				<Image :src="selected?.imageUrl2" class="rounded-sm" width="20" height="20" />
-				<span>{{ selected?.name }}</span>
-			</div>
-			<span v-else>Select a brawler...</span>
+		<template #leading="{ modelValue, ui }">
+			<Image v-if="modelValue" width="20" height="20" v-bind="modelValue.avatar" :class="ui.leadingAvatar()" loading="lazy" />
+		</template>
+		<template #item-leading="{ item }">
+			<Image width="20" height="20" :src="item.avatar.src" class="size-6 object-contain" loading="lazy" />
 		</template>
 	</USelectMenu>
 </template>

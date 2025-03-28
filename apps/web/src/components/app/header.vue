@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import type { AsideLink } from "@nuxt/ui-pro/types";
-import { AppHeaderProfileSlideover, LazyAppHeaderProfileSlideover } from "#components";
+import { LazyAppHeaderProfileSlideover } from "#components";
 
-const toast = useToast();
-const slideover = useSlideover();
 const user = useUser();
 const databaseUser = useDatabaseUser();
 
@@ -11,9 +8,13 @@ const avatar = computed<string | null>(() =>
 	databaseUser.value?.profile.isConnected ? databaseUser.value!.profile.avatar! : null
 );
 
-type Link = AsideLink & { children?: AsideLink[] };
+const overlay = useOverlay();
+function onProfileClick() {
+	for (const o of overlay.overlays) overlay.close(o.id);
+	overlay.create(LazyAppHeaderProfileSlideover).open();
+}
 
-const links = computed<Link[]>(() => [
+const links = computed<any[]>(() => [
 	{
 		label: "Brawlers",
 		icon: "i-tabler-swords",
@@ -51,6 +52,7 @@ const links = computed<Link[]>(() => [
 				to: "/leaderboards/brawlers",
 				icon: "i-tabler-swords",
 				description: "View the leaderboards of brawlers!",
+				class: "w-full",
 			},
 		],
 	},
@@ -70,63 +72,37 @@ const links = computed<Link[]>(() => [
 				to: "/inbox",
 				description: "Read the latest news about Brawl Stars!",
 			},
+			import.meta.env.DEV
+				? {
+						label: "test",
+						to: "/test",
+					}
+				: {},
 		],
 	},
 ]);
+const route = useRoute();
 
-const items = computed(() => [
-	[
-		{
-			label: "placeholder",
-			avatar: {
-				alt: "placeholder avatar",
-				class: "dark:!bg-gray-600",
-			},
-		},
-	],
-	[
-		{
-			label: "My Club",
-			icon: "i-tabler-shield-pin",
-		},
-		{
-			label: "Settings",
-			icon: "i-heroicons-cog",
-			to: "/settings",
-		},
-	],
-	[
-		{
-			label: "Logout",
-			icon: "i-heroicons-arrow-right-end-on-rectangle",
-			click: async () => {
-				// await $fetch("/api/auth/logout", { method: "POST" });
-				// user.value = null;
-				// await navigateTo("/");
-				toast.add({ title: "ADD THIS FUNCTIONALITY", color: "primary" });
-			},
-		},
-	],
-]);
+const mobileLinks = computed(() =>
+	links.value.map((link) => ({
+		...link,
+		defaultOpen: link.children && route.path.startsWith(link.to as string),
+	}))
+);
+const linksWithoutIcons = computed(() => links.value.map((link) => ({ ...link, icon: undefined })));
 </script>
 
 <template>
-	<AppHeaderProfileSlideover :items="items" />
-	<UHeader
-		:links="links"
-		:ui="{
-			panel: { body: '[&_:nth-child(5)]:hidden' },
-		}"
-	>
-		<template #logo>
-			<div class="flex items-center">
-				<UIcon name="i-heroicons-star-solid" class="text-primary size-6" />
+	<UHeader>
+		<template #left>
+			<NuxtLink to="/" class="flex items-center">
+				<UIcon name="i-heroicons-star-solid" class="size-6 text-(--ui-primary)" />
 				<span class="ml-2 text-xl font-bold">BrawlTrack</span>
-			</div>
+			</NuxtLink>
 		</template>
 
 		<template #right>
-			<UButton v-if="!user" color="gray" variant="ghost" class="hidden sm:block" to="/login">Log In</UButton>
+			<UButton v-if="!user" color="neutral" variant="ghost" class="hidden sm:block" to="/login">Log In</UButton>
 			<UButton v-if="!user" class="hidden sm:block" to="/signup">Sign Up</UButton>
 			<UButton
 				v-if="!user"
@@ -136,40 +112,31 @@ const items = computed(() => [
 				icon="i-heroicons-arrow-left-end-on-rectangle-20-solid"
 				square
 			/>
-
-			<UTooltip v-if="user" text="My Profile">
-				<UButton
-					v-if="user"
-					:ui="{ gap: { sm: 'gap-x-[0.095rem]' } }"
-					variant="ghost"
-					color="gray"
-					class="px-1.5"
-					@click="slideover.open(LazyAppHeaderProfileSlideover)"
-				>
-					<NuxtImg v-if="avatar" class="rounded-full" width="28" height="28" :src="avatar" />
-					<UAvatar v-else class="w-7 h-7" :alt="user.name" />
-				</UButton>
-			</UTooltip>
-
-			<UTooltip :text="$colorMode.value === 'dark' ? 'Turn the lights on' : 'Turns the lights off'">
-				<UColorModeButton />
-			</UTooltip>
+			<UButton
+				v-if="user"
+				:ui="{ base: 'gap-x-[0.095rem]' }"
+				variant="ghost"
+				color="neutral"
+				class="px-1.5"
+				@click="onProfileClick"
+			>
+				<NuxtImg v-if="avatar" class="rounded-full" width="28" height="28" :src="avatar" />
+				<UAvatar v-else class="h-7 w-7" :alt="user.name" />
+			</UButton>
+			<UColorModeButton />
 		</template>
 
-		<template #panel>
-			<UNavigationTree
-				:links="links"
-				defaultOpen
-				:multiple="false"
-				:ui="{
-					accordion: {
-						button: {
-							base: 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 font-medium []',
-						},
-						label: 'font-normal',
-					},
-				}"
-			/>
+		<UNavigationMenu
+			:ui="{
+				list: 'gap-x-2',
+				link: 'text-sm/6 font-semibold flex text-(--ui-text-toned) data-[active]:text-(--ui-primary) items-center gap-1 transition-none hover:text-(--ui-primary)',
+			}"
+			:items="linksWithoutIcons"
+			variant="link"
+		/>
+
+		<template #body>
+			<UNavigationMenu orientation="vertical" :items="mobileLinks" class="-mx-2.5" />
 		</template>
 	</UHeader>
 </template>

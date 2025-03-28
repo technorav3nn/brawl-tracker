@@ -1,6 +1,6 @@
 export interface ApiProfileResponse<StatType> {
 	detail?: 0;
-	response: ApiProfile<StatType>;
+	response: ApiProfile<StatType> | null;
 	state: number;
 	tag: string;
 }
@@ -73,89 +73,7 @@ export interface ApiProfileBattleCard {
  * 23 - Current Ranked Rank
  */
 
-export interface ApiUnresolvedProfileStats {
-	// add comments to each field
-	/**
-	 * 3v3 wins
-	 */
-	1: number;
-	/**
-	 * Duo wins
-	 */
-	11: number;
-	/**
-	 * Boss fight
-	 */
-	12: number;
-	/**
-	 * Power play highest
-	 */
-	13: number;
-	/**
-	 * Power Play Highest Rank
-	 */
-	14: number;
-	/**
-	 * Challenge wins
-	 */
-	15: number;
-	/**
-	 * City rampage
-	 */
-	16: number;
-	/**
-	 * Power league team
-	 */
-	17: number;
-	/**
-	 * Power league solo
-	 */
-	18: number;
-	/**
-	 * Club league
-	 */
-	19: number;
-	/**
-	 * Experience points
-	 */
-	2: number;
-	/**
-	 * Fame
-	 */
-	20: number;
-	/**
-	 * Legacy experience points
-	 */
-	21: number;
-	/**
-	 * Highest ranked rank
-	 */
-	22: number;
-	/**
-	 * Current ranked rank
-	 */
-	23: number;
-	/**
-	 * Trophies
-	 */
-	3: number;
-	/**
-	 * Highest trophies
-	 */
-	4: number;
-	/**
-	 * Brawlers owned
-	 */
-	5: number;
-	/**
-	 * Solo wins
-	 */
-	8: number;
-	/**
-	 * Robo Rumble
-	 */
-	9: number;
-}
+export type ApiUnresolvedProfileStats = Record<number, number>;
 
 export interface ResolvedProfileStats {
 	"3v3Wins": number;

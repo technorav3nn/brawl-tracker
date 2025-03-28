@@ -75,11 +75,11 @@ const powersWithEmpties = computed(() => {
 </script>
 
 <template>
-	<UCard :ui="{ header: { padding: '!px-2.5 py-2.5' }, body: { base: 'h-full', padding: '!px-4 !py-1.5' } }">
+	<UCard :ui="{ header: 'px-2.5! py-2.5', body: 'h-full px-4! py-1.5!' }">
 		<template #header>
-			<div class="flex gap-2 items-center">
+			<div class="flex items-center gap-2">
 				<Image :src="image" width="30" height="30" loading="eager" />
-				<h3 class="truncate text-lg font-semibold leading-6 text-gray-900 dark:text-white">{{ title }}</h3>
+				<h3 class="truncate text-lg leading-6 font-semibold text-gray-900 dark:text-white">{{ title }}</h3>
 			</div>
 		</template>
 

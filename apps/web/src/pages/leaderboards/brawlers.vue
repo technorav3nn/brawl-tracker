@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import { type RankingsPlayer } from "@brawltracker/brawl-stars-api";
+import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
 import { Image } from "@unpic/vue";
-import { type BreadcrumbLink } from "#ui/types";
+import { NuxtLink, UiColorTagText } from "#components";
+import type { BreadcrumbItem, TableColumn } from "#ui/types";
+import { createSortingButton } from "$lib/utils/table";
 
 definePageMeta({
-	middleware: "loading-indicator-disabled",
+	middleware: [
+		"loading-indicator-disabled",
+		(to) => {
+			if (!to.query.brawler) {
+				return navigateTo({ query: { brawler: "16000000" }, name: "leaderboards-brawlers" });
+			}
+		},
+	],
 });
 
 const title = "Brawler Leaderboard";
@@ -32,23 +42,68 @@ const { data: leaderboards, status } = await useLazyFetch<RankingsPlayer[]>("/ap
 	},
 });
 
-const breadcrumb: BreadcrumbLink[] = [
+const breadcrumb: BreadcrumbItem[] = [
 	{ label: "Leaderboards", to: "/leaderboards" },
 	{ label: "Brawlers", to: "/leaderboards/Brawlers" },
 ];
 
-const columns = [
-	{ label: "Rank", key: "rank", sortable: true },
-	{ label: "Name", key: "name", sortable: true },
-	{ label: "Club", key: "club" },
-	{ label: "Trophies", key: "trophies" },
+const columns: TableColumn<RankingsPlayer>[] = [
+	{
+		header: ({ column }) => createSortingButton(column, "Rank"),
+		accessorKey: "rank",
+		enableSorting: true,
+		cell: (d) => h("p", { class: "font-semibold text-neutral-900 dark:text-white" }, `#${d.row.original.rank}`),
+	},
+	{
+		header: "Name",
+		accessorKey: "name",
+		enableSorting: true,
+		cell: (d) =>
+			h("div", { class: "flex flex-row items-center gap-4" }, [
+				h(Image, {
+					src: `${CDN_URL_V2}/brawlify/profile-icons/regular/${d.row.original.icon.id}.png`,
+					alt: d.row.original.name,
+					loading: "lazy",
+					class: "rounded-xs",
+					provider: "none",
+					width: 35,
+					height: 35,
+				}),
+				h(
+					NuxtLink,
+					{
+						to: `/players/${encodeURIComponent(d.row.original.tag)}`,
+						class: "text-base font-semibold text-neutral-900 transition-colors duration-90 hover:text-ui-primary dark:text-white",
+					},
+					() => d.row.original.name
+				),
+			]),
+	},
+	{
+		header: "Club",
+		accessorKey: "club",
+		cell: (d) => {
+			if (d.row.original.club) {
+				return h(UiColorTagText, { colorTag: d.row.original.club.name });
+			}
+
+			return h("p", "No club");
+		},
+	},
+	{
+		header: ({ column }) => createSortingButton(column, "Trophies"),
+		accessorKey: "trophies",
+		cell: (d) => {
+			return h(
+				"p",
+				{ class: "font-semibold text-yellow-500 dark:text-yellow-500" },
+				d.row.original.trophies === 1 ? "100,000+" : d.row.original.trophies
+			);
+		},
+	},
 ];
 
-const search = ref("");
-const filteredRows = computed(() => {
-	if (!leaderboards.value) return [];
-	return leaderboards.value.filter((row) => row.name.toLowerCase().includes(search.value.toLowerCase()));
-});
+const globalFilter = ref("");
 </script>
 
 <template>
@@ -58,14 +113,15 @@ const filteredRows = computed(() => {
 				<UBreadcrumb :links="breadcrumb" />
 			</template>
 		</UPageHeader>
-		<div class="flex mb-4 justify-start gap-2">
-			<UInput v-model="search" placeholder="Search for a player..." icon="i-heroicons-magnifying-glass-20-solid" />
+		<div class="mb-4 flex justify-start gap-2">
+			<UInput v-model="globalFilter" placeholder="Search for a player..." icon="i-heroicons-magnifying-glass-20-solid" />
 			<LeaderboardsLocationSelectMenu />
 			<LeaderboardsBrawlerSelectMenu />
 		</div>
 		<UTable
+			v-model:globalFilter="globalFilter"
 			:loading="status === 'pending'"
-			:rows="status === 'pending' ? [] : filteredRows"
+			:data="status === 'pending' ? [] : leaderboards!"
 			:columns="columns"
 			:loading-state="{
 				icon: 'i-heroicons-arrow-path-20-solid',
@@ -75,37 +131,14 @@ const filteredRows = computed(() => {
 				color: 'primary',
 				animation: 'carousel',
 			}"
-			:ui="{ divide: 'divide-gray-200 dark:divide-gray-800', td: { padding: 'py-2 px-4' } }"
-			class="w-full border border-gray-200 dark:border-gray-800 rounded h-max mb-12"
+			:ui="{ td: 'py-2 px-4' }"
+			class="mb-12 h-max w-full rounded-sm border border-(--ui-border-accented)"
 		>
-			<template #rank-data="{ row }">
-				<p class="text-gray-900 dark:text-white font-semibold">#{{ row.rank }}</p>
-			</template>
-			<template #name-data="{ row }">
-				<div class="flex flex-row gap-4 items-center">
-					<Image
-						:src="`https://cdn.brawlify.com/profile-icons/regular/${row.icon.id}.png`"
-						:alt="row.name"
-						loading="lazy"
-						class="rounded-sm"
-						provider="none"
-						width="35"
-						height="35"
-					/>
-					<NuxtLink
-						:to="`/players/${encodeURIComponent(row.tag)}`"
-						class="hover:!text-primary transition-colors duration-[90ms] text-base text-gray-900 dark:text-white font-semibold"
-					>
-						{{ row.name }}
-					</NuxtLink>
-				</div>
-			</template>
-			<template #club-data="{ row }">
-				<UiColorTagText v-if="row.club" :colorTag="row.club.name" />
-				<p v-else>No club</p>
-			</template>
-			<template #trophies-data="{ row }">
-				<p class="text-yellow-500 dark:text-yellow-500 font-semibold">{{ row.trophies === 1 ? "100,000+" : row.trophies }}</p>
+			<template #empty>
+				<UiLoadingIndicator class="size-8" />
+				<p class="text-center text-neutral-600 dark:text-neutral-400">
+					{{ status === "pending" ? "Loading..." : "No data found" }}
+				</p>
 			</template>
 		</UTable>
 	</UContainer>
