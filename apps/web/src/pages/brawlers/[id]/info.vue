@@ -35,14 +35,14 @@ if (!brawler.value) {
 		</div> 
 -->
 
-		<div class="grid grid-cols-1 gap-y-3 md:gap-x-3 md:grid-cols-3">
-			<div class="col-span-3 md:col-span-1 flex flex-col gap-2 h-full">
+		<div class="grid grid-cols-1 gap-y-3 md:grid-cols-3 md:gap-x-3">
+			<div class="col-span-3 flex h-full flex-col gap-2 md:col-span-1">
 				<BrawlerOverview class="" :brawler :brawlerCdnData />
-				<BrawlerSpecialGears class="w-full h-full hidden md:block" :brawler :brawlerCdnData />
+				<BrawlerSpecialGears class="hidden h-full w-full md:block" :brawler :brawlerCdnData />
 			</div>
-			<div class="flex md:col-span-2 flex-col gap-2">
+			<div class="flex flex-col gap-2 md:col-span-2">
 				<div
-					class="grid grid-cols-1 gap-2 md:grid-cols-2 h-[100%]"
+					class="grid h-[100%] grid-cols-1 gap-2 md:grid-cols-2"
 					:class="{ 'md:col-span-2': !Boolean(brawlerCdnData.hypercharge) }"
 				>
 					<BrawlerMainAttack class="h-full" :brawler :brawlerCdnData />
@@ -51,7 +51,7 @@ if (!brawler.value) {
 					<BrawlerPower type="starpowers" class="h-full" :brawler :brawlerCdnData />
 					<BrawlerSpecialGears class="block md:hidden" :brawler :brawlerCdnData />
 				</div>
-				<BrawlerHypercharge class="h-[30]" :brawler :brawlerCdnData />
+				<BrawlerHypercharge :brawler :brawlerCdnData />
 			</div>
 		</div>
 	</UPage>

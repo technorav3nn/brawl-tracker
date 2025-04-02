@@ -6,6 +6,17 @@ export function normalCaseToKebabCase(string: string) {
 	return string.replaceAll(" ", "-");
 }
 
+export function camelCaseToNormalCase(string: string, capitalizeLetters: boolean = false) {
+	return string
+		.replaceAll(/(?<g>[A-Z])/g, " $1")
+		.replaceAll(/(?<g>\d+)v(?<h>\d+)/g, "$1v$2") // Keep NvN pattern intact
+		.replaceAll(/(?<g>\d+)/g, " $1")
+		.toLowerCase()
+		.trim()
+		.replaceAll(/\s+/g, " ")
+		.replaceAll(/\b\w/g, (letter) => (capitalizeLetters ? letter.toUpperCase() : letter.toLowerCase()));
+}
+
 export function capitalizeLetters(string: string) {
 	return string.replaceAll(/\b\w/g, (letter) => letter.toUpperCase());
 }

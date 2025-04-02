@@ -48,21 +48,21 @@ watch(
 <template>
 	<USelectMenu
 		v-model="selected"
-		:options="locations"
+		:items="locations"
 		optionAttribute="name"
 		searchable
 		searchable-placeholder="Search a country..."
 		class="w-48"
 	>
-		<template #label>
+		<template #default>
 			<LazyIcon v-if="selected?.icon" hydrateOnVisible :name="selected.icon" />
 			<span v-else-if="selected?.emoji">{{ selected.emoji }}</span>
 			<span>{{ selected?.name }}</span>
 		</template>
-		<template #option="{ option }">
-			<LazyIcon v-if="option?.icon" hydrateOnVisible :name="option.icon" />
-			<span v-else-if="option?.emoji">{{ option.emoji }}</span>
-			<span>{{ option.name }}</span>
+		<template #item="{ item }">
+			<LazyIcon v-if="item?.icon" hydrateOnVisible :name="item.icon" />
+			<span v-else-if="item?.emoji">{{ item.emoji }}</span>
+			<span>{{ item.name }}</span>
 		</template>
 	</USelectMenu>
 </template>

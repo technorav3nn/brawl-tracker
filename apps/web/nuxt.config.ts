@@ -1,24 +1,24 @@
 import { createResolver } from "@nuxt/kit";
-// import { isDevelopment } from "std-env";
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
-	extends: ["@nuxt/ui-pro"],
 	modules: [
+		"@nuxt/ui-pro",
 		"@nuxt/devtools",
 		"@nuxt/fonts",
 		"@nuxt/image",
-		"@nuxt/ui",
 		"@nuxt/content",
 		"@nuxtjs/turnstile",
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
 		"nuxt-time",
 		"nuxt-appwrite",
+		"@hebilicious/vue-query-nuxt",
 	],
 	srcDir: "src/",
+	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
 	devtools: {
 		enabled: true,
 	},
@@ -30,6 +30,13 @@ export default defineNuxtConfig({
 	},
 	turnstile: {
 		siteKey: "0x4AAAAAAA_43EZEMfkIqXqY",
+	},
+	vueQuery: {
+		// @ts-expect-error - Error with the nuxt module
+		autoImports: ["queryOptions"],
+		vueQueryPluginOptions: {
+			enableDevtoolsV6Plugin: true,
+		},
 	},
 	app: {
 		head: {
@@ -62,6 +69,8 @@ export default defineNuxtConfig({
 			300: 300,
 			600: 600,
 		},
+		provider: "none",
+		ipx: {},
 	},
 	colorMode: {
 		fallback: "dark",
@@ -113,7 +122,7 @@ export default defineNuxtConfig({
 		project: "6786db24001e31cc452a",
 	},
 	nitro: {
-		preset: "",
+		preset: "node-server",
 	},
 	alias: {
 		$assets: resolve("./src/assets"),
@@ -123,7 +132,17 @@ export default defineNuxtConfig({
 		$server: resolve("./src/server"),
 		$composables: resolve("./src/hooks"),
 		$lib: resolve("./src/lib"),
+		$queries: resolve("./src/queries"),
 		$: resolve("./src"),
+	},
+	imports: {
+		presets: [
+			{
+				from: "@tanstack/vue-query",
+				imports: ["useQuery", "useMutation", "useInfiniteQuery", "useQueryClient"],
+			},
+		],
+		dirs: ["queries"],
 	},
 	components: [{ path: "$components/features", extensions: [".vue"], prefix: "" }, "$components"],
 	hooks: {

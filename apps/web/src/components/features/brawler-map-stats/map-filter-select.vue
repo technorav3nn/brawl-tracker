@@ -21,18 +21,7 @@ const selectedFilters = reactive<
 	environments: [],
 });
 
-const modeNames = computed(() => modes.value!.map((mode) => mode.name));
-const environmentNames = computed(() => {
-	const environments = new Set<string>();
-
-	for (const map of initialMaps.value!) {
-		environments.add(map.environment.name);
-	}
-
-	return [...environments];
-});
-
-watch(selectedFilters, () => {
+function filter() {
 	if (!filteringEnabled.value) {
 		setFilterOptions({ modes: [], environments: [] });
 		setFilteredMaps(initialMaps.value!);
@@ -47,6 +36,25 @@ watch(selectedFilters, () => {
 
 	setFilterOptions(filters);
 	filterMaps();
+}
+
+const modeNames = computed(() => modes.value!.map((mode) => mode.name));
+const environmentNames = computed(() => {
+	const environments = new Set<string>();
+
+	for (const map of initialMaps.value!) {
+		environments.add(map.environment.name);
+	}
+
+	return [...environments];
+});
+
+watch(filteringEnabled, () => {
+	filter();
+});
+
+watch(selectedFilters, () => {
+	filter();
 });
 
 const sections = computed(() => [
@@ -59,29 +67,33 @@ const toggleFilterSwitchId = useId();
 </script>
 
 <template>
-	<UPopover :popper="{ placement: 'bottom-start' }" :ui="{ trigger: '!w-auto', base: '!overflow-visible' }">
+	<UPopover :popper="{ placement: 'bottom-start' }" :ui="{ content: 'overflow-visible!' }">
 		<UButton
-			color="white"
+			color="neutral"
+			variant="outline"
 			label="Filter"
 			trailing-icon="i-heroicons-chevron-down-20-solid"
-			class="rounded-r-none rounded-l-md"
+			class="rounded-l-md rounded-r-none"
 			v-bind="attrs"
 		/>
-		<template #panel>
-			<div class="px-4 py-3 h-max pb-5 min-w-72 space-y-2">
-				<div class="flex gap-2 items-center">
-					<UToggle :id="toggleFilterSwitchId" v-model="filteringEnabled" label="Enable Filtering" />
-					<label :for="toggleFilterSwitchId" class="text-sm font-medium text-gray-700 dark:text-gray-200">Enable Filtering</label>
+
+		<template #content>
+			<div class="h-max min-w-72 space-y-2 px-4 py-3 pb-3">
+				<div class="flex items-center gap-2">
+					<USwitch :id="toggleFilterSwitchId" v-model="filteringEnabled" />
+					<label :for="toggleFilterSwitchId" class="text-sm font-medium text-neutral-700 dark:text-neutral-200"
+						>Enable Filtering</label
+					>
 				</div>
 				<div v-for="section in sections" :key="section.name" class="mb-2">
-					<p class="text-sm font-medium mb-0.5">{{ section.name }}</p>
+					<p class="mb-0.5 text-sm font-medium">{{ section.name }}</p>
 					<UButtonGroup class="w-full">
 						<USelectMenu
 							v-model="selectedFilters[section.name.toLowerCase()]"
-							:options="section.data"
+							:items="section.data"
 							size="md"
-							color="white"
-							class="w-full"
+							:ui="{ content: 'animate-none!' }"
+							class="w-full animate-none!"
 							:multiple="section.multiselect"
 							searchable
 							:placeholder="'Select ' + section.name.toLowerCase() + '...'"
@@ -92,7 +104,8 @@ const toggleFilterSwitchId = useId();
 								icon="i-heroicons-x-mark"
 								square
 								size="md"
-								color="gray"
+								color="neutral"
+								variant="subtle"
 								:disabled="!filteringEnabled"
 								@click="selectedFilters[section.name.toLowerCase()] = []"
 							/>

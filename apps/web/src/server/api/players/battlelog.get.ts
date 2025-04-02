@@ -7,13 +7,12 @@ export default defineEventHandler(async (event) => {
 		});
 	}
 
+	setHeader(event, "Cache-Control", "public, max-age=180, stale-while-revalidate=60, stale-if-error=900");
+
 	const api = useBrawlStarsApi();
 	try {
 		return await api.players.getPlayerBattleLog((query.tag as string).replaceAll("%23", ""));
 	} catch {
-		throw createError({
-			statusCode: 404,
-			message: "Player battlelog with that tag was not found",
-		});
+		return [];
 	}
 });

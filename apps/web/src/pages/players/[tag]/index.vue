@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { FetchResult } from "#app";
 import { numberToRomanNumerals } from "$lib/utils/common/numbers";
 
 const route = useRoute("players-tag");
@@ -7,15 +8,13 @@ useSeoMeta({
 	title: `Player Profile`,
 });
 
-const { data: player, status } = await useFetch(`/api/players`, {
-	key: `players-${route.params.tag}`,
-	query: { tag: route.params.tag },
-});
+const { data: player } = useNuxtData<FetchResult<"/api/players", "get">>(`players-${route.params.tag}`);
+
 const { data: brawlers } = await useFetch("/api/brawlers", {
 	key: "brawlers",
 });
 
-if (!player.value || status.value === "error") {
+if (!player.value) {
 	throw createError({ statusCode: 404, message: "Player not found", fatal: true });
 }
 
@@ -47,31 +46,31 @@ const trophyBox = computed(() => {
 		return {
 			name: "Ultra Trophy Box",
 			image: "/icons/player/trophy-boxes/ultra-trophy-box.png",
-			color: "!text-cyan-500 dark:!text-cyan-400",
+			color: "text-cyan-500! dark:text-cyan-400!",
 		};
 	} else if (seasonTrophiesGained >= 1000) {
 		return {
 			name: "Omega Trophy Box",
 			image: "/icons/player/trophy-boxes/omega-trophy-box.png",
-			color: "!text-red-500 dark:!text-red-400",
+			color: "text-red-500! dark:text-red-400!",
 		};
 	} else if (seasonTrophiesGained >= 400) {
 		return {
 			name: "Mega Trophy Box",
 			image: "/icons/player/trophy-boxes/mega-trophy-box.png",
-			color: "!text-fuchsia-500 dark:!text-fuchsia-400",
+			color: "text-fuchsia-500! dark:text-fuchsia-400!",
 		};
 	} else if (seasonTrophiesGained >= 100) {
 		return {
 			name: "Big Trophy Box",
 			image: "/icons/player/trophy-boxes/big-trophy-box.png",
-			color: "!text-blue-500 dark:!text-blue-400",
+			color: "text-blue-500! dark:text-blue-400!",
 		};
 	} else {
 		return {
 			name: "Small Trophy Box",
 			image: "/icons/player/trophy-boxes/small-trophy-box.png",
-			color: "!text-green-500 dark:!text-green-400",
+			color: "text-green-500! dark:text-green-400!",
 		};
 	}
 });
@@ -83,39 +82,39 @@ const playerStats = [
 	{
 		stat: "Trophies",
 		value: format(player.value!.trophies),
-		image: "/icons/player/trophy.webp",
-		color: "!text-primary dark:!text-primary-400",
+		image: { src: "/icons/player/trophy.webp" },
+		color: "text-(--ui-primary)! dark:text-(--ui-primary)-400!",
 	},
 	{
 		stat: "Highest Trophies",
 		value: format(player.value!.highestTrophies),
-		image: "/icons/player/highest-trophies.png",
-		color: "!text-blue-500 dark:!text-blue-400",
+		image: { src: "/icons/player/highest-trophies.png" },
+		color: "text-blue-500! dark:text-blue-400!",
 	},
 	{
 		stat: "Trophies After Reset",
 		value: format(seasonReset.value.trophiesAfterReset),
-		image: "/icons/player/season-trophy.png",
-		color: "!text-cyan-500 dark:!text-cyan-400",
+		image: { src: "/icons/player/season-trophy.png" },
+		color: "text-cyan-500! dark:text-cyan-400!",
 	},
 	{
 		stat: "Season Trophies Gained",
 		value: format(seasonReset.value.seasonTrophiesGained),
-		image: "/icons/player/season-trophy.png",
-		color: "!text-cyan-500 dark:!text-cyan-400",
+		image: { src: "/icons/player/season-trophy.png" },
+		color: "text-cyan-500! dark:text-cyan-400!",
 	},
 	{
 		stat: "Trophy Box",
 		value: `${trophyBox.value!.name}`,
-		valueImage: trophyBox.value!.image,
-		image: "/icons/player/trophy-boxes/trophy-box-pin.png",
+		valueImage: { src: trophyBox.value!.image },
+		image: { src: "/icons/player/trophy-boxes/trophy-box-pin.png" },
 		color: trophyBox.value!.color,
 	},
 	{
 		stat: "Level",
 		value: player.value!.expLevel,
-		image: "/icons/player/player-level.png",
-		color: "!text-sky-500 dark:!text-sky-400",
+		image: { src: "/icons/player/player-level.png" },
+		color: "text-sky-500! dark:text-sky-400!",
 	},
 ];
 
@@ -145,75 +144,77 @@ const recordStats = [
 	{
 		stat: "3v3 Victories",
 		value: format(player.value!["3vs3Victories"]),
-		image: "/icons/player/3v3.png",
-		color: "!text-rose-500 dark:!text-rose-400",
+		image: { src: "/icons/player/3v3.png" },
+		color: "text-rose-500! dark:text-rose-400!",
 	},
 	{
 		stat: "Solo Showdown Victories",
 		value: format(player.value!.soloVictories),
-		image: "/icons/player/solo.png",
-		color: "!text-green-500 dark:!text-green-400",
+		image: { src: "/icons/player/solo.png" },
+		color: "text-green-500! dark:text-green-400!",
 	},
 	{
 		stat: "Duo Showdown Victories",
 		value: format(player.value!.duoVictories),
-		image: "/icons/player/duo.png",
-		color: "!text-emerald-500 dark:!text-emerald-400",
+		image: { src: "/icons/player/duo.png" },
+		color: "text-emerald-500! dark:text-emerald-400!",
 	},
 	{
 		stat: "Highest Robo Rumble Level",
 		value: roboRumbleLevel.value,
-		image: "/icons/player/robo-rumble.webp",
-		color: "!text-red-500 dark:!text-red-400",
+		image: { src: "/icons/player/robo-rumble.webp" },
+		color: "text-red-500! dark:text-red-400!",
 	},
 	{
 		stat: "Qualified from Championship Challenge",
 		value: player.value?.isQualifiedFromChampionshipChallenge ? "Qualified" : "Not Qualified",
-		image: "/icons/player/bs-cup-challenge.png",
-		color: "!text-orange-500 dark:!text-orange-400",
+		image: { src: "/icons/player/bs-cup-challenge.png" },
+		color: "text-orange-500! dark:text-orange-400!",
 	},
 	{
 		stat: "Brawler Progress",
-		value: `${player.value!.brawlers.length}/${brawlers.value!.list.length}`,
-		image: "/icons/player/unlocked.png",
-		color: "!text-green-500 dark:!text-green-400",
+		value: `${player.value!.brawlers.length}/${brawlers.value!.list.length} Brawlers`,
+		image: { src: "/icons/player/unlocked.png" },
+		color: "text-green-500! dark:text-green-400!",
 		// valueRender: () =>
 		// 	h(UProgress, {
 		// 		value: player.value!.brawlers.length,
 		// 		max: brawlers.value!.list.length,
-		// 		class: "!text-primary-500 dark:!text-primary-400",
+		// 		class: "text-(--ui-primary)-500! dark:text-(--ui-primary)-400!",
 		// 	}),
 	},
 ];
 </script>
 
 <template>
-	<UDashboardSection
+	<UiPageSection
 		class="divide-y-0"
 		title="General Stats"
 		description="General information about the player"
 		orientation="vertical"
 	>
-		<div class="!pt-0">
-			<div class="flex flex-col md:flex-row gap-4">
-				<PlayersStatTable title="Player Stats" class="flex flex-col w-full md:w-1/2" :stats="playerStats" />
-				<PlayersStatTable title="Record Stats" class="flex flex-col w-full md:w-1/2" :stats="recordStats" />
+		<div class="pt-0!">
+			<PlayersStatTable title="Player Stats" class="mb-4 flex w-full flex-col lg:hidden lg:w-[25%]" :stats="playerStats" />
+			<div class="flex flex-col gap-4 md:flex-row">
+				<PlayersStatTable title="Player Stats" class="hidden w-full flex-col lg:flex lg:w-[35%]" :stats="playerStats" />
+				<PlayersStatTable title="Record Stats" class="flex w-full flex-col lg:w-[40%]" :stats="recordStats" />
+				<PlayersRankedStatsTable class="flex w-full flex-col lg:w-[25%]" />
 			</div>
 		</div>
-	</UDashboardSection>
-	<UDashboardSection
+	</UiPageSection>
+	<UiPageSection
 		class="divide-y-0"
 		title="Trophy Graph"
 		description="View the player's trophy's change over their trophy road battle log"
 		orientation="vertical"
 	>
-		<div class="!pt-0">
+		<div class="pt-0!">
 			<NuxtErrorBoundary>
 				<PlayersTrophyGraph :player="player!" />
 				<template #error="{ error }">
 					<UAlert
 						variant="subtle"
-						color="red"
+						color="error"
 						icon="i-heroicons-exclamation-triangle"
 						title="An error occured when loading the graph"
 						:description="error"
@@ -222,15 +223,15 @@ const recordStats = [
 				</template>
 			</NuxtErrorBoundary>
 		</div>
-	</UDashboardSection>
-	<UDashboardSection
+	</UiPageSection>
+	<UiPageSection
 		class="divide-y-0 pb-8"
 		title="Brawler Progress"
 		description="View the players progress on brawlers and their accessories"
 		orientation="vertical"
 	>
-		<div class="!pt-0">
+		<div class="pt-0!">
 			<PlayersProgression :player="player!" :brawlers="brawlers!.list" />
 		</div>
-	</UDashboardSection>
+	</UiPageSection>
 </template>

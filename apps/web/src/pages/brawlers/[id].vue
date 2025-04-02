@@ -83,8 +83,8 @@ const breadcrumbLinks = [
 <template>
 	<UContainer v-if="brawler">
 		<UPage>
-			<UPageBody>
-				<UBreadcrumb :links="breadcrumbLinks" class="mb-6" />
+			<UPageBody class="space-y-0">
+				<UBreadcrumb :items="breadcrumbLinks" class="mb-6" />
 				<div class="flex flex-row gap-3">
 					<NuxtImg
 						:src="brawler.imageUrl2"
@@ -92,31 +92,37 @@ const breadcrumbLinks = [
 						width="100"
 						:alt="brawler.name"
 						format="webp"
-						class="rounded border border-border"
+						class="rounded-sm border border-(--ui-border)"
 						loading="eager"
 						preload
 					/>
 					<div class="flex flex-col items-start justify-between">
 						<h1 class="text-4xl font-bold">{{ brawler.name }}</h1>
 						<div class="flex flex-col">
-							<p class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
+							<p class="flex items-center gap-1 text-neutral-600 dark:text-neutral-300">
 								<UIcon name="i-tabler-diamond" class="h-5 w-5 stroke-[1.5]" />
 								{{ brawler.rarity.name }}
 							</p>
-							<p class="flex items-center gap-1 text-gray-600 dark:text-gray-300">
+							<p class="flex items-center gap-1 text-neutral-600 dark:text-neutral-300">
 								<UIcon name="i-tabler-swords" class="h-5 w-5 stroke-[1.5]" />
 								{{ brawler.class.name }}
 							</p>
 						</div>
 					</div>
 				</div>
-				<p class="mt-3 max-w-4xl text-sm text-gray-500 dark:text-gray-400 lg:text-base mb-2">
+				<p class="mt-3 mb-2 max-w-4xl text-sm text-neutral-500 lg:text-base dark:text-neutral-400">
 					{{ brawler.description }}
 				</p>
-				<UHorizontalNavigation
-					:ui="{ after: 'after:w-full after:!inset-x-0' /* base: '!h-[2.8rem]' */ }"
-					:links="links"
-					class="border-b border-gray-200 dark:border-gray-800"
+				<UNavigationMenu
+					variant="pill"
+					highlight
+					:items="links"
+					:ui="{
+						link: 'after:h-[2px] after:absolute after:-bottom-2 after:inset-x-0 ',
+						linkLabel: 'overflow-clip text-wrap',
+						linkLeadingIcon: 'size-[15px] sm:size-5',
+					}"
+					class="border-(--ui-border) data-[orientation=horizontal]:w-full data-[orientation=horizontal]:border-b data-[orientation=vertical]:w-48"
 				/>
 				<div class="mt-2">
 					<NuxtPage />

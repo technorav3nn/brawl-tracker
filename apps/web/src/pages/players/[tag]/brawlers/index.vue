@@ -45,35 +45,31 @@ const ownedBrawlers = computed(() => {
 </script>
 
 <template>
-	<UDashboardSection
+	<UiPageSection
 		v-if="player && brawlers"
 		class="divide-y-0"
 		:title="`Brawlers &nbsp;(${ownedBrawlers!.length} / ${brawlers!.list.length})`"
 		description="Select one of the players brawlers to view their stats"
 		orientation="vertical"
-		:ui="{ inner: 'w-full [&>div]:!w-full ' }"
+		:ui="{ inner: 'w-full [&>div]:w-full! ' }"
+		fullWidth
 	>
 		<template #description>
-			<div class="flex flex-col sm:flex-row gap-4 justify-between w-full items-start">
-				<p class="text-gray-400 text-sm">Select one of the players brawlers to view their stats</p>
+			<div class="flex w-full flex-col items-start justify-between gap-4 sm:flex-row">
+				<p class="text-sm text-gray-400">Select one of the players brawlers to view their stats</p>
 				<div class="flex gap-3 max-sm:w-full">
-					<UButtonGroup size="sm" class="max-sm:w-[60%] sm:min-w-30">
-						<UInput v-model="search" class="max-sm:w-full" size="sm" color="white" placeholder="Search..." />
-						<UButton icon="i-heroicons-magnifying-glass" color="gray" />
+					<UButtonGroup class="max-sm:w-[60%] sm:min-w-30">
+						<UInput v-model="search" class="max-sm:w-full" placeholder="Search..." />
+						<UButton icon="i-heroicons-magnifying-glass" color="neutral" variant="subtle" />
 					</UButtonGroup>
-					<UButtonGroup size="sm" class="max-sm:w-[40%] min-w-20">
-						<USelectMenu
-							v-model="sort"
-							class="max-sm:w-full"
-							:options="['Trophies', 'Level', 'Rank', 'Name']"
-							size="sm"
-							color="white"
-						/>
+					<UButtonGroup class="min-w-30 max-sm:w-[40%]">
+						<USelect v-model="sort" class="max-sm:w-full sm:min-w-30" :items="['Trophies', 'Level', 'Rank', 'Name']" />
 						<UButton
 							:icon="
 								sortDirection === 'ascending' ? 'i-heroicons-bars-arrow-up-20-solid' : 'i-heroicons-bars-arrow-down-20-solid'
 							"
-							color="gray"
+							color="neutral"
+							variant="subtle"
 							@click="sortDirection = sortDirection === 'ascending' ? 'descending' : 'ascending'"
 						/>
 					</UButtonGroup>
@@ -83,8 +79,7 @@ const ownedBrawlers = computed(() => {
 
 		<UPageGrid
 			v-if="player && brawlers"
-			class="!pt-7 px-[4px] sm:px-0"
-			:ui="{ wrapper: 'xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-y-12' }"
+			class="grid-cols-2 gap-y-12 px-[4px] pt-7! sm:grid-cols-2 sm:px-0 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
 		>
 			<NuxtLink
 				v-for="brawler in searchedAndSortedBrawlers"
@@ -95,5 +90,5 @@ const ownedBrawlers = computed(() => {
 				<PlayersPlayerBrawler :brawler="brawlers?.list.find((b) => b.id === brawler.id)!" :playerBrawler="brawler" />
 			</NuxtLink>
 		</UPageGrid>
-	</UDashboardSection>
+	</UiPageSection>
 </template>

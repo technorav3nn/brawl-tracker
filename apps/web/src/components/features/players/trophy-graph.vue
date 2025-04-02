@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { Player } from "@brawltracker/brawl-stars-api";
 import { VisXYContainer, VisAxis, VisTooltip, VisCrosshair, VisLine, VisScatter } from "@unovis/vue";
+import { createGetCachedData } from "$lib/utils/nuxt";
 
 const props = defineProps<{ player: Player }>();
 
 const route = useRoute("players-tag");
+const nuxtApp = useNuxtApp();
 
 const {
 	data: battlelog,
@@ -13,6 +15,7 @@ const {
 } = await useLazyFetch("/api/players/battlelog", {
 	query: { tag: route.params.tag },
 	key: `battlelog-${route.params.tag}`,
+	getCachedData: createGetCachedData(nuxtApp),
 });
 
 interface DataRecord {
@@ -64,20 +67,20 @@ const labelColor = (d: DataRecord) =>
 
 const template = (d: DataRecord) => `
 	<p class="font-medium">Battle #${d.x}</p>
-	<hr class="my-1 border border-border" />
-	<p class="text-sm text-gray-500 dark:text-gray-400">Trophies: <span class="text-yellow-500 dark:text-yellow-400 font-semibold">${format(d.y)}</span></p>
+	<hr class="my-1 border border-(--ui-border)" />
+	<p class="text-sm text-neutral-500 dark:text-neutral-400">Trophies: <span class="text-yellow-500 dark:text-yellow-400 font-semibold">${format(d.y)}</span></p>
 `;
 </script>
 
 <template>
-	<UDashboardCard :ui="{ body: { padding: '!px-2 !py-2' } as any }">
+	<UCard :ui="{ body: 'px-2! py-2!' }">
 		<template v-if="status === 'pending'">
-			<USkeleton class="w-full h-[300px]" />
+			<USkeleton class="h-[300px] w-full" />
 		</template>
 		<template v-else-if="status === 'error' && error">
 			<UAlert
 				variant="subtle"
-				color="red"
+				color="error"
 				icon="i-heroicons-exclamation-triangle"
 				title="An error occured when loading the graph"
 				:description="error.message"
@@ -97,16 +100,16 @@ const template = (d: DataRecord) => `
 		<template v-else-if="status === 'success' && battlelog">
 			<ClientOnly>
 				<VisXYContainer scaleByDomain :data="data">
-					<VisLine color="rgb(var(--color-primary-DEFAULT))" curveType="linear" :x="x" :y="y" />
-					<VisScatter :labelColor="labelColor" :label="label" color="rgb(var(--color-primary-DEFAULT))" :x="x" :y="y" />
+					<VisLine color="var(--ui-primary)" curveType="linear" :x="x" :y="y" />
+					<VisScatter :labelColor="labelColor" :label="label" color="var(--ui-primary)" :x="x" :y="y" />
 					<VisAxis :gridLine="false" type="x" />
 					<VisAxis type="y" />
 					<VisTooltip />
-					<VisCrosshair color="rgb(var(--color-primary-DEFAULT))" :template="template" />
+					<VisCrosshair color="var(--ui-primary)" :template="template" />
 				</VisXYContainer>
 			</ClientOnly>
 		</template>
-	</UDashboardCard>
+	</UCard>
 </template>
 
 <style scoped>

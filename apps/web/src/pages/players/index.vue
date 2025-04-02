@@ -2,7 +2,8 @@
 import { verifyTag } from "@brawltracker/supercell-api-utils";
 import type { FetchError } from "ofetch";
 import { z, type Schema } from "zod";
-import type { Button, Form } from "#ui/types";
+import type { ButtonProps } from "#ui/components/Button.vue";
+import type { Form } from "#ui/types";
 
 const state = reactive({
 	player: undefined,
@@ -46,6 +47,7 @@ async function validate(s: typeof state) {
 			nuxtApp.payload.data[`players-${result.tag}`] = result;
 			if (result) {
 				resolvedTag.value = result.tag;
+				await onSubmit();
 			}
 		} catch (error) {
 			console.log(error);
@@ -64,7 +66,7 @@ async function onSubmit() {
 	return await navigateTo(`/players/${resolvedTag.value.replace("#", "")}`);
 }
 
-const links: (Button & { click?(): any })[] = [
+const links: (ButtonProps & { click?(): any })[] = [
 	{
 		label: "Search For Player",
 		icon: "i-heroicons-magnifying-glass",
@@ -75,12 +77,15 @@ const links: (Button & { click?(): any })[] = [
 				search.focus();
 			}
 		},
+		size: "md",
 	},
 	{
 		label: "View Top Players",
 		to: "/leaderboards/players",
 		icon: "i-heroicons-chart-bar",
-		color: "gray",
+		color: "neutral",
+		variant: "subtle",
+		size: "md",
 	},
 ];
 </script>
@@ -91,33 +96,46 @@ const links: (Button & { click?(): any })[] = [
 			<UPageHero
 				title="Player Profile and Stats"
 				description="Search for any player with their player tag or Supercell ID. View their profile, stats, and more."
-				align="center"
 				:links="links"
-				class="mt-8"
+				:ui="{
+					container: 'lg:py-24 lg:pb-16',
+					title: 'text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl lg:text-5xl',
+				}"
 			>
 			</UPageHero>
 
-			<UForm ref="form" :validate="validate as any" :state :validateOn="['submit']" @submit="onSubmit">
+			<UForm ref="form" :validate="validate as any" :state @submit="void onSubmit()">
 				<div class="flex items-center justify-center">
-					<USelectMenu
+					<USelect
 						class="w-48"
 						:modelValue="state.type === 'tag' ? 'Tag' : 'Supercell ID Handle'"
-						:options="['Tag', 'Supercell ID Handle']"
+						:items="['Tag', 'Supercell ID Handle']"
 						@update:model-value="state.type = $event === 'Tag' ? 'tag' : 'scidHandle'"
 					/>
 				</div>
 
-				<UButtonGroup :ui="{ rounded: 'rounded-lg' }" class="mt-4 flex justify-center items-start" size="xl">
-					<UFormGroup class="sm:w-96 w-11/12" name="player">
+				<UButtonGroup class="mt-4 flex items-start justify-center" size="xl">
+					<UFormField class="w-11/12 sm:w-96" name="player">
 						<UInput
 							id="search"
 							v-model="state.player"
+							:style="{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }"
+							class="w-full sm:w-96"
 							size="xl"
 							label="Search Player"
 							:placeholder="`Enter ${state.type === 'tag' ? 'Player Tag (e.g. #P800LV)' : 'Supercell ID Handle (e.g. BrawlMaster)'}`"
+							@input="($event.target as HTMLInputElement).value = ($event.target as HTMLInputElement).value.toUpperCase()"
 						/>
-					</UFormGroup>
-					<UButton :loading="loading" class="h-full" type="submit" size="xl" color="gray" icon="i-heroicons-magnifying-glass" />
+					</UFormField>
+					<UButton
+						:loading="loading"
+						class="h-full"
+						type="submit"
+						size="xl"
+						color="neutral"
+						variant="subtle"
+						icon="i-heroicons-magnifying-glass"
+					/>
 				</UButtonGroup>
 			</UForm>
 		</UContainer>

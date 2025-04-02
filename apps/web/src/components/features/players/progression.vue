@@ -8,7 +8,7 @@ const props = defineProps<{
 	player: Player;
 }>();
 
-const { data: gears, status } = await useFetch("/api/brawlers/gears");
+const { data: gears, status } = await useLazyFetch("/api/brawlers/gears");
 
 const totalGears = computed(() => {
 	if (!gears.value) return null;
@@ -107,7 +107,7 @@ const ownedValues = computed(() => {
 	<UPageGrid v-if="status === 'pending'">
 		<USkeleton v-for="i in 5" :key="i" class="h-28 w-full" />
 	</UPageGrid>
-	<UPageGrid v-if="status === 'success'" :ui="{ wrapper: 'xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 gap-4' }">
+	<UPageGrid v-if="status === 'success'" class="gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
 		<PlayersProgressionCard
 			title="Brawlers Unlocked"
 			image="/icons/player/unlocked.png"

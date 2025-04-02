@@ -1,16 +1,29 @@
 <script setup lang="ts">
 import { formatTag } from "@brawltracker/supercell-api-utils";
 import { Image } from "@unpic/vue";
-import { PlayersProfileEditorSlideover, AppViewScidSlideover } from "#components";
-import type { NavigationLink } from "#ui-pro/types";
+import { LazyPlayersProfileEditorSlideover, LazyAppViewScidSlideover } from "#components";
+import type { NavigationMenuItem } from "#ui/types";
 import { useProfileConfigStore } from "$components/features/players/profile-editor/store";
 import { BACKGROUNDS } from "$lib/backgrounds";
+import { createGetCachedData } from "$lib/utils/nuxt";
+
+definePageMeta({
+	middleware: (to) => {
+		// remove the %23 from the tag
+		const params = to.params as Record<string, string>;
+		if (params.tag.startsWith("#")) {
+			return navigateTo(`/players/${decodeURIComponent(params.tag.slice(1)).replace("#", "")}`);
+		}
+	},
+});
 
 const route = useRoute("players-tag");
 
+const nuxtApp = useNuxtApp();
 const { data: player } = await useFetch("/api/players", {
 	query: { tag: route.params.tag },
 	key: `players-${route.params.tag}`,
+	getCachedData: createGetCachedData(nuxtApp),
 });
 
 useSeoMeta({
@@ -19,7 +32,7 @@ useSeoMeta({
 
 const brawlersActive = computed(() => route.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}/brawlers`));
 
-const links = computed<NavigationLink[]>(() => [
+const links = computed<NavigationMenuItem[]>(() => [
 	{
 		label: "Profile",
 		icon: "i-heroicons-user-circle",
@@ -39,17 +52,17 @@ const links = computed<NavigationLink[]>(() => [
 	},
 ]);
 
-const slideover = useSlideover();
+const slideover = useOverlay();
 function openScidSlideover() {
 	if (!player.value) return;
-	slideover.open(AppViewScidSlideover, { player: player.value });
+	slideover.create(LazyAppViewScidSlideover, { props: { playerTag: player.value.tag } }).open();
 }
 
 const user = useDatabaseUser();
 function openProfileEdtiorSlideover() {
 	if (!player.value) return;
 	if (player.value.tag !== user?.value?.profile.tag) return;
-	slideover.open(PlayersProfileEditorSlideover, { player: player.value });
+	slideover.create(LazyPlayersProfileEditorSlideover, { props: { player: player.value } }).open();
 }
 
 const { data: config } = await useFetch(() => `/api/profiles/${encodeURIComponent(route.params.tag)}/config`, {
@@ -59,25 +72,12 @@ const { data: config } = await useFetch(() => `/api/profiles/${encodeURIComponen
 const { background, selectedBackground, theme, selectedTheme } = storeToRefs(useProfileConfigStore());
 const appConfig = useAppConfig();
 
-function initalizeConfig() {
+function initializeConfig() {
 	if (config.value) {
-		if (config.value.background) {
-			background.value = BACKGROUNDS.find((bg) => bg.name === config.value!.background)!;
-			selectedBackground.value = background.value;
-		} else {
-			background.value = BACKGROUNDS[0];
-			selectedBackground.value = background.value;
-		}
-
-		if (config.value.theme) {
-			theme.value = config.value.theme;
-			selectedTheme.value = theme.value;
-		} else {
-			theme.value = "amber";
-			selectedTheme.value = theme.value;
-		}
-
+		background.value = BACKGROUNDS.find((bg) => bg.name === config.value?.background) || BACKGROUNDS[0];
 		selectedBackground.value = background.value;
+		theme.value = config.value.theme || "amber";
+		selectedTheme.value = theme.value;
 	} else {
 		background.value = BACKGROUNDS[0];
 		selectedBackground.value = background.value;
@@ -85,81 +85,109 @@ function initalizeConfig() {
 		selectedTheme.value = theme.value;
 	}
 
-	appConfig.ui.primary = theme.value;
+	appConfig.ui.colors.primary = selectedTheme.value;
 }
 
-initalizeConfig();
+initializeConfig();
+
 const router = useRouter();
-router.afterEach((s) => {
-	if (!s.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}`)) return;
-	initalizeConfig();
-});
-router.afterEach((s) => {
-	// Only let it work if the path starst with /players/tag
-	if (!s.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}`)) {
-		// Reset everyting to default
-		selectedTheme.value = "amber";
-		theme.value = "amber";
-		appConfig.ui.primary = "amber";
+
+const handlers = [
+	router.afterEach((s) => {
+		if (!s.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}`)) return;
+		initializeConfig();
+	}),
+	router.afterEach((s) => {
+		// Only let it work if the path starst with /players/tag
+		if (!s.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}`)) {
+			// Reset everyting to default
+			selectedTheme.value = "amber";
+			theme.value = "amber";
+			appConfig.ui.colors.primary = "amber";
+		}
+	}),
+];
+
+onUnmounted(() => {
+	for (const destroy of handlers) {
+		destroy();
 	}
 });
 </script>
 
 <template>
 	<header
-		v-if="player && selectedBackground"
+		v-if="player"
 		:style="{
-			'background-position': selectedBackground.backgroundPosition ?? 'center',
-			'--background-image-light': selectedBackground.hasColorModeVariants
-				? `url(/backgrounds/${selectedBackground.name}-light.${selectedBackground.fileFormat})`
-				: `url(/backgrounds/${selectedBackground.name}.${selectedBackground.fileFormat})`,
-			'--background-image-dark': selectedBackground.hasColorModeVariants
-				? `url(/backgrounds/${selectedBackground.name}-dark.${selectedBackground.fileFormat})`
-				: `url(/backgrounds/${selectedBackground.name}.${selectedBackground.fileFormat})`,
+			'background-position': selectedBackground?.backgroundPosition ?? 'center',
+			'--background-image-light': selectedBackground?.hasColorModeVariants
+				? `url(/backgrounds/${selectedBackground?.name}-light.${selectedBackground.fileFormat})`
+				: `url(/backgrounds/${selectedBackground?.name}.${selectedBackground?.fileFormat})`,
+			'--background-image-dark': selectedBackground?.hasColorModeVariants
+				? `url(/backgrounds/${selectedBackground?.name}-dark.${selectedBackground.fileFormat})`
+				: `url(/backgrounds/${selectedBackground?.name}.${selectedBackground?.fileFormat})`,
 		}"
 		class="header-bg-image-dark header-bg-image-light"
 	>
 		<UContainer>
-			<UPageHeader class="!border-0" :ui="{ wrapper: 'first-child-row', description: 'mt-2' }">
-				<div class="absolute top-2 right-0">
-					<UTooltip :text="player.tag !== user?.profile.tag ? 'You can only edit your own profile' : 'Edit Profile'">
+			<UPageHeader class="border-0!" :ui="{ wrapper: 'first-child-row', description: 'mt-2', root: 'flex gap-6' }">
+				<div class="absolute right-0 bottom-2 flex h-min gap-2 sm:top-2">
+					<PlayersLegacyInformationPopover />
+					<UTooltip
+						:delayDuration="0"
+						:text="player.tag !== user?.profile.tag ? 'You can only edit your own profile' : 'Edit Profile'"
+					>
 						<UButton
 							icon="i-heroicons-pencil"
-							size="sm"
+							size="md"
 							:disabled="player.tag !== user?.profile.tag"
-							class="text-black"
+							class="bg-primary-300! text-black dark:bg-(--ui-primary)!"
 							@click="openProfileEdtiorSlideover"
 						/>
 					</UTooltip>
 				</div>
-				<template #icon>
+				<div class="absolute right-0 bottom-4">
+					<!-- <USkeleton class="h-20 w-20" /> -->
+					<PlayersPlayerFame />
+				</div>
+				<template #headline>
 					<NuxtImg
-						width="120"
-						height="120"
+						width="110"
+						height="110"
 						:src="`https://cdn.brawlify.com/profile-icons/regular/${player.icon.id}.png`"
 						:alt="player.name"
 					/>
 				</template>
 				<template #title>
-					<p class="dark:text-primary-400 text-primary-100">{{ player.name }}</p>
+					<p class="tracking-tight text-primary-300 dark:text-(--ui-primary)">{{ player.name }}</p>
 				</template>
 				<template #description>
 					<div class="flex flex-row gap-2">
-						<div class="flex flex-row gap-x-0.5 items-center">
-							<p class="text-white text-opacity-80 font-bold text-sm">
+						<div class="flex flex-row items-center gap-x-0.5">
+							<p class="text-opacity-80 text-sm font-bold text-white">
 								{{ player!.tag }}
 							</p>
 						</div>
-						<div class="flex flex-row gap-x-2 items-center">
-							<UiCopyButton tooltipContent="Copy Tag" :text="player.tag" class="text-black [&>span]:scale-[1.15]" size="xs" />
-							<UTooltip text="View Supercell ID Profile">
-								<UButton class="text-black [&>span]:scale-[1.20]" icon="local:scid" size="xs" @click="openScidSlideover" />
+						<div class="flex flex-row items-center gap-x-2">
+							<UiCopyButton
+								tooltipContent="Copy Tag"
+								:text="player.tag"
+								class="bg-primary-300! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.15]"
+								size="sm"
+							/>
+							<UTooltip :delayDuration="0" text="View Supercell ID Profile">
+								<UButton
+									class="bg-primary-300! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.20]"
+									icon="local:scid"
+									size="sm"
+									@click="openScidSlideover"
+								/>
 							</UTooltip>
 						</div>
 					</div>
-					<div class="flex gap-1 flex-row items-center">
+					<div class="flex flex-row items-center gap-1">
 						<Image
-							class="object-scale-down object-bottom size-8"
+							class="size-8 object-scale-down object-bottom"
 							width="20"
 							height="20"
 							src="/icons/player/club.webp"
@@ -168,7 +196,7 @@ router.afterEach((s) => {
 						<NuxtLink
 							prefetch
 							:to="`/clubs/${encodeURIComponent(player.club?.tag)}`"
-							class="mt-2 text-white text-opacity-80 font-bold text-base"
+							class="text-opacity-80 mt-2 text-base font-bold text-white"
 						>
 							{{ player.club?.name || "No Club" }}
 						</NuxtLink>
@@ -177,9 +205,19 @@ router.afterEach((s) => {
 			</UPageHeader>
 		</UContainer>
 	</header>
-	<section class="border-b border-gray-200 dark:border-gray-800">
-		<UContainer class="!px-[1.42rem]">
-			<UHorizontalNavigation :links="links" />
+	<section class="border-b border-neutral-200 dark:border-neutral-800">
+		<UContainer class="px-[1.42rem]!">
+			<UNavigationMenu
+				variant="pill"
+				highlight
+				:ui="{
+					link: 'after:h-[2px] after:absolute after:-bottom-2 after:inset-x-0 ',
+					linkLabel: 'overflow-clip text-wrap',
+					linkLeadingIcon: 'size-[15px] sm:size-5',
+				}"
+				class="data-[orientation=vertical]:w-48"
+				:items="links"
+			/>
 		</UContainer>
 	</section>
 	<UContainer class="mt-3">

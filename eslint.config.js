@@ -72,6 +72,7 @@ const vueRuleset = merge(...vue, {
 		"@typescript-eslint/consistent-type-definitions": "off",
 		"@typescript-eslint/no-return-await": "off",
 		"@typescript-eslint/return-await": "off",
+		"@typescript-eslint/promise-function-async": "off",
 		"no-restricted-globals": "off",
 		"n/prefer-global/process": "off",
 		"vue/sort-keys": "off",

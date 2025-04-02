@@ -3,7 +3,7 @@
 		<section>
 			<p class="font-medium text-lg">Profile</p>
 			<p class="text-sm">Manage everything about your profile</p>
-			<UDivider class="mt-4 w-full" />
+			<USeparator class="mt-4 w-full" />
 		</section>
 		<section class="mt-4"></section>
 	</div>

@@ -4,55 +4,92 @@ import { Image } from "@unpic/vue";
 defineProps<{
 	title?: string;
 	uneven?: boolean;
-	stats: { stat: string; value: any; color?: string; image?: string; valueImage?: string; valueRender?: Component }[];
+	loading?: boolean;
+	stats: {
+		stat: string;
+		value?: any;
+		color?: string;
+		valueImage?: {
+			src?: string;
+			width?: number;
+			height?: number;
+			class?: string;
+		};
+		image?: {
+			src?: string;
+			width?: number;
+			height?: number;
+			class?: string;
+		};
+		valueImageClass?: string;
+		valueRender?: Component;
+	}[];
 }>();
 </script>
 
 <template>
 	<section>
-		<div v-if="title" class="rounded-t-md bg-inherit border border-b-0 text-center border-gray-200 dark:border-gray-800">
-			<h3 class="text-foreground font-semibold text-lg py-2 px-4">{{ title }}</h3>
+		<div v-if="title" class="rounded-t-md border border-b-0 border-neutral-200 bg-inherit text-center dark:border-neutral-800">
+			<h3 class="text-foreground px-4 py-2 text-lg font-semibold">{{ title }}</h3>
 		</div>
+
+		<USkeleton v-if="loading" class="h-full w-full rounded-t-none border border-(--ui-border)" />
 		<UTable
+			v-else
 			:ui="{
 				thead: 'border-b-0 hidden',
-				divide: '!divide-y-0 ',
-				td: {
-					base: '!whitespace-normal',
-					padding: 'py-2 px-3',
-				},
-				tr: { base: `[&_:nth-child(1)]:!font-semibold ${uneven ? 'last:!border-border last:!border-b' : ''}` },
-				base: 'bg-inherit',
+				td: 'whitespace-normal! py-2 px-3',
+				tr: `[&_:nth-child(1)]:font-semibold! ${uneven ? 'last:border-border! last:border-b!' : ''}`,
+				base: 'bg-inherit divide-y-0',
 			}"
-			:rows="stats"
+			:data="stats"
 			:columns="[
-				{ key: 'stat', label: 'Stat' },
-				{ key: 'value', label: 'Value' },
+				{
+					accessorKey: 'stat',
+					header: 'Stat',
+					cell: ({ row }) => {
+						return h('div', { class: 'flex flex-row items-center gap-x-2' }, [
+							h(Image, {
+								alt: row.original.stat,
+								src: row.original.image?.src ?? '',
+								width: row.original.image?.width ?? 25,
+								height: row.original.image?.height ?? 25,
+								class: [row.original.image?.class, 'size-[24px] object-scale-down'],
+							}),
+							h('p', { class: 'text-foreground text-sm font-semibold text-(--ui-text)' }, row.original.stat),
+						]);
+					},
+				},
+				{
+					accessorKey: 'value',
+					header: 'Value',
+					cell: ({ row }) => {
+						return row.original.valueRender
+							? h(row.original.valueRender, {})
+							: h(
+									'p',
+									{ class: [row.original.color ?? '', row.original.valueImage ? 'flex flex-row items-center gap-x-2' : ''] },
+									[
+										row.original.valueImage
+											? h(Image, {
+													alt: row.original.stat,
+													src: row.original.valueImage.src ?? '',
+													width: row.original.valueImage.width ?? 25,
+													height: row.original.valueImage.height ?? 25,
+													class: [row.original.valueImage.class, 'size-[24px] object-scale-down'],
+												})
+											: null,
+										row.original.value,
+									]
+								);
+					},
+				},
 			]"
-			class="h-full border border-gray-200 dark:border-gray-800"
+			class="h-full border border-neutral-200 dark:border-neutral-800"
 			:class="[title ? 'rounded-b-md' : 'rounded-md']"
 		>
-			<template #stat-data="{ row }">
-				<div class="flex flex-row gap-x-2 items-center">
-					<Image v-if="row.image" :alt="row.stat" :src="row.image" width="30" height="30" class="object-scale-down size-[24px]" />
-					<p class="text-foreground font-semibold text-sm">{{ row.stat }}</p>
-				</div>
-			</template>
-
-			<template #value-data="{ row }">
-				<p v-if="row.color" :class="[row.color ?? '', row.valueImage ? 'flex flex-row gap-x-2 items-center' : '']">
-					<Image
-						v-if="row.valueImage"
-						:alt="row.value"
-						:src="row.valueImage"
-						width="25"
-						height="25"
-						class="object-scale-down size-[24px]"
-					/>
-					{{ row.value }}
-				</p>
-				<component :is="row.valueRender" v-else-if="row.valueRender" />
-				<template v-else>{{ row.value }}</template>
+			<template #empty>
+				<p class="px-2">Data for this player is not available. Please check back later.</p>
 			</template>
 		</UTable>
 	</section>

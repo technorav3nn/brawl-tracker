@@ -1,0 +1,507 @@
+{
+	"state": 0,
+	"tag": "#29JVY92QC",
+	"response": {
+		"AllianceHeaderEntry": {
+			"PreferredLanguage": 0,
+			"AllianceBadge": 8000037,
+			"Name": "F.N.O👑",
+			"Description": "Dont do club=KICKED‼️ Not active for 7 days=KICKED‼️ let me know if your gonna be busy or will get KICKED‼️ ",
+			"Score": 594895,
+			"Online": 0,
+			"RequiredScore": 5000,
+			"AllianceType": 1,
+			"NumberOfMembers": 30,
+			"AllianceId": {
+				"High": 9,
+				"Low": 7322333
+			},
+			"RegionName": "US",
+			"MegaPigInfo": null
+		},
+		"AllianceMemberEntries": [
+			{
+				"Trophies": 51633,
+				"ProfileIcon": 28000116,
+				"NameColor": 43000008,
+				"BrawlPass": 35,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 9,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 28,
+					"Low": 22753927
+				},
+				"Name": "Death_Blows"
+			},
+			{
+				"Trophies": 47994,
+				"ProfileIcon": 28000709,
+				"NameColor": 43000001,
+				"BrawlPass": 35,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 6,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 2,
+					"Low": 30102471
+				},
+				"Name": "g i a n"
+			},
+			{
+				"Trophies": 36802,
+				"ProfileIcon": 28000610,
+				"NameColor": 43000010,
+				"BrawlPass": -1,
+				"Role": 2,
+				"MegaPig": {
+					"Wins": 2,
+					"TIcketsLeft": 12
+				},
+				"AccountId": {
+					"High": 9,
+					"Low": 18638702
+				},
+				"Name": "FNO|Saul"
+			},
+			{
+				"Trophies": 33411,
+				"ProfileIcon": 28000776,
+				"NameColor": 43000009,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 9,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 8,
+					"Low": 45861786
+				},
+				"Name": "@olicr"
+			},
+			{
+				"Trophies": 33254,
+				"ProfileIcon": 28000713,
+				"NameColor": 43000009,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 6,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 0,
+					"Low": 35302018
+				},
+				"Name": "Leon"
+			},
+			{
+				"Trophies": 29903,
+				"ProfileIcon": 28000391,
+				"NameColor": 43000010,
+				"BrawlPass": -1,
+				"Role": 4,
+				"MegaPig": {
+					"Wins": 2,
+					"TIcketsLeft": 12
+				},
+				"AccountId": {
+					"High": 21,
+					"Low": 17679883
+				},
+				"Name": "FNO|Yayo"
+			},
+			{
+				"Trophies": 29230,
+				"ProfileIcon": 28000363,
+				"NameColor": 43000006,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 8,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 28,
+					"Low": 28181072
+				},
+				"Name": "wolfboy"
+			},
+			{
+				"Trophies": 28408,
+				"ProfileIcon": 28000714,
+				"NameColor": 43000008,
+				"BrawlPass": 35,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 8,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 4,
+					"Low": 5109640
+				},
+				"Name": "boleburtis"
+			},
+			{
+				"Trophies": 26556,
+				"ProfileIcon": 28000037,
+				"NameColor": 43000001,
+				"BrawlPass": 35,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 2,
+					"TIcketsLeft": 10
+				},
+				"AccountId": {
+					"High": 24,
+					"Low": 123481804
+				},
+				"Name": "TJ"
+			},
+			{
+				"Trophies": 25405,
+				"ProfileIcon": 28000652,
+				"NameColor": 43000006,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 9,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 15,
+					"Low": 123207110
+				},
+				"Name": "Binglebob701"
+			},
+			{
+				"Trophies": 22837,
+				"ProfileIcon": 28000758,
+				"NameColor": 43000011,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 8,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 27,
+					"Low": 32208353
+				},
+				"Name": "🔥AustinBrawl🔥"
+			},
+			{
+				"Trophies": 22415,
+				"ProfileIcon": 28000714,
+				"NameColor": 43000000,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 0,
+					"TIcketsLeft": 15
+				},
+				"AccountId": {
+					"High": 5,
+					"Low": 117585049
+				},
+				"Name": "#1Alpha🐺😉"
+			},
+			{
+				"Trophies": 20049,
+				"ProfileIcon": 28000161,
+				"NameColor": 43000010,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 8,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 10,
+					"Low": 123521025
+				},
+				"Name": "KingTaco"
+			},
+			{
+				"Trophies": 19621,
+				"ProfileIcon": 28000624,
+				"NameColor": 43000010,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 0,
+					"TIcketsLeft": 15
+				},
+				"AccountId": {
+					"High": 27,
+					"Low": 48543713
+				},
+				"Name": "Nikko_4876"
+			},
+			{
+				"Trophies": 15749,
+				"ProfileIcon": 28000579,
+				"NameColor": 43000009,
+				"BrawlPass": 35,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 4,
+					"TIcketsLeft": 5
+				},
+				"AccountId": {
+					"High": 15,
+					"Low": 116451577
+				},
+				"Name": "el primo"
+			},
+			{
+				"Trophies": 15745,
+				"ProfileIcon": 28000482,
+				"NameColor": 43000010,
+				"BrawlPass": 35,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 11,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 18,
+					"Low": 128193347
+				},
+				"Name": "raudel"
+			},
+			{
+				"Trophies": 15341,
+				"ProfileIcon": 28000453,
+				"NameColor": 43000010,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 10,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 13,
+					"Low": 110845863
+				},
+				"Name": "theking"
+			},
+			{
+				"Trophies": 15052,
+				"ProfileIcon": 28000375,
+				"NameColor": 43000001,
+				"BrawlPass": 35,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 10,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 13,
+					"Low": 50031156
+				},
+				"Name": "F.N.O|Juice🧃"
+			},
+			{
+				"Trophies": 14396,
+				"ProfileIcon": 28000585,
+				"NameColor": 43000001,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 4,
+					"TIcketsLeft": 10
+				},
+				"AccountId": {
+					"High": 29,
+					"Low": 71734591
+				},
+				"Name": "DRIPMILOMAN"
+			},
+			{
+				"Trophies": 10969,
+				"ProfileIcon": 28000588,
+				"NameColor": 43000010,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 0,
+					"TIcketsLeft": 15
+				},
+				"AccountId": {
+					"High": 7,
+					"Low": 5884389
+				},
+				"Name": "Manny"
+			},
+			{
+				"Trophies": 10791,
+				"ProfileIcon": 28000429,
+				"NameColor": 43000007,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 11,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 5,
+					"Low": 127276637
+				},
+				"Name": "xin"
+			},
+			{
+				"Trophies": 10157,
+				"ProfileIcon": 28000478,
+				"NameColor": 43000005,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 2,
+					"TIcketsLeft": 11
+				},
+				"AccountId": {
+					"High": 11,
+					"Low": 115742499
+				},
+				"Name": "littleB"
+			},
+			{
+				"Trophies": 9845,
+				"ProfileIcon": 28000045,
+				"NameColor": 43000007,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 11,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 8,
+					"Low": 18195982
+				},
+				"Name": "life_shadow"
+			},
+			{
+				"Trophies": 8560,
+				"ProfileIcon": 28000094,
+				"NameColor": 43000000,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 12,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 5,
+					"Low": 41425883
+				},
+				"Name": "Ric"
+			},
+			{
+				"Trophies": 8488,
+				"ProfileIcon": 28000630,
+				"NameColor": 43000009,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 0,
+					"TIcketsLeft": 15
+				},
+				"AccountId": {
+					"High": 13,
+					"Low": 47109473
+				},
+				"Name": "Muikah"
+			},
+			{
+				"Trophies": 7684,
+				"ProfileIcon": 28000757,
+				"NameColor": 43000003,
+				"BrawlPass": 35,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 0,
+					"TIcketsLeft": 15
+				},
+				"AccountId": {
+					"High": 20,
+					"Low": 48329521
+				},
+				"Name": "willdagoat"
+			},
+			{
+				"Trophies": 7320,
+				"ProfileIcon": 28000691,
+				"NameColor": 43000006,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 7,
+					"TIcketsLeft": 0
+				},
+				"AccountId": {
+					"High": 11,
+					"Low": 40733707
+				},
+				"Name": "mitoanth26"
+			},
+			{
+				"Trophies": 7191,
+				"ProfileIcon": 28000585,
+				"NameColor": 43000009,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 1,
+					"TIcketsLeft": 13
+				},
+				"AccountId": {
+					"High": 18,
+					"Low": 112126652
+				},
+				"Name": "Teistee"
+			},
+			{
+				"Trophies": 6457,
+				"ProfileIcon": 28000005,
+				"NameColor": 43000000,
+				"BrawlPass": -1,
+				"Role": 1,
+				"MegaPig": {
+					"Wins": 0,
+					"TIcketsLeft": 15
+				},
+				"AccountId": {
+					"High": 26,
+					"Low": 38282010
+				},
+				"Name": "Carlos"
+			},
+			{
+				"Trophies": 3632,
+				"ProfileIcon": 28000381,
+				"NameColor": 43000006,
+				"BrawlPass": -1,
+				"Role": 3,
+				"MegaPig": {
+					"Wins": 0,
+					"TIcketsLeft": 15
+				},
+				"AccountId": {
+					"High": 12,
+					"Low": 9888902
+				},
+				"Name": "FNO|Ten Tigers"
+			}
+		],
+		"Stream": {},
+		"Version": 0
+	}
+}

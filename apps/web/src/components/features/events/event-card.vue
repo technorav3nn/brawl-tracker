@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { BrawlApiEvent } from "@brawltracker/brawl-api";
+import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
 import { Image } from "@unpic/vue";
 import { Duration } from "luxon";
 import { useEventsStore } from "./events-store";
@@ -12,7 +13,7 @@ const props = defineProps<{
 }>();
 
 const HOVER_CLASS =
-	"cursor-pointer hover:ring-2 hover:ring-primary-500 dark:hover:ring-primary-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50";
+	"cursor-pointer hover:ring-2 hover:ring-primary-500 dark:hover:ring-primary-400 hover:bg-neutral-100/50 dark:hover:bg-neutral-800/50";
 
 const { setCurrentMenuOpen } = useEventsStore();
 const { currentMenuOpen } = storeToRefs(useEventsStore());
@@ -55,9 +56,9 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 </script>
 
 <template>
-	<UPageCard
+	<UCard
 		ref="target"
-		:ui="{ header: { base: '!p-0' }, body: { base: '!py-2 !px-4 has-[section]:h-full' }, footer: { base: '!py-1.5 !px-2' } }"
+		:ui="{ header: 'p-0!', body: 'py-2! px-4! has-[section]:h-full', footer: 'py-1.5! px-2!' }"
 		:class="!showMenu ? HOVER_CLASS : ''"
 		@click="onCardClick"
 	>
@@ -69,49 +70,52 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 				loading="lazy"
 				height="100"
 				width="500"
-				class="h-full w-full object-cover object-top rounded-t-lg filter brightness-50"
+				class="h-full w-full rounded-t-lg object-cover object-top brightness-50 filter"
 				format="webp"
 				:placeholder
 			/>
 		</template>
 		<section v-if="showMenu">
-			<div class="flex h-full gap-2 items-center justify-center mt-1.5">
-				<UButton :to="`/maps/${event.map.id}`" class="w-[49%] flex justify-center items-center">View Map</UButton>
-				<UButton :to="`/modes/${event.map.gameMode.id}`" class="w-[49%] flex justify-center items-center">View Mode</UButton>
+			<div class="mt-1.5 flex h-full items-center justify-center gap-2">
+				<UButton variant="subtle" :to="`/maps/${event.map.id}`" class="flex w-[49%] items-center justify-center"
+					>View Map</UButton
+				>
+				<UButton variant="subtle" :to="`/modes/${event.map.gameMode.id}`" class="flex w-[49%] items-center justify-center"
+					>View Mode</UButton
+				>
 			</div>
-			<UButton icon="i-heroicons-arrow-left-20-solid" block class="mt-2 gap-2" color="gray">Go Back</UButton>
+			<UButton icon="i-heroicons-arrow-left-20-solid" block class="mt-2 gap-2" color="neutral" variant="subtle">Go Back</UButton>
 		</section>
 
 		<!-- Menu not open -->
 		<template v-if="!showMenu" #header>
 			<NuxtImg
+				:id="event.map.id"
 				:src="event.map.environment.imageUrl"
 				:alt="event.map.name"
-				height="100"
+				height="110"
 				width="500"
-				class="h-full w-full object-cover object-top rounded-t-lg"
+				class="h-full w-full rounded-t-lg object-cover object-top"
 				format="webp"
-				:placeholder
 			/>
 		</template>
 		<template v-if="!showMenu" #footer>
 			<div class="flex flex-row justify-between">
 				<div class="flex gap-1">
-					<NuxtImg
+					<Image
 						v-for="brawler in bestBrawlers"
-						:src="images[brawler.brawler] ? images[brawler.brawler].imageUrl : '/placeholder.webp'"
+						:src="`${CDN_URL_V2}/brawlify/brawlers/borderless/${brawler.brawler}.png`"
 						width="25"
 						height="25"
-						class="rounded-md"
+						class="rounded"
 						format="webp"
 						loading="lazy"
-						:data-brawlerwergwergwr="brawler.brawler"
-						:alt="brawler.brawler"
+						:alt="brawler.brawler.toString()"
 					/>
 				</div>
 				<div class="flex items-center gap-1">
-					<UIcon name="i-heroicons-clock" class="text-gray-500 dark:text-gray-400 inline-block" />
-					<p class="text-sm font-medium text-gray-500 dark:text-gray-400 inline-block">
+					<UIcon name="i-heroicons-clock" class="inline-block text-neutral-500 dark:text-neutral-400" />
+					<p class="inline-block text-sm font-medium text-neutral-500 dark:text-neutral-400">
 						{{ type === "upcoming" ? "starts" : "ends" }} in
 						<span>
 							{{ date }}
@@ -127,20 +131,20 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 					loading="lazy"
 					width="40"
 					height="40"
-					class="-ml-1.5 h-10 w-10 self-center bg-contain !object-contain"
+					class="-ml-1.5 h-10 w-10 self-center bg-contain object-contain!"
 				/>
 				<div class="flex flex-1 flex-col">
-					<h1 class="flex flex-row items-center gap-2 text-lg font-bold uppercase leading-snug">
+					<h1 class="flex flex-row items-center gap-2 text-lg leading-snug font-bold uppercase">
 						{{ event.map.gameMode.name }}
-						<UIcon v-if="event.slot.name === 'Challenge'" name="i-heroicons-trophy-20-solid" />
+						<UIcon v-if="event.slot.name === 'Challenge'" name="i-heroicons-trophy-20-solid" class="text-(--ui-primary)" />
 					</h1>
 					<div class="flex flex-row justify-between">
-						<p class="overflow-hidden text-ellipsis whitespace-nowrap text-sm font-medium text-gray-500 dark:text-gray-400">
+						<p class="overflow-hidden text-sm font-medium text-ellipsis whitespace-nowrap text-neutral-500 dark:text-neutral-400">
 							{{ event.map.name }}
 						</p>
 					</div>
 				</div>
 			</div>
 		</template>
-	</UPageCard>
+	</UCard>
 </template>
