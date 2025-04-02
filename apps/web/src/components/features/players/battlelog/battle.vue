@@ -20,8 +20,13 @@ const { data: gamemodes } = useNuxtData<
 const gamemode = computed(() => gamemodes!.value!.find((m) => m.apiName === props.battlelogEntry.event.mode));
 
 const isSoloMode = computed(() => props.battlelogEntry.event.mode.includes("solo"));
+const isDuoMode = computed(() => props.battlelogEntry.event.mode.includes("duo"));
+const isTrioMode = computed(() => props.battlelogEntry.event.mode.includes("trio"));
 const is3v3 = computed(
 	() => props.battlelogEntry.battle.teams?.[0].length === 3 && props.battlelogEntry.battle.teams.length === 2
+);
+const is2v2 = computed(
+	() => props.battlelogEntry.battle.teams?.[0].length === 2 && props.battlelogEntry.battle.teams.length === 2
 );
 const is5v5 = computed(
 	() => props.battlelogEntry.battle.teams?.[0].length === 5 && props.battlelogEntry.battle.teams.length === 2
@@ -62,7 +67,7 @@ const result = computed(() => {
 						</p>
 					</div>
 				</div>
-				<div>
+				<div class="hidden sm:block">
 					<p
 						:class="[
 							result === 'VICTORY'
@@ -79,7 +84,7 @@ const result = computed(() => {
 					</p>
 				</div>
 				<div class="flex flex-1 justify-end">
-					<div class="flex flex-col gap-1">
+					<div class="flex flex-col items-end justify-end gap-1">
 						<div v-if="props.battlelogEntry.battle.type !== 'soloRanked'" class="flex items-center gap-1">
 							<p class="text-md leading-none font-semibold text-amber-500 dark:text-amber-400">
 								{{
@@ -90,16 +95,49 @@ const result = computed(() => {
 							</p>
 							<Image src="/icons/player/trophy.webp" width="25" height="25" />
 						</div>
+						<p
+							:class="[
+								result === 'VICTORY'
+									? 'text-green-500'
+									: result === 'DEFEAT'
+										? 'text-red-500'
+										: result === 'DRAW'
+											? 'text-blue-500 dark:text-blue-400'
+											: 'text-sky-500',
+							]"
+							class="text-md font-semibold sm:hidden"
+						>
+							{{ result }}
+						</p>
 					</div>
 				</div>
 			</div>
 		</template>
 		<template v-if="isSoloMode">
-			<div class="grid grid-cols-3 gap-2 px-4 py-3 sm:px-[14vw]">
-				<PlayersBattlelogBattlePlayer v-for="player in props.battlelogEntry.battle.players" :key="player.tag" :player="player" />
+			<div class="flex flex-wrap justify-center gap-4 px-1 py-3 md:gap-y-4 md:px-[18vw] lg:gap-x-6">
+				<PlayersBattlelogBattlePlayer
+					v-for="player in props.battlelogEntry.battle.players"
+					:key="player.tag"
+					class="w-[100px]"
+					:player="player"
+				/>
 			</div>
 		</template>
-		<template v-if="is5v5">
+		<template v-else-if="isDuoMode">
+			<div class="flex flex-wrap justify-center gap-x-8 gap-y-4 px-4 py-3 sm:px-[14vw]">
+				<div v-for="team in props.battlelogEntry.battle.teams" :key="team[0].tag" class="flex flex-row gap-2">
+					<PlayersBattlelogBattlePlayer v-for="player in team" :key="player.tag" class="w-[100px]" :player="player" />
+				</div>
+			</div>
+		</template>
+		<template v-else-if="isTrioMode">
+			<div class="flex flex-wrap justify-center gap-x-8 gap-y-4 px-4 py-3 sm:px-[2vw] lg:px-[8vw]">
+				<div v-for="team in props.battlelogEntry.battle.teams" :key="team[0].tag" class="flex flex-row gap-2">
+					<PlayersBattlelogBattlePlayer v-for="player in team" :key="player.tag" class="w-[90px] sm:w-[100px]" :player="player" />
+				</div>
+			</div>
+		</template>
+		<template v-else-if="is5v5">
 			<div class="flex w-full flex-col flex-wrap items-center gap-4 px-0 py-3 sm:px-4 lg:px-8">
 				<div class="flex flex-row flex-wrap justify-center gap-4">
 					<PlayersBattlelogBattlePlayer
@@ -132,7 +170,7 @@ const result = computed(() => {
 				</div>
 			</div>
 		</template>
-		<template v-if="is3v3">
+		<template v-else-if="is3v3 || is2v2">
 			<div class="flex w-full flex-col items-center px-4 py-3 min-[850px]:flex-row lg:px-8">
 				<div class="flex flex-row gap-4">
 					<PlayersBattlelogBattlePlayer
@@ -167,6 +205,11 @@ const result = computed(() => {
 				</div>
 			</div>
 		</template>
+		<div v-else>
+			<p class="text-md p-4 text-center font-semibold text-(--ui-text-muted)">
+				Couldn't find any players for this battle. This is most likely a bug in the API.
+			</p>
+		</div>
 	</UCard>
 </template>
 

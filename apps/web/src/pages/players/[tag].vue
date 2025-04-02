@@ -220,7 +220,7 @@ onUnmounted(() => {
 			/>
 		</UContainer>
 	</section>
-	<UContainer :class="[route.fullPath.includes('/battles') && '']" class="mt-3">
+	<UContainer class="mt-3">
 		<NuxtPage />
 	</UContainer>
 </template>

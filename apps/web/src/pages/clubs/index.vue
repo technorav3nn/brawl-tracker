@@ -1,74 +1,56 @@
 <script setup lang="ts">
-import { verifyTag } from "@brawltracker/supercell-api-utils";
-import type { FetchError } from "ofetch";
+import { formatTag, verifyTag } from "@brawltracker/supercell-api-utils";
 import { z, type Schema } from "zod";
 import type { ButtonProps } from "#ui/components/Button.vue";
 import type { Form } from "#ui/types";
 
 const state = reactive({
-	player: undefined,
-	type: "tag",
+	club: "",
 });
 
 const schema = z.object({
-	player: z
+	club: z
 		.string()
 		.nonempty("Required")
-		.refine((v) => (state.type === "tag" ? verifyTag(v) : true), {
-			message: "Invalid player tag",
+		.refine((v) => verifyTag(v), {
+			message: "Invalid club tag",
 		}),
-	type: z.enum(["tag", "scidHandle"]),
 });
 
-const nuxtApp = useNuxtApp();
-
 const form = ref<Form<Schema>>();
+const queryClient = useQueryClient();
 const loading = ref(false);
-const resolvedTag = ref("");
 
 async function validate(s: typeof state) {
-	form.value?.setErrors([]);
-
 	const result = await schema.safeParseAsync(s);
 	if (!result.success) {
 		return result.error.issues.map((issue) => ({
-			path: issue.path.join("."),
+			name: issue.path.join("."),
 			message: issue.message,
 		}));
 	}
 
-	if (state.type && state.player) {
+	form.value?.setErrors([]);
+
+	if (state.club) {
 		try {
 			loading.value = true;
-			const result = await $fetch(`/api/players`, {
-				query: { tag: (state.player as string).replace("#", ""), ...(state.type === "scidHandle" && { isScid: true }) },
-				retry: false,
-			});
-			nuxtApp.payload.data[`players-${result.tag}`] = result;
-			if (result) {
-				resolvedTag.value = result.tag;
-				await onSubmit();
-			}
-		} catch (error) {
-			console.log(error);
-			if ((error as FetchError).status === 404) {
-				return [{ path: "player", message: "Player not found" }];
-			}
+			await queryClient.fetchQuery(clubsDetailQuery(state.club.replace("#", "")));
+		} catch {
+			return [{ name: "club", message: "Club not found" }];
 		} finally {
 			loading.value = false;
 		}
 	}
-
-	return [];
 }
 
 async function onSubmit() {
-	return await navigateTo(`/players/${resolvedTag.value.replace("#", "")}`);
+	return await navigateTo(`/clubs/${formatTag(state.club).replace("#", "")}`);
 }
 
 const links: (ButtonProps & { click?(): any })[] = [
 	{
-		label: "Search For Player",
+		label: "Search For Club",
 		icon: "i-heroicons-magnifying-glass",
 		color: "primary",
 		click: () => {
@@ -80,8 +62,8 @@ const links: (ButtonProps & { click?(): any })[] = [
 		size: "md",
 	},
 	{
-		label: "View Top Players",
-		to: "/leaderboards/players",
+		label: "View Top Clubs",
+		to: "/leaderboards/clubs",
 		icon: "i-heroicons-chart-bar",
 		color: "neutral",
 		variant: "subtle",
@@ -94,8 +76,8 @@ const links: (ButtonProps & { click?(): any })[] = [
 	<UPage>
 		<UContainer>
 			<UPageHero
-				title="Player Profile and Stats"
-				description="Search for any player with their player tag or Supercell ID. View their profile, stats, and more."
+				title="Club Info and Stats"
+				description="Search for a club and view its information and stats."
 				:links="links"
 				:ui="{
 					container: 'lg:py-24 lg:pb-16',
@@ -104,26 +86,17 @@ const links: (ButtonProps & { click?(): any })[] = [
 			>
 			</UPageHero>
 
-			<UForm ref="form" :validate="validate as any" :state @submit="void onSubmit()">
-				<div class="flex items-center justify-center">
-					<USelect
-						class="w-48"
-						:modelValue="state.type === 'tag' ? 'Tag' : 'Supercell ID Handle'"
-						:items="['Tag', 'Supercell ID Handle']"
-						@update:model-value="state.type = $event === 'Tag' ? 'tag' : 'scidHandle'"
-					/>
-				</div>
-
+			<UForm ref="form" :validate="validate as any" :state :validateOn="[]" @submit="void onSubmit()">
 				<UButtonGroup class="mt-4 flex items-start justify-center" size="xl">
-					<UFormField class="w-11/12 sm:w-96" name="player">
+					<UFormField class="w-11/12 sm:w-96" name="club">
 						<UInput
 							id="search"
-							v-model="state.player"
+							v-model="state.club"
 							:style="{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }"
 							class="w-full sm:w-96"
 							size="xl"
-							label="Search Player"
-							:placeholder="`Enter ${state.type === 'tag' ? 'Player Tag (e.g. #P800LV)' : 'Supercell ID Handle (e.g. BrawlMaster)'}`"
+							label="Search Club"
+							placeholder="Enter Club Tag"
 							@input="($event.target as HTMLInputElement).value = ($event.target as HTMLInputElement).value.toUpperCase()"
 						/>
 					</UFormField>

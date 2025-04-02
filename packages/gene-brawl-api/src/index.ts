@@ -1,9 +1,11 @@
 import { $fetch, FetchError } from "ofetch";
+import { type ApiAllianceResponse } from "./lib/types/alliance";
 import type { ApiProfileResponse, ApiUnresolvedProfileStats } from "./lib/types/profile";
 import type { ShopResponse } from "./lib/types/shop";
 
 export * from "./lib/types/profile";
 export * from "./lib/types/shop";
+export * from "./lib/types/alliance";
 
 const BASE_URL = "https://api.hpdevfox.ru";
 
@@ -23,6 +25,15 @@ export async function getPlayerProfile(tag: string) {
 
 	(data.response.Stats as unknown as ReturnType<typeof resolveStats>) = resolveStats(data.response.Stats);
 	return data as unknown as ApiProfileResponse<ReturnType<typeof resolveStats>>;
+}
+
+export async function getAlliance(tag: string) {
+	const data = await $fetch<ApiAllianceResponse>(`${BASE_URL}/alliance/${tag}`);
+	if (data?.state !== 0) {
+		throw new FetchError("Invalid alliance tag");
+	}
+
+	return data.response;
 }
 
 function resolveStats(stats: ApiUnresolvedProfileStats) {

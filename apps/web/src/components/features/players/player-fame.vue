@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { useMeowApiPlayer } from "./composables";
+// import { useMeowApiPlayer } from "./composables";
 
-const { data: player } = useMeowApiPlayer();
+// const { data: player } = useMeowApiPlayer();
 </script>
 
 <template>
-	<ClientOnly>
-		{{ player?.totalFame }}
-	</ClientOnly>
+	<ClientOnly></ClientOnly>
 </template>

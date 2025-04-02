@@ -43,7 +43,7 @@ const castBattle = (b: any) => b as unknown as Battlelog;
 			<template v-if="status === 'pending' || brawlersStatus === 'pending' || gamemodesStatus === 'pending'">
 				<USkeleton v-for="i in 10" :key="i" class="h-40 w-full" />
 			</template>
-			<template v-else>
+			<template v-else-if="battlelog?.length !== 0">
 				<PlayersBattlelogBattle
 					v-for="battle in battlelog"
 					:key="battle.battleTime"
@@ -51,6 +51,16 @@ const castBattle = (b: any) => b as unknown as Battlelog;
 					:battlelogEntry="castBattle(battle)"
 				/>
 			</template>
+			<UAlert
+				v-else
+				class="w-full"
+				variant="subtle"
+				:ui="{ wrapper: 'gap-2', icon: 'size-5' }"
+				icon="i-heroicons-exclamation-triangle-solid"
+				color="warning"
+				title="No battles found"
+				description="This player has no battles in the last 25 battles."
+			/>
 		</div>
 	</UiPageSection>
 </template>

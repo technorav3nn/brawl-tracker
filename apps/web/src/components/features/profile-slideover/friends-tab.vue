@@ -60,7 +60,7 @@ const closeSlideover = () => emit("close", true);
 				:disabled="status === 'pending'"
 				:modelValue="humanSort"
 				class="mt-4 w-[44%]"
-				:items="['None', 'Ascending', 'Descending', 'Status']"
+				:items="['None', 'Ascending', 'Descending']"
 				icon="i-heroicons-adjustments-horizontal"
 				@update:model-value="
 					sort = lowercaseFirstLetter($event);

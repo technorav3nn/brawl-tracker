@@ -1,16 +1,19 @@
-import { formatTag, verifyTag } from "@brawltracker/supercell-api-utils";
-import { z } from "zod";
-
-const schema = z.object({
-	club: z
-		.string()
-		.transform((t) => formatTag(decodeURIComponent(t)))
-		.refine((t) => verifyTag(t)),
-});
+import { getAlliance } from "@brawltracker/gene-brawl-api";
 
 export default eventHandler(async (event) => {
-	const { club } = schema.parse(event.context.params!);
+	const club = event.context.params?.club;
+	if (!club) {
+		throw createError({
+			statusCode: 400,
+			statusMessage: "Missing club tag",
+		});
+	}
 
-	const api = useBrawlStarsApi();
-	return await api.clubs.getClub(club);
+	const type = getQuery(event).meowApi;
+	if (type) {
+		return await getAlliance(club.replace("#", ""));
+	} else {
+		const api = useBrawlStarsApi();
+		return await api.clubs.getClub(club);
+	}
 });

@@ -19,6 +19,7 @@
 		"@brawltracker/gene-brawl-api": "workspace:*",
 		"@brawltracker/supercell-api-utils": "workspace:*",
 		"@brawltracker/supercell-id-api": "workspace:*",
+		"@hebilicious/vue-query-nuxt": "^0.3.0",
 		"@iconify-json/heroicons": "^1.2.2",
 		"@iconify-json/lucide": "^1.2.24",
 		"@iconify-json/simple-icons": "^1.2.21",

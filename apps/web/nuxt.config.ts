@@ -15,7 +15,7 @@ export default defineNuxtConfig({
 		"@vueuse/nuxt",
 		"nuxt-time",
 		"nuxt-appwrite",
-		"./src/modules/auto-imports",
+		"@hebilicious/vue-query-nuxt",
 	],
 	srcDir: "src/",
 	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
@@ -30,6 +30,13 @@ export default defineNuxtConfig({
 	},
 	turnstile: {
 		siteKey: "0x4AAAAAAA_43EZEMfkIqXqY",
+	},
+	vueQuery: {
+		// @ts-expect-error - Error with the nuxt module
+		autoImports: ["queryOptions"],
+		vueQueryPluginOptions: {
+			enableDevtoolsV6Plugin: true,
+		},
 	},
 	app: {
 		head: {
@@ -125,6 +132,7 @@ export default defineNuxtConfig({
 		$server: resolve("./src/server"),
 		$composables: resolve("./src/hooks"),
 		$lib: resolve("./src/lib"),
+		$queries: resolve("./src/queries"),
 		$: resolve("./src"),
 	},
 	imports: {
@@ -134,6 +142,7 @@ export default defineNuxtConfig({
 				imports: ["useQuery", "useMutation", "useInfiniteQuery", "useQueryClient"],
 			},
 		],
+		dirs: ["queries"],
 	},
 	components: [{ path: "$components/features", extensions: [".vue"], prefix: "" }, "$components"],
 	hooks: {

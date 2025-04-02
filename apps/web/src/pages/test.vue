@@ -1,16 +1,9 @@
 <script setup lang="ts">
-const { data: events, suspense } = useQuery({
-	queryFn: async () => $fetch("/api/players?tag=P800LV"),
-	queryKey: ["events"],
-	staleTime: 0,
-	gcTime: 0,
-});
-
-if (import.meta.server) {
-	onServerPrefetch(async () => await suspense());
-}
+const tag = ref("29JVY92QC");
+const { data: club, status } = useLazyQuery(clubsDetailQuery(tag.value));
 </script>
 
 <template>
-	<p>data loaded: {{ events?.["3vs3Victories"] }}</p>
+	<p v-if="status === 'pending'">Loading...</p>
+	<p v-else>data loaded: {{ club?.name }}</p>
 </template>

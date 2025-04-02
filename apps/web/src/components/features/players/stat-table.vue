@@ -7,7 +7,7 @@ defineProps<{
 	loading?: boolean;
 	stats: {
 		stat: string;
-		value: any;
+		value?: any;
 		color?: string;
 		valueImage?: {
 			src?: string;
@@ -63,24 +63,25 @@ defineProps<{
 				{
 					accessorKey: 'value',
 					header: 'Value',
-
 					cell: ({ row }) => {
-						return h(
-							'p',
-							{ class: [row.original.color ?? '', row.original.valueImage ? 'flex flex-row items-center gap-x-2' : ''] },
-							[
-								row.original.valueImage
-									? h(Image, {
-											alt: row.original.stat,
-											src: row.original.valueImage.src ?? '',
-											width: row.original.valueImage.width ?? 25,
-											height: row.original.valueImage.height ?? 25,
-											class: [row.original.valueImage.class, 'size-[24px] object-scale-down'],
-										})
-									: null,
-								row.original.value,
-							]
-						);
+						return row.original.valueRender
+							? h(row.original.valueRender, {})
+							: h(
+									'p',
+									{ class: [row.original.color ?? '', row.original.valueImage ? 'flex flex-row items-center gap-x-2' : ''] },
+									[
+										row.original.valueImage
+											? h(Image, {
+													alt: row.original.stat,
+													src: row.original.valueImage.src ?? '',
+													width: row.original.valueImage.width ?? 25,
+													height: row.original.valueImage.height ?? 25,
+													class: [row.original.valueImage.class, 'size-[24px] object-scale-down'],
+												})
+											: null,
+										row.original.value,
+									]
+								);
 					},
 				},
 			]"

@@ -67,7 +67,9 @@ async function importFriends() {
 						<UButton icon="i-heroicons-link-20-solid" class="mt-4">Open In Brawl Stars</UButton>
 					</NuxtLink>
 					<USeparator class="mt-4 w-full">or</USeparator>
-					<p class="prose-primary prose mt-2 max-w-none dark:prose-invert">Add <code>BrawlTrackDev</code> to your friends list</p>
+					<p class="mt-2">
+						Add <span class="font-semibold underline underline-offset-4">BrawlTrackDev</span> to your friends list
+					</p>
 				</div>
 
 				<template #footer>

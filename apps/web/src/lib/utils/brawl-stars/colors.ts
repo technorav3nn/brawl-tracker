@@ -30,7 +30,11 @@ export function parseColorTag(text: string): ParsedColor {
 	return { insideText, color: COLOR_TO_TAILWIND_COLOR[`c${color}`] ?? COLOR_TO_TAILWIND_COLOR.default };
 }
 
-export function convertHexToHexColor(hex: string) {
-	// 0xffcb5aff -> #ffcb5a
-	return `#${hex.slice(2, 8)}`;
+export function convertHexToHexColor(hexColor: string) {
+	// Ensure the input starts with '0xff'
+	if (hexColor.startsWith("0xff") && hexColor.length === 10) {
+		return "#" + hexColor.slice(4);
+	} else {
+		throw new Error("Invalid input format. Expected format: 0xffRRGGBB");
+	}
 }
