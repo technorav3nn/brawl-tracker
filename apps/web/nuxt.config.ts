@@ -122,7 +122,7 @@ export default defineNuxtConfig({
 		project: "6786db24001e31cc452a",
 	},
 	nitro: {
-		preset: "node-server",
+		preset: process.env.VERCEL ? "vercel" : "node-server",
 	},
 	alias: {
 		$assets: resolve("./src/assets"),
