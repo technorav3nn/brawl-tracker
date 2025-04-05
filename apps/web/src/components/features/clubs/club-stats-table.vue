@@ -4,7 +4,7 @@ import { capitalizeFirstLetter } from "$lib/utils/common";
 const {
 	params: { tag },
 } = useRoute("clubs-tag");
-const { data: club } = useQuery(clubsDetailQuery(tag));
+const { data: club, status } = useQuery(clubsDetailQuery(tag));
 
 // eslint-disable-next-line @typescript-eslint/unbound-method
 const { format } = new Intl.NumberFormat("en-US");
@@ -55,5 +55,5 @@ const stats = computed(() => {
 </script>
 
 <template>
-	<PlayersStatTable title="Information" :stats />
+	<PlayersStatTable :loading="status === 'pending'" title="Information" :stats />
 </template>

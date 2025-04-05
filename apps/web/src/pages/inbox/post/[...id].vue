@@ -25,8 +25,8 @@ const $ = load(post.value!.html!);
 
 const postProps = computed(() => post.value?.props.pageProps);
 const timeToRead = computed(() => {
-	const htmlLength = post.value?.html?.length;
-	const wordsPerMinute = 500;
+	const htmlLength = post.value?.html?.replaceAll(/<img[^>]*>/g, "").length;
+	const wordsPerMinute = 600;
 	if (!htmlLength) return 0;
 	return Math.ceil(htmlLength / wordsPerMinute);
 });

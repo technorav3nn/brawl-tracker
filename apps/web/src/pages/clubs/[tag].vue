@@ -13,8 +13,7 @@ definePageMeta({
 const {
 	params: { tag },
 } = useRoute("clubs-tag");
-const { data: club, suspense } = useQuery(clubsDetailQuery(tag));
-await suspense();
+const { data: club } = useLazyQuery(clubsDetailQuery(tag));
 
 const links = computed<NavigationMenuItem[]>(() => [
 	{
@@ -32,22 +31,26 @@ const links = computed<NavigationMenuItem[]>(() => [
 </script>
 
 <template>
-	<header v-if="club" class="header-bg-image">
+	<header class="header-bg-image">
 		<UContainer>
 			<UPageHeader class="border-0!" :ui="{ wrapper: 'first-child-row', description: 'mt-2', root: 'flex gap-6' }">
 				<template #headline>
 					<NuxtImg
+						v-if="club"
 						width="80"
 						height="80"
 						:src="`https://cdn.brawlify.com/club-badges/regular/${club.badgeId}.png`"
 						:alt="club.name"
+						class="size-[80px] object-contain"
 					/>
+					<USkeleton v-else class="h-20 w-20 bg-primary-400/30" />
 				</template>
 				<template #title>
-					<p class="tracking-tight text-primary-300 dark:text-(--ui-primary)">{{ club.name }}</p>
+					<p v-if="club" class="tracking-tight text-primary-300 dark:text-(--ui-primary)">{{ club.name }}</p>
+					<USkeleton v-else class="mt-1 h-7 w-50 bg-primary-400/30" />
 				</template>
 				<template #description>
-					<div class="flex flex-row gap-2">
+					<div v-if="club" class="flex flex-row gap-2">
 						<div class="flex flex-row items-center gap-x-0.5">
 							<p class="text-opacity-80 text-sm font-bold text-white">
 								{{ club!.tag }}
@@ -62,6 +65,7 @@ const links = computed<NavigationMenuItem[]>(() => [
 							/>
 						</div>
 					</div>
+					<USkeleton v-else class="mt-5 h-5 w-32 bg-primary-400/30" />
 				</template>
 			</UPageHeader>
 		</UContainer>

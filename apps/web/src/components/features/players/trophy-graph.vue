@@ -29,7 +29,7 @@ const netTrophies = computed(() => {
 	if (!battlelog.value) return null;
 	return battlelog.value
 		.filter((battle) => battle.battle.type !== "soloRanked" && battle.battle.trophyChange)
-		.reduce((acc, battle) => acc + battle.battle.trophyChange! ?? 0, 0);
+		.reduce((acc, battle) => acc + (battle.battle.trophyChange ?? 0), 0);
 });
 // eslint-disable-next-line vue/no-setup-props-destructure
 const base = ref(props.player.trophies - netTrophies.value!);
@@ -41,7 +41,7 @@ const data = computed(() => {
 		if (battle.battle.type !== "soloRanked" && battle.battle.trophyChange) {
 			arr.push({
 				x: index + 1,
-				y: base.value + battle.battle.trophyChange ?? 0,
+				y: base.value + (battle.battle.trophyChange ?? 0),
 				trophyChange: battle.battle.trophyChange,
 				brawler: "",
 			});
@@ -84,8 +84,7 @@ const template = (d: DataRecord) => `
 				icon="i-heroicons-exclamation-triangle"
 				title="An error occured when loading the graph"
 				:description="error.message"
-			>
-			</UAlert>
+			/>
 		</template>
 		<template v-else-if="data.length === 0">
 			<UAlert
@@ -94,8 +93,7 @@ const template = (d: DataRecord) => `
 				icon="i-heroicons-exclamation-triangle"
 				title="No data to display"
 				description="The player has no battle log data to display. Only games with trophies earned are displayed."
-			>
-			</UAlert>
+			/>
 		</template>
 		<template v-else-if="status === 'success' && battlelog">
 			<ClientOnly>

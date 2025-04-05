@@ -38,6 +38,7 @@ const typeScriptRuleset = merge(...typescript, {
 		},
 	},
 	rules: {
+		"no-restricted-globals": "off",
 		"@typescript-eslint/consistent-type-definitions": [2, "interface"],
 		"@typescript-eslint/lines-between-class-members": "off",
 		"@typescript-eslint/no-unsafe-assignment": "off",

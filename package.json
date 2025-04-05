@@ -34,7 +34,7 @@
 	"resolutions": {
 		"sharp": "0.33.5"
 	},
-	"packageManager": "yarn@4.7.0",
+	"packageManager": "yarn@4.8.1",
 	"volta": {
 		"node": "22.13.1",
 		"yarn": "4.7.0"

@@ -3,7 +3,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"build": "nuxt build",
+		"build": "NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
 		"dev": "nuxt dev",
 		"generate": "nuxt generate",
 		"preview": "nuxt preview",
@@ -61,7 +61,7 @@
 		"@types/luxon": "^3.4.2",
 		"eslint": "8.57.0",
 		"eslint-config-neon": "0.1.62",
-		"nuxt": "^3.16.0",
+		"nuxt": "^3.16.2",
 		"nuxt-time": "^1.0.3",
 		"vite": "*"
 	},

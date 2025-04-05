@@ -7,7 +7,7 @@ type Props = InstanceType<typeof PlayersStatTable>["$props"];
 const {
 	params: { tag },
 } = useRoute("clubs-tag");
-const { data: club } = useQuery(clubsDetailQuery(tag));
+const { data: club, status } = useQuery(clubsDetailQuery(tag));
 
 function getDistribution(role: ClubRole) {
 	if (!club.value) return null;
@@ -35,9 +35,9 @@ const memberDistribution = computed(() => {
 
 const image = {
 	src: "/icons/clubs/member.png",
-	width: 28,
-	height: 28,
-	class: "size-[32px] mr-0.5",
+	width: 34,
+	height: 34,
+	class: "size-[34px] mr-0.5",
 };
 
 const president = computed(() => {
@@ -54,9 +54,9 @@ const stats = computed<Props["stats"]>(() => {
 			color: "text-(--ui-primary)",
 			image: {
 				src: "/icons/clubs/role.webp",
-				width: 28,
-				height: 28,
-				class: "size-[32px] mr-0.5",
+				width: 34,
+				height: 34,
+				class: "size-[34px] mr-0.5",
 			},
 			valueRender: () => {
 				return h(
@@ -92,5 +92,5 @@ const stats = computed<Props["stats"]>(() => {
 </script>
 
 <template>
-	<PlayersStatTable title="Member Distribution" :stats />
+	<PlayersStatTable :loading="status === 'pending'" title="Member Distribution" :stats />
 </template>

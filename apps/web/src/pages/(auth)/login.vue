@@ -18,7 +18,7 @@ async function onSubmit({ password, email }: { password: string; email: string }
 	const body = new URLSearchParams({ password, email, token: token.value });
 	try {
 		loading.value = true;
-		await $fetch("/api/auth/login", { method: "POST", body });
+		await $fetch("/api/auth/login", { method: "POST", body, token: token.value });
 		loading.value = false;
 		await navigateTo("/");
 		reloadNuxtApp();
