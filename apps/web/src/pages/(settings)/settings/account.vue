@@ -53,7 +53,7 @@ async function disconnect() {
 	const result = await $fetch("/api/auth/scid/disconnect", { method: "POST" });
 	if (result.success) {
 		toast.add({ title: "Disconnected from Supercell ID!", color: "primary" });
-		refreshNuxtData(["user", "database-user"]);
+		reloadNuxtApp();
 	} else {
 		toast.add({ title: "Failed to disconnect from Supercell ID", color: "error" });
 	}

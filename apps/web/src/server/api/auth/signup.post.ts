@@ -25,12 +25,12 @@ export default defineEventHandler(async (event) => {
 
 	const emailUsed = await users.list([Query.equal("email", email), Query.limit(1)]);
 	if (emailUsed.users.length > 0) {
-		return await sendRedirect(event, "/signup?error=email-used", 301);
+		throw createError({ status: 409, message: "Email already taken" });
 	}
 
 	const usernameUsed = await users.list([Query.equal("name", name), Query.limit(1)]);
 	if (usernameUsed.users.length > 0) {
-		return await sendRedirect(event, "/signup?error=username-used", 301);
+		throw createError({ status: 409, message: "Username already taken" });
 	}
 
 	const user = await account.create(ID.unique(), email, password, name);

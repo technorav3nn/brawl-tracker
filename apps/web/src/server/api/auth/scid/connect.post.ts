@@ -52,7 +52,7 @@ export default defineEventHandler(async (event) => {
 		await upsertProfileDoc(
 			event.context.user.$id,
 			{
-				avatar: getCdnUrlForAvatarId(profile.avatarImage),
+				avatar: profile?.imageURL ?? getCdnUrlForAvatarId(profile.avatarImage),
 				isConnected: true,
 				scid: profile.scid,
 				username: profile.name,

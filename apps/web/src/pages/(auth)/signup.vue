@@ -24,6 +24,7 @@ async function onSubmit({ username, password, email }: { username: string; passw
 		loading.value = false;
 		reloadNuxtApp();
 	} catch (error) {
+		console.log((error as any).status);
 		validationError.value = (error as any).message;
 		loading.value = false;
 	}

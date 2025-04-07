@@ -52,7 +52,7 @@ async function verify() {
 		$emit("close", true);
 
 		await navigateTo("/");
-		refreshNuxtData(["user", "database-user"]);
+		reloadNuxtApp();
 	} else {
 		errorMessage.value = "Failed to verify, please try again";
 	}
