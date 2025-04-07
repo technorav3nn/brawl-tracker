@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Button } from "#ui/types";
-
 const title = "BrawlTrack - The Intuitive Brawl Stars Stats Site";
 const description = "BrawlTrack is an open-source, comprehensive statistics and utilities site for Brawl Stars.";
 
@@ -12,52 +10,12 @@ useSeoMeta({
 	ogDescription: description,
 	ogSiteName: "BrawlTrack",
 });
-
-const heroLinks: Button[] = [
-	{
-		label: "Search For A Player",
-		to: "/players",
-		icon: "i-heroicons-magnifying-glass",
-		size: "lg",
-	},
-	{
-		label: "Leaderboards",
-		to: "/leaderboards",
-		icon: "i-heroicons-chart-bar",
-		color: "gray",
-		size: "lg",
-	},
-];
-const openSourceLandingLinks: Button[] = [
-	{
-		label: "GitHub",
-		to: "https://github.com/technorav3nn/brawltracker",
-		icon: "i-simple-icons-github",
-		color: "gray",
-		size: "lg",
-	},
-];
-const finalLandingLinks: Button[] = [
-	{
-		label: "View Brawlers",
-		to: "/brawlers",
-		icon: "i-tabler-swords",
-		size: "lg",
-		color: "black",
-	},
-	{
-		label: "View Events",
-		to: "/events",
-		icon: "i-heroicons-map",
-		color: "gray",
-		size: "lg",
-	},
-];
 </script>
 
 <template>
 	<UPage>
-		<!-- <ULandingHero
+		<!-- 
+		<ULandingHero
 			title="The Intuitive Statistics Site"
 			description="BrawlTrack is an open-source, comprehensive statistics and utilities site for Brawl Stars."
 			:links="heroLinks"
@@ -120,7 +78,8 @@ const finalLandingLinks: Button[] = [
 			description="Start using BrawlTrack today and enjoy the benefits of tracking your progress and improving your gameplay!"
 			:links="finalLandingLinks"
 			class="bg-gray-950/30 border-t border-border"
-		/> -->
+		/> 
+		-->
 
 		THIS PAGE IS BEING REDONE - WIP
 	</UPage>

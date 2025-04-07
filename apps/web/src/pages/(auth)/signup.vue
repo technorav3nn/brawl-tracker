@@ -11,15 +11,17 @@ const loading = ref(false);
 const token = ref<string>();
 
 async function onSubmit({ username, password, email }: { username: string; password: string; email: string }) {
+	console.log(username, password, email);
+
 	if (!username || !password || !email) return (validationError.value = "Please fill in all the fields.");
 	if (!token.value) return (validationError.value = "Please complete the captcha.");
+
 	// eslint-disable-next-line n/prefer-global/url-search-params
 	const body = new URLSearchParams({ username, password, email, token: token.value });
 	try {
 		loading.value = true;
 		await $fetch("/api/auth/signup", { method: "POST", body });
 		loading.value = false;
-		await navigateTo("/");
 		reloadNuxtApp();
 	} catch (error) {
 		validationError.value = (error as any).message;
@@ -95,7 +97,7 @@ const mode = computed(() => colorMode.value);
 							},
 						]"
 						:loading="loading"
-						@submit="void onSubmit($event as any)"
+						@submit="onSubmit($event.data as any)"
 					>
 						<template #title>
 							<div class="flex items-center gap-2">
