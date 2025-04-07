@@ -56,7 +56,7 @@ const castBattle = (b: any) => b as unknown as Battlelog;
 				class="w-full"
 				variant="subtle"
 				:ui="{ wrapper: 'gap-2', icon: 'size-5' }"
-				icon="i-heroicons-exclamation-triangle-solid"
+				icon="i-heroicons-exclamation-triangle"
 				color="warning"
 				title="No battles found"
 				description="This player has no battles in the last 25 battles."

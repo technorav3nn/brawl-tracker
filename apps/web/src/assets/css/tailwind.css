@@ -10,6 +10,13 @@
 		"Noto Color Emoji";
 
 	--color-border: var(--color-border);
+
+	--animate-shimmer: shimmer 2s infinite;
+	@keyframes shimmer {
+		100% {
+			transform: translateX(100%);
+		}
+	}
 }
 
 :root {

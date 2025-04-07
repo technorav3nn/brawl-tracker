@@ -36,6 +36,7 @@ const errorMessage = ref<string | null>(null);
 const verifyLoading = ref(false);
 async function verify() {
 	verifyLoading.value = true;
+	errorMessage.value = null;
 	const result = await $fetch("/api/auth/scid/connect", {
 		method: "POST",
 		body: { originalIcon: player.value?.icon.id.toString(), tag: tag.value, iconToCheck: randomIcon.value?.id.toString() },
@@ -118,10 +119,11 @@ async function nextStage() {
 					<UButton block class="mt-2" :loading="verifyLoading" @click="verify">Verify</UButton>
 					<UAlert
 						v-if="!!errorMessage"
-						color="error"
+						color="warning"
 						class="mt-4"
-						icon="i-heroicons-information-circle-20-solid"
+						icon="i-heroicons-exclamation-triangle"
 						:title="errorMessage"
+						variant="subtle"
 					/>
 				</div>
 
