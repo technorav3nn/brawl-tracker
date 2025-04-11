@@ -1,4 +1,4 @@
-# @brawltracker/supercell-id-api
+# @brawltracker/gene-brawl-api
 
 ## 1.1.0
 

@@ -1,5 +1,11 @@
 # @brawltracker/supercell-api-utils
 
+## 1.3.0
+
+### Minor Changes
+
+- a609a3a: Update packages
+
 ## 1.2.0
 
 ### Minor Changes
