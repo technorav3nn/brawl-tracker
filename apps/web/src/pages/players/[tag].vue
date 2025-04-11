@@ -11,7 +11,7 @@ definePageMeta({
 	middleware: (to) => {
 		// remove the %23 from the tag
 		const params = to.params as Record<string, string>;
-		if (params.tag.startsWith("#")) {
+		if (params.tag?.startsWith("#")) {
 			return navigateTo(`/players/${decodeURIComponent(params.tag.slice(1)).replace("#", "")}`);
 		}
 	},
@@ -27,7 +27,7 @@ const { data: player } = await useFetch("/api/players", {
 });
 
 useSeoMeta({
-	titleTemplate: () => `%s · ${player.value ? player.value.name : formatTag(route.params.tag)} · BrawlTrack`,
+	titleTemplate: () => `%s · ${player.value ? player.value.name : formatTag(route.params.tag)} · BrawlBase`,
 });
 
 const brawlersActive = computed(() => route.path.startsWith(`/players/${encodeURIComponent(route.params.tag)}/brawlers`));
@@ -74,7 +74,7 @@ const appConfig = useAppConfig();
 
 function initializeConfig() {
 	if (config.value) {
-		background.value = BACKGROUNDS.find((bg) => bg.name === config.value?.background) || BACKGROUNDS[0];
+		background.value = BACKGROUNDS.find((bg) => bg.name === config.value?.background) ?? BACKGROUNDS[0];
 		selectedBackground.value = background.value;
 		theme.value = config.value.theme || "amber";
 		selectedTheme.value = theme.value;
@@ -141,7 +141,7 @@ onUnmounted(() => {
 							icon="i-heroicons-pencil"
 							size="md"
 							:disabled="player.tag !== user?.profile.tag"
-							class="bg-primary-300! text-black dark:bg-(--ui-primary)!"
+							class="bg-primary-400! text-black dark:bg-(--ui-primary)!"
 							@click="openProfileEdtiorSlideover"
 						/>
 					</UTooltip>
@@ -159,7 +159,7 @@ onUnmounted(() => {
 					/>
 				</template>
 				<template #title>
-					<p class="tracking-tight text-primary-300 dark:text-(--ui-primary)">{{ player.name }}</p>
+					<p class="tracking-tight text-primary-400 dark:text-(--ui-primary)">{{ player.name }}</p>
 				</template>
 				<template #description>
 					<div class="flex flex-row gap-2">
@@ -172,12 +172,12 @@ onUnmounted(() => {
 							<UiCopyButton
 								tooltipContent="Copy Tag"
 								:text="player.tag"
-								class="bg-primary-300! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.15]"
+								class="bg-primary-400! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.15]"
 								size="sm"
 							/>
 							<UTooltip :delayDuration="0" text="View Supercell ID Profile">
 								<UButton
-									class="bg-primary-300! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.20]"
+									class="bg-primary-400! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.20]"
 									icon="local:scid"
 									size="sm"
 									@click="openScidSlideover"

@@ -49,7 +49,7 @@ const selected = computed({
 		return index === -1 ? "0" : index.toString();
 	},
 	set(value) {
-		router.replace({ query: { tab: items[Number(value)].label } });
+		router.replace({ query: { tab: items[Number(value)]!.label } });
 	},
 });
 
@@ -57,7 +57,7 @@ if (!selected.value) {
 	selected.value = "0";
 }
 
-const item = computed(() => items[Number(selected.value)].label!.toLowerCase());
+const item = computed(() => items[Number(selected.value)]!.label!.toLowerCase());
 const type = computed<"active" | "upcoming">(() => item.value as "active" | "upcoming");
 
 const nuxtApp = useNuxtApp();

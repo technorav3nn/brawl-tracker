@@ -4,7 +4,7 @@ import type { NavigationMenuItem } from "#ui/types";
 definePageMeta({
 	middleware: (to) => {
 		const params = to.params as Record<string, string>;
-		if (params.tag.startsWith("#")) {
+		if (params.tag?.startsWith("#")) {
 			return navigateTo(`/clubs/${decodeURIComponent(params.tag.slice(1)).replace("#", "")}`);
 		}
 	},
@@ -46,7 +46,7 @@ const links = computed<NavigationMenuItem[]>(() => [
 					<USkeleton v-else class="h-20 w-20 bg-primary-400/30" />
 				</template>
 				<template #title>
-					<p v-if="club" class="tracking-tight text-primary-300 dark:text-(--ui-primary)">{{ club.name }}</p>
+					<p v-if="club" class="tracking-tight text-primary-400 dark:text-(--ui-primary)">{{ club.name }}</p>
 					<USkeleton v-else class="mt-1 h-7 w-50 bg-primary-400/30" />
 				</template>
 				<template #description>
@@ -60,7 +60,7 @@ const links = computed<NavigationMenuItem[]>(() => [
 							<UiCopyButton
 								tooltipContent="Copy Tag"
 								:text="club.tag"
-								class="bg-primary-300! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.15]"
+								class="bg-primary-400! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.15]"
 								size="sm"
 							/>
 						</div>

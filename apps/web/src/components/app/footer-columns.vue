@@ -44,7 +44,7 @@ const links = [
 				<div>
 					<div class="flex flex-row items-center gap-2">
 						<UIcon name="i-heroicons-star-solid" class="size-8 text-(--ui-primary)" />
-						<p class="text-xl font-bold">BrawlTrack</p>
+						<p class="text-xl font-bold">BrawlBase</p>
 					</div>
 				</div>
 				<p class="text-xs text-gray-400">

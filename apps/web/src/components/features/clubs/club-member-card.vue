@@ -42,7 +42,7 @@ defineProps<{
 				</p>
 				<div class="mt-2 flex items-center gap-1">
 					<Image src="/icons/player/trophy.webp" width="22" height="22" alt="Trophy" />
-					<p class="font-semibold text-yellow-500 dark:text-yellow-400">
+					<p class="font-semibold text-amber-500 dark:text-amber-400">
 						{{ member.trophies.toLocaleString() }}
 					</p>
 				</div>

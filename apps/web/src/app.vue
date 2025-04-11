@@ -9,9 +9,9 @@ router.afterEach(() => {
 const colorMode = useColorMode();
 const color = computed(() => (colorMode.value === "dark" ? "#020420" : "white"));
 useHead({
-	titleTemplate: "%s · BrawlTrack",
+	titleTemplate: "%s · BrawlBase",
 	meta: [{ name: "theme-color", content: color.value }],
-	title: "BrawlTrack - Brawl Stars Stats",
+	title: "BrawlBase - Brawl Stars Stats",
 });
 
 // const nuxt = useNuxtApp();

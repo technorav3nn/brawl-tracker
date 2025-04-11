@@ -1,14 +1,14 @@
 <script setup lang="ts">
-const title = "BrawlTrack - The Intuitive Brawl Stars Stats Site";
-const description = "BrawlTrack is an open-source, comprehensive statistics and utilities site for Brawl Stars.";
+const title = "BrawlBase - The Intuitive Brawl Stars Stats Site";
+const description = "BrawlBase is an open-source, comprehensive statistics and utilities site for Brawl Stars.";
 
 useSeoMeta({
 	title,
-	titleTemplate: "%s · BrawlTrack",
+	titleTemplate: "%s · BrawlBase",
 	description,
 	ogTitle: title,
 	ogDescription: description,
-	ogSiteName: "BrawlTrack",
+	ogSiteName: "BrawlBase",
 });
 </script>
 
@@ -17,7 +17,7 @@ useSeoMeta({
 		<!-- 
 		<ULandingHero
 			title="The Intuitive Statistics Site"
-			description="BrawlTrack is an open-source, comprehensive statistics and utilities site for Brawl Stars."
+			description="BrawlBase is an open-source, comprehensive statistics and utilities site for Brawl Stars."
 			:links="heroLinks"
 		>
 			<template #headline>
@@ -34,7 +34,7 @@ useSeoMeta({
 		<ULandingSection
 			class="bg-linear-to-b to-gray-50 dark:to-gray-950/50 from-white dark:from-gray-900"
 			title="Features"
-			description="BrawlTrack offers a variety of features to help you track your progress and improve your gameplay."
+			description="BrawlBase offers a variety of features to help you track your progress and improve your gameplay."
 		>
 			<ULandingGrid>
 				<ULandingCard
@@ -62,20 +62,20 @@ useSeoMeta({
 					class="col-span-6"
 					icon="i-heroicons-wrench-screwdriver"
 					title="Utilities"
-					description="Calculators, tier lists, guides, and more! BrawlTrack has it all."
+					description="Calculators, tier lists, guides, and more! BrawlBase has it all."
 					to="/utilities"
 				/>
 			</ULandingGrid>
 		</ULandingSection>
 		<ULandingSection
 			title="Free & Open Source Forever"
-			description="BrawlTrack is and always will be free and open-source with zero ads. It's a great way to learn how to code and contribute to a project!"
+			description="BrawlBase is and always will be free and open-source with zero ads. It's a great way to learn how to code and contribute to a project!"
 			class="bg-linear-to-b from-gray-50 dark:from-gray-950/50 to-white dark:to-gray-900"
 			:links="openSourceLandingLinks"
 		/>
 		<ULandingSection
 			title="What are you waiting for?"
-			description="Start using BrawlTrack today and enjoy the benefits of tracking your progress and improving your gameplay!"
+			description="Start using BrawlBase today and enjoy the benefits of tracking your progress and improving your gameplay!"
 			:links="finalLandingLinks"
 			class="bg-gray-950/30 border-t border-border"
 		/> 

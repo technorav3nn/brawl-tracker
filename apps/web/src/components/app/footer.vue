@@ -16,7 +16,7 @@
 			<UButton
 				variant="link"
 				color="neutral"
-				aria-label="BrawlTrack Discord"
+				aria-label="BrawlBase Discord"
 				icon="i-simple-icons-discord"
 				to="https://google.com"
 				target="_blank"
@@ -24,7 +24,7 @@
 			<UButton
 				variant="link"
 				color="neutral"
-				aria-label="BrawlTrack GitHub"
+				aria-label="BrawlBase GitHub"
 				icon="i-simple-icons-github"
 				to="https://github.com/technorav3nn/brawl-tracker"
 				target="_blank"

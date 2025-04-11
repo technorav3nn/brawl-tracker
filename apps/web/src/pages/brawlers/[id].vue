@@ -27,7 +27,6 @@ if (apiError.value) {
 	});
 }
 
-// eslint-disable-next-line @typescript-eslint/promise-function-async
 const { data: brawlerCdnData, error: cdnError } = await useAsyncData(`brawlers-cdn-${brawlerId}`, () =>
 	getBrawlerData(brawlerId)
 );

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { BreadcrumbLink } from "#ui/types";
+import type { BreadcrumbItem } from "#ui/types";
 
-const breadcrumb: BreadcrumbLink[] = [{ label: "Leaderboards", to: "/leaderboards", active: true }];
+const breadcrumb: BreadcrumbItem[] = [{ label: "Leaderboards", to: "/leaderboards", active: true }];
 const pages = [
 	{
 		title: "Players",

@@ -11,7 +11,7 @@ const toast = useToast();
 const id = route.params.id as string[];
 const supercellBlogId = id.join("/");
 
-const category = capitalizeLetters(kebabCaseToNormalCase(supercellBlogId.split("/")[0]));
+const category = capitalizeLetters(kebabCaseToNormalCase(supercellBlogId.split("/")[0]!));
 
 const { data: post, status } = await useFetch("/api/inbox/news/post", {
 	params: { scbid: supercellBlogId },

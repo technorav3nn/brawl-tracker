@@ -3,11 +3,11 @@ import { defineStore } from "pinia";
 import { type Background } from "$lib/backgrounds";
 
 export const useProfileConfigStore = defineStore("profile-editor-store", () => {
-	const background = ref<Background | null>(null);
-	const theme = ref<string | null>(null);
+	const background = ref<Background | undefined>(undefined);
+	const theme = ref<string | undefined>(undefined);
 
-	const selectedBackground = ref<Background | null>(null);
-	const selectedTheme = ref<string | null>(null);
+	const selectedBackground = ref<Background | undefined>(undefined);
+	const selectedTheme = ref<string | undefined>(undefined);
 
 	async function applyChanges() {
 		try {

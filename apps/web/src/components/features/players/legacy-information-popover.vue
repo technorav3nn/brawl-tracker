@@ -22,7 +22,7 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/ranked/tiered/${580
 					:loading="status === 'pending'"
 					icon="i-heroicons-information-circle"
 					size="md"
-					class="bg-info-300! text-black dark:bg-(--ui-info)!"
+					class="bg-primary-400! text-black dark:bg-(--ui-primary)!"
 					@mouseenter="hovered = true"
 					@mouseleave="hovered = false"
 					@click="hovered = false"

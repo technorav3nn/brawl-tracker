@@ -57,8 +57,8 @@ const mode = computed(() => colorMode.value);
 <template>
 	<UPage>
 		<UPageCTA
-			title="Log In to your BrawlTrack account!"
-			description="Log in to your BrawlTrack account to view your friends and your info, and customize your profile!"
+			title="Log In to your BrawlBase account!"
+			description="Log in to your BrawlBase account to view your friends and your info, and customize your profile!"
 			orientation="horizontal"
 			variant="naked"
 			:ui="{

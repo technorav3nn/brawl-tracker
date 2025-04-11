@@ -35,7 +35,7 @@ function getPropsForPost(post: Article, index: number): UBlogPostProps {
 	return {
 		title: post.title,
 		date: new Date(post.publishDate).toDateString(),
-		badge: { label: capitalizeLetters(kebabCaseToNormalCase(category)) },
+		badge: { label: capitalizeLetters(kebabCaseToNormalCase(category!)) },
 		image: {
 			src: post.thumbnail.imgUrl,
 			alt: post.title,

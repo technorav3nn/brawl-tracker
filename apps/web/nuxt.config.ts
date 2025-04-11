@@ -18,6 +18,14 @@ export default defineNuxtConfig({
 		"@hebilicious/vue-query-nuxt",
 	],
 	srcDir: "src/",
+	serverDir: "src/server",
+	dir: {
+		public: "src/public/",
+	},
+	future: {
+		compatibilityVersion: 4,
+	},
+	compatibilityDate: "2024-07-18",
 	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
 	devtools: {
 		enabled: true,
@@ -85,14 +93,9 @@ export default defineNuxtConfig({
 			},
 		],
 	},
-	// sentry: {
-	// 	autoInjectServerSentry: "top-level-import",
-	// 	sourceMapsUploadOptions: {
-	// 		org: "technorav3nn",
-	// 		project: "javascript-nuxt",
-	// 		authToken: process.env.NUXT_SENTRY_AUTH_TOKEN,
-	// 	},
-	// },
+	imports: {
+		dirs: ["queries"],
+	},
 	runtimeConfig: {
 		appwriteApiToken: "",
 		databaseUrl: "",
@@ -136,15 +139,6 @@ export default defineNuxtConfig({
 		$queries: resolve("./src/queries"),
 		$: resolve("./src"),
 	},
-	imports: {
-		presets: [
-			{
-				from: "@tanstack/vue-query",
-				imports: ["useQuery", "useMutation", "useInfiniteQuery", "useQueryClient"],
-			},
-		],
-		dirs: ["queries"],
-	},
 	components: [{ path: "$components/features", extensions: [".vue"], prefix: "" }, "$components"],
 	hooks: {
 		"prepare:types": ({ tsConfig }) => {
@@ -157,5 +151,4 @@ export default defineNuxtConfig({
 			}
 		},
 	},
-	compatibilityDate: "2024-09-03",
 });

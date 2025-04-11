@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
 			}
 
 			const [profile] = player.data.profiles;
-			if (!profile.applicationAccountId) {
+			if (!profile?.applicationAccountId) {
 				throw createError({
 					statusCode: 400,
 					message: "Invalid SCID handle entered. User has never played Brawl Stars",
