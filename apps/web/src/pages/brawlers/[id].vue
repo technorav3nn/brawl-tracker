@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { type BrawlApiBrawler } from "@brawltracker/brawl-api";
-import { getBrawlerData } from "@brawltracker/cdn/v2";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
 
 definePageMeta({
@@ -27,11 +26,10 @@ if (apiError.value) {
 	});
 }
 
-const { data: brawlerCdnData, error: cdnError } = await useAsyncData(`brawlers-cdn-${brawlerId}`, () =>
-	getBrawlerData(brawlerId)
-);
+const { data: brawlerCdnData, error: cdnError } = await useFetch(() => `/api/brawlers/cdn/${brawler.value!.id}`);
 
 if (cdnError.value) {
+	console.log(brawlerCdnData.value);
 	throw createError({
 		statusCode: cdnError.value?.statusCode,
 		message: `Error fetching brawler CDN data: ${cdnError.value?.message}`,

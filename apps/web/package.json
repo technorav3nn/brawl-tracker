@@ -55,15 +55,20 @@
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20250410.0",
 		"@nuxt/content": "^3.3.0",
 		"@nuxt/fonts": "^0.11.0",
+		"@nuxthub/core": "0.8.24",
 		"@tailwindcss/typography": "^0.5.16",
 		"@types/luxon": "^3.4.2",
 		"eslint": "8.57.0",
 		"eslint-config-neon": "0.1.62",
+		"nitro-cloudflare-dev": "^0.2.2",
+		"nitropack": "^2.11.9",
 		"nuxt": "^3.16.2",
 		"nuxt-time": "^1.0.3",
-		"vite": "*"
+		"vite": "*",
+		"wrangler": "^4.10.0"
 	},
 	"volta": {
 		"extends": "../../package.json"

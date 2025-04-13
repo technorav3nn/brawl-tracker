@@ -34,13 +34,7 @@ useSeoMeta({
 </script>
 
 <template>
-	<UButton
-		variant="link"
-		icon="i-heroicons-arrow-left-20-solid"
-		:to="`/players/${encodeURIComponent(route.params.tag)}/brawlers`"
-	>
-		Go Back
-	</UButton>
+	<UButton variant="link" icon="i-heroicons-arrow-left-20-solid" @click.prevent="$router.back()"> Go Back </UButton>
 	<UiPageSection
 		v-if="foundBrawler && playerBrawler"
 		class="divide-y-0 *:pt-2!"

@@ -10,7 +10,6 @@ export default cachedEventHandler(
 	},
 	{
 		maxAge: 60 * 60,
-		swr: true,
 		getKey: (event) => {
 			const brawlerId = event.context.params?.id;
 			if (!brawlerId) {
