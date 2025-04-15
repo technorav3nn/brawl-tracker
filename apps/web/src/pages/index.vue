@@ -160,7 +160,7 @@ const slideThreeImages = [
 				asChild
 				:initial="{ opacity: 0, transform: 'translateX(-10px)' }"
 				:whileInView="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0.1 + 0.37 * index, duration: 0.5 }"
+				:transition="{ delay: 0.1 + 0.25 * index, duration: 0.5 }"
 				:inViewOptions="{ once: true }"
 			>
 				<UPageFeature v-bind="feature" class="opacity-0" />
@@ -195,7 +195,7 @@ const slideThreeImages = [
 				asChild
 				:initial="{ opacity: 0, transform: 'translateX(10px)' }"
 				:whileInView="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0.1 + 0.27 * index, duration: 0.45 }"
+				:transition="{ delay: 0.1 + 0.25 * index, duration: 0.5 }"
 				:inViewOptions="{ once: true }"
 			>
 				<UPageFeature v-bind="feature" class="opacity-0" />
@@ -215,7 +215,7 @@ const slideThreeImages = [
 				asChild
 				:initial="{ opacity: 0, transform: 'translateY(10px)' }"
 				:while-in-view="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0.1 }"
+				:transition="{ delay: 0.1, duration: 0.5 }"
 				:in-view-options="{ once: true }"
 			>
 				<UPageCard
@@ -230,7 +230,7 @@ const slideThreeImages = [
 				asChild
 				:initial="{ opacity: 0, transform: 'translateY(10px)' }"
 				:while-in-view="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0.5 }"
+				:transition="{ delay: 0.4, duration: 0.5 }"
 				:in-view-options="{ once: true }"
 			>
 				<UPageCard
@@ -245,7 +245,7 @@ const slideThreeImages = [
 				asChild
 				:initial="{ opacity: 0, transform: 'translateY(10px)' }"
 				:while-in-view="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0.9 }"
+				:transition="{ delay: 0.7, duration: 0.5 }"
 				:in-view-options="{ once: true }"
 			>
 				<UPageCard
