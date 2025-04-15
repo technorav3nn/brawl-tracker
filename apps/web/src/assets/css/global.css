@@ -9,15 +9,20 @@
 	--color-border: rgb(var(--color-gray-800));
 }
 
+* {
+	touch-action: manipulation;
+}
+
 /*
-Set the default cursor for buttons.
+Set the default cursor for buttons
 */
 button,
 [role="button"] {
 	cursor: pointer;
 }
+
 /*
-Make sure disabled buttons don't get the pointer cursor.
+Make sure disabled buttons don't get the pointer cursor
 */
 :disabled {
 	cursor: default;

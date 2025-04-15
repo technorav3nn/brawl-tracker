@@ -11,11 +11,13 @@ export default defineNuxtConfig({
 		"@nuxt/image",
 		"@nuxt/content",
 		"@nuxtjs/turnstile",
+		"@nuxtjs/seo",
+		"@nuxthub/core",
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
 		"nuxt-time",
 		"@hebilicious/vue-query-nuxt",
-		"@nuxthub/core",
+		"motion-v/nuxt",
 	],
 	srcDir: "src/",
 	serverDir: "src/server",
@@ -62,6 +64,7 @@ export default defineNuxtConfig({
 	experimental: {
 		typedPages: true,
 		asyncContext: true,
+		inlineRouteRules: true,
 	},
 	image: {
 		domains: [
