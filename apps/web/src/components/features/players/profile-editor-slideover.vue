@@ -44,7 +44,7 @@ const profileConfig = useProfileConfigStore();
 const loading = ref(false);
 
 const buttonText = ref("Apply");
-const buttonIcon = ref("i-heroicons-pencil-square-20-solid");
+const buttonIcon = ref("i-heroicons-pencil-square");
 
 async function onApplyClick() {
 	loading.value = true;
@@ -53,7 +53,7 @@ async function onApplyClick() {
 	buttonText.value = "Applied!";
 	loading.value = false;
 	setTimeout(() => {
-		buttonIcon.value = "i-heroicons-pencil-square-20-solid";
+		buttonIcon.value = "i-heroicons-pencil-square";
 		buttonText.value = "Apply";
 	}, 2000);
 }

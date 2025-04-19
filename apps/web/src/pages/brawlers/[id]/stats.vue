@@ -115,10 +115,14 @@ filteredMapStore.setFilteredMaps(maps.value);
 						:alt="map.name"
 						class="w-full rounded-b-lg"
 						width="200"
-						:modifiers="map.gameMode.name === 'Brawl Ball' ? { extract: '85_132_500_785' } : { trim: '{}' }"
+						:modifiers="
+							map.gameMode.name === 'Brawl Ball' || map.gameMode.name === 'Brawl Hockey'
+								? { trim: '150;10;150;30', onerror: 'redirect' }
+								: { trim: '30;32;30;32', onerror: 'redirect' }
+						"
 						:height="map.gameMode.name.includes('Showdown') ? 300 : 300"
 						loading="lazy"
-						provider="ipx"
+						provider="cloudflare"
 					/>
 				</div>
 			</UCard>

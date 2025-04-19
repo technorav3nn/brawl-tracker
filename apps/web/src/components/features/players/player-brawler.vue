@@ -55,23 +55,17 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${ran
 			<!-- move bar based on whether rank is max to fix formatting issue -->
 			<div>
 				<Image
-					v-if="!isMaxTier"
-					class="-translate-x-2.5"
-					width="120"
-					height="70"
-					src="/icons/player/trophy-bars/normal-tier.png"
-				/>
-				<Image
-					v-else
-					class="-translate-x-2.5 object-fill!"
+					v-if="isMaxTier"
+					class="-translate-x-5 object-fill!"
 					width="140"
 					height="70"
 					src="/icons/player/trophy-bars/max-tier-full.png"
 				/>
+				<Image v-else class="-translate-x-2.5" width="120" height="70" src="/icons/player/trophy-bars/normal-tier.png" />
 				<p
 					:class="[
 						isMaxTier
-							? 'top-[48.9%]  translate-x-[calc(-50%+0.3rem)] text-white'
+							? 'top-[48.9%]  translate-x-[calc(-50%+0rem)] text-white'
 							: 'top-[50%] translate-x-[calc(-50%+0.8rem)] text-yellow-400 ',
 					]"
 					class="brawlstars-text absolute left-[50%] w-[120px] translate-y-[-50%] text-center font-brawlstars text-[16px]"

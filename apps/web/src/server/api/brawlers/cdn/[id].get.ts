@@ -2,7 +2,7 @@ import { getBrawlerData, isNameNormalized } from "@brawltracker/cdn";
 
 export default cachedEventHandler(
 	async (event) => {
-		const id = event.context.params!.name!;
+		const id = event.context.params!.id!;
 		if (!isNameNormalized(id)) {
 			throw createError({ statusCode: 500, statusMessage: "Name not normalized" });
 		}
@@ -14,8 +14,6 @@ export default cachedEventHandler(
 		}
 	},
 	{
-		swr: true,
 		maxAge: 60 * 60 * 24, // 1 day
-		name: "brawler-cdn-data",
 	}
 );

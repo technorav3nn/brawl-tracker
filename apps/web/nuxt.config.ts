@@ -11,11 +11,13 @@ export default defineNuxtConfig({
 		"@nuxt/image",
 		"@nuxt/content",
 		"@nuxtjs/turnstile",
+		"@nuxtjs/seo",
+		"@nuxthub/core",
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
 		"nuxt-time",
-		"nuxt-appwrite",
 		"@hebilicious/vue-query-nuxt",
+		"motion-v/nuxt",
 	],
 	srcDir: "src/",
 	serverDir: "src/server",
@@ -25,10 +27,14 @@ export default defineNuxtConfig({
 	future: {
 		compatibilityVersion: 4,
 	},
-	compatibilityDate: "2024-07-18",
+	compatibilityDate: "2024-11-01",
 	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
 	devtools: {
 		enabled: true,
+	},
+	hub: {
+		cache: true,
+		kv: true,
 	},
 	routeRules: {},
 	fonts: {
@@ -58,6 +64,7 @@ export default defineNuxtConfig({
 	experimental: {
 		typedPages: true,
 		asyncContext: true,
+		inlineRouteRules: true,
 	},
 	image: {
 		domains: [
@@ -78,7 +85,9 @@ export default defineNuxtConfig({
 			600: 600,
 		},
 		provider: "none",
-		ipx: {},
+		cloudflare: {
+			baseURL: "https://brawlbase.deathblows.xyz",
+		},
 	},
 	colorMode: {
 		fallback: "dark",
@@ -92,6 +101,7 @@ export default defineNuxtConfig({
 				width: 24,
 			},
 		],
+		serverBundle: "remote",
 	},
 	imports: {
 		dirs: ["queries"],
@@ -125,7 +135,10 @@ export default defineNuxtConfig({
 		project: "6786db24001e31cc452a",
 	},
 	nitro: {
-		preset: process.env.VERCEL ? "vercel" : process.env.CF ? "cloudflare" : "node-server",
+		cloudflare: {
+			deployConfig: true,
+			nodeCompat: true,
+		},
 	},
 	sourcemap: false,
 	alias: {

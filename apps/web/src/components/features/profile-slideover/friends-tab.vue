@@ -53,6 +53,7 @@ const closeSlideover = () => emit("close", true);
 				v-model="rawSearch"
 				:disabled="status === 'pending'"
 				class="mt-4 w-[56%]"
+				:ui="{}"
 				placeholder="Search friends"
 				icon="i-heroicons-magnifying-glass-20-solid"
 			/>

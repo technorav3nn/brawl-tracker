@@ -26,7 +26,7 @@ useHead({
 	</Teleport>
 	<UApp>
 		<AppHeader />
-		<UMain>
+		<UMain class="relative">
 			<NuxtLayout>
 				<NuxtPage />
 			</NuxtLayout>
