@@ -10,7 +10,7 @@ export default eventHandler(async (event) => {
 	}
 
 	const { scidAccountToken } = useRuntimeConfig(event);
-	const sessionToken = await getCachedScidSessionToken(scidAccountToken);
+	const sessionToken = await getCachedScidSessionToken(event, scidAccountToken);
 
 	if (!sessionToken?.ok) {
 		throw createError({

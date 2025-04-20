@@ -1,4 +1,4 @@
-import { createSessionClient } from "$lib/appwrite";
+import { createSessionClient } from "$server/utils/appwrite";
 import { getUser } from "$server/db/users/actions";
 import type { JSONSavedPlayer } from "$server/db/users/types";
 

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createSessionClient } from "$lib/appwrite";
+import { createSessionClient } from "$server/utils/appwrite";
 import { BACKGROUNDS } from "$lib/backgrounds";
 import { upsertProfileDoc } from "$server/db/users/actions";
 

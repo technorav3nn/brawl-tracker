@@ -2,16 +2,12 @@
 import type { ButtonProps } from "#ui/types";
 import type { PageFeatureProps } from "#ui-pro/types";
 
-const title = "BrawlBase - The Intuitive Brawl Stars Stats Site";
+const title = "BrawlBase: The Intuitive Brawl Stars Stats Site";
 const description = "BrawlBase is an open-source, comprehensive statistics and utilities site for Brawl Stars.";
 
 useSeoMeta({
 	title,
-	titleTemplate: "%s · BrawlBase",
 	description,
-	ogTitle: title,
-	ogDescription: description,
-	ogSiteName: "BrawlBase",
 });
 
 const brawlerPageHeroFeatures: PageFeatureProps[] = [
@@ -61,23 +57,23 @@ const mainHeroLinks: ButtonProps[] = [
 ];
 
 const slideOneImages = [
-	"/landing/brawlers-page-light.png",
-	"/landing/player-light.png",
-	"/landing/leaderboards-brawlers-light.png",
+	"/landing/brawlers-page-light.webp",
+	"/landing/player-light.webp",
+	"/landing/leaderboards-brawlers-light.webp",
 ];
-const slideTwoImages = ["/landing/club-light.png", "/landing/club-megapig-light.png", "/landing/player-brawler-light.png"];
+const slideTwoImages = ["/landing/club-light.webp", "/landing/club-megapig-light.webp", "/landing/player-brawler-light.webp"];
 const slideThreeImages = [
-	"/landing/brawl-news-light.png",
-	"/landing/brawl-news-post-light.png",
-	"/landing/settings-light.png",
-	"/landing/events-light.png",
+	"/landing/brawl-news-light.webp",
+	"/landing/brawl-news-post-light.webp",
+	"/landing/settings-light.webp",
+	"/landing/events-light.webp",
 ];
 </script>
 
 <template>
 	<LandingHeroBackground class="absolute -top-px w-full shrink-0 text-(--ui-primary) transition-all" />
 
-	<UPageHero :ui="{ container: 'lg:py-45' }">
+	<UPageHero :ui="{ container: 'py-45!' }">
 		<template #title>
 			<Motion
 				asChild
@@ -133,6 +129,7 @@ const slideThreeImages = [
 		</template> 
 		-->
 	</UPageHero>
+
 	<UPageSection
 		title="Explore Every Brawler"
 		description="BrawlBase is the best way to view every single brawler in the game, and see extensive details on all of them!"
@@ -147,7 +144,7 @@ const slideThreeImages = [
 		]"
 	>
 		<NuxtImg
-			src="/landing/brawlers-page-hero.png"
+			src="/landing/brawlers-page-hero.webp"
 			width="400"
 			height="500"
 			alt="Illustration"
@@ -158,10 +155,10 @@ const slideThreeImages = [
 				v-for="(feature, index) in brawlerPageHeroFeatures"
 				:key="index"
 				asChild
-				:initial="{ opacity: 0, transform: 'translateX(-10px)' }"
-				:whileInView="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0.1 + 0.25 * index, duration: 0.5 }"
-				:inViewOptions="{ once: true }"
+				:initial="{ opacity: 0, transform: 'translateX(-20px)' }"
+				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
+				:transition="{ delay: 0.4 + 0.2 * index }"
+				:in-view-options="{ once: true }"
 			>
 				<UPageFeature v-bind="feature" class="opacity-0" />
 			</Motion>
@@ -182,7 +179,7 @@ const slideThreeImages = [
 		]"
 	>
 		<NuxtImg
-			src="/landing/players-death_blows-hero.png"
+			src="/landing/players-death_blows-hero.webp"
 			width="400"
 			height="420"
 			alt="Death_Blows's profile, the creator of BrawlBase"
@@ -193,10 +190,10 @@ const slideThreeImages = [
 				v-for="(feature, index) in playerPageHeroFeatures"
 				:key="index"
 				asChild
-				:initial="{ opacity: 0, transform: 'translateX(10px)' }"
-				:whileInView="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0.1 + 0.25 * index, duration: 0.5 }"
-				:inViewOptions="{ once: true }"
+				:initial="{ opacity: 0, transform: 'translateX(20px)' }"
+				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
+				:transition="{ delay: 0.4 + 0.2 * index }"
+				:in-view-options="{ once: true }"
 			>
 				<UPageFeature v-bind="feature" class="opacity-0" />
 			</Motion>
@@ -213,9 +210,9 @@ const slideThreeImages = [
 		<UPageGrid>
 			<Motion
 				asChild
-				:initial="{ opacity: 0, transform: 'translateY(10px)' }"
-				:while-in-view="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0.1, duration: 0.5 }"
+				:initial="{ opacity: 0, transform: 'translateY(20px)' }"
+				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
+				:transition="{ delay: 0.4 + 0.2 * 0 }"
 				:in-view-options="{ once: true }"
 			>
 				<UPageCard
@@ -228,9 +225,9 @@ const slideThreeImages = [
 			</Motion>
 			<Motion
 				asChild
-				:initial="{ opacity: 0, transform: 'translateY(10px)' }"
-				:while-in-view="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0.4, duration: 0.5 }"
+				:initial="{ opacity: 0, transform: 'translateY(20px)' }"
+				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
+				:transition="{ delay: 0.4 + 0.2 * 1 }"
 				:in-view-options="{ once: true }"
 			>
 				<UPageCard
@@ -243,9 +240,9 @@ const slideThreeImages = [
 			</Motion>
 			<Motion
 				asChild
-				:initial="{ opacity: 0, transform: 'translateY(10px)' }"
-				:while-in-view="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0.7, duration: 0.5 }"
+				:initial="{ opacity: 0, transform: 'translateY(20px)' }"
+				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
+				:transition="{ delay: 0.4 + 0.2 * 2 }"
 				:in-view-options="{ once: true }"
 			>
 				<UPageCard
@@ -315,6 +312,8 @@ const slideThreeImages = [
 				<img
 					v-for="image in slideOneImages"
 					:key="image"
+					loading="lazy"
+					decoding="async"
 					:src="image"
 					width="460"
 					height="258"
@@ -332,6 +331,8 @@ const slideThreeImages = [
 				<img
 					v-for="image in slideTwoImages"
 					:key="image"
+					loading="lazy"
+					decoding="async"
 					:src="image"
 					width="460"
 					height="258"
@@ -351,6 +352,8 @@ const slideThreeImages = [
 					v-for="image in slideThreeImages"
 					:key="image"
 					:src="image"
+					loading="lazy"
+					decoding="async"
 					width="460"
 					height="258"
 					:alt="image"

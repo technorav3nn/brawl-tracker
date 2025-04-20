@@ -1,5 +1,5 @@
 import { verifyTag, formatTag } from "@brawltracker/supercell-api-utils";
-import { createAdminClient } from "$lib/appwrite";
+import { createAdminClient } from "$server/utils/appwrite";
 import { findProfileByTag } from "$server/db/users/actions";
 
 export default defineEventHandler(async (event) => {

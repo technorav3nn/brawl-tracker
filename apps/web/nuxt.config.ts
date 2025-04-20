@@ -52,15 +52,35 @@ export default defineNuxtConfig({
 			enableDevtoolsV6Plugin: true,
 		},
 	},
-	app: {
-		head: {
-			htmlAttrs: { lang: "en" },
-			meta: [
-				{ name: "theme-color", content: "#000000" },
-				{ name: "keywords", content: "brawl stars, brawl, stars, brawltrack, brawl track, brawl stats" },
-			],
-		},
+	site: {
+		url: "https://brawlbase.deathblows.xyz",
+		name: "BrawlBase",
+		description: "The hub for everything Brawl Stars",
+		defaultLocale: "en",
+		trailingSlash: false,
+		titleSeparator: " | ",
+		debug: process.env.NODE_ENV !== "production",
 	},
+	robots: {
+		blockNonSeoBots: true,
+		blockAiBots: true,
+	},
+	ogImage: {},
+	seo: {
+		redirectToCanonicalSiteUrl: true,
+	},
+	sitemap: {
+		sources: ["/api/__sitemap__/brawlers"],
+	},
+	// app: {
+	// 	head: {
+	// 		htmlAttrs: { lang: "en" },
+	// 		meta: [
+	// 			{ name: "theme-color", content: "#000000" },
+	// 			{ name: "keywords", content: "brawl stars, brawl, stars, brawltrack, brawl track, brawl stats" },
+	// 		],
+	// 	},
+	// },
 	experimental: {
 		typedPages: true,
 		asyncContext: true,

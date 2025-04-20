@@ -1,8 +1,6 @@
 import { listProfiles, type Friend } from "@brawltracker/supercell-id-api";
 import { chunk, wait } from "$lib/utils/common";
 
-const MAX_SCIDS_PER_REQUEST = 50;
-
 const scids = [
 	"00-e7538add-70a9-40eb-96f1-5bcfdb2fdedf",
 	"01-0ec7f7da-c51c-4e85-99f6-6b781abd66b2",
@@ -160,7 +158,7 @@ const scids = [
 export default defineEventHandler(async (event) => {
 	const { scidAccountToken } = useRuntimeConfig(event);
 
-	const sessionToken = await getCachedScidSessionToken(scidAccountToken);
+	const sessionToken = await getCachedScidSessionToken(event, scidAccountToken);
 
 	const chunks = chunk(scids, 50);
 

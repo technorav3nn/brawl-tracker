@@ -5,17 +5,6 @@ const router = useRouter();
 router.afterEach(() => {
 	indicatorState.value = true;
 });
-
-const colorMode = useColorMode();
-const color = computed(() => (colorMode.value === "dark" ? "#020420" : "white"));
-useHead({
-	titleTemplate: "%s · BrawlBase",
-	meta: [{ name: "theme-color", content: color.value }],
-	title: "BrawlBase - Brawl Stars Stats",
-});
-
-// const nuxt = useNuxtApp();
-// const indicator = useLoadingIndicator();
 </script>
 <!-- color="repeating-linear-gradient(to right, rgb(var(--color-primary-DEFAULT)) 0%, var(--primary-lighter) 50%, var(--primary-light) 100%)" -->
 
