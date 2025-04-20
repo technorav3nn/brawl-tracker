@@ -1,5 +1,5 @@
 import { ID, Query } from "node-appwrite";
-import { createAdminClient } from "$lib/appwrite";
+import { createAdminClient } from "$server/utils/appwrite";
 import { SESSION_COOKIE } from "$lib/constants";
 import { initalizeUser } from "$server/db/users/actions";
 

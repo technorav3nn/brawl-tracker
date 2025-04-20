@@ -14,10 +14,13 @@ export default defineEventHandler(async (event) => {
 	const { accountHighLowId } = data;
 
 	const { scidAccountToken } = useRuntimeConfig(event);
-	const sessionToken = await getCachedScidSessionToken(scidAccountToken);
+	const sessionToken = await getCachedScidSessionToken(event, scidAccountToken);
 	if (!sessionToken?.ok) {
 		throw createError({ status: 500, message: "Failed to get session token" });
 	}
+
+	console.log("accountHighLowId", accountHighLowId);
+	console.log("sessionToken", sessionToken.token);
 
 	const initalProfileData = await listProfiles(sessionToken.token, [accountHighLowId], "appAccountIds");
 	if (
@@ -30,7 +33,7 @@ export default defineEventHandler(async (event) => {
 
 	const initialProfile = initalProfileData.data.profiles[0];
 	try {
-		return await getProfile(sessionToken.token, initialProfile.scid, "scid");
+		return await getProfile(sessionToken.token, initialProfile?.scid, "scid");
 	} catch {
 		throw createError({ status: 500, message: "Failed to get profile" });
 	}

@@ -1,5 +1,5 @@
-import { createAdminClient } from "$lib/appwrite";
 import { SESSION_COOKIE } from "$lib/constants";
+import { createAdminClient } from "$server/utils/appwrite";
 
 export default defineEventHandler(async (event) => {
 	const formData = await readFormData(event);

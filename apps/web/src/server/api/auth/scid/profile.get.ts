@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
 	if (!query.success) throw query.error.issues;
 
 	const { scidAccountToken } = useRuntimeConfig(event);
-	const sessionToken = await getCachedScidSessionToken(scidAccountToken);
+	const sessionToken = await getCachedScidSessionToken(event, scidAccountToken);
 	if (!sessionToken) {
 		throw createError({ statusCode: 500, statusMessage: "Failed to retrieve session" });
 	}

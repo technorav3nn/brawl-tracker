@@ -1,4 +1,4 @@
-import { createSessionClient } from "$lib/appwrite";
+import { createSessionClient } from "$server/utils/appwrite";
 import { SESSION_COOKIE } from "$lib/constants";
 
 export default defineEventHandler(async (event) => {

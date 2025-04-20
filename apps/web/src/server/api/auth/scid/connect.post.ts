@@ -1,7 +1,7 @@
 import { listProfiles } from "@brawltracker/supercell-id-api";
 import { getCdnUrlForAvatarId, idToHighLow, tagToId } from "@brawltracker/supercell-id-api/browser";
 import { z } from "zod";
-import { createSessionClient } from "$lib/appwrite";
+import { createSessionClient } from "$server/utils/appwrite";
 import { upsertProfileDoc, userWithTagExists } from "$server/db/users/actions";
 import { getCachedScidSessionToken } from "$server/utils/session-token";
 

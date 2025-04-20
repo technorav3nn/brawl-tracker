@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
 	if (!verifyTag(query.tag as string)) {
 		if (query.isScid) {
 			const { scidAccountToken } = useRuntimeConfig(event);
-			const sessionToken = (await getCachedScidSessionToken(scidAccountToken))!.token;
+			const sessionToken = (await getCachedScidSessionToken(event, scidAccountToken))!.token;
 
 			const player = await listProfiles(sessionToken, [query.tag as string], "handles");
 			if (!player.ok || player.data.profiles.length === 0) {

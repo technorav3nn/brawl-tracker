@@ -96,7 +96,7 @@ const linksWithoutIcons = computed(() => links.value.map((link) => ({ ...link, i
 	<UHeader>
 		<template #left>
 			<NuxtLink to="/" class="flex items-center">
-				<UIcon name="i-heroicons-star-solid" class="size-6 text-(--ui-primary)" />
+				<NuxtImg src="/favicon.png" width="25" height="25" />
 				<p class="ml-2 text-xl font-bold">Brawl<span class="text-(--ui-primary)">Base</span></p>
 			</NuxtLink>
 		</template>

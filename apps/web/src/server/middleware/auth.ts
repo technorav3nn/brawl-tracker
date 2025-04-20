@@ -1,5 +1,5 @@
 import type { Models } from "node-appwrite";
-import { createSessionClient } from "$lib/appwrite";
+import { createSessionClient } from "$server/utils/appwrite";
 import { omit } from "$lib/utils/common";
 import { getUser } from "$server/db/users/actions";
 import type { User } from "$server/db/users/types";

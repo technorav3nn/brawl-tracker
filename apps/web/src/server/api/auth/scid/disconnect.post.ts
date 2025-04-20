@@ -1,4 +1,4 @@
-import { createSessionClient } from "$lib/appwrite";
+import { createSessionClient } from "$server/utils/appwrite";
 import { upsertProfileDoc } from "$server/db/users/actions";
 
 export default defineEventHandler(async (event) => {

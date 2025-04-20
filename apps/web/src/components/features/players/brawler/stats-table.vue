@@ -71,24 +71,6 @@ const playerStats = [
 		image: { src: "/icons/powerpoints.webp" },
 		color: "text-pink-500! dark:text-pink-400!",
 	},
-	{
-		stat: "# Of Gadgets",
-		value: playerBrawler.value?.gadgets.length,
-		image: { src: "/icons/player/brawler-powers/gadget.png" },
-		color: "text-green-500! dark:text-green-400!",
-	},
-	{
-		stat: "# Of Star Powers",
-		value: playerBrawler.value?.starPowers.length,
-		image: { src: "/icons/player/brawler-powers/starpower.png" },
-		color: "text-amber-500! dark:text-amber-400!",
-	},
-	{
-		stat: "# Of Gears",
-		value: playerBrawler.value?.gears.length,
-		image: { src: "/icons/player/brawler-powers/gear.png" },
-		color: "text-sky-500! dark:text-sky-400!",
-	},
 ];
 </script>
 
