@@ -1,6 +1,9 @@
 import type { H3Event } from "h3";
 import { Client, Account, Databases, Users } from "node-appwrite";
 
+// Appwrite auth was gutted but I plan on using it for functions and
+// Object storage in the future
+
 export const SESSION_COOKIE = "brawltrack";
 
 export function createAdminClient() {

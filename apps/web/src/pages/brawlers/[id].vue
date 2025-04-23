@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type BrawlApiBrawler } from "@brawltracker/brawl-api";
+import type { CdnBrawler } from "@brawltracker/cdn/v2";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
 
 definePageMeta({
@@ -36,7 +37,7 @@ if (cdnError.value) {
 	});
 }
 
-watchEffect(() => brawlerStore.setBrawlerCdnData(brawlerCdnData.value!));
+watchEffect(() => brawlerStore.setBrawlerCdnData(brawlerCdnData.value as unknown as CdnBrawler));
 watchEffect(() => brawlerStore.setBrawler(brawler.value!));
 
 function createTabLink(tab: string) {
@@ -78,9 +79,9 @@ const breadcrumbLinks = [
 </script>
 
 <template>
-	<UContainer v-if="brawler">
-		<UPage>
-			<UPageBody class="space-y-0">
+	<UPage v-if="brawler">
+		<UPageBody class="space-y-0">
+			<UContainer>
 				<UBreadcrumb :items="breadcrumbLinks" class="mb-6" />
 				<div class="flex flex-row gap-3">
 					<NuxtImg
@@ -107,24 +108,34 @@ const breadcrumbLinks = [
 						</div>
 					</div>
 				</div>
-				<p class="mt-3 mb-2 max-w-4xl text-sm text-neutral-500 lg:text-base dark:text-neutral-400">
+				<p class="mt-3 mb-3 max-w-4xl text-sm text-neutral-500 sm:mb-1 lg:text-base dark:text-neutral-400">
 					{{ brawler.description }}
 				</p>
-				<UNavigationMenu
-					variant="pill"
-					highlight
-					:items="links"
-					:ui="{
-						link: 'after:h-[2px] after:absolute after:-bottom-2 after:inset-x-0 ',
-						linkLabel: 'overflow-clip text-wrap',
-						linkLeadingIcon: 'size-[15px] sm:size-5',
-					}"
-					class="border-(--ui-border) data-[orientation=horizontal]:w-full data-[orientation=horizontal]:border-b data-[orientation=vertical]:w-48"
-				/>
+			</UContainer>
+			<USeparator class="sm:hidden" />
+
+			<section class="border-b border-neutral-200 dark:border-neutral-800">
+				<UContainer>
+					<UNavigationMenu
+						variant="pill"
+						highlight
+						:items="links"
+						:ui="{
+							link: 'after:h-[2px] after:absolute after:-bottom-2 after:inset-x-0 ',
+							linkLabel: 'overflow-clip text-wrap',
+							linkLeadingIcon: 'size-[15px] sm:size-5',
+						}"
+						class="hidden w-full max-w-full! sm:block"
+					/>
+
+					<UNavigationMenu orientation="vertical" :items="links" class="block py-2 sm:hidden" />
+				</UContainer>
+			</section>
+			<UContainer>
 				<div class="mt-2">
 					<NuxtPage />
 				</div>
-			</UPageBody>
-		</UPage>
-	</UContainer>
+			</UContainer>
+		</UPageBody>
+	</UPage>
 </template>

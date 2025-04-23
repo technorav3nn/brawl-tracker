@@ -1,4 +1,4 @@
 export default defineNuxtRouteMiddleware(async () => {
-	const user = useUser();
-	if (!user.value) return await navigateTo("/");
+	const { data: session } = await authClient.useSession(useFetch);
+	if (!session.value) return await navigateTo("/");
 });

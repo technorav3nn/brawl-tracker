@@ -58,10 +58,11 @@ function openScidSlideover() {
 	slideover.create(LazyAppViewScidSlideover, { props: { playerTag: player.value.tag } }).open();
 }
 
-const user = useDatabaseUser();
+const { data: session } = await authClient.useSession(useFetch);
+
 function openProfileEdtiorSlideover() {
 	if (!player.value) return;
-	if (player.value.tag !== user?.value?.profile.tag) return;
+	if (player.value.tag !== session?.value?.user.tag) return;
 	slideover.create(LazyPlayersProfileEditorSlideover, { props: { player: player.value } }).open();
 }
 
@@ -135,12 +136,12 @@ onUnmounted(() => {
 					<PlayersLegacyInformationPopover />
 					<UTooltip
 						:delayDuration="0"
-						:text="player.tag !== user?.profile.tag ? 'You can only edit your own profile' : 'Edit Profile'"
+						:text="player.tag !== session?.user.tag ? 'You can only edit your own profile' : 'Edit Profile'"
 					>
 						<UButton
 							icon="i-heroicons-pencil"
 							size="md"
-							:disabled="player.tag !== user?.profile.tag"
+							:disabled="player.tag !== session?.user.tag"
 							class="bg-primary-400! text-black dark:bg-(--ui-primary)!"
 							@click="openProfileEdtiorSlideover"
 						/>

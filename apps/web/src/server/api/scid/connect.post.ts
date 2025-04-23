@@ -1,8 +1,7 @@
+import { formatTag } from "@brawltracker/supercell-api-utils";
 import { listProfiles } from "@brawltracker/supercell-id-api";
 import { getCdnUrlForAvatarId, idToHighLow, tagToId } from "@brawltracker/supercell-id-api/browser";
 import { z } from "zod";
-import { createSessionClient } from "$server/utils/appwrite";
-import { upsertProfileDoc, userWithTagExists } from "$server/db/users/actions";
 import { getCachedScidSessionToken } from "$server/utils/session-token";
 
 const schema = z.object({
@@ -29,7 +28,7 @@ export default defineEventHandler(async (event) => {
 
 	// Icon is valid
 	const { scidAccountToken } = useRuntimeConfig(event);
-	const sessionToken = await getCachedScidSessionToken(scidAccountToken);
+	const sessionToken = await getCachedScidSessionToken(event, scidAccountToken);
 	const profiles = (await listProfiles(
 		sessionToken!.token,
 		[idToHighLow(Number(tagToId(player.tag))).join("-")],
@@ -41,25 +40,29 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const profile = profiles.data.profiles[0];
-	const { databases } = createSessionClient(event);
-	const userExists = await userWithTagExists(player.tag, databases);
 
-	if (userExists) {
+	const formattedTag = formatTag(player.tag);
+
+	const { db } = useDrizzle();
+	const existingUser = await db.query.user.findFirst({
+		where: (user) => eq(user.tag, formattedTag),
+	});
+
+	if (existingUser) {
 		throw createError({ status: 409, statusMessage: "User with tag already exists, only one account can have one player tag" });
 	}
 
+	const auth = useServerAuth();
 	try {
-		await upsertProfileDoc(
-			event.context.user.$id,
-			{
-				avatar: profile?.imageURL ?? getCdnUrlForAvatarId(profile.avatarImage),
-				isConnected: true,
+		await auth.api.updateUser({
+			body: {
+				image: profile?.imageURL ?? getCdnUrlForAvatarId(profile.avatarImage),
 				scid: profile.scid,
-				username: profile.name,
-				tag: player.tag,
+				name: profile.name,
+				tag: formattedTag,
 			},
-			databases
-		);
+			headers: event.headers,
+		});
 	} catch (error) {
 		console.error(error);
 		throw createError({ status: 500, statusMessage: "Failed to update profile" });

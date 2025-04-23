@@ -1,20 +1,22 @@
-import type { Models } from "node-appwrite";
-import { createSessionClient } from "$server/utils/appwrite";
-import { omit } from "$lib/utils/common";
-import { getUser } from "$server/db/users/actions";
-import type { User } from "$server/db/users/types";
+import type { User } from "$server/utils/auth";
 
 export default defineEventHandler(async (event) => {
-	const { account, databases } = createSessionClient(event);
-
+	const auth = useServerAuth();
 	try {
+		const headers = event.headers;
+		const session = await auth.api.getSession({
+			headers,
+		});
+		if (!session) {
+			throw createError({
+				status: 401,
+				message: "Unauthorized",
+			});
+		}
+
+		// Inject the user id so it can be used in subsequent requests.
 		// eslint-disable-next-line require-atomic-updates
-		event.context.user = await account.get();
-		// eslint-disable-next-line require-atomic-updates
-		event.context.databaseUser = omit(await getUser(event.context.user.$id, databases), ["savedPlayers"]) as Omit<
-			User,
-			"savedPlayers"
-		>;
+		event.context.user = session.user;
 	} catch {
 		// Ignore error
 	}
@@ -22,7 +24,7 @@ export default defineEventHandler(async (event) => {
 
 declare module "h3" {
 	interface H3EventContext {
-		user?: Models.User<Models.Preferences>;
+		user?: User;
 		databaseUser?: Omit<User, "savedPlayers">;
 	}
 }

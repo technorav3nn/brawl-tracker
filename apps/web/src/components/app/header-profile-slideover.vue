@@ -12,20 +12,17 @@ const links = computed<NavigationMenuItem[]>(() => [
 		icon: "i-heroicons-user-circle-20-solid",
 		onSelect: () => setTab("profile"),
 		active: tab.value === "profile",
-		label: "",
 	},
 	{
 		icon: "i-heroicons-users-20-solid",
 		onSelect: () => setTab("friends"),
 		active: tab.value === "friends",
-		label: "",
 	},
 
 	{
 		icon: "i-heroicons-cog-20-solid",
 		onSelect: () => setTab("settings"),
 		active: tab.value === "settings",
-		label: "",
 	},
 ]);
 
@@ -42,7 +39,6 @@ function setTab(value: (typeof tabs)[number]) {
 }
 
 const router = useRouter();
-const user = useUser();
 
 router.beforeResolve((to, from, next) => {
 	if (to.path === "/settings" && from.path === router.currentRoute.value.path && import.meta) {
@@ -52,18 +48,17 @@ router.beforeResolve((to, from, next) => {
 	next();
 });
 
-const userInfo = useDatabaseUser();
-const supercellInfo = computed(() => userInfo.value?.profile);
+const { data: session } = await authClient.useSession(useFetch);
+const user = computed(() => session.value?.user);
+
 const loading = ref(false);
 
 async function logout() {
 	loading.value = true;
-	await $fetch("/api/auth/signout", { method: "POST" });
+	await authClient.signOut();
 	emit("close", true);
-	user.value = null;
 	loading.value = false;
 	await navigateTo("/");
-	reloadNuxtApp();
 }
 </script>
 
@@ -71,18 +66,11 @@ async function logout() {
 	<USlideover v-if="user" :ui="{ body: 'overflow-y-auto! p-0!', content: 'max-w-sm', header: 'min-h-[4rem]! p-0 px-4!' }">
 		<template #title>
 			<div class="flex items-center">
-				<NuxtImg
-					v-if="supercellInfo?.isConnected"
-					:src="supercellInfo.avatar!"
-					width="40"
-					height="40"
-					class="h-10 w-10 rounded-full"
-					loading="eager"
-				/>
+				<NuxtImg v-if="user.image" :src="user.image" width="40" height="40" class="h-10 w-10 rounded-full" loading="eager" />
 				<UAvatar v-else :alt="user?.name" />
 				<div class="inline-flex flex-col">
 					<span class="ml-2 text-xl font-bold">{{ user?.name }}</span>
-					<span v-if="supercellInfo" class="ml-2 text-xs text-neutral-500 dark:text-neutral-400">{{ supercellInfo.tag }}</span>
+					<span v-if="user.tag" class="ml-2 text-xs text-neutral-500 dark:text-neutral-400">{{ user.tag }}</span>
 				</div>
 			</div>
 		</template>
@@ -107,10 +95,10 @@ async function logout() {
 						<p class="text-sm text-neutral-500 dark:text-neutral-400">Logged in as {{ user?.name }}</p>
 					</div>
 					<div class="mt-2 flex flex-col gap-2 px-2">
-						<UTooltip :text="!supercellInfo?.isConnected ? 'Connect your Supercell ID to view your profile!' : ''">
+						<UTooltip :text="!user?.scid ? 'Connect your Supercell ID to view your profile!' : ''">
 							<UButton
-								:to="`/players/${encodeURIComponent(supercellInfo?.tag || '')}`"
-								:disabled="!supercellInfo?.isConnected"
+								:to="`/players/${encodeURIComponent(user?.tag || '')}`"
+								:disabled="!user?.scid"
 								color="neutral"
 								variant="subtle"
 								size="lg"
@@ -124,7 +112,7 @@ async function logout() {
 					</div>
 				</div>
 				<div v-if="tab === 'friends'" class="overflow-none">
-					<ProfileSlideoverFriendsTab v-if="supercellInfo?.isConnected" @close="emit('close', true)" />
+					<ProfileSlideoverFriendsTab v-if="user?.scid" @close="emit('close', true)" />
 					<div v-else>
 						<div class="w-full border-b border-neutral-200 px-4 py-5 dark:border-neutral-800">
 							<h1 class="text-2xl font-semibold">Saved Players & Friends</h1>

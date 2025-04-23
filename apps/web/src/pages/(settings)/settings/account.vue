@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { LazyModalsConfirmationModal, LazyAuthImportFriendsModal, LazyAuthScidModal } from "#components";
 
-const user = useUser();
-const databaseUser = useDatabaseUser();
-
 const modal = useOverlay();
 const toast = useToast();
 
@@ -35,14 +32,9 @@ function beginDeleteAccountProcess() {
 }
 
 async function deleteAccount() {
-	user.value = null;
-	await $fetch("/api/auth/delete-account", {
-		method: "DELETE",
-		body: { confirm: true },
-	});
-	reloadNuxtApp();
+	await authClient.deleteUser();
 	await navigateTo("/");
-	toast.add({ title: "Delete account successfully", color: "primary" });
+	toast.add({ title: "Deleted account successfully!", color: "primary" });
 }
 
 function connect() {
@@ -50,7 +42,7 @@ function connect() {
 }
 
 async function disconnect() {
-	const result = await $fetch("/api/auth/scid/disconnect", { method: "POST" });
+	const result = await $fetch("/api/scid/disconnect", { method: "POST" });
 	if (result.success) {
 		toast.add({ title: "Disconnected from Supercell ID!", color: "primary" });
 		reloadNuxtApp();
@@ -62,6 +54,8 @@ async function disconnect() {
 function importFriends() {
 	modal.create(LazyAuthImportFriendsModal).open();
 }
+
+const { data: session } = await authClient.useSession(useFetch);
 </script>
 
 <template>
@@ -74,9 +68,7 @@ function importFriends() {
 		<div>
 			<p class="text-md font-medium">Supercell ID connection</p>
 			<p class="text-sm">Manage your Supercell ID connection</p>
-			<UButton v-if="!databaseUser?.profile.isConnected" size="sm" icon="i-tabler-link" class="mt-2" @click="connect">
-				Connect
-			</UButton>
+			<UButton v-if="!session?.user.scid" size="sm" icon="i-tabler-link" class="mt-2" @click="connect"> Connect </UButton>
 			<UButton v-else size="sm" icon="i-tabler-unlink" class="mt-2" color="error" @click="disconnect">Disconnect</UButton>
 		</div>
 		<div>

@@ -1,25 +1,25 @@
 import { acceptFriendRequest, getFriends, listProfiles, type Friend } from "@brawltracker/supercell-id-api";
 import { getCdnUrlForAvatarId, highLowToId, idToTag } from "@brawltracker/supercell-id-api/browser";
 import type { H3Event } from "h3";
-import { createSessionClient } from "$server/utils/appwrite";
 import { chunk, wait } from "$lib/utils/common";
-import { getUser, upsertUserDoc } from "$server/db/users/actions";
-import type { JSONSavedPlayer } from "$server/db/users/types";
+import { user, type SavedPlayer } from "$server/database/schema";
 
 export default defineEventHandler(async (event) => {
-	const user = event.context.user;
-	if (!user) {
+	if (!event.context.user) {
 		throw createError({ statusCode: 401, statusMessage: "Unauthorized" });
 	}
 
-	const { databases } = createSessionClient(event);
-	const { profile } = await getUser(user.$id, databases);
+	const { db } = useDrizzle();
 
-	if (!profile?.isConnected) {
+	const foundUser = await db.query.user.findFirst({
+		where: eq(user.id, event.context.user.id),
+	});
+
+	if (!foundUser?.scid) {
 		throw createError({ statusCode: 400, message: "SCID not connected" });
 	}
 
-	const { scid } = profile;
+	const { scid } = foundUser;
 	const { scidAccountToken } = useRuntimeConfig(event);
 
 	const sessionToken = await getCachedScidSessionToken(event, scidAccountToken);
@@ -72,20 +72,21 @@ export default defineEventHandler(async (event) => {
 	const json = filteredFriends.map((friend) => {
 		const { playerName, handle, scid } = friend;
 		return {
-			isScid: true,
-			scidData: {
+			scidInfo: {
 				avatar: (friend as any).imageURL ? (friend as any).imageURL : getCdnUrlForAvatarId(friend.avatarImage),
-				name: playerName!,
 				handle,
 				scid,
 			},
 			name: playerName!,
 			tag: idToTag(highLowToId(friend.applicationAccountId!).toString()),
-		} satisfies JSONSavedPlayer;
+		} satisfies SavedPlayer;
 	});
 
 	try {
-		await upsertUserDoc(user.$id, { savedPlayers: JSON.stringify(json) }, databases);
+		await db
+			.update(user)
+			.set({ savedPlayers: [...(foundUser.savedPlayers ?? []), ...json] })
+			.where(eq(user.id, event.context.user.id));
 	} catch {
 		throw createError({ statusCode: 500, message: "Failed to update user" });
 	}
