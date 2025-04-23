@@ -52,7 +52,7 @@
 		"lean-qr": "^2.4.1",
 		"luxon": "^3.5.0",
 		"motion-v": "^1.0.0-beta.2",
-		"node-appwrite": "^15.0.0",
+		"node-appwrite": "^16.0.0",
 		"nuxt-appwrite": "^1.1.1",
 		"pinia": "^2.3.1",
 		"zod": "^3.24.1"
