@@ -1,7 +1,5 @@
 import { z } from "zod";
-import { createSessionClient } from "$server/utils/appwrite";
 import { BACKGROUNDS } from "$lib/backgrounds";
-import { upsertProfileDoc } from "$server/db/users/actions";
 
 const schema = z.object({
 	background: z
@@ -16,27 +14,19 @@ export default defineEventHandler(async (event) => {
 		throw createError({ status: 401, message: "Unauthorized" });
 	}
 
-	const { $id } = event.context.user;
 	const { data, success, error } = await readValidatedBody(event, (b) => schema.safeParse(b));
 	if (!success) {
 		throw error.issues;
 	}
 
 	const { background, theme } = data;
-	const { databases } = createSessionClient(event);
-
+	const auth = useServerAuth();
 	try {
-		await upsertProfileDoc(
-			$id,
-			{
-				background: background ?? null,
-				theme: theme ?? null,
-			},
-			databases
-		);
-		return { background, theme };
+		await auth.api.updateUser({ headers: event.headers, body: { background, theme } });
 	} catch (error) {
 		console.error(error);
-		throw createError({ status: 500, message: "Failed to update profile" });
+		throw createError({ status: 500, message: "Failed to update user profile config" });
 	}
+
+	return { background, theme };
 });

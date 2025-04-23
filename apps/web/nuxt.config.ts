@@ -9,9 +9,9 @@ export default defineNuxtConfig({
 		"@nuxt/devtools",
 		"@nuxt/fonts",
 		"@nuxt/image",
-		"@nuxt/content",
 		"@nuxtjs/turnstile",
 		"@nuxtjs/seo",
+		"@nuxt/content",
 		"@nuxthub/core",
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
@@ -35,6 +35,7 @@ export default defineNuxtConfig({
 	hub: {
 		cache: true,
 		kv: true,
+		database: true,
 	},
 	routeRules: {},
 	fonts: {
@@ -128,32 +129,24 @@ export default defineNuxtConfig({
 	},
 	runtimeConfig: {
 		appwriteApiToken: "",
-		databaseUrl: "",
+		betterAuthSecret: "",
+		betterAuthUrl: process.env.NODE_ENV === "production" ? "https://brawlbase.deathblows.xyz" : "http://localhost:3000",
 		brawlStarsApiToken: "",
-		discord: {
-			clientId: "",
-			clientSecret: "",
-		},
-		authOrigin: "https://brawl-tracker-pr-1-web.vercel.app",
-		apiEncryptionSecret: "",
 		appwriteEndpoint: "https://cloud.appwrite.io/v1",
 		appwriteProjectId: "6786db24001e31cc452a",
 		scidAccountToken: "",
 		// not private, don't worry im not leaking anything
 		scidAccountId: "85-0e066b52-b348-4256-b6c1-4f12a18f54d9",
-		public: {
-			sentryDsn: "https://76fedfafe72ede2cdf24b27f409a6e62@o4508064842514432.ingest.us.sentry.io/4508064854245376",
-		},
 		turnstile: {
 			// This can be overridden at runtime via the NUXT_TURNSTILE_SECRET_KEY
 			// environment variable.
 			secretKey: "",
 		},
 	},
-	appwrite: {
-		endpoint: "https://cloud.appwrite.io/v1",
-		project: "6786db24001e31cc452a",
-	},
+	// appwrite: {
+	// 	endpoint: "https://cloud.appwrite.io/v1",
+	// 	project: "6786db24001e31cc452a",
+	// },
 	nitro: {
 		cloudflare: {
 			deployConfig: true,

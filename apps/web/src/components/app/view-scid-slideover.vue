@@ -11,7 +11,7 @@ const props = defineProps<{
 const tag = computed(() => props.playerTag);
 
 const nuxtApp = useNuxtApp();
-const { data: scidData, status } = useLazyFetch("/api/auth/scid/profile-by-tag", {
+const { data: scidData, status } = useLazyFetch("/api/scid/profile-by-tag", {
 	query: { accountHighLowId: idToHighLow(Number(tagToId(tag.value))).join("-") },
 	getCachedData: createGetCachedData(nuxtApp),
 });

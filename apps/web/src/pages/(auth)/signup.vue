@@ -11,23 +11,26 @@ const loading = ref(false);
 const token = ref<string>();
 
 async function onSubmit({ username, password, email }: { username: string; password: string; email: string }) {
-	console.log(username, password, email);
+	loading.value = true;
+	await authClient.signUp.email({ name: username, password, email });
+	loading.value = false;
+	await navigateTo("/");
 
-	if (!username || !password || !email) return (validationError.value = "Please fill in all the fields.");
-	if (!token.value) return (validationError.value = "Please complete the captcha.");
-
-	// eslint-disable-next-line n/prefer-global/url-search-params
-	const body = new URLSearchParams({ username, password, email, token: token.value });
-	try {
-		loading.value = true;
-		await $fetch("/api/auth/signup", { method: "POST", body });
-		loading.value = false;
-		reloadNuxtApp();
-	} catch (error) {
-		console.log((error as any).status);
-		validationError.value = (error as any).message;
-		loading.value = false;
-	}
+	// console.log(username, password, email);
+	// if (!username || !password || !email) return (validationError.value = "Please fill in all the fields.");
+	// if (!token.value) return (validationError.value = "Please complete the captcha.");
+	// // eslint-disable-next-line n/prefer-global/url-search-params
+	// const body = new URLSearchParams({ username, password, email, token: token.value });
+	// try {
+	// 	loading.value = true;
+	// 	await $fetch("/api/auth/signup", { method: "POST", body });
+	// 	loading.value = false;
+	// 	reloadNuxtApp();
+	// } catch (error) {
+	// 	console.log((error as any).status);
+	// 	validationError.value = (error as any).message;
+	// 	loading.value = false;
+	// }
 }
 
 const links: ButtonProps[] = [

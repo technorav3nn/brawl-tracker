@@ -25,7 +25,7 @@ const { data: icons } = await useFetch("/api/brawlers/icons");
 const randomIcon = computed(() => {
 	if (!brawlers.value || !icons.value) return;
 	const randomBrawler = brawlers.value[Math.floor(Math.random() * brawlers.value.length)];
-	return icons.value.find((icon) => icon.brawler === randomBrawler.id);
+	return icons.value.find((icon) => icon.brawler === randomBrawler?.id);
 });
 const originalIcon = computed(() =>
 	player ? `https://cdn.brawlify.com/profile-icons/regular/${player.value?.icon.id}.png` : null
@@ -37,7 +37,7 @@ const verifyLoading = ref(false);
 async function verify() {
 	verifyLoading.value = true;
 	errorMessage.value = null;
-	const result = await $fetch("/api/auth/scid/connect", {
+	const result = await $fetch("/api/scid/connect", {
 		method: "POST",
 		body: { originalIcon: player.value?.icon.id.toString(), tag: tag.value, iconToCheck: randomIcon.value?.id.toString() },
 		onResponseError: ({ error }) => {
@@ -78,7 +78,7 @@ async function nextStage() {
 								alt="Supercell ID"
 								width="24"
 								height="24"
-								class="mr-1 inline-block h-[2em] w-[2em] object-scale-down text-[revert]! [mask-size:100%_100%]"
+								class="mr-1 inline-block h-[2em] w-[2em] [mask-size:100%_100%] object-scale-down text-[revert]!"
 							/>
 							Connect Supercell ID
 						</div>

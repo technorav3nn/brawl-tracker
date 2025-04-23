@@ -1,15 +1,10 @@
-import { createSessionClient } from "$server/utils/appwrite";
-import { getUser } from "$server/db/users/actions";
-import type { JSONSavedPlayer } from "$server/db/users/types";
-
 export default defineEventHandler(async (event) => {
-	const user = event.context.user;
-	if (!user) {
+	if (!event.context.user) {
 		throw createError({ statusCode: 401, statusMessage: "Unauthorized" });
 	}
 
-	const { databases } = createSessionClient(event);
+	const { db } = useDrizzle();
+	const user = await db.query.user.findFirst({ where: (user) => eq(user.id, event.context.user!.id) });
 
-	const { savedPlayers } = await getUser(user.$id, databases);
-	return JSON.parse(savedPlayers) as JSONSavedPlayer[];
+	return user?.savedPlayers ?? [];
 });

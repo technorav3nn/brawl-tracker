@@ -1,6 +1,4 @@
 import { verifyTag, formatTag } from "@brawltracker/supercell-api-utils";
-import { createAdminClient } from "$server/utils/appwrite";
-import { findProfileByTag } from "$server/db/users/actions";
 
 export default defineEventHandler(async (event) => {
 	const tag = event.context.params?.id ? decodeURIComponent(event.context.params?.id) : null;
@@ -11,17 +9,12 @@ export default defineEventHandler(async (event) => {
 	}
 
 	const cleanedTag = formatTag(decodeURIComponent(tag));
-	const { databases } = createAdminClient();
+	const { db } = useDrizzle();
 
-	const data = await findProfileByTag(cleanedTag, databases);
-	if (data.documents.length && data.documents[0]?.$id) {
-		const profile = data.documents[0];
-		if (profile) {
-			return {
-				background: profile.background,
-				theme: profile.theme,
-			};
-		}
+	const user = await db.query.user.findFirst({ where: (user) => eq(user.tag, cleanedTag) });
+
+	if (user) {
+		return { background: user.background, theme: user.theme };
 	}
 
 	return {

@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { LazyAppHeaderProfileSlideover } from "#components";
 
-const user = useUser();
-const databaseUser = useDatabaseUser();
-
-const avatar = computed<string | null>(() =>
-	databaseUser.value?.profile.isConnected ? databaseUser.value!.profile.avatar! : null
-);
+const { data: session } = await authClient.useSession(useFetch);
 
 const overlay = useOverlay();
 function onProfileClick() {
@@ -97,15 +92,15 @@ const linksWithoutIcons = computed(() => links.value.map((link) => ({ ...link, i
 		<template #left>
 			<NuxtLink to="/" class="flex items-center">
 				<NuxtImg src="/favicon.png" width="25" height="25" />
-				<p class="ml-2 text-xl font-bold">Brawl<span class="text-(--ui-primary)">Base</span></p>
+				<p class="ml-2 text-xl font-bold">Brawl<span class="text-amber-500 dark:text-amber-400">Base</span></p>
 			</NuxtLink>
 		</template>
 
 		<template #right>
-			<UButton v-if="!user" color="neutral" variant="ghost" class="hidden sm:block" to="/login">Log In</UButton>
-			<UButton v-if="!user" class="hidden sm:block" to="/signup">Sign Up</UButton>
+			<UButton v-if="!session" color="neutral" variant="ghost" class="hidden sm:block" to="/login">Log In</UButton>
+			<UButton v-if="!session" class="hidden sm:block" to="/signup">Sign Up</UButton>
 			<UButton
-				v-if="!user"
+				v-if="!session"
 				class="sm:hidden"
 				color="primary"
 				to="/login"
@@ -113,15 +108,15 @@ const linksWithoutIcons = computed(() => links.value.map((link) => ({ ...link, i
 				square
 			/>
 			<UButton
-				v-if="user"
+				v-if="session"
 				:ui="{ base: 'gap-x-[0.095rem]' }"
 				variant="ghost"
 				color="neutral"
 				class="px-1.5"
 				@click="onProfileClick"
 			>
-				<NuxtImg v-if="avatar" class="rounded-full" width="28" height="28" :src="avatar" />
-				<UAvatar v-else class="h-7 w-7" :alt="user.name" />
+				<NuxtImg v-if="session?.user.image" class="rounded-full" width="28" height="28" :src="session?.user.image" />
+				<UAvatar v-else class="h-7 w-7" :alt="session?.user.name" />
 			</UButton>
 			<UColorModeButton />
 		</template>

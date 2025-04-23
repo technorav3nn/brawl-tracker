@@ -1,11 +1,8 @@
-import { getBrawlerData, isNameNormalized } from "@brawltracker/cdn";
+import { getBrawlerData } from "@brawltracker/cdn/v2";
 
 export default cachedEventHandler(
 	async (event) => {
 		const id = event.context.params!.id!;
-		if (!isNameNormalized(id)) {
-			throw createError({ statusCode: 500, statusMessage: "Name not normalized" });
-		}
 
 		try {
 			return getBrawlerData(encodeURIComponent(id));
