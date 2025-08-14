@@ -12,7 +12,7 @@ function onProfileClick() {
 const links = computed<any[]>(() => [
 	{
 		label: "Brawlers",
-		icon: "i-tabler-swords",
+		icon: "i-heroicons-star",
 		to: "/brawlers",
 	},
 	{
@@ -27,27 +27,27 @@ const links = computed<any[]>(() => [
 	},
 	{
 		label: "Leaderboards",
-		icon: "i-heroicons-chart-bar",
+		icon: "i-heroicons-chart-bar-square",
 		to: "/leaderboards",
 		children: [
 			{
 				label: "Players",
 				to: "/leaderboards/players",
-				icon: "i-heroicons-users",
 				description: "View the best players!",
+				icon: "i-heroicons-users",
 			},
 			{
 				label: "Clubs",
 				to: "/leaderboards/clubs",
-				icon: "i-tabler-shield-star",
 				description: "View the clubs leaderboard!",
+				icon: "i-heroicons-user-group",
 			},
 			{
 				label: "Brawlers",
 				to: "/leaderboards/brawlers",
-				icon: "i-tabler-swords",
 				description: "View the leaderboards of brawlers!",
 				class: "w-full",
+				icon: "i-heroicons-star",
 			},
 		],
 	},
@@ -57,22 +57,16 @@ const links = computed<any[]>(() => [
 		children: [
 			{
 				label: "Clubs",
-				icon: "i-tabler-shield-star",
+				icon: "i-heroicons-user-group",
 				to: "/clubs",
 				description: "Search and view your club or other clubs!",
 			},
 			{
 				label: "Brawl Stars Inbox",
-				icon: "i-heroicons-envelope",
+				icon: "i-heroicons-inbox",
 				to: "/inbox",
 				description: "Read the latest news about Brawl Stars!",
 			},
-			import.meta.env.DEV
-				? {
-						label: "test",
-						to: "/test",
-					}
-				: {},
 		],
 	},
 ]);
@@ -88,7 +82,7 @@ const linksWithoutIcons = computed(() => links.value.map((link) => ({ ...link, i
 </script>
 
 <template>
-	<UHeader>
+	<UHeader mode="drawer">
 		<template #left>
 			<NuxtLink to="/" class="flex items-center">
 				<NuxtImg src="/favicon.png" width="25" height="25" />
@@ -118,7 +112,7 @@ const linksWithoutIcons = computed(() => links.value.map((link) => ({ ...link, i
 				<NuxtImg v-if="session?.user.image" class="rounded-full" width="28" height="28" :src="session?.user.image" />
 				<UAvatar v-else class="h-7 w-7" :alt="session?.user.name" />
 			</UButton>
-			<UColorModeButton />
+			<UColorModeButton class="[&_>span]:fill-amber-100!" />
 		</template>
 
 		<UNavigationMenu

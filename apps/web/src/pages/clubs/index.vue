@@ -53,12 +53,7 @@ const links: (ButtonProps & { click?(): any })[] = [
 		label: "Search For Club",
 		icon: "i-heroicons-magnifying-glass",
 		color: "primary",
-		click: () => {
-			const search = document.querySelector("#search") as HTMLInputElement;
-			if (search) {
-				search.focus();
-			}
-		},
+		to: "/clubs/search",
 		size: "md",
 	},
 	{
@@ -83,8 +78,7 @@ const links: (ButtonProps & { click?(): any })[] = [
 					container: 'lg:py-24 lg:pb-16',
 					title: 'text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl lg:text-5xl',
 				}"
-			>
-			</UPageHero>
+			/>
 
 			<UForm ref="form" :validate="validate as any" :state :validateOn="[]" @submit="void onSubmit()">
 				<UButtonGroup class="mt-4 flex items-start justify-center" size="xl">

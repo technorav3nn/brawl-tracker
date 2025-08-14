@@ -9,6 +9,7 @@ export const configShared = defineConfig({
 		exclude: ["**/node_modules", "**/dist", ".idea", ".git", ".cache", ".yarn", "apps", "src", "*.get.ts"],
 		include: ["__tests__/**/*.{spec,test}.{js,ts}"],
 		passWithNoTests: true,
+		workspace: ["packages/*", "apps/*"],
 	},
 });
 

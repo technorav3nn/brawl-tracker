@@ -5,19 +5,18 @@ const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
 	modules: [
+		"@nuxt/content",
 		"@nuxt/ui-pro",
 		"@nuxt/devtools",
-		"@nuxt/fonts",
 		"@nuxt/image",
 		"@nuxtjs/turnstile",
 		"@nuxtjs/seo",
-		"@nuxt/content",
 		"@nuxthub/core",
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
-		"nuxt-time",
 		"@hebilicious/vue-query-nuxt",
 		"motion-v/nuxt",
+		"nuxt-tiptap-editor",
 	],
 	srcDir: "src/",
 	serverDir: "src/server",
@@ -37,14 +36,19 @@ export default defineNuxtConfig({
 		kv: true,
 		database: true,
 	},
+	content: {},
 	routeRules: {},
 	fonts: {
 		defaults: {
 			preload: true,
+			weights: [400, 500, 600, 700],
 		},
 	},
 	turnstile: {
 		siteKey: "0x4AAAAAAA_43EZEMfkIqXqY",
+	},
+	tiptap: {
+		prefix: "Tiptap",
 	},
 	vueQuery: {
 		// @ts-expect-error - Error with the nuxt module
@@ -72,6 +76,12 @@ export default defineNuxtConfig({
 	},
 	sitemap: {
 		sources: ["/api/__sitemap__/brawlers"],
+	},
+	app: {
+		rootAttrs: {
+			class: "bg-default",
+			"data-vaul-drawer-wrapper": "",
+		},
 	},
 	// app: {
 	// 	head: {
@@ -109,6 +119,7 @@ export default defineNuxtConfig({
 		cloudflare: {
 			baseURL: "https://brawlbase.deathblows.xyz",
 		},
+		[process.env.NODE_ENV === "development" ? "ipx" : ""]: {},
 	},
 	colorMode: {
 		fallback: "dark",
@@ -122,7 +133,7 @@ export default defineNuxtConfig({
 				width: 24,
 			},
 		],
-		serverBundle: "remote",
+		// serverBundle: "remote",
 	},
 	imports: {
 		dirs: ["queries"],

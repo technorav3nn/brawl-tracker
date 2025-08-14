@@ -2,7 +2,7 @@ const playerKeys = {
 	all: () => ["players"] as const,
 	detail: (tag: string) => [...playerKeys.all(), tag] as const,
 	battlelogDetail: (tag: string) => [...playerKeys.detail(tag), "battlelog"] as const,
-	meowApiDetail: (tag: string) => [...playerKeys.detail(tag), "meowApi"] as const,
+	rntApiDetail: (tag: string) => [...playerKeys.detail(tag), "rbt"] as const,
 };
 
 export const playersDetailQuery = (tag: string) => {
@@ -23,10 +23,10 @@ export const playersBattlelogDetailQuery = (tag: string) => {
 	});
 };
 
-export const playersMeowApiDetailQuery = (tag: string) => {
+export const playersRntApiDetailQuery = (tag: string) => {
 	return queryOptions({
-		queryKey: playerKeys.meowApiDetail(tag),
-		queryFn: () => $fetch(`/api/players/${tag.replace("#", "")}/meow-api`),
+		queryKey: playerKeys.rntApiDetail(tag),
+		queryFn: () => $fetch(`/api/players/${tag.replace("#", "")}/rnt-api`),
 		gcTime: 1000 * 120,
 		staleTime: 1000 * 60,
 	});

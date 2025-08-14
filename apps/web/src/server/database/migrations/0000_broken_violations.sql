@@ -15,6 +15,19 @@ CREATE TABLE `account` (
 	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
+CREATE TABLE `guides` (
+	`id` text PRIMARY KEY NOT NULL,
+	`author_id` text NOT NULL,
+	`name` text NOT NULL,
+	`short_description` text NOT NULL,
+	`is_in_depth` integer NOT NULL,
+	`editor_html` text NOT NULL,
+	`brawler_id` text NOT NULL,
+	`created_at` text DEFAULT (current_timestamp) NOT NULL,
+	`updated_at` text DEFAULT (current_timestamp) NOT NULL,
+	FOREIGN KEY (`author_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
 CREATE TABLE `session` (
 	`id` text PRIMARY KEY NOT NULL,
 	`expires_at` integer NOT NULL,
@@ -39,7 +52,8 @@ CREATE TABLE `user` (
 	`scid` text,
 	`tag` text,
 	`theme` text DEFAULT 'amber',
-	`background` text DEFAULT 'yellow-bg'
+	`background` text DEFAULT 'yellow-bg',
+	`savedPlayers` text DEFAULT '[]'
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `user_email_unique` ON `user` (`email`);--> statement-breakpoint

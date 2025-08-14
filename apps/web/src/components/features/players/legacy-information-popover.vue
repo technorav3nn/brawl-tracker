@@ -1,24 +1,23 @@
 <script setup lang="ts">
 import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
 import { Image } from "@unpic/vue";
-import { useMeowApiPlayer } from "./composables";
 
 const hovered = ref(false);
-const { data: meowApiData, status } = useMeowApiPlayer();
+const route = useRoute("players-tag");
+const { data: player, status } = useLazyQuery(playersRntApiDetailQuery(route.params.tag));
+
+const highestSoloPlRank = computed(() => player.value?.stats.find((s) => s.name === "SoloPowerLeague")?.value ?? 0);
+const highestTeamPlRank = computed(() => player.value?.stats.find((s) => s.name === "TeamPowerLeague")?.value ?? 0);
 
 const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/ranked/tiered/${58000000 + rank}.png`;
 </script>
 
 <template>
 	<ClientOnly>
-		<UTooltip
-			v-model:open="hovered"
-			:delayDuration="0"
-			:text="`View Legacy Information ${!meowApiData ? '(Data not avaliable)' : ''}`"
-		>
+		<UTooltip v-model:open="hovered" :delayDuration="0" :text="`View Other Information ${!player ? '(Data not avaliable)' : ''}`">
 			<UPopover arrow :content="{ side: 'left', align: 'start' }">
 				<UButton
-					:disabled="status === 'pending' || !meowApiData"
+					:disabled="status === 'pending' || !player"
 					:loading="status === 'pending'"
 					icon="i-heroicons-information-circle"
 					size="md"
@@ -34,16 +33,17 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/ranked/tiered/${580
 							<UIcon name="i-heroicons-information-circle" class="size-8 text-info-300 dark:text-(--ui-info)" />
 							<p class="text-opacity-80 text-[0.8rem]">This data references things that are no longer in the game</p>
 						</div>
-						<div class="divide-y divide-(--ui-border) *:p-2">
+						<div class="divide-y divide-(--ui-border) *:p-3">
 							<div class="flex justify-between">
 								<p class="text-opacity-80 text-sm font-bold">Legacy Exp Points</p>
-								<p class="text-opacity-80 text-sm font-bold text-sky-500 dark:text-sky-400">{{ meowApiData?.legacyExpPoints }}</p>
+								<p class="text-opacity-80 text-sm font-bold text-sky-500 dark:text-sky-400">
+									{{ player?.stats.find((s) => s.name === "LegacyExpPoints")?.value }}
+								</p>
 							</div>
 							<div class="flex items-center justify-between gap-3">
 								<p class="text-opacity-80 text-sm font-bold">Legacy Rank 35s</p>
-
 								<p class="text-opacity-80 text-sm font-bold text-purple-500 dark:text-purple-400">
-									{{ meowApiData?.legacyRank35s }}
+									{{ player?.stats.find((s) => s.name === "LegacyRank35s")?.value }}
 								</p>
 							</div>
 							<div class="flex items-center justify-between gap-3">
@@ -53,11 +53,7 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/ranked/tiered/${580
 									width="32"
 									height="32"
 									class="size-[32px] object-contain"
-									:src="
-										getRankUrl(
-											(meowApiData?.powerLeagueSoloHighestRank ?? 0) === 0 ? 0 : meowApiData!.powerLeagueSoloHighestRank! - 1
-										)
-									"
+									:src="getRankUrl(highestSoloPlRank === 0 ? 0 : highestSoloPlRank - 1)"
 								/>
 							</div>
 							<div class="flex items-center justify-between gap-3">
@@ -67,11 +63,7 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/ranked/tiered/${580
 									width="32"
 									height="32"
 									class="size-[32px] object-contain"
-									:src="
-										getRankUrl(
-											(meowApiData?.powerLeagueTeamHighestRank ?? 0) === 0 ? 0 : meowApiData!.powerLeagueTeamHighestRank! - 1
-										)
-									"
+									:src="getRankUrl(highestTeamPlRank === 0 ? 0 : highestTeamPlRank - 1)"
 								/>
 							</div>
 						</div>

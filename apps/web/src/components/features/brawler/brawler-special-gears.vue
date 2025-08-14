@@ -11,7 +11,6 @@ const props = defineProps<{
 
 const showSuperRareGears = ref(false);
 
-// eslint-disable-next-line @typescript-eslint/promise-function-async
 const { data: unfilteredGears } = await useAsyncData("gears", () => getAllGears());
 const gears = computed(() => {
 	if (!unfilteredGears.value) return {};
@@ -74,7 +73,9 @@ const gears = computed(() => {
 
 		<div v-else>
 			<div class="flex items-center justify-center">
-				<p class="text-md mt-3 text-center text-neutral-500 dark:text-neutral-400">This brawler doesn't have any special gears</p>
+				<p class="text-md mt-3 mb-3 text-center text-neutral-500 dark:text-neutral-400">
+					This brawler doesn't have any special gears
+				</p>
 			</div>
 		</div>
 	</UCard>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { UTooltip } from "#components";
+import type { TableColumn } from "#ui/types";
 
 const props = defineProps<{
 	title: string;
@@ -11,7 +12,7 @@ const props = defineProps<{
 </script>
 
 <template>
-	<div class="flex flex-col gap-4 rounded-lg border border-(--ui-border) p-4 shadow-sm">
+	<div class="flex flex-col gap-4 shadow-sm">
 		<div class="flex items-center justify-between">
 			<div class="flex items-center gap-2">
 				<NuxtImg
@@ -24,7 +25,7 @@ const props = defineProps<{
 					class="self-center bg-contain object-cover"
 					format="webp"
 				/>
-				<h1 class="text-2xl font-bold tracking-tight">{{ title }}</h1>
+				<h1 class="text-[1.4rem] font-bold tracking-tight">{{ title }}</h1>
 			</div>
 		</div>
 		<div>
@@ -37,29 +38,31 @@ const props = defineProps<{
 					td: 'whitespace-normal! px-2.5 py-2.5',
 					tr: '[&_:nth-child(1)]:text-(--ui-text) [&_:nth-child(1)]:font-semibold!',
 				}"
-				:columns="[
-					{
-						accessorKey: 'label',
-						cell: (d) => {
-							const data = d.row.original;
-							if (data.isLevelStat) {
-								return h(
-									UTooltip,
-									{
-										text: 'This stat is level dependent',
-										delayDuration: 0,
-										content: { align: 'center', side: 'bottom', positionStrategy: 'absolute' },
-									},
-									{
-										default: () => h('p', { class: 'underline decoration-dashed underline-offset-4 !w-fit' }, data.label),
-									}
-								);
-							}
-							return h('p', {}, data.label);
+				:columns="
+					[
+						{
+							accessorKey: 'label',
+							cell: (d) => {
+								const data = d.row.original;
+								if (data.isLevelStat) {
+									return h(
+										UTooltip,
+										{
+											text: 'This stat is level dependent',
+											delayDuration: 0,
+											content: { align: 'center', side: 'bottom', positionStrategy: 'absolute' },
+										},
+										{
+											default: () => h('p', { class: 'underline decoration-dashed underline-offset-4 !w-fit' }, data.label),
+										}
+									);
+								}
+								return h('p', {}, data.label);
+							},
 						},
-					},
-					{ accessorKey: 'value', header: 'Value' },
-				]"
+						{ accessorKey: 'value', header: 'Value' },
+					] as TableColumn<Record<string, any>>[]
+				"
 				:data="tableData"
 				class="w-full"
 			/>

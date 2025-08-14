@@ -14,7 +14,7 @@ const brawlerPageHeroFeatures: PageFeatureProps[] = [
 	{
 		title: "Comprehensive Info & Stats",
 		description: "View every single brawler and see extensive details on all of them!",
-		icon: "i-tabler-swords",
+		icon: "i-heroicons-star",
 		to: "/brawlers",
 	},
 	{
@@ -25,7 +25,7 @@ const brawlerPageHeroFeatures: PageFeatureProps[] = [
 	{
 		title: "Tips & Tricks, Guides, Balance Changes & More",
 		description: "View guides, tips and tricks, balance changes and more for every single brawler!",
-		icon: "i-heroicons-light-bulb",
+		icon: "i-heroicons-book-open",
 	},
 ];
 
@@ -33,7 +33,7 @@ const playerPageHeroFeatures: PageFeatureProps[] = [
 	{
 		title: "Search for Players",
 		description: "Search by Supercell ID Handle (new!) or the simple player tag.",
-		icon: "i-tabler-users",
+		icon: "i-heroicons-users",
 		to: "/players",
 	},
 	{
@@ -44,7 +44,7 @@ const playerPageHeroFeatures: PageFeatureProps[] = [
 	{
 		title: "View Player Stats & Progress",
 		description: "View player stats and progress, including trophies, rank, brawler stats, and more!",
-		icon: "i-heroicons-chart-bar-square",
+		icon: "i-heroicons-presentation-chart-line",
 	},
 ];
 
@@ -53,7 +53,7 @@ const mainHeroLinks: ButtonProps[] = [
 		label: "Get Started",
 		to: "/brawlers",
 	},
-	{ label: "Sign Up", to: "/signup", variant: "subtle", color: "neutral", trailingIcon: "heroicons:arrow-right-20-solid" },
+	{ label: "Sign Up", to: "/signup", variant: "subtle", color: "neutral", trailingIcon: "i-heroicons-arrow-right" },
 ];
 
 const slideOneImages = [
@@ -77,10 +77,9 @@ const slideThreeImages = [
 		<template #title>
 			<Motion
 				asChild
-				:initial="{ opacity: 0, transform: 'translateY(25px)' }"
-				:while-in-view="{ opacity: 1, transform: 'translateX(0)' }"
-				:transition="{ delay: 0, duration: 0.5 }"
-				:in-view-options="{ once: true }"
+				:initial="{ opacity: 0, y: 20 }"
+				:animate="{ opacity: 1, y: 0 }"
+				:transition="{ duration: 0.6, delay: 0.1 }"
 			>
 				<div class="mx-auto max-w-4xl *:leading-11 sm:*:leading-19">
 					Explore Brawl Stars with <span class="text-(--ui-primary)">BrawlBase</span>
@@ -90,10 +89,9 @@ const slideThreeImages = [
 		<template #description>
 			<Motion
 				asChild
-				:initial="{ opacity: 0, transform: 'translateY(25px)' }"
-				:while-in-view="{ opacity: 1, transform: 'translateX(0)' }"
+				:initial="{ opacity: 0, y: 20 }"
+				:animate="{ opacity: 1, y: 0 }"
 				:transition="{ delay: 0.3, duration: 0.5 }"
-				:in-view-options="{ once: true }"
 			>
 				<p>View players, brawlers, events and more with BrawlBase, your home for everything Brawl Stars.</p>
 			</Motion>
@@ -103,16 +101,15 @@ const slideThreeImages = [
 				v-for="(link, index) in mainHeroLinks"
 				:key="index"
 				asChild
-				:initial="{ opacity: 0, transform: 'translateY(25px)' }"
-				:while-in-view="{ opacity: 1, transform: 'translateX(0)' }"
+				:initial="{ opacity: 0, y: 20 }"
+				:animate="{ opacity: 1, y: 0 }"
 				:transition="{ delay: 0.5 + index * 0.25, duration: 0.5 }"
-				:in-view-options="{ once: true }"
 			>
 				<UButton size="xl" v-bind="link" />
 			</Motion>
 		</template>
 
-		<LazyLandingStarsBg :starCount="350" />
+		<LazyLandingStarsBg class="h-[130%]" :starCount="350" />
 
 		<!-- 
 		<template #bottom>
@@ -120,7 +117,7 @@ const slideThreeImages = [
 				<UButton
 					variant="outline"
 					color="neutral"
-					icon="i-heroicons-arrow-down-20-solid"
+					icon="i-heroicons-arrow-down0-solid"
 					square
 					class="pointer-events-none animate-bounce rounded-full"
 					style="animation-duration: 1.2s"
@@ -139,7 +136,7 @@ const slideThreeImages = [
 			{
 				label: 'Explore Brawlers',
 				to: '/brawlers',
-				trailingIcon: 'heroicons:arrow-right-20-solid',
+				trailingIcon: 'i-heroicons-arrow-right',
 			},
 		]"
 	>
@@ -172,7 +169,7 @@ const slideThreeImages = [
 		reverse
 		:links="[
 			{
-				label: 'Start My Search',
+				label: 'Search for a player',
 				to: '/players',
 				icon: 'i-heroicons-magnifying-glass-20-solid',
 			},
@@ -190,7 +187,7 @@ const slideThreeImages = [
 				v-for="(feature, index) in playerPageHeroFeatures"
 				:key="index"
 				asChild
-				:initial="{ opacity: 0, transform: 'translateX(20px)' }"
+				:initial="{ opacity: 0, transform: 'translateX(-20px)' }"
 				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
 				:transition="{ delay: 0.4 + 0.2 * index }"
 				:in-view-options="{ once: true }"
@@ -289,7 +286,7 @@ const slideThreeImages = [
 		</template>
 		<template #links>
 			<UButton to="/brawlers" size="lg">Discover BrawlBase</UButton>
-			<UButton to="/signup" size="lg" variant="outline" trailingIcon="i-lucide-arrow-right" color="neutral"> Sign Up </UButton>
+			<UButton to="/signup" size="lg" variant="outline" trailingIcon="i-heroicons-arrow-right" color="neutral"> Sign Up </UButton>
 		</template>
 
 		<div
@@ -375,7 +372,7 @@ const slideThreeImages = [
 			{
 				label: 'Get Started',
 				to: '/signup',
-				trailingIcon: 'i-heroicons-arrow-right-20-solid',
+				trailingIcon: 'i-heroicons-arrow-right0-solid',
 			},
 			{
 				label: 'Have an account?',

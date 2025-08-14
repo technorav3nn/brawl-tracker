@@ -1,6 +1,8 @@
 import { useBrawlerStore } from "./brawler-store";
 
-export function useKitAbilityStats(ability: "attack" | "hypercharge" | "super") {
+export function useKitAbilityStats(ability: MaybeRefOrGetter<"altAttack" | "altSuper" | "attack" | "hypercharge" | "super">) {
+	// eslint-disable-next-line no-param-reassign
+	ability = toValue(ability);
 	const { brawlerCdnData, level } = storeToRefs(useBrawlerStore());
 	const hasHypercharge = computed(() => Boolean(brawlerCdnData.value!.hypercharge));
 	if (ability === "hypercharge" && !hasHypercharge) {

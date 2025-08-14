@@ -5,6 +5,11 @@ const router = useRouter();
 router.afterEach(() => {
 	indicatorState.value = true;
 });
+
+useSeoMeta({
+	title: "Brawl Base",
+	titleTemplate: "%s | Brawl Base",
+});
 </script>
 <!-- color="repeating-linear-gradient(to right, rgb(var(--color-primary-DEFAULT)) 0%, var(--primary-lighter) 50%, var(--primary-light) 100%)" -->
 

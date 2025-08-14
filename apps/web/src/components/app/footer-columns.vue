@@ -42,9 +42,9 @@ const links = [
 		<template #left>
 			<div class="flex h-full flex-col gap-2.5">
 				<div>
-					<div class="flex flex-row items-center gap-2">
-						<UIcon name="i-heroicons-star-solid" class="size-8 text-(--ui-primary)" />
-						<p class="text-xl font-bold">BrawlBase</p>
+					<div class="flex items-center">
+						<NuxtImg src="/favicon.png" width="25" height="25" />
+						<p class="ml-2 text-xl font-bold">Brawl<span class="text-amber-500 dark:text-amber-400">Base</span></p>
 					</div>
 				</div>
 				<p class="text-xs text-gray-400">

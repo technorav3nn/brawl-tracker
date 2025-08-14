@@ -5,7 +5,6 @@ import { LazyPlayersProfileEditorSlideover, LazyAppViewScidSlideover } from "#co
 import type { NavigationMenuItem } from "#ui/types";
 import { useProfileConfigStore } from "$components/features/players/profile-editor/store";
 import { BACKGROUNDS } from "$lib/backgrounds";
-import { createGetCachedData } from "$lib/utils/nuxt";
 
 definePageMeta({
 	middleware: (to) => {
@@ -19,12 +18,8 @@ definePageMeta({
 
 const route = useRoute("players-tag");
 
-const nuxtApp = useNuxtApp();
-const { data: player } = await useFetch("/api/players", {
-	query: { tag: route.params.tag },
-	key: `players-${route.params.tag}`,
-	getCachedData: createGetCachedData(nuxtApp),
-});
+const { data: player, suspense: playerSuspense } = useQuery(playersDetailQuery(route.params.tag));
+await playerSuspense();
 
 useSeoMeta({
 	titleTemplate: () => `%s · ${player.value ? player.value.name : formatTag(route.params.tag)} · BrawlBase`,
@@ -66,9 +61,8 @@ function openProfileEdtiorSlideover() {
 	slideover.create(LazyPlayersProfileEditorSlideover, { props: { player: player.value } }).open();
 }
 
-const { data: config } = await useFetch(() => `/api/profiles/${encodeURIComponent(route.params.tag)}/config`, {
-	key: `profiles-config-${player.value?.tag}`,
-});
+const { data: config, suspense: configSuspense } = useQuery(profileConfigDetailQuery(route.params.tag));
+configSuspense();
 
 const { background, selectedBackground, theme, selectedTheme } = storeToRefs(useProfileConfigStore());
 const appConfig = useAppConfig();

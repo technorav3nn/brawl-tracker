@@ -3,6 +3,16 @@ export interface ParsedColor {
 	color: string;
 }
 
+export const RARITY_COLOR_CLASSES = {
+	"Ultra Legendary": "ultra-legendary-gradient-text",
+	Legendary: "text-yellow-400",
+	Mythic: "text-red-400",
+	Epic: "text-purple-400",
+	"Super Rare": "text-blue-400",
+	Rare: "text-green-400",
+	Common: "text-gray-400!",
+};
+
 const COLOR_TO_TAILWIND_COLOR: Record<string, string> = {
 	c0: "text-black",
 	c1: "text-white",
@@ -27,7 +37,7 @@ export function parseColorTag(text: string): ParsedColor {
 	const color = colorTag.groups?.text;
 	const insideText = text.replace(/<c\d+>/, "").replace("</c>", "");
 
-	return { insideText, color: COLOR_TO_TAILWIND_COLOR[`c${color}`] ?? COLOR_TO_TAILWIND_COLOR.default };
+	return { insideText, color: COLOR_TO_TAILWIND_COLOR[`c${color}`] ?? COLOR_TO_TAILWIND_COLOR.default! };
 }
 
 export function convertHexToHexColor(hexColor: string) {

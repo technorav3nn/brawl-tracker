@@ -38,4 +38,9 @@ export default defineAppConfig({
 			},
 		},
 	},
+	icon: {
+		customize: (content: string, _name: string, _prefix: string) => {
+			return content.replaceAll(/stroke-width="[^"]*"/g, `stroke-width="1.9"`);
+		},
+	},
 });

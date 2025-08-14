@@ -20,7 +20,6 @@ function getUrlForGear(name: string) {
 	return `${CDN_URL_V2}/gears/${newName}/icon.webp`;
 }
 
-// eslint-disable-next-line @typescript-eslint/promise-function-async
 const { data: gears } = await useAsyncData("gears", () => getAllGears());
 const { data: brawler } = await useFetch("/api/brawlers", {
 	key: "brawlers",
@@ -28,7 +27,7 @@ const { data: brawler } = await useFetch("/api/brawlers", {
 });
 
 const gearsForBrawler = computed(() => {
-	if (!brawler.value ?? !gears.value) return [];
+	if (!brawler.value || !gears.value) return [];
 	return Object.values(gears.value).filter(
 		(g) => g.brawlersAvaliableTo === null || g.brawlersAvaliableTo.includes(brawler.value!.id)
 	);

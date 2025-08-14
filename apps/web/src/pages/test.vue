@@ -1,9 +1,19 @@
 <script setup lang="ts">
-const tag = ref("29JVY92QC");
-const { data: club, status } = useLazyQuery(clubsDetailQuery(tag.value));
+const open = ref(false);
 </script>
 
 <template>
-	<p v-if="status === 'pending'">Loading...</p>
-	<p v-else>data loaded: {{ club?.name }}</p>
+	<UButton @click="open = true">Click</UButton>
+
+	<UiResponsiveModal
+		v-model:open="open"
+		:drawerProps="{ title: 'drawer', ui: { container: 'h-[500px]!' } }"
+		:modalProps="{ title: 'modal' }"
+	>
+		<template #body
+			>Hello world
+
+			<UCard />
+		</template>
+	</UiResponsiveModal>
 </template>

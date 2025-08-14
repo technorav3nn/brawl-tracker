@@ -21,7 +21,7 @@ const links: NavigationMenuItem[] = [
 	{
 		label: "Account",
 		to: "/settings/account",
-		icon: "i-heroicons-cog",
+		icon: "i-heroicons-cog-8-tooth",
 	},
 ];
 </script>

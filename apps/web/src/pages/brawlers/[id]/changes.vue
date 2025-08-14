@@ -64,7 +64,7 @@ const items = computed<(AccordionItem | null)[]>(() =>
 					<span class="truncate">{{ index + 1 }}. {{ item.label }}</span>
 				</template>
 				<template #item="{ item }">
-					<p class="px-2 text-black dark:text-neutral-300">{{ item.content }}</p>
+					<p class="px-2 text-black dark:text-neutral-300">{{ (item as any).content }}</p>
 				</template>
 				<template #leading="{ item }">
 					<NuxtImg

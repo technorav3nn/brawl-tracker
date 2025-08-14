@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { FetchResult } from "#app";
 import { numberToRomanNumerals } from "$lib/utils/common/numbers";
 
 const route = useRoute("players-tag");
@@ -8,11 +7,11 @@ useSeoMeta({
 	title: `Player Profile`,
 });
 
-const { data: player } = useNuxtData<FetchResult<"/api/players", "get">>(`players-${route.params.tag}`);
+const { data: player, suspense: playerSuspense } = useQuery(playersDetailQuery(route.params.tag));
+await playerSuspense();
 
-const { data: brawlers } = await useFetch("/api/brawlers", {
-	key: "brawlers",
-});
+const { data: brawlers, suspense: brawlersSuspense } = useQuery(brawlersQuery());
+await brawlersSuspense();
 
 if (!player.value) {
 	throw createError({ statusCode: 404, message: "Player not found", fatal: true });
@@ -173,7 +172,7 @@ const recordStats = [
 	},
 	{
 		stat: "Brawler Progress",
-		value: `${player.value!.brawlers.length}/${brawlers.value!.list.length} Brawlers`,
+		value: `${player.value!.brawlers.length}/${brawlers.value!.length} Brawlers`,
 		image: { src: "/icons/player/unlocked.png" },
 		color: "text-green-500! dark:text-green-400!",
 		// valueRender: () =>
@@ -217,7 +216,7 @@ const recordStats = [
 						color="error"
 						icon="i-heroicons-exclamation-triangle"
 						title="An error occured when loading the graph"
-						:description="error"
+						:description="error.message"
 					>
 					</UAlert>
 				</template>
@@ -231,7 +230,7 @@ const recordStats = [
 		orientation="vertical"
 	>
 		<div class="pt-0!">
-			<PlayersProgression :player="player!" :brawlers="brawlers!.list" />
+			<PlayersProgression :player="player!" :brawlers="brawlers!" />
 		</div>
 	</UiPageSection>
 </template>

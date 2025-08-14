@@ -2,7 +2,7 @@
 import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
 
 const route = useRoute("players-tag");
-const { data: meowApiData } = useNuxtData(`players-${route.params.tag}-meow-api`);
+const { data: player, status } = useLazyQuery(playersRntApiDetailQuery(route.params.tag));
 
 const RANK_TO_COLOR: Record<number, string> = {
 	// 1, 2, 3: Bronze I, II, III
@@ -37,75 +37,83 @@ const RANK_TO_COLOR: Record<number, string> = {
 	22: "text-green-500! dark:text-green-400! text-base",
 };
 
+const currentRankedRank = computed(() => {
+	if (!player.value) return 0;
+	const { stats } = player.value;
+	return stats.find((s) => s.name === "CurrentRanked")?.value ?? 0;
+});
+const currentRankedElo = computed(() => {
+	if (!player.value) return 0;
+	const { stats } = player.value;
+	return stats.find((s) => s.name === "CurrentRankedPoints")?.value ?? "N/A";
+});
+const highestRankedRank = computed(() => {
+	if (!player.value) return 0;
+	const { stats } = player.value;
+	return stats.find((s) => s.name === "HighestRanked")?.value ?? 0;
+});
+const highestRankedElo = computed(() => {
+	if (!player.value) return 0;
+	const { stats } = player.value;
+	return stats.find((s) => s.name === "HighestRankedPoints")?.value ?? "N/A";
+});
+
 const rankIcon = computed(() => {
-	if (!meowApiData.value) return;
-	const { currentRankedRank } = meowApiData.value;
-	return `${CDN_URL_V2}/brawlify/ranked/tiered/${58000000 + (currentRankedRank ?? 0)}.png`;
+	if (!player.value) return;
+	return `${CDN_URL_V2}/brawlify/ranked/tiered/${58000000 + (currentRankedRank.value ?? 0)}.png`;
 });
 
 const highestRankIcon = computed(() => {
-	if (!meowApiData.value) return;
-	const { highestRankedRank } = meowApiData.value;
-	return `${CDN_URL_V2}/brawlify/ranked/tiered/${58000000 + (highestRankedRank ?? 0)}.png`;
+	if (!player.value) return;
+	return `${CDN_URL_V2}/brawlify/ranked/tiered/${58000000 + (highestRankedRank.value ?? 0)}.png`;
 });
 
-const stats = computed(() =>
-	meowApiData.value
-		? [
-				{
-					stat: "Current Rank",
-					value: "",
-					image: { src: "/icons/ranked/ranked-belt-tilted.png", class: "size-[40px] object-scale-down" },
-					// valueImage: rankIcon.value,
-					// valueImageWidth: 25,
-					// valueImageHeight: 25,
-					// valueImageClass: "size-[40px] object-scale-down",
-					valueImage: {
-						src: rankIcon.value,
-						width: 25,
-						height: 25,
-						class: "size-[40px] object-scale-down",
-					},
-				},
-				{
-					stat: "Current Elo",
-					value: meowApiData.value?.currentRankedElo ?? "N/A",
-					color: RANK_TO_COLOR[meowApiData.value?.currentRankedRank ?? 0],
-					image: { src: "/icons/ranked/ranked-belt-tilted.png", class: "size-[40px] object-scale-down" },
-				},
-				{
-					stat: "Highest Rank",
-					value: "",
-					valueImage: {
-						src: highestRankIcon.value,
-						width: 25,
-						height: 25,
-						class: "size-[40px] object-scale-down",
-					},
-					image: { src: "/icons/ranked/ranked-starr-drop.png", class: "size-[40px] object-scale-down" },
-					// valueImage: highestRankIcon.value,
-					// valueImageWidth: 25,
-					// valueImageHeight: 25,
-					// valueImageClass: "size-[40px] object-scale-down",
-				},
-				{
-					stat: "Highest Elo",
-					value: meowApiData.value?.highestRankedElo ?? "N/A",
-					color: RANK_TO_COLOR[meowApiData.value?.highestRankedRank ?? 0],
-					image: { src: "/icons/ranked/ranked-starr-drop.png", class: "size-[40px] object-scale-down" },
-				},
-			]
-		: []
-);
-
-const loading = ref(!meowApiData.value);
-onMounted(() => {
-	setTimeout(() => {
-		loading.value = false;
-	}, 4000);
-});
+const stats = computed(() => [
+	{
+		stat: "Current Rank",
+		value: "",
+		image: { src: "/icons/ranked/ranked-belt-tilted.png", class: "size-[40px] object-scale-down" },
+		// valueImage: rankIcon.value,
+		// valueImageWidth: 25,
+		// valueImageHeight: 25,
+		// valueImageClass: "size-[40px] object-scale-down",
+		valueImage: {
+			src: rankIcon.value,
+			width: 25,
+			height: 25,
+			class: "size-[40px] object-scale-down",
+		},
+	},
+	{
+		stat: "Current Elo",
+		value: currentRankedElo.value,
+		color: RANK_TO_COLOR[currentRankedRank.value],
+		image: { src: "/icons/ranked/ranked-belt-tilted.png", class: "size-[40px] object-scale-down" },
+	},
+	{
+		stat: "Highest Rank",
+		value: "",
+		valueImage: {
+			src: highestRankIcon.value,
+			width: 25,
+			height: 25,
+			class: "size-[40px] object-scale-down",
+		},
+		image: { src: "/icons/ranked/ranked-starr-drop.png", class: "size-[40px] object-scale-down" },
+		// valueImage: highestRankIcon.value,
+		// valueImageWidth: 25,
+		// valueImageHeight: 25,
+		// valueImageClass: "size-[40px] object-scale-down",
+	},
+	{
+		stat: "Highest Elo",
+		value: highestRankedElo.value ?? "N/A",
+		color: RANK_TO_COLOR[highestRankedRank.value],
+		image: { src: "/icons/ranked/ranked-starr-drop.png", class: "size-[40px] object-scale-down" },
+	},
+]);
 </script>
 
 <template>
-	<PlayersStatTable :loading title="Ranked Stats" :stats />
+	<PlayersStatTable :loading="status === 'pending'" title="Ranked Stats" :stats />
 </template>

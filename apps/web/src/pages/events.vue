@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from "#ui/types";
-import { createGetCachedData } from "$lib/utils/nuxt";
 
 definePageMeta({
 	middleware: (to, from) => {
@@ -60,72 +59,9 @@ if (!selected.value) {
 const item = computed(() => items[Number(selected.value)]!.label!.toLowerCase());
 const type = computed<"active" | "upcoming">(() => item.value as "active" | "upcoming");
 
-const nuxtApp = useNuxtApp();
-const { data, status } = await useLazyAsyncData(
-	`events-${item.value}`,
-	async () => {
-		const [events, brawlers] = await Promise.all([
-			$fetch("/api/events", {
-				query: { type: item.value },
-			}),
-			$fetch("/api/brawlers"),
-		]);
-		return { events, brawlers };
-	},
-	{
-		getCachedData: createGetCachedData(nuxtApp),
-		watch: [item],
-		transform: ({ events, brawlers }) => {
-			const newImages = brawlers.list.reduce(
-				(acc, brawler) => {
-					acc[brawler.id] = {
-						id: brawler.id,
-						imageUrl: brawler.imageUrl2,
-					};
-					return acc;
-				},
-				{} as Record<string, { id: number; imageUrl: string }>
-			);
-			// sort events if their showdown to the top, then the rest doesn't matter, solo showdown first, then duo showdown, then trio showdown
-			const newEvents = events.sort((a, b) => {
-				const aIsShowdown = a.map.gameMode.name.includes("Showdown");
-				const bIsShowdown = b.map.gameMode.name.includes("Showdown");
-				if (aIsShowdown && !bIsShowdown) {
-					return -1;
-				}
+const opts = computed(() => eventsTypeQuery(type.value));
 
-				if (!aIsShowdown && bIsShowdown) {
-					return 1;
-				}
-
-				if (aIsShowdown && bIsShowdown) {
-					const aIsSolo = a.map.gameMode.name.includes("Solo");
-					const bIsSolo = b.map.gameMode.name.includes("Solo");
-					if (aIsSolo && !bIsSolo) {
-						return -1;
-					}
-
-					if (!aIsSolo && bIsSolo) {
-						return 1;
-					}
-
-					const aIsDuo = a.map.gameMode.name.includes("Duo");
-					const bIsDuo = b.map.gameMode.name.includes("Duo");
-					if (aIsDuo && !bIsDuo) {
-						return -1;
-					}
-
-					if (!aIsDuo && bIsDuo) {
-						return 1;
-					}
-				}
-
-				return 0;
-			});
-			return { events: newEvents, images: newImages };
-		},
-	}
-);
+const { data, status } = useLazyQuery(opts);
 </script>
 
 <template>

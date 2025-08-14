@@ -63,7 +63,7 @@ async function logout() {
 </script>
 
 <template>
-	<USlideover v-if="user" :ui="{ body: 'overflow-y-auto! p-0!', content: 'max-w-sm', header: 'min-h-[4rem]! p-0 px-4!' }">
+	<USlideover v-if="user" :ui="{ body: 'overflow-auto! p-0!', content: 'max-w-sm', header: 'min-h-[4rem]! p-0 px-4!' }">
 		<template #title>
 			<div class="flex items-center">
 				<NuxtImg v-if="user.image" :src="user.image" width="40" height="40" class="h-10 w-10 rounded-full" loading="eager" />
@@ -103,7 +103,8 @@ async function logout() {
 								variant="subtle"
 								size="lg"
 								block
-								icon="i-heroicons-information-circle"
+								trailingIcon="i-heroicons-arrow-right"
+								:ui="{ trailingIcon: 'ms-0!' }"
 								@click="emit('close', true)"
 							>
 								View My Profile

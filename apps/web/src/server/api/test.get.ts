@@ -1,5 +1,4 @@
-export default eventHandler(async () => {
-	// eslint-disable-next-line no-promise-executor-return
-	await new Promise((resolve) => setTimeout(resolve, 1000));
-	return Math.random();
+export default eventHandler(async (event) => {
+	console.log(await getCachedScidSessionToken(event, useRuntimeConfig(event).scidAccountToken));
+	return "look in console";
 });

@@ -4,7 +4,9 @@ export interface CdnBrawler {
 	shortDescription: string;
 	fullDescription: string;
 	attack: Attack;
+	altAttack: Attack;
 	super: Attack;
+	altSuper: Attack;
 	hypercharge: Attack;
 	healthByLevel: number[];
 	stats: Stats;
@@ -17,7 +19,7 @@ export interface CdnBrawler {
 	starpowers: Power[];
 }
 
-export type Power = Attack & { id: string };
+export type Power = Attack & { id: string; cooldown?: string };
 
 export interface Attack {
 	name: string;

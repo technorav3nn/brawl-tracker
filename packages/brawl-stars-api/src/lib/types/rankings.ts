@@ -6,7 +6,6 @@
  * @see https://github.com/michaelwittig/node-i18n-iso-countries/blob/master/index.d.ts#L92C22-L92C22
  */
 export type Alpha2CountryCodes =
-	// eslint-disable-next-line @typescript-eslint/sort-type-constituents
 	| "AF"
 	| "AL"
 	| "DZ"

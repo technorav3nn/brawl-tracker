@@ -9,9 +9,8 @@ export const useBrawlerListStore = defineStore("brawler-list", () => {
 	const brawlers = ref<BrawlApiBrawler[]>([]);
 
 	const groupedBrawlers = computed(() => {
-		const searchedBrawlers = brawlers.value.filter((brawler) =>
-			brawler.name.toLowerCase().includes(search.value.toLowerCase())
-		);
+		if (brawlers.value?.length === 0) return [];
+		const searchedBrawlers = brawlers.value.filter((brawler) => brawler.name.toLowerCase().includes(search.value.toLowerCase()));
 		if (groupingMode.value === "None" || groupingMode.value === "") return searchedBrawlers;
 		if (groupingMode.value === "Rarity") {
 			return groupBy(searchedBrawlers, (brawler) => brawler.rarity.name);

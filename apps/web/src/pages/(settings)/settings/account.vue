@@ -68,8 +68,8 @@ const { data: session } = await authClient.useSession(useFetch);
 		<div>
 			<p class="text-md font-medium">Supercell ID connection</p>
 			<p class="text-sm">Manage your Supercell ID connection</p>
-			<UButton v-if="!session?.user.scid" size="sm" icon="i-tabler-link" class="mt-2" @click="connect"> Connect </UButton>
-			<UButton v-else size="sm" icon="i-tabler-unlink" class="mt-2" color="error" @click="disconnect">Disconnect</UButton>
+			<UButton v-if="!session?.user.scid" size="sm" icon="i-heroicons-link" class="mt-2" @click="connect"> Connect </UButton>
+			<UButton v-else size="sm" icon="i-lucide-unlink" class="mt-2" color="error" @click="disconnect">Disconnect</UButton>
 		</div>
 		<div>
 			<p class="text-md font-medium">Supercell Friends</p>
@@ -82,9 +82,7 @@ const { data: session } = await authClient.useSession(useFetch);
 			<p class="text-md font-medium text-red-400 dark:text-red-400">Delete Account</p>
 			<p class="text-sm">Warning: Deleting your account is irreversible</p>
 			<div class="mt-3">
-				<UButton color="error" size="sm" icon="i-heroicons-trash-20-solid" @click="beginDeleteAccountProcess">
-					Delete Account
-				</UButton>
+				<UButton color="error" size="sm" icon="i-heroicons-trash" @click="beginDeleteAccountProcess"> Delete Account </UButton>
 			</div>
 		</div>
 	</section>

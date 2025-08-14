@@ -5,6 +5,8 @@ const clubKeys = {
 	all: () => ["clubs"] as const,
 	detail: (tag: string) => [...clubKeys.all(), tag] as const,
 	meowApiDetail: (tag: string) => [...clubKeys.all(), tag, "meowApi"] as const,
+	rntApiAll: () => ["rnt"],
+	rntApiSearch: (query: string) => [...clubKeys.all(), ...clubKeys.rntApiAll(), "search", query],
 };
 
 export const clubsDetailQuery = (tag: string) => {
@@ -23,5 +25,12 @@ export const clubsMeowApiDetailQuery = (tag: string) => {
 			$fetch<ApiAllianceResponse["response"]>(`/api/club/${queryKey[1].replace("#", "")}`, { query: { meowApi: true } }),
 		gcTime: 1000 * 120,
 		staleTime: 1000 * 60,
+	});
+};
+
+export const clubsRntApiSearchQuery = (query: string) => {
+	return queryOptions({
+		queryKey: clubKeys.rntApiSearch(query),
+		queryFn: () => $fetch("/api/club/search", { query: { query } }),
 	});
 };

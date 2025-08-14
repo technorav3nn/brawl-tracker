@@ -17,7 +17,7 @@ const pages = [
 	},
 	{
 		title: "Brawlers",
-		icon: "i-tabler-swords",
+		icon: "i-heroicons-star",
 		description: "View the highest trophie count for every brawler in the game!",
 		to: "/leaderboards/brawlers",
 	},

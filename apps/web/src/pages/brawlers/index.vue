@@ -1,12 +1,7 @@
 <script setup lang="ts">
 import { useBrawlerListStore } from "$components/features/brawler-list/brawler-list-store";
-import { createGetCachedData } from "$lib/utils/nuxt";
 
-const { data: brawlers, status } = await useLazyFetch("/api/brawlers", {
-	transform: (r) => r.list,
-	key: "brawlers",
-	getCachedData: createGetCachedData(useNuxtApp()),
-});
+const { data: brawlers, status } = useLazyQuery(brawlersQuery());
 
 const brawlerList = useBrawlerListStore();
 const { groupingMode, groupedBrawlers, search } = storeToRefs(brawlerList);
@@ -18,8 +13,9 @@ watchEffect(() => {
 });
 
 const gridClasses =
-	"mt-3 grid grid-cols-3 justify-items-center gap-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10";
+	"mt-3 grid grid-cols-3 justify-items-center gap-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-9";
 const rarityColorClasses = {
+	"Ultra Legendary": "text-[#9dffd5]",
 	Legendary: "text-yellow-400",
 	Mythic: "text-red-400",
 	Epic: "text-purple-400",
@@ -41,8 +37,6 @@ const rarityColorClasses = {
 				<div class="flex justify-between gap-1.5">
 					<UInput
 						v-model="search"
-						:disabled="status === 'pending'"
-						:loading="status === 'pending'"
 						icon="i-heroicons-magnifying-glass-20-solid"
 						size="md"
 						:trailing="false"
@@ -50,8 +44,6 @@ const rarityColorClasses = {
 					/>
 					<USelect
 						v-model="brawlerList.groupingMode"
-						:disabled="status === 'pending'"
-						:loading="status === 'pending'"
 						:items="['None', 'Class', 'Rarity']"
 						icon="i-heroicons-adjustments-horizontal"
 						placeholder="Group by"
@@ -67,15 +59,18 @@ const rarityColorClasses = {
 						<USkeleton class="h-[76px] w-full rounded-t-none" />
 					</div>
 				</UPageGrid>
-				<UPageGrid v-if="(groupingMode === 'None' || groupingMode === '') && Array.isArray(groupedBrawlers)" :class="gridClasses">
+				<UPageGrid
+					v-else-if="(groupingMode === 'None' || groupingMode === '') && Array.isArray(groupedBrawlers)"
+					:class="gridClasses"
+				>
 					<BrawlerListCard v-for="brawler in groupedBrawlers" :key="brawler.id" :brawler="brawler" showRarity />
 				</UPageGrid>
 				<div v-else-if="groupingMode !== 'None' && !Array.isArray(groupedBrawlers)" class="mt-2 flex flex-col gap-3">
 					<div v-for="(group, value) in groupedBrawlers" :key="value">
-						<h2 :class="rarityColorClasses[value as keyof typeof rarityColorClasses]" class="text-2xl font-medium">
+						<div :class="rarityColorClasses[value as keyof typeof rarityColorClasses]" class="text-2xl font-medium">
 							{{ value }}
 							<span class="text-sm font-medium text-gray-400 dark:text-gray-500">({{ group.length }})</span>
-						</h2>
+						</div>
 						<UPageGrid :class="gridClasses">
 							<BrawlerListCard
 								v-for="brawler in group"

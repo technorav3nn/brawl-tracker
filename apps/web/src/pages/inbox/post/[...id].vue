@@ -158,7 +158,7 @@ const html = computed(() => {
 
 			<UPage>
 				<UPageBody>
-					<article class="prose max-w-full dark:prose-invert" v-html="html" />
+					<article class="prose max-w-full prose-zinc dark:prose-invert" v-html="html" />
 				</UPageBody>
 				<template #right>
 					<UContentToc :links="tocs">

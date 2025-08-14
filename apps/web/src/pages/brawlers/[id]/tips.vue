@@ -13,7 +13,7 @@ const tips = computed(() => brawlerCdnData.value!.tips ?? []);
 
 <template>
 	<UiPageSection title="Tips" description="View tips on how to play this brawler!" orientation="vertical" class="divide-y-0!">
-		<div class="w-full pt-0!">
+		<div class="pt-0!">
 			<div v-if="tips.length === 0" class="flex h-32 items-center justify-center">
 				<p class="text-gray-500 dark:text-gray-400">No tips available</p>
 			</div>
