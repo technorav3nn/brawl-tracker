@@ -448,13 +448,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@better-auth/utils@npm:0.2.5":
-  version: 0.2.5
-  resolution: "@better-auth/utils@npm:0.2.5"
+"@better-auth/utils@npm:0.2.6":
+  version: 0.2.6
+  resolution: "@better-auth/utils@npm:0.2.6"
   dependencies:
-    typescript: "npm:^5.8.2"
     uncrypto: "npm:^0.1.3"
-  checksum: 10/244dda28f1ac81afd7a0e7b9db986c1ced975b96ea9473ad7fa072e811f7a8bc39e1fed06dfa73219e1e9cac595ac3e078bab89f6ac3f1d2a4386307b4088419
+  checksum: 10/c576f8f0acbeb49896f18ab2a8d907b02397cfd4a64165bed9ad9f3a5c8ebcc62efc6781b8ad39157b48a8b578d99ee6eadcfe7fce62d26c5b3b01898c399127
   languageName: node
   linkType: hard
 
@@ -2602,7 +2601,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@noble/hashes@npm:^1.6.1":
+"@noble/hashes@npm:^1.8.0":
   version: 1.8.0
   resolution: "@noble/hashes@npm:1.8.0"
   checksum: 10/474b7f56bc6fb2d5b3a42132561e221b0ea4f91e590f4655312ca13667840896b34195e2b53b7f097ec080a1fdd3b58d902c2a8d0fbdf51d2e238b53808a177e
@@ -4622,16 +4621,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@simplewebauthn/browser@npm:^13.0.0":
-  version: 13.1.0
-  resolution: "@simplewebauthn/browser@npm:13.1.0"
-  checksum: 10/8eaae9cb53b76949764d150d2b3111a28ac049ee48540648d1cd42caf679884128a2eaede0aa05769af79999c2ba70e87e0012fbf6b7d0309e2ff29dffbb185e
+"@simplewebauthn/browser@npm:^13.1.2":
+  version: 13.1.2
+  resolution: "@simplewebauthn/browser@npm:13.1.2"
+  checksum: 10/e5e8e0542a9c6f6c82bc2a0dc2156aaff569f64e6af718041ed90d5f1faf4c64d2e6e9e99b365f848d9f0b8536c818c29bcf591bc5e94feb24b33aa3a0e07bef
   languageName: node
   linkType: hard
 
-"@simplewebauthn/server@npm:^13.0.0":
-  version: 13.1.1
-  resolution: "@simplewebauthn/server@npm:13.1.1"
+"@simplewebauthn/server@npm:^13.1.2":
+  version: 13.1.2
+  resolution: "@simplewebauthn/server@npm:13.1.2"
   dependencies:
     "@hexagon/base64": "npm:^1.1.27"
     "@levischuck/tiny-cbor": "npm:^0.2.2"
@@ -4640,7 +4639,7 @@ __metadata:
     "@peculiar/asn1-rsa": "npm:^2.3.8"
     "@peculiar/asn1-schema": "npm:^2.3.8"
     "@peculiar/asn1-x509": "npm:^2.3.8"
-  checksum: 10/19c5ed71afc8137ca9ac298778ed210332d70fa16a815545b7eb8ea5d997d53849fc53a1de81901250b1bd2af7c365399fce1a2123bffb3c09aff44ffdf89792
+  checksum: 10/65f0ffaa60685e0448ad0d8b711b41eaea2ad16db9d06984fb91600703cafca153d437fad9b9db0ffb548038ffd30374683d674891503cd6e8dee6910aa8feb1
   languageName: node
   linkType: hard
 
@@ -7967,34 +7966,42 @@ __metadata:
   linkType: hard
 
 "better-auth@npm:^1.2.7":
-  version: 1.2.8
-  resolution: "better-auth@npm:1.2.8"
+  version: 1.3.6
+  resolution: "better-auth@npm:1.3.6"
   dependencies:
-    "@better-auth/utils": "npm:0.2.5"
+    "@better-auth/utils": "npm:0.2.6"
     "@better-fetch/fetch": "npm:^1.1.18"
     "@noble/ciphers": "npm:^0.6.0"
-    "@noble/hashes": "npm:^1.6.1"
-    "@simplewebauthn/browser": "npm:^13.0.0"
-    "@simplewebauthn/server": "npm:^13.0.0"
-    better-call: "npm:^1.0.8"
+    "@noble/hashes": "npm:^1.8.0"
+    "@simplewebauthn/browser": "npm:^13.1.2"
+    "@simplewebauthn/server": "npm:^13.1.2"
+    better-call: "npm:^1.0.13"
     defu: "npm:^6.1.4"
-    jose: "npm:^5.9.6"
-    kysely: "npm:^0.28.1"
-    nanostores: "npm:^0.11.3"
-    zod: "npm:^3.24.1"
-  checksum: 10/a2572d6e3e340ecf4c1929bf2db6b7e5fd98a5032206234b54f529abdefd5668db83b89a69024534b623eaf5166269943406f995c9fd9c7ed3c71eaf8a141dd7
+    jose: "npm:^5.10.0"
+    kysely: "npm:^0.28.5"
+    nanostores: "npm:^0.11.4"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+    zod: ^3.25.0 || ^4.0.0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10/dc1f55bd54bf1387ad87a08b25811f0c48ed448065108c8ad1cf4ca9e2d3dd13785b996a1665eaffbabfcb0c875713ff7636fa182b327cb872ff4d48fde90ed7
   languageName: node
   linkType: hard
 
-"better-call@npm:^1.0.8":
-  version: 1.0.9
-  resolution: "better-call@npm:1.0.9"
+"better-call@npm:^1.0.13":
+  version: 1.0.13
+  resolution: "better-call@npm:1.0.13"
   dependencies:
     "@better-fetch/fetch": "npm:^1.1.4"
     rou3: "npm:^0.5.1"
     set-cookie-parser: "npm:^2.7.1"
     uncrypto: "npm:^0.1.3"
-  checksum: 10/b1676e7fe9bfdc713da00e15d9fdff0a020b368666ab8723bb8b7cda7268cbb8097e9658285e6b05f34560b081800dc1ee785c6c166cebf064d9845244b07fc6
+  checksum: 10/8ffd9525a785507f3dcbca12e532e9a9f81ae2c9c78a007c50dd9ae79e9d37ab93f8d27ae73d508e3036787a5f22ab3ce1134ae7bd47bed38fc94bcec5401ad1
   languageName: node
   linkType: hard
 
@@ -14342,7 +14349,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:^5.9.6":
+"jose@npm:^5.10.0":
   version: 5.10.0
   resolution: "jose@npm:5.10.0"
   checksum: 10/03881d1dfb390dcf50926402edcfe233bf557b5a77321fcb1bdb53453bc1cdd26d2d0a9ab28c7445cbb826881f84fdf5074179700f10c2711ccb9880f51065d7
@@ -14579,10 +14586,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kysely@npm:^0.28.1":
-  version: 0.28.2
-  resolution: "kysely@npm:0.28.2"
-  checksum: 10/2b9664abab95525411b24ac523c38ff286b701e58d0e88ef99c6b449d481c5298ae2c0e17e5cffaa2e98e566015c4b5aa7be46b331fc94d1abf44851ff5ec51f
+"kysely@npm:^0.28.5":
+  version: 0.28.5
+  resolution: "kysely@npm:0.28.5"
+  checksum: 10/ac595a82c7898d5158be0834dfc589723367645b305406523e67e1ac62d60acc102262bc2f39f63584696e24f97e5a46a8da490a44f4b3b9a6c0ab40e3956af3
   languageName: node
   linkType: hard
 
@@ -16448,7 +16455,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanostores@npm:^0.11.3":
+"nanostores@npm:^0.11.4":
   version: 0.11.4
   resolution: "nanostores@npm:0.11.4"
   checksum: 10/1121ebb3b0d43ae8c7d68c7ea9b49cf9e8696e5a1368546a22a954759142bea10764419ea3ea4538d6143d05c036c2b52847121211fef736de82112cf84d5838
@@ -21769,7 +21776,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.7.3, typescript@npm:^5.8.2, typescript@npm:^5.8.3":
+"typescript@npm:^5.7.3, typescript@npm:^5.8.3":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
   bin:
@@ -21799,7 +21806,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.7.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.7.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
   version: 5.8.3
   resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
   bin:
