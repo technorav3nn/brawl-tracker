@@ -16,6 +16,7 @@ const rarityColorMap: Record<string, string> = {
 	Epic: "bg-purple-600 hover:bg-purple-800 ",
 	Mythic: "bg-red-600  hover:bg-red-700",
 	Legendary: "bg-yellow-400 hover:bg-yellow-500",
+	"Ultra Legendary": "ultra-legendary-gradient-bg",
 };
 
 const isMaxTier = computed(() => props.playerBrawler.rank === 51);
@@ -25,6 +26,7 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${ran
 
 <template>
 	<div
+		:style="{ '--__ul__start': 'to left bottom', backgroundSize: '300% 300% !important' }"
 		class="group relative cursor-pointer rounded-md border-[1.45px] border-[#1E263A] shadow-xl"
 		:class="[brawler.rarity.name in rarityColorMap ? rarityColorMap[brawler.rarity.name] : 'bg-gray-200']"
 	>

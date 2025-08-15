@@ -1,33 +1,9 @@
 <script setup lang="ts">
 import type { Battlelog } from "@brawltracker/brawl-stars-api";
-import { createGetCachedData } from "$lib/utils/nuxt";
 
 const route = useRoute("players-tag");
-const nuxtApp = useNuxtApp();
 
-const { data: battlelog, status } = await useLazyFetch("/api/players/battlelog", {
-	query: { tag: route.params.tag },
-	key: `battlelog-${route.params.tag}`,
-	getCachedData: createGetCachedData(nuxtApp),
-});
-
-const { status: brawlersStatus } = await useLazyFetch("/api/brawlers", {
-	key: "brawlers",
-	getCachedData: createGetCachedData(nuxtApp),
-});
-
-const { data, status: gamemodesStatus } = await useLazyFetch("/api/game-modes", {
-	key: "gamemodes",
-	getCachedData: createGetCachedData(nuxtApp),
-	transform: (data) =>
-		data.list.map((mode) => ({
-			apiName: mode.scHash.includes("5v5") ? mode.scHash.replace("5v5", "5V5") : mode.scHash,
-			id: (mode as any).scId,
-			name: mode.name,
-		})),
-});
-
-console.log(data.value);
+const { data: battlelog, status } = useLazyQuery(playersBattlelogDetailQuery(route.params.tag));
 
 const castBattle = (b: any) => b as unknown as Battlelog;
 </script>
@@ -40,7 +16,7 @@ const castBattle = (b: any) => b as unknown as Battlelog;
 		orientation="vertical"
 	>
 		<div class="flex w-full flex-col items-center gap-5">
-			<template v-if="status === 'pending' || brawlersStatus === 'pending' || gamemodesStatus === 'pending'">
+			<template v-if="status === 'pending'">
 				<USkeleton v-for="i in 10" :key="i" class="h-40 w-full" />
 			</template>
 			<template v-else-if="battlelog?.length !== 0">

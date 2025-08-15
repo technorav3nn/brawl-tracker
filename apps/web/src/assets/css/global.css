@@ -94,11 +94,23 @@ ul[data-type="taskList"] {
 
 .ultra-legendary-gradient-bg {
 	--__ul__direction: normal;
+	--__ul__start: to right;
 
-	background: linear-gradient(to right, #fba82b, #e64372, #64ff78, #520f81, #fba82b, #e64372, #520f81, #64ff78, #fba82b);
+	background: linear-gradient(
+		var(--__ul__start),
+		#fba82b,
+		#e64372,
+		#64ff78,
+		#520f81,
+		#fba82b,
+		#e64372,
+		#520f81,
+		#64ff78,
+		#fba82b
+	);
 	&:where(.dark, .dark *) {
 		background: linear-gradient(
-			to right,
+			var(--__ul__start),
 			#9cfcc5,
 			#fff11e,
 			#fba82b,

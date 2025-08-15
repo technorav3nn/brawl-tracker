@@ -4,32 +4,37 @@ import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
 import { formatTag } from "@brawltracker/supercell-api-utils";
 import { Image } from "@unpic/vue";
 import { camelCaseToNormalCase } from "$lib/utils/common";
+import type { BrawlApiGameMode } from "@brawltracker/brawl-api";
 
 const props = defineProps<{
 	battlelogEntry: Battlelog;
 }>();
 
-const { data: gamemodes } = useNuxtData<
-	{
-		apiName: string;
-		id: number;
-		name: string;
-	}[]
->("gamemodes");
+const { data: gamemodes, status } = useLazyQuery({
+	...gameModesQuery(),
+	select: (data: { list: BrawlApiGameMode[] }) =>
+		data.list.map((mode) => ({
+			apiName: mode.scHash.includes("5v5") ? mode.scHash.replace("5v5", "5V5") : mode.scHash,
+			id: (mode as any).scId,
+			name: mode.name,
+		})),
+});
 
-const gamemode = computed(() => gamemodes!.value!.find((m) => m.apiName === props.battlelogEntry.event.mode));
+const gamemode = computed(() =>
+	gamemodes.value?.find((m) => m.apiName === (props.battlelogEntry.event.mode ?? props.battlelogEntry.battle.mode))
+);
 
-const isSoloMode = computed(() => props.battlelogEntry.event.mode.includes("solo"));
-const isDuoMode = computed(() => props.battlelogEntry.event.mode.includes("duo"));
-const isTrioMode = computed(() => props.battlelogEntry.event.mode.includes("trio"));
+const isSoloMode = computed(() => props.battlelogEntry.battle.mode.includes("solo"));
+const isDuoMode = computed(() => props.battlelogEntry.battle.mode.includes("duo"));
+const isTrioMode = computed(() => props.battlelogEntry.battle.mode.includes("trio"));
 const is3v3 = computed(
-	() => props.battlelogEntry.battle.teams?.[0].length === 3 && props.battlelogEntry.battle.teams.length === 2
+	() => props.battlelogEntry.battle.teams?.[0]?.length === 3 && props.battlelogEntry.battle.teams.length === 2
 );
 const is2v2 = computed(
-	() => props.battlelogEntry.battle.teams?.[0].length === 2 && props.battlelogEntry.battle.teams.length === 2
+	() => props.battlelogEntry.battle.teams?.[0]?.length === 2 && props.battlelogEntry.battle.teams.length === 2
 );
 const is5v5 = computed(
-	() => props.battlelogEntry.battle.teams?.[0].length === 5 && props.battlelogEntry.battle.teams.length === 2
+	() => props.battlelogEntry.battle.teams?.[0]?.length === 5 && props.battlelogEntry.battle.teams.length === 2
 );
 
 const result = computed(() => {
@@ -46,7 +51,8 @@ const result = computed(() => {
 </script>
 
 <template>
-	<UCard :ui="{ header: '!p-0 sm:!p-0 divide-y! divide-(--ui-border)!', body: '!p-0 sm:!p-0' }">
+	<USkeleton v-if="status === 'pending'" v-for="i in 10" :key="i" class="h-40 w-full" />
+	<UCard v-else :ui="{ header: '!p-0 sm:!p-0 divide-y! divide-(--ui-border)!', body: '!p-0 sm:!p-0' }">
 		<template #header>
 			<div class="flex items-center justify-between p-2.5 px-3.5! py-[0.58rem]!">
 				<p class="font-medium text-(--ui-primary)">{{ camelCaseToNormalCase(battlelogEntry.battle.type, true) }}</p>
@@ -125,14 +131,14 @@ const result = computed(() => {
 		</template>
 		<template v-else-if="isDuoMode">
 			<div class="flex flex-wrap justify-center gap-x-8 gap-y-4 px-4 py-3 sm:px-[14vw]">
-				<div v-for="team in props.battlelogEntry.battle.teams" :key="team[0].tag" class="flex flex-row gap-2">
+				<div v-for="team in props.battlelogEntry.battle.teams" :key="team[0]?.tag" class="flex flex-row gap-2">
 					<PlayersBattlelogBattlePlayer v-for="player in team" :key="player.tag" class="w-[100px]" :player="player" />
 				</div>
 			</div>
 		</template>
 		<template v-else-if="isTrioMode">
 			<div class="flex flex-wrap justify-center gap-x-8 gap-y-4 px-4 py-3 sm:px-[2vw] lg:px-[8vw]">
-				<div v-for="team in props.battlelogEntry.battle.teams" :key="team[0].tag" class="flex flex-row gap-2">
+				<div v-for="team in props.battlelogEntry.battle.teams" :key="team[0]?.tag" class="flex flex-row gap-2">
 					<PlayersBattlelogBattlePlayer v-for="player in team" :key="player.tag" class="w-[90px] sm:w-[100px]" :player="player" />
 				</div>
 			</div>

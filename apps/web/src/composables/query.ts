@@ -1,5 +1,4 @@
 import type { UseQueryOptions, DefaultError, QueryKey, UseQueryReturnType, QueryClient } from "@tanstack/vue-query";
-
 /**
  * A wrapper around `useQuery` that allows you to use it in a lazy way.
  * It's similar to `useLazyAsyncData` from Nuxt, but for Vue Query.
@@ -23,6 +22,28 @@ export const useLazyQuery = <
 	if (import.meta.server) {
 		onServerPrefetch(async () => await query.suspense());
 	}
+
+	return query;
+};
+
+/**
+ * A wrapper around `useQuery` that pretty much resolves always on the server side.
+ *
+ *
+ * @param options - Exact same options as `useQuery` from `@tanstack/vue-query`
+ * @returns A query like `useQuery`, but will always resolve on the server side
+ */
+export const useSuspenseQuery = async <
+	TQueryFnData = unknown,
+	TError = DefaultError,
+	TData = TQueryFnData,
+	TQueryKey extends QueryKey = QueryKey,
+>(
+	options: UseQueryOptions<TQueryFnData, TError, TData, TQueryFnData, TQueryKey>,
+	queryClient: QueryClient = useQueryClient()
+): Promise<UseQueryReturnType<TData, TError>> => {
+	const query = useQuery(options, queryClient);
+	await query.suspense();
 
 	return query;
 };

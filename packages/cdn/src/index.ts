@@ -2,7 +2,7 @@ import { $fetch } from "ofetch";
 import type { BrawlerData } from "./lib/types/brawler";
 import type { GearData } from "./lib/types/gears";
 
-export const CDN_URL = "https://cdn.deathblows.xyz";
+export const CDN_URL = "https://cdn.deathblows.dev";
 
 export function normalizeNameToCdnName(name: string) {
 	// "El Primo" -> "el_primo" for example

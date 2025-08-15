@@ -34,10 +34,8 @@
 	"resolutions": {
 		"sharp": "0.33.5"
 	},
-	"packageManager": "yarn@4.8.1",
 	"volta": {
-		"node": "22.13.1",
-		"yarn": "4.7.0"
+		"node": "22.13.1"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write",
@@ -46,8 +44,5 @@
 	"workspaces": [
 		"packages/*",
 		"apps/*"
-	],
-	"dependencies": {
-		"astro-useragent": "^5.0.0"
-	}
+	]
 }

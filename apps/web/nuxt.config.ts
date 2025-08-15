@@ -101,7 +101,7 @@ export default defineNuxtConfig({
 		domains: [
 			"cdn-old.brawlify.com",
 			"cdn-fankit.brawlify.com",
-			"cdn.deathblows.xyz",
+			"cdn.deathblows.dev",
 			"images.unsplash.com",
 			"github.com",
 			"brawlstars.inbox.supercell.com",
@@ -109,7 +109,7 @@ export default defineNuxtConfig({
 			"cdn.id.supercell.com",
 		],
 		alias: {
-			cdn: "https://cdn.deathblows.xyz",
+			cdn: "https://cdn.deathblows.dev",
 		},
 		screens: {
 			300: 300,

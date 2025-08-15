@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
+
 const route = useRoute("players-tag-brawlers-id");
 
-const { data: player, status } = await useFetch("/api/players", {
-	query: { tag: route.params.tag },
-	key: `players-${route.params.tag}`,
+const { data: player, status } = await useSuspenseQuery(playersDetailQuery(route.params.tag));
+const { data: brawler, status: brawlersStatus } = await useSuspenseQuery({
+	...brawlersQuery(),
+	select: (d: { list: BrawlApiBrawler[] }) => d.list.find((b) => b.id.toString() === route.params.id.toString()),
 });
 
 const playerBrawler = computed(() => {
@@ -11,17 +14,11 @@ const playerBrawler = computed(() => {
 	return player.value.brawlers.find((brawler) => brawler.id.toString() === route.params.id);
 });
 
-const { data: brawler, status: brawlersStatus } = await useFetch("/api/brawlers", {});
-
-const foundBrawler = computed(() => {
-	return brawler.value!.list.find((b) => b.id.toString() === route.params.id.toString());
-});
-
 const fullStatus = computed(() => status.value === "success" && brawlersStatus.value === "success");
 
 const title = computed(() => {
-	if (!foundBrawler.value) return `Loading...`;
-	return `${foundBrawler.value!.name ?? route.params.id}'s stats`;
+	if (!brawler.value) return `Loading...`;
+	return `${brawler.value!.name ?? route.params.id}'s stats`;
 });
 const description = "View this player's brawler's stats and more";
 
@@ -36,16 +33,16 @@ useSeoMeta({
 <template>
 	<UButton variant="link" icon="i-heroicons-arrow-left-20-solid" @click.prevent="$router.back()"> Go Back </UButton>
 	<UiPageSection
-		v-if="foundBrawler && playerBrawler"
+		v-if="brawler && playerBrawler"
 		class="divide-y-0 *:pt-2!"
-		:title="foundBrawler.name"
-		:description="`View ${player!.name}'s stats for ${foundBrawler!.name}`"
+		:title="brawler.name"
+		:description="`View ${player!.name}'s stats for ${brawler!.name}`"
 		orientation="vertical"
 	>
 		<div class="grid grid-cols-5 gap-4 pt-0!">
 			<PlayersBrawlerPortraitCard
 				v-if="fullStatus"
-				:brawler="foundBrawler!"
+				:brawler="brawler!"
 				:playerBrawler="playerBrawler!"
 				class="col-span-5 h-full w-full min-[340px]:w-[revert] sm:col-span-2 lg:col-span-1"
 			/>
