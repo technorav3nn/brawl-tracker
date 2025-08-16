@@ -19,23 +19,23 @@
 		"db:stop": "docker-compose down"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.27.12",
-		"@humanwhocodes/retry": "^0.4.1",
-		"@sapphire/eslint-config": "^5.0.5",
+		"@changesets/cli": "^2.29.6",
+		"@humanwhocodes/retry": "^0.4.3",
+		"@sapphire/eslint-config": "^5.0.6",
 		"@vitest/ui": "^3.2.4",
 		"eslint": "^8.57.0",
 		"eslint-config-neon": "^0.1.62",
-		"lint-staged": "^15.4.3",
-		"prettier": "^3.4.2",
-		"prettier-plugin-tailwindcss": "^0.6.11",
-		"turbo": "^2.3.4",
+		"lint-staged": "^15.5.2",
+		"prettier": "^3.6.2",
+		"prettier-plugin-tailwindcss": "^0.6.14",
+		"turbo": "^2.5.6",
 		"vitest": "^3.2.4"
 	},
 	"resolutions": {
-		"sharp": "0.33.5"
+		"sharp": "0.34.3"
 	},
 	"volta": {
-		"node": "22.13.1"
+		"node": "22.18.0"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write",
