@@ -73,7 +73,7 @@
 		"eslint-config-neon": "0.1.62",
 		"nitro-cloudflare-dev": "^0.2.2",
 		"nitropack": "^2.11.9",
-		"nuxt": "3.17.3",
+		"nuxt": "4.1.2",
 		"nuxt-tiptap-editor": "2.1.4",
 		"vite": "*",
 		"wrangler": "^4.10.0"
