@@ -21,6 +21,9 @@ jobs:
         uses: volta-cli/action@v4
       - name: Install Dependencies
         run: yarn
+      - uses: moonrepo/setup-toolchain@v0
+        with:
+          auto-install: true
       - name: Cache for Turbo
         uses: rharkor/caching-for-turbo@v1.5
         with:
