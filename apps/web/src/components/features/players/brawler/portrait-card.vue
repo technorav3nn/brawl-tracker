@@ -9,8 +9,8 @@ const props = defineProps<{
 	playerBrawler: PlayerBrawler;
 }>();
 
-const isMaxTier = computed(() => props.playerBrawler.rank === 51);
-const rankUrl = computed(() => `${CDN_URL_V2}/brawlify/tiers/regular/${props.playerBrawler.rank}.png`);
+const isMaxTier = computed(() => props.playerBrawler.rank === 52);
+const rankUrl = computed(() => `${CDN_URL_V2}/brawlify/tiers/regular/${props.playerBrawler.rank - 1}.png`);
 const model = computed(() => getBrawlerModelUrl(props.brawler.id.toString()));
 </script>
 
@@ -33,8 +33,8 @@ const model = computed(() => getBrawlerModelUrl(props.brawler.id.toString()));
 			<div class="mt-3 flex items-center justify-center gap-0">
 				<Image
 					loading="eager"
-					:width="playerBrawler!.rank === 51 ? 50 : 40"
-					:height="playerBrawler!.rank === 51 ? 70 : 50"
+					:width="playerBrawler!.rank === 52 ? 50 : 40"
+					:height="playerBrawler!.rank === 52 ? 70 : 50"
 					:src="rankUrl"
 					class="z-10 size-[50px] object-contain"
 				/>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
-import type { Gear, Player } from "@brawltracker/brawl-stars-api";
-import { getBrawlerTotalLevelPrice, type GearSlot } from "$lib/utils/brawl-stars/max-calculator";
+import type { Player } from "@brawltracker/brawl-stars-api";
 
 const props = defineProps<{
 	brawlers: BrawlApiBrawler[];
@@ -50,57 +49,6 @@ const ownedStarPowers = computed(() =>
 		return acc;
 	}, 0)
 );
-
-const valuesToMax = computed(() => {
-	let coins = 0;
-	let powerpoints = 0;
-	for (const _ of props.brawlers) {
-		const price = getBrawlerTotalLevelPrice({
-			starPowers: 2,
-			gadgets: 2,
-			currentLevel: 1,
-			wantedLevel: 11,
-			gears: {
-				slot1: { type: "super_rare", price: 1000 },
-				slot2: { type: "super_rare", price: 1000 },
-			},
-		});
-		coins += price.coins;
-		powerpoints += price.powerpoints;
-	}
-
-	return { coins, powerpoints };
-});
-
-function isSuperRareGear(gear: Gear) {
-	return (
-		gear.name === "DAMAGE" ||
-		gear.name === "HEALTH" ||
-		gear.name === "SPEED" ||
-		gear.name === "VISION" ||
-		gear.name === "GADGET COOLDOWN" ||
-		gear.name === "SHIELD"
-	);
-}
-
-const ownedValues = computed(() => {
-	let coins = 0;
-	let powerpoints = 0;
-	for (const brawler of props.player.brawlers) {
-		const gears = brawler.gears.filter(isSuperRareGear).map(() => ({ type: "super_rare", price: 1000 }) satisfies GearSlot);
-		const price = getBrawlerTotalLevelPrice({
-			starPowers: brawler.starPowers.length,
-			gadgets: brawler.gadgets.length,
-			currentLevel: brawler.power,
-			wantedLevel: 11,
-			gears: { slot1: gears[0], slot2: gears[1] },
-		});
-		coins += price.coins;
-		powerpoints += price.powerpoints;
-	}
-
-	return { coins, powerpoints };
-});
 </script>
 
 <template>
@@ -114,13 +62,7 @@ const ownedValues = computed(() => {
 			:value="player.brawlers.length"
 			:max="brawlers.length!"
 		/>
-		<PlayersProgressionCard title="Coins To Max" image="/icons/coins.webp" :value="ownedValues.coins" :max="valuesToMax.coins" />
-		<PlayersProgressionCard
-			title="Power Points To Max"
-			image="/icons/powerpoints.webp"
-			:value="ownedValues.powerpoints"
-			:max="valuesToMax.powerpoints"
-		/>
+
 		<PlayersProgressionCard title="Gears" image="/icons/super-rare-gear.png" :value="ownedGears!" :max="totalGears!" />
 		<PlayersProgressionCard
 			title="Gadgets"

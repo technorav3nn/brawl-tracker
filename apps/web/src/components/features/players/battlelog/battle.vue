@@ -52,7 +52,7 @@ const result = computed(() => {
 
 <template>
 	<USkeleton v-if="status === 'pending'" v-for="i in 10" :key="i" class="h-40 w-full" />
-	<UCard v-else :ui="{ header: '!p-0 sm:!p-0 divide-y! divide-(--ui-border)!', body: '!p-0 sm:!p-0' }">
+	<UCard class="w-full" v-else :ui="{ header: '!p-0 sm:!p-0 divide-y! divide-(--ui-border)!', body: '!p-0 sm:!p-0' }">
 		<template #header>
 			<div class="flex items-center justify-between p-2.5 px-3.5! py-[0.58rem]!">
 				<p class="font-medium text-(--ui-primary)">{{ camelCaseToNormalCase(battlelogEntry.battle.type, true) }}</p>

@@ -81,7 +81,7 @@ const links: (ButtonProps & { click?(): any })[] = [
 			/>
 
 			<UForm ref="form" :validate="validate as any" :state :validateOn="[]" @submit="void onSubmit()">
-				<UButtonGroup class="mt-4 flex items-start justify-center" size="xl">
+				<UFieldGroup class="mt-4 flex items-start justify-center" size="xl">
 					<UFormField class="w-11/12 sm:w-96" name="club">
 						<UInput
 							id="search"
@@ -103,7 +103,7 @@ const links: (ButtonProps & { click?(): any })[] = [
 						variant="subtle"
 						icon="i-heroicons-magnifying-glass"
 					/>
-				</UButtonGroup>
+				</UFieldGroup>
 			</UForm>
 		</UContainer>
 	</UPage>

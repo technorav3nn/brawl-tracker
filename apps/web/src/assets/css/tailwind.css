@@ -1,10 +1,10 @@
-@import "tailwindcss" theme(static);
-@import "@nuxt/ui-pro";
+@import "tailwindcss";
+@import "@nuxt/ui";
 @plugin '@tailwindcss/typography';
 
 @source "../../../nuxt.config.ts";
 
-@theme static {
+@theme {
 	--font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 	--font-brawlstars: "Lilita One", "Inter", ui-sans-serif, system-ui, sans-serif;
 	--color-border: var(--color-border);

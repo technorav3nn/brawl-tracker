@@ -122,6 +122,7 @@ const linksWithoutIcons = computed(() => links.value.map((link) => ({ ...link, i
 			}"
 			:items="linksWithoutIcons"
 			variant="link"
+			content-orientation="vertical"
 		/>
 
 		<template #body>

@@ -65,7 +65,7 @@ const sortedStats = computed(() => {
 				<div class="mt-8 flex flex-col gap-4">
 					<div class="flex w-full items-end justify-end gap-2.5">
 						<UInput v-model="search" placeholder="Search Brawlers" icon="i-heroicons-magnifying-glass-20-solid" />
-						<UButtonGroup>
+						<UFieldGroup>
 							<USelect v-model="selectedSort" class="min-w-28" :items="['Win Rate', 'Use Rate']" />
 							<UButton
 								:icon="direction === 'asc' ? 'i-uil-sort-amount-up' : 'i-uil-sort-amount-down'"
@@ -75,7 +75,7 @@ const sortedStats = computed(() => {
 								variant="subtle"
 								@click="direction = direction === 'asc' ? 'desc' : 'asc'"
 							/>
-						</UButtonGroup>
+						</UFieldGroup>
 					</div>
 					<div
 						class="grid grid-cols-3 gap-4 min-[400px]:grid-cols-3 min-[500px]:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-9"

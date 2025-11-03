@@ -19,9 +19,9 @@ const rarityColorMap: Record<string, string> = {
 	"Ultra Legendary": "ultra-legendary-gradient-bg",
 };
 
-const isMaxTier = computed(() => props.playerBrawler.rank === 51);
+const isMaxTier = computed(() => props.playerBrawler.rank === 52);
 
-const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${rank}.png`;
+const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${rank - 1}.png`;
 </script>
 
 <template>
@@ -49,8 +49,8 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${ran
 
 		<div class="absolute -top-[2.234rem] -left-4 flex flex-row items-center">
 			<Image
-				:width="playerBrawler.rank === 51 ? 50 : 40"
-				:height="playerBrawler.rank === 51 ? 70 : 50"
+				:width="playerBrawler.rank === 52 ? 50 : 40"
+				:height="playerBrawler.rank === 52 ? 70 : 50"
 				:src="getRankUrl(playerBrawler.rank)"
 				class="z-10 size-[50px] object-contain"
 			/>

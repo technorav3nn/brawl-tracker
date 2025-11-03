@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ButtonProps } from "@nuxt/ui";
+import { z } from "zod";
 
 definePageMeta({
 	middleware: "no-auth",
@@ -8,29 +9,30 @@ definePageMeta({
 const validationError = ref<string | null>(null);
 const loading = ref(false);
 
+const schema = z.object({
+	username: z.string().min(3, "Username must be at least 3 characters long"),
+	email: z.string().email("Invalid email address"),
+	password: z.string().min(6, "Password must be at least 6 characters long"),
+});
+
 const token = ref<string>();
 
 async function onSubmit({ username, password, email }: { username: string; password: string; email: string }) {
+	if (!token.value) return (validationError.value = "Please complete the captcha.");
+
 	loading.value = true;
-	await authClient.signUp.email({ name: username, password, email });
+	await authClient.signUp.email({
+		name: username,
+		password,
+		email,
+		fetchOptions: {
+			headers: {
+				"x-captcha-response": token.value,
+			},
+		},
+	});
 	loading.value = false;
 	await navigateTo("/");
-
-	// console.log(username, password, email);
-	// if (!username || !password || !email) return (validationError.value = "Please fill in all the fields.");
-	// if (!token.value) return (validationError.value = "Please complete the captcha.");
-	// // eslint-disable-next-line n/prefer-global/url-search-params
-	// const body = new URLSearchParams({ username, password, email, token: token.value });
-	// try {
-	// 	loading.value = true;
-	// 	await $fetch("/api/auth/signup", { method: "POST", body });
-	// 	loading.value = false;
-	// 	reloadNuxtApp();
-	// } catch (error) {
-	// 	console.log((error as any).status);
-	// 	validationError.value = (error as any).message;
-	// 	loading.value = false;
-	// }
 }
 
 const links: ButtonProps[] = [
@@ -75,6 +77,7 @@ const mode = computed(() => colorMode.value);
 			<div class="flex w-full items-center justify-center">
 				<UCard class="w-full" variant="outline">
 					<UAuthForm
+						:schema
 						:ui="{ title: 'text-start' }"
 						:submit="{ label: 'Sign Up', loading, icon: 'i-heroicons-arrow-right-end-on-rectangle-20-solid' }"
 						:fields="[

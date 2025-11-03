@@ -87,7 +87,7 @@ const toggleFilterSwitchId = useId();
 				</div>
 				<div v-for="section in sections" :key="section.name" class="mb-2">
 					<p class="mb-0.5 text-sm font-medium">{{ section.name }}</p>
-					<UButtonGroup class="w-full">
+					<UFieldGroup class="w-full">
 						<USelectMenu
 							v-model="selectedFilters[section.name.toLowerCase()]"
 							:items="section.data"
@@ -110,7 +110,7 @@ const toggleFilterSwitchId = useId();
 								@click="selectedFilters[section.name.toLowerCase()] = []"
 							/>
 						</UTooltip>
-					</UButtonGroup>
+					</UFieldGroup>
 				</div>
 			</div>
 		</template>

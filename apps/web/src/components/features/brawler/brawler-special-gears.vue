@@ -3,6 +3,7 @@ import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
 import { normalizeNameToCdnName, CDN_URL, getAllGears } from "@brawltracker/cdn";
 import type { CdnBrawler } from "@brawltracker/cdn/v2";
 import { typedObjectEntries } from "$lib/utils/common";
+import { RARITY_COLOR_CLASSES } from "$lib/utils/brawl-stars/colors";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;
@@ -48,7 +49,9 @@ const gears = computed(() => {
 
 		<div v-if="Object.keys(gears).length !== 0" class="h-full">
 			<p class="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-				These are only Epic and Mythic Gears, every brawlers inside the game will have access to the normal Super Rare Gears.
+				These are only <span :class="RARITY_COLOR_CLASSES.Epic" class="font-medium">Epic</span> and
+				<span :class="RARITY_COLOR_CLASSES.Mythic" class="font-medium">Mythic</span> Gears, every brawler has access to
+				<span :class="RARITY_COLOR_CLASSES['Super Rare']" class="font-medium">Super Rare</span> Gears.
 			</p>
 
 			<div class="mt-3 mb-3 flex flex-col gap-4">

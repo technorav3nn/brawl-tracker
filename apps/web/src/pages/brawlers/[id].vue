@@ -151,7 +151,7 @@ const brawlerClass = computed(() => {
 								<div class="flex items-center gap-1 font-medium">
 									<UIcon
 										name="i-heroicons-sparkles-20-solid"
-										class="inline-block h-5 w-5 text-highlighted"
+										class="inline-block h-5 w-5"
 										:class="[
 											RARITY_COLOR_CLASSES[brawler.rarity.name as keyof typeof RARITY_COLOR_CLASSES],
 											brawler.rarity.name === 'Ultra Legendary' && ' bg-clip-border!',
@@ -197,7 +197,7 @@ const brawlerClass = computed(() => {
 							>
 								<UUser
 									:name="brawler.name"
-									:description="brawler?.rarity.name"
+									:description="brawlerClass"
 									:avatar="{ src: brawler.imageUrl2, class: 'rounded-xs' }"
 									class="whitespace-nowrap"
 								/>
@@ -220,7 +220,7 @@ const brawlerClass = computed(() => {
 					</UContainer>
 				</section>
 				<UContainer>
-					<div class="mt-2">
+					<div class="mt-4">
 						<NuxtPage />
 					</div>
 				</UContainer>

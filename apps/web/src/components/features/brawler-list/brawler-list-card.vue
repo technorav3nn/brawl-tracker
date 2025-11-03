@@ -66,7 +66,7 @@ const color = computed(() => {
 								style="animation-duration: 15s !important"
 								class="ultra-legendary-gradient-bg absolute inset-0 w-full scale-x-[0.99] scale-y-[0.90] rounded-full opacity-20"
 							/>
-							<span class="flex items-center justify-center rounded-full bg-(--ui-bg) px-[6px] font-semibold text-white">
+							<span class="flex items-center justify-center rounded-full bg-default px-1.5 font-semibold text-white">
 								<span style="animation-duration: 15s !important" class="ultra-legendary-gradient-text text-[0.7rem]!">
 									Ultra Legendary
 								</span>

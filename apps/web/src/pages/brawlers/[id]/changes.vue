@@ -48,7 +48,7 @@ const items = computed<(AccordionItem | null)[]>(() =>
 					:items="['None', 'Buff', 'Nerf', 'Neutral']"
 					class="w-36"
 					placeholder="Filter by type"
-					:disabled="!items.length"
+					:disabled="!items.length && selectedType === undefined"
 				/>
 			</div>
 			<div v-if="!items.length" class="text-center text-neutral-500 dark:text-neutral-400">No changes found.</div>

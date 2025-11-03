@@ -7,7 +7,8 @@ import { TaskItem } from "@tiptap/extension-task-item";
 import { TaskList } from "@tiptap/extension-task-list";
 import { TextAlign } from "@tiptap/extension-text-align";
 import { Youtube } from "@tiptap/extension-youtube";
-import type { Content } from "@tiptap/vue-3";
+import StarterKit from "@tiptap/starter-kit";
+import { EditorContent, useEditor, type Content } from "@tiptap/vue-3";
 
 const props = defineProps<{ editorClass?: string; hasError?: boolean; minimumCharacters?: number }>();
 const emit = defineEmits<{
@@ -23,7 +24,6 @@ const percentage = computed(() => {
 
 const editor = useEditor({
 	extensions: [
-		TiptapStarterKit,
 		TaskList,
 		TaskItem.configure({
 			nested: true,
@@ -35,6 +35,7 @@ const editor = useEditor({
 		TextAlign.configure({ types: ["heading", "paragraph"] }),
 		Youtube,
 		CharacterCount,
+		StarterKit,
 	],
 	editorProps: {
 		attributes: {
@@ -49,7 +50,7 @@ const editor = useEditor({
 	},
 	onCreate: ({ editor }) => {
 		// console.log(html.value);
-		editor?.commands.setContent(html.value as Content, true);
+		editor?.commands.setContent(html.value as Content);
 	},
 });
 
@@ -95,7 +96,7 @@ const listDropdownItems = computed<DropdownMenuItem[]>(() => {
 			color: editor.value?.isActive("taskList") ? "primary" : "neutral",
 			active: editor.value?.isActive("taskList"),
 			onSelect: () => {
-				editor.value?.chain().focus().toggleTaskList().run();
+				editor.value?.chain().focus().toggleList("taskList", "listItem").run();
 			},
 		},
 	];
@@ -306,7 +307,7 @@ onBeforeUnmount(() => {
 				</UTooltip>
 			</template>
 
-			<TiptapEditorContent :class="editorClass" :editor="editor" />
+			<EditorContent :class="editorClass" :editor="editor" />
 		</UCard>
 		<div class="mt-2 flex items-center gap-2">
 			<svg
@@ -329,7 +330,7 @@ onBeforeUnmount(() => {
 				/>
 				<circle r="6" cx="10" cy="10" fill="var(--ui-bg)" />
 			</svg>
-			<UIcon v-else name="i-heroicons-check-circle" class="size-[20px] text-success"></UIcon>
+			<UIcon v-else name="i-heroicons-check-circle" class="size-5 text-success"></UIcon>
 			<span v-if="minimumCharacters" class="text-xs" :class="characterCount >= minimumCharacters ? 'text-success' : 'text-error'">
 				{{ characterCount >= minimumCharacters ? "Done!" : `${characterCount} / ${minimumCharacters} minimum characters` }}
 			</span>

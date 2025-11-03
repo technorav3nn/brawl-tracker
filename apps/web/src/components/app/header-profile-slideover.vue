@@ -59,6 +59,7 @@ async function logout() {
 	emit("close", true);
 	loading.value = false;
 	await navigateTo("/");
+	await refreshNuxtData();
 }
 </script>
 

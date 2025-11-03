@@ -36,7 +36,7 @@ async function importFriends() {
 								alt="Supercell ID"
 								width="24"
 								height="24"
-								class="mr-1 inline-block h-[2em] w-[2em] object-scale-down text-[revert]! [mask-size:100%_100%]"
+								class="mr-1 inline-block h-[2em] w-[2em] mask-size-[100%_100%] object-scale-down text-[revert]!"
 							/>
 							Import Supercell Friends
 						</div>
@@ -51,7 +51,7 @@ async function importFriends() {
 				</template>
 				<div class="flex flex-col items-center justify-center">
 					<p class="text-md text-center font-medium">
-						Lets get started. Scan the QR code or add the tag below to your friends list in Supercell ID.
+						Scan the QR code or add the tag below to your friends list in Supercell ID.
 					</p>
 					<p class="mt-2 text-sm text-neutral-500 dark:text-neutral-400">
 						When finished, click the "Continue" button below to continue.
@@ -64,7 +64,7 @@ async function importFriends() {
 						rel="noopener noreferrer"
 						to="https://link.brawlstars.com/?supercell_id&p=85-0e066b52-b348-4256-b6c1-4f12a18f54d9"
 					>
-						<UButton icon="i-heroicons-link-20-solid" class="mt-4">Open In Brawl Stars</UButton>
+						<UButton size="sm" icon="i-heroicons-link-20-solid" class="mt-4">Open In Brawl Stars</UButton>
 					</NuxtLink>
 					<USeparator class="mt-4 w-full">or</USeparator>
 					<p class="mt-2">

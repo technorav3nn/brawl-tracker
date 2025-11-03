@@ -18,7 +18,7 @@ const rankImageUrl = computed(() => {
 </script>
 
 <template>
-	<div class="flex flex-col items-center gap-1.5">
+	<NuxtLink :to="`/players/${encodeURIComponent(player.tag.replace('#', ''))}`" class="flex flex-col items-center gap-1.5">
 		<div
 			class="relative border-4 border-black"
 			:class="[
@@ -66,7 +66,7 @@ const rankImageUrl = computed(() => {
 				{{ player.name }}
 			</p>
 		</div>
-	</div>
+	</NuxtLink>
 </template>
 
 <style scoped></style>

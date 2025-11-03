@@ -1,4 +1,4 @@
-import type { SitemapUrlInput } from "#sitemap/types";
+import type { SitemapUrlInput } from "@nuxtjs/sitemap";
 
 export default defineSitemapEventHandler(async () => {
 	const brawlers = (await useBrawlApi().brawlers.getAllBrawlers()).list;

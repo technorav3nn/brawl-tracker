@@ -90,8 +90,8 @@ const { data, status } = useLazyQuery(opts);
 				<UPageGrid class="mt-8 gap-5!">
 					<!-- Loading state -->
 					<template v-if="status === 'pending'">
-						<UCard v-for="index in 10" :key="index" variant="outline" class="!p-0" :ui="{ body: '!p-0' }">
-							<USkeleton class="h-[176px] w-full" />
+						<UCard v-for="index in 10" :key="index" variant="outline" class="p-0!" :ui="{ body: '!p-0' }">
+							<USkeleton class="h-44 w-full" />
 						</UCard>
 					</template>
 

@@ -5,18 +5,17 @@ const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
 	modules: [
-		"@nuxt/content",
-		"@nuxt/ui-pro",
+		"@nuxtjs/seo",
 		"@nuxt/devtools",
 		"@nuxt/image",
 		"@nuxtjs/turnstile",
-		"@nuxtjs/seo",
 		"@nuxthub/core",
 		"@pinia/nuxt",
 		"@vueuse/nuxt",
-		"@hebilicious/vue-query-nuxt",
+		"@peterbud/nuxt-query",
 		"motion-v/nuxt",
-		"nuxt-tiptap-editor",
+		"@nuxt/ui",
+		"@nuxt/content",
 	],
 	srcDir: "src/",
 	serverDir: "src/server",
@@ -24,7 +23,7 @@ export default defineNuxtConfig({
 		public: "src/public/",
 	},
 	future: {
-		compatibilityVersion: 4,
+		compatibilityVersion: 5,
 	},
 	compatibilityDate: "2024-11-01",
 	css: ["$assets/css/tailwind.css", "$assets/css/global.css"],
@@ -50,15 +49,15 @@ export default defineNuxtConfig({
 	tiptap: {
 		prefix: "Tiptap",
 	},
-	vueQuery: {
-		// @ts-expect-error - Error with the nuxt module
-		autoImports: ["queryOptions"],
+	nuxtQuery: {
+		// @ts-expect-error nuxt-query module types are broken
+		autoImports: ["queryOptions", "useQuery", "useMutation", "useInfiniteQuery", "useQueryClient"],
 		vueQueryPluginOptions: {
 			enableDevtoolsV6Plugin: true,
 		},
 	},
 	site: {
-		url: "https://brawlbase.deathblows.xyz",
+		url: "https://brawlbase.deathblows.dev",
 		name: "BrawlBase",
 		description: "The hub for everything Brawl Stars",
 		defaultLocale: "en",
@@ -96,6 +95,8 @@ export default defineNuxtConfig({
 		typedPages: true,
 		asyncContext: true,
 		inlineRouteRules: true,
+		viteEnvironmentApi: true,
+		typescriptPlugin: true,
 	},
 	image: {
 		domains: [
@@ -117,7 +118,7 @@ export default defineNuxtConfig({
 		},
 		provider: "none",
 		cloudflare: {
-			baseURL: "https://brawlbase.deathblows.xyz",
+			baseURL: "https://brawlbase.deathblows.dev",
 		},
 		[process.env.NODE_ENV === "development" ? "ipx" : ""]: {},
 	},
@@ -139,12 +140,9 @@ export default defineNuxtConfig({
 		dirs: ["queries"],
 	},
 	runtimeConfig: {
-		appwriteApiToken: "",
 		betterAuthSecret: "",
-		betterAuthUrl: process.env.NODE_ENV === "production" ? "https://brawlbase.deathblows.xyz" : "http://localhost:3000",
+		betterAuthUrl: process.env.NODE_ENV === "production" ? "https://brawlbase.deathblows.dev" : "http://localhost:3000",
 		brawlStarsApiToken: "",
-		appwriteEndpoint: "https://cloud.appwrite.io/v1",
-		appwriteProjectId: "6786db24001e31cc452a",
 		scidAccountToken: "",
 		// not private, don't worry im not leaking anything
 		scidAccountId: "85-0e066b52-b348-4256-b6c1-4f12a18f54d9",
@@ -154,10 +152,7 @@ export default defineNuxtConfig({
 			secretKey: "",
 		},
 	},
-	// appwrite: {
-	// 	endpoint: "https://cloud.appwrite.io/v1",
-	// 	project: "6786db24001e31cc452a",
-	// },
+
 	nitro: {
 		cloudflare: {
 			deployConfig: true,

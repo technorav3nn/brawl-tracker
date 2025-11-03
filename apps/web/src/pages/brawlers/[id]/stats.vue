@@ -52,11 +52,11 @@ filteredMapStore.setFilteredMaps(maps.value);
 		>
 			<template #links>
 				<div class="flex flex-row gap-4">
-					<UButtonGroup class="min-w-40 sm:mt-4">
+					<UFieldGroup class="min-w-40 sm:mt-4">
 						<UInput v-model="search" size="md" variant="outline" class="w-full" placeholder="Search..." />
 						<UButton icon="i-heroicons-magnifying-glass" size="md" color="neutral" variant="subtle" />
-					</UButtonGroup>
-					<UButtonGroup class="sm:mt-4">
+					</UFieldGroup>
+					<UFieldGroup class="sm:mt-4">
 						<BrawlerMapStatsMapFilterSelect :id="filterButtonId" />
 						<UButton
 							icon="i-heroicons-funnel"
@@ -66,9 +66,9 @@ filteredMapStore.setFilteredMaps(maps.value);
 							class="rounded-none rounded-r-md"
 							@click="openFilterMenu"
 						/>
-					</UButtonGroup>
+					</UFieldGroup>
 					<!--
- <UButtonGroup class="sm:mt-4 min-w-40">
+ <UFieldGroup class="sm:mt-4 min-w-40">
 						<USelectMenu
 							v-model="selectedSort"
 							:options="SORT_OPTIONS"
@@ -83,7 +83,7 @@ filteredMapStore.setFilteredMaps(maps.value);
 							color="gray"
 							@click="sortDirection = sortDirection === 'asc' ? 'desc' : 'asc'"
 						/>
-					</UButtonGroup> 
+					</UFieldGroup> 
 -->
 				</div>
 			</template>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { ButtonProps } from "#ui/types";
-import type { PageFeatureProps } from "#ui-pro/types";
+import type { ButtonProps, PageFeatureProps } from "#ui/types";
 
 const title = "BrawlBase: The Intuitive Brawl Stars Stats Site";
 const description = "BrawlBase is an open-source, comprehensive statistics and utilities site for Brawl Stars.";
@@ -47,7 +46,6 @@ const playerPageHeroFeatures: PageFeatureProps[] = [
 		icon: "i-heroicons-presentation-chart-line",
 	},
 ];
-
 const mainHeroLinks: ButtonProps[] = [
 	{
 		label: "Get Started",
@@ -71,18 +69,26 @@ const slideThreeImages = [
 </script>
 
 <template>
-	<LandingHeroBackground class="absolute -top-px w-full shrink-0 text-(--ui-primary) transition-all" />
+	<LandingHeroBackground class="absolute -top-px w-full shrink-0 text-primary transition-all" />
 
 	<UPageHero :ui="{ container: 'py-45!' }">
 		<template #title>
-			<Motion
-				asChild
-				:initial="{ opacity: 0, y: 20 }"
-				:animate="{ opacity: 1, y: 0 }"
-				:transition="{ duration: 0.6, delay: 0.1 }"
-			>
+			<Motion asChild :initial="{ opacity: 0, y: 20 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.6 }">
 				<div class="mx-auto max-w-4xl *:leading-11 sm:*:leading-19">
-					Explore Brawl Stars with <span class="text-(--ui-primary)">BrawlBase</span>
+					Explore Brawl Stars with
+					<div>
+						<template v-for="i in 'BrawlBase'.length" :key="i">
+							<Motion
+								as="span"
+								:initial="{ opacity: 0, y: 20 }"
+								:animate="{ opacity: 1, y: 0 }"
+								:transition="{ delay: i * 0.08 + 0.2, duration: 0.5 }"
+								class="inline-block text-primary"
+							>
+								{{ "BrawlBase"[i - 1] }}
+							</Motion>
+						</template>
+					</div>
 				</div>
 			</Motion>
 		</template>
@@ -91,7 +97,7 @@ const slideThreeImages = [
 				asChild
 				:initial="{ opacity: 0, y: 20 }"
 				:animate="{ opacity: 1, y: 0 }"
-				:transition="{ delay: 0.3, duration: 0.5 }"
+				:transition="{ delay: 0.2, duration: 0.5 }"
 			>
 				<p>View players, brawlers, events and more with BrawlBase, your home for everything Brawl Stars.</p>
 			</Motion>
@@ -103,7 +109,7 @@ const slideThreeImages = [
 				asChild
 				:initial="{ opacity: 0, y: 20 }"
 				:animate="{ opacity: 1, y: 0 }"
-				:transition="{ delay: 0.5 + index * 0.25, duration: 0.5 }"
+				:transition="{ delay: 0.4 + index * 0.25, duration: 0.5 }"
 			>
 				<UButton size="xl" v-bind="link" />
 			</Motion>
@@ -113,13 +119,13 @@ const slideThreeImages = [
 
 		<!-- 
 		<template #bottom>
-			<div class="-mt-10 flex items-center justify-center">
+			<div class="flex items-center justify-center -mt-10">
 				<UButton
 					variant="outline"
 					color="neutral"
 					icon="i-heroicons-arrow-down0-solid"
 					square
-					class="pointer-events-none animate-bounce rounded-full"
+					class="rounded-full pointer-events-none animate-bounce"
 					style="animation-duration: 1.2s"
 				></UButton>
 			</div>
@@ -145,7 +151,7 @@ const slideThreeImages = [
 			width="400"
 			height="500"
 			alt="Illustration"
-			class="w-full rounded-xl border border-(--ui-border)"
+			class="w-full rounded-xl border border-default"
 		/>
 		<template #features>
 			<Motion
@@ -180,7 +186,7 @@ const slideThreeImages = [
 			width="400"
 			height="420"
 			alt="Death_Blows's profile, the creator of BrawlBase"
-			class="w-full rounded-xl border border-(--ui-border)"
+			class="w-full rounded-xl border border-default"
 		/>
 		<template #features>
 			<Motion
@@ -279,7 +285,7 @@ const slideThreeImages = [
 	<UPageSection :ui="{ container: 'relative !pb-0 overflow-hidden max-w-[90rem]' }">
 		<template #title>Ready to Dive In?</template>
 		<template #description>
-			BrawlBase is <span class="font-medium text-(--ui-primary)">the</span> hub for everything Brawl Stars, perfect as a wiki and
+			BrawlBase is <span class="font-medium text-primary">the</span> hub for everything Brawl Stars, perfect as a wiki and
 			companion with your gameplay<br />
 			Focused on performance, speed, and ease of use, BrawlBase is the best way to view everything in Brawl Stars. See for
 			yourself!
@@ -290,15 +296,15 @@ const slideThreeImages = [
 		</template>
 
 		<div
-			class="absolute left-1/2 size-40 -translate-x-1/2 -translate-y-80 transform rounded-full blur-[250px] sm:size-50 dark:bg-(--ui-primary)"
+			class="absolute left-1/2 size-40 -translate-x-1/2 -translate-y-80 transform rounded-full blur-[250px] sm:size-50 dark:bg-primary"
 		/>
 		<LazyLandingStarsBg :starCount="400" :size="{ min: 2, max: 4 }" />
 
-		<div aria-hidden="true" class="absolute inset-0 z-[-1] mx-4 hidden border-x border-(--ui-border) sm:mx-6 lg:mx-8 lg:block" />
+		<div aria-hidden="true" class="absolute inset-0 z-[-1] mx-4 hidden border-x border-default sm:mx-6 lg:mx-8 lg:block" />
 		<div
-			class="relative -mx-4 h-[400px] w-screen overflow-hidden border border-x-0 border-b-0 border-(--ui-border) bg-(--ui-bg-muted) sm:-mx-6 lg:mx-0 lg:w-full lg:border-x"
+			class="relative -mx-4 h-[400px] w-screen overflow-hidden border border-x-0 border-b-0 border-default bg-muted sm:-mx-6 lg:mx-0 lg:w-full lg:border-x"
 		>
-			<UPageMarquee
+			<UMarquee
 				reverse
 				orientation="vertical"
 				:overlay="false"
@@ -315,10 +321,10 @@ const slideThreeImages = [
 					width="460"
 					height="258"
 					:alt="image"
-					class="aspect-video rounded-[calc(var(--ui-radius)*2)] border border-(--ui-border) bg-white"
+					class="aspect-video rounded-[calc(var(--ui-radius)*2)] border border-default bg-white"
 				/>
-			</UPageMarquee>
-			<UPageMarquee
+			</UMarquee>
+			<UMarquee
 				orientation="vertical"
 				:overlay="false"
 				:ui="{
@@ -334,10 +340,10 @@ const slideThreeImages = [
 					width="460"
 					height="258"
 					:alt="image"
-					class="aspect-video rounded-[calc(var(--ui-radius)*2)] border border-(--ui-border) bg-white"
+					class="aspect-video rounded-[calc(var(--ui-radius)*2)] border border-default bg-white"
 				/>
-			</UPageMarquee>
-			<UPageMarquee
+			</UMarquee>
+			<UMarquee
 				reverse
 				orientation="vertical"
 				:overlay="false"
@@ -354,9 +360,9 @@ const slideThreeImages = [
 					width="460"
 					height="258"
 					:alt="image"
-					class="aspect-video rounded-[calc(var(--ui-radius)*2)] border border-(--ui-border) bg-white"
+					class="aspect-video rounded-[calc(var(--ui-radius)*2)] border border-default bg-white"
 				/>
-			</UPageMarquee>
+			</UMarquee>
 		</div>
 	</UPageSection>
 
@@ -452,7 +458,7 @@ const slideThreeImages = [
 			title="What are you waiting for?"
 			description="Start using BrawlBase today and enjoy the benefits of tracking your progress and improving your gameplay!"
 			:links="finalLandingLinks"
-			class="bg-gray-950/30 border-t border-border"
+			class="border-t bg-gray-950/30 border-border"
 		/> 
 		-->
 </template>

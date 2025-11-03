@@ -58,11 +58,11 @@ const ownedBrawlers = computed(() => {
 			<div class="flex w-full flex-col items-start justify-between gap-4 sm:flex-row">
 				<p class="text-sm text-gray-400">Select one of the players brawlers to view their stats</p>
 				<div class="flex gap-3 max-sm:w-full">
-					<UButtonGroup class="max-sm:w-[60%] sm:min-w-30">
+					<UFieldGroup class="max-sm:w-[60%] sm:min-w-30">
 						<UInput v-model="search" class="max-sm:w-full" placeholder="Search..." />
 						<UButton icon="i-heroicons-magnifying-glass" color="neutral" variant="subtle" />
-					</UButtonGroup>
-					<UButtonGroup class="min-w-30 max-sm:w-[40%]">
+					</UFieldGroup>
+					<UFieldGroup class="min-w-30 max-sm:w-[40%]">
 						<USelect v-model="sort" class="max-sm:w-full sm:min-w-30" :items="['Trophies', 'Level', 'Rank', 'Name']" />
 						<UButton
 							:icon="
@@ -72,7 +72,7 @@ const ownedBrawlers = computed(() => {
 							variant="subtle"
 							@click="sortDirection = sortDirection === 'ascending' ? 'descending' : 'ascending'"
 						/>
-					</UButtonGroup>
+					</UFieldGroup>
 				</div>
 			</div>
 		</template>

@@ -40,7 +40,7 @@ async function revoke(token: string) {
 			<USeparator class="mt-4 w-full" />
 		</section>
 		<section class="mt-4">
-			<UCard v-for="session in sessions" :key="session.id" variant="outline" class="!p-0">
+			<UCard v-for="session in sessions" :key="session.id" variant="outline" class="p-0!">
 				<template #header>
 					<h1 class="flex items-center gap-2 text-lg font-medium">
 						<ProseCode>{{ session.id }}</ProseCode>

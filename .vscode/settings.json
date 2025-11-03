@@ -22,5 +22,7 @@
 		"**/*.code-search": true,
 		// "**/__old__": true,
 		"**/.yarn/releases": true
-	}
+	},
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"stylua.targetReleaseVersion": "latest"
 }

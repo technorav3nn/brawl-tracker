@@ -11,6 +11,8 @@ useSeoMeta({
 	description: "View guides and builds, or create your own!",
 	titleTemplate: "%s | Guides | %siteName",
 });
+
+const { data: session } = await authClient.useSession(useFetch);
 </script>
 
 <template>
@@ -22,7 +24,9 @@ useSeoMeta({
 	>
 		<div></div>
 		<template #links>
-			<UButton :to="`/brawlers/${id}/guides/create`" size="md" icon="i-heroicons-plus"> Create a Guide </UButton>
+			<UButton :disabled="session === null" :to="`/brawlers/${id}/guides/create`" size="md" icon="i-heroicons-plus">
+				Create
+			</UButton>
 		</template>
 		<UPageGrid v-if="guides?.length !== 0" class="gap-4">
 			<GuidesGuideCard v-for="guide in guides" :guide :brawlerId="id" />

@@ -17,14 +17,18 @@ const links = [
 		label: "Links",
 		children: [
 			{
-				label: "Discord Bot Invite",
+				label: "Discord Bot (not done)",
 				to: "https://google.com/",
 				target: "_blank",
 			},
 			{
-				label: "Privacy Policy",
+				label: "Privacy Policy (not done)",
 				to: "https://google.com/",
 				target: "_blank",
+			},
+			{
+				label: "Credits & About",
+				to: "/about",
 			},
 		],
 	},

@@ -61,8 +61,7 @@ function openProfileEdtiorSlideover() {
 	slideover.create(LazyPlayersProfileEditorSlideover, { props: { player: player.value } }).open();
 }
 
-const { data: config, suspense: configSuspense } = useQuery(profileConfigDetailQuery(route.params.tag));
-configSuspense();
+const { data: config } = await useSuspenseQuery(profileConfigDetailQuery(route.params.tag));
 
 const { background, selectedBackground, theme, selectedTheme } = storeToRefs(useProfileConfigStore());
 const appConfig = useAppConfig();

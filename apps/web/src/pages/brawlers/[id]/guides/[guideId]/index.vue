@@ -4,7 +4,7 @@ import type { TocLink } from "@nuxt/content";
 import { load } from "cheerio";
 import { format } from "date-fns/format";
 import { LazyModalsConfirmationModal } from "#components";
-import type { PageLink } from "#ui-pro/types";
+import type { PageLink } from "#ui/types";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
 import { normalCaseToKebabCase } from "$lib/utils/common";
 

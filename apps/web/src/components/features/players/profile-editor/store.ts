@@ -1,4 +1,3 @@
-import { formatTag } from "@brawltracker/supercell-api-utils";
 import { defineStore } from "pinia";
 import { type Background } from "$lib/backgrounds";
 
@@ -9,6 +8,8 @@ export const useProfileConfigStore = defineStore("profile-editor-store", () => {
 	const selectedBackground = ref<Background | undefined>(undefined);
 	const selectedTheme = ref<string | undefined>(undefined);
 
+	const queryClient = useQueryClient();
+
 	async function applyChanges() {
 		try {
 			const data = await $fetch("/api/profiles/update-config", {
@@ -18,9 +19,9 @@ export const useProfileConfigStore = defineStore("profile-editor-store", () => {
 					theme: selectedTheme.value,
 				}),
 			});
+			console.log("Profile config updated:", data);
 			const route = useRoute(`players-tag`);
-			const asyncData = useNuxtData(`profiles-config-${formatTag(decodeURIComponent(route.params.tag))}`);
-			asyncData.data.value = data;
+			await queryClient.setQueryData(profileConfigKeys.detail(route.params.tag), data);
 		} catch (error) {
 			throw createError({ status: 500, message: `Failed to update profile: ${error}` });
 		}

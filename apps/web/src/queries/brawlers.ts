@@ -12,7 +12,7 @@ export const brawlersQuery = () => {
 		queryFn: () => $fetch("/api/brawlers"),
 		gcTime: 1000 * 500,
 		staleTime: 1000 * 120,
-		select: (d) => d.list,
+		select: (d) => (d as any).list,
 	});
 };
 

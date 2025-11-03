@@ -33,9 +33,9 @@ const powers = computed(() =>
 			<div
 				class="flex h-full w-full flex-row gap-2.5 rounded-sm rounded-t-none rounded-b-none border border-r-0 border-b-0 border-l-0 border-(--ui-border) px-4 py-0"
 			>
-				<div class="bg-card mt-3 mb-3 flex flex-col gap-4">
-					<div v-for="power in powers" :key="power.id">
-						<div class="flex flex-col gap-2 lg:flex-col">
+				<div class="bg-card mt-3 mb-3 flex w-full flex-col gap-4">
+					<div v-for="power in powers" :key="power.id" class="w-full">
+						<div class="flex w-full flex-col gap-2 lg:flex-col">
 							<div class="flex w-full flex-row items-center gap-3">
 								<Image
 									:src="`${CDN_URL_V2}/${props.type === 'gadgets' ? 'gadgets' : 'star-powers'}/${power.id}.webp`"
@@ -44,7 +44,7 @@ const powers = computed(() =>
 									height="40"
 									:alt="`${power.name} icon`"
 								/>
-								<div class="flex w-full items-center justify-between whitespace-nowrap">
+								<div class="flex w-full flex-col whitespace-nowrap">
 									<p class="w-full text-lg font-bold tracking-tight">{{ power.name }}</p>
 									<div class="flex items-center gap-1">
 										<template v-if="power.cooldown">

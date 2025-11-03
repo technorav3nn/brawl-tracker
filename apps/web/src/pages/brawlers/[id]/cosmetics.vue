@@ -23,7 +23,7 @@ const skins = computed<(Skin & { url: string })[]>(() =>
 watchEffect(() => {
 	setSkins(skins.value);
 });
-setSelectedSkin(skins.value[0]);
+setSelectedSkin(skins.value[0]!);
 
 const replacements: Record<string, () => VNode> = {
 	Gems: () =>
@@ -61,7 +61,7 @@ function render(cost: string) {
 	return () =>
 		parts.map((part) => {
 			if (seperators.includes(part)) {
-				return replacements[part]();
+				return replacements[part]?.();
 			}
 
 			return part;

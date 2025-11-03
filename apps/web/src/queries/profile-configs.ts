@@ -1,4 +1,4 @@
-const profileConfigKeys = {
+export const profileConfigKeys = {
 	all: ["profileConfigs"] as const,
 	detail: (tag: string) => [...profileConfigKeys.all, tag] as const,
 };

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 /* eslint-disable vue/no-v-html */
 import type { TocLink } from "@nuxt/content";
-import type { PageLink } from "@nuxt/ui-pro";
+import type { PageLink } from "@nuxt/ui";
 import { load } from "cheerio";
 import { capitalizeLetters, kebabCaseToNormalCase } from "$lib/utils/common";
 

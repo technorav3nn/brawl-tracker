@@ -1,9 +1,19 @@
 import { betterAuth } from "better-auth";
+import { captcha } from "better-auth/plugins";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import * as schema from "../database/schema";
 
 function createAuth() {
+	const {
+		turnstile: { secretKey },
+	} = useRuntimeConfig();
 	return betterAuth({
+		plugins: [
+			captcha({
+				provider: "cloudflare-turnstile",
+				secretKey,
+			}),
+		],
 		database: drizzleAdapter(useDrizzle().db, { provider: "sqlite", schema }),
 		emailAndPassword: { enabled: true },
 		debug: true,
