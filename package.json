@@ -12,14 +12,10 @@
 		"test:watch": "vitest watch --ui",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"ci": "vitest run && turbo run format && turbo run lint",
-		"changeset": "changeset",
-		"version-packages": "changeset version",
-		"release": "turbo build --filter=@brawltracker/web^... && changeset publish",
 		"db:start": "docker-compose up -d",
 		"db:stop": "docker-compose down"
 	},
 	"devDependencies": {
-		"@changesets/cli": "^2.27.12",
 		"@humanwhocodes/retry": "^0.4.1",
 		"@sapphire/eslint-config": "^5.0.5",
 		"@vitest/ui": "^3.2.4",
@@ -44,5 +40,6 @@
 	"workspaces": [
 		"packages/*",
 		"apps/*"
-	]
+	],
+	"packageManager": "yarn@4.8.1"
 }
