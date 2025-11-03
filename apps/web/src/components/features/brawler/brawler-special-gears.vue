@@ -2,8 +2,8 @@
 import type { BrawlApiBrawler } from "@brawltracker/brawl-api";
 import { normalizeNameToCdnName, CDN_URL, getAllGears } from "@brawltracker/cdn";
 import type { CdnBrawler } from "@brawltracker/cdn/v2";
-import { typedObjectEntries } from "$lib/utils/common";
 import { RARITY_COLOR_CLASSES } from "$lib/utils/brawl-stars/colors";
+import { typedObjectEntries } from "$lib/utils/common";
 
 const props = defineProps<{
 	brawler: BrawlApiBrawler;

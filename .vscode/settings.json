@@ -24,5 +24,7 @@
 		"**/.yarn/releases": true
 	},
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"stylua.targetReleaseVersion": "latest"
+	"stylua.targetReleaseVersion": "latest",
+	// why? because its ANNOYING
+	"tailwindCSS.lint.suggestCanonicalClasses": "ignore"
 }

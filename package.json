@@ -6,7 +6,7 @@
 		"build": "turbo run build",
 		"ci:build": "turbo run build --filter=@brawltracker/web^...",
 		"dev": "turbo run dev",
-		"lint": "turbo run lint",
+		"lint": "eslint packages --ext mjs,js,ts,tsx --fix",
 		"generate": "turbo run generate",
 		"test": "vitest run",
 		"test:watch": "vitest watch --ui",

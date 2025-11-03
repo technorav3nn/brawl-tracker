@@ -29,7 +29,6 @@ export const useLazyQuery = <
 /**
  * A wrapper around `useQuery` that pretty much resolves always on the server side.
  *
- *
  * @param options - Exact same options as `useQuery` from `@tanstack/vue-query`
  * @returns A query like `useQuery`, but will always resolve on the server side
  */

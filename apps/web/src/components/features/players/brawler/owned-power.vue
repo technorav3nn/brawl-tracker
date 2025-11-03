@@ -1,5 +1,4 @@
 <script setup lang="ts">
-/* eslint-disable @typescript-eslint/sort-type-constituents */
 import type { Gadget, Gear, StarPower } from "@brawltracker/brawl-stars-api";
 import { CDN_URL_V2, getAllGears } from "@brawltracker/cdn/v2";
 import { Image } from "@unpic/vue";

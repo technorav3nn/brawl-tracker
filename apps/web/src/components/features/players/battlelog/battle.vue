@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import type { BrawlApiGameMode } from "@brawltracker/brawl-api";
 import type { Battlelog } from "@brawltracker/brawl-stars-api";
 import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
 import { formatTag } from "@brawltracker/supercell-api-utils";
 import { Image } from "@unpic/vue";
 import { camelCaseToNormalCase } from "$lib/utils/common";
-import type { BrawlApiGameMode } from "@brawltracker/brawl-api";
 
 const props = defineProps<{
 	battlelogEntry: Battlelog;
@@ -51,8 +51,8 @@ const result = computed(() => {
 </script>
 
 <template>
-	<USkeleton v-if="status === 'pending'" v-for="i in 10" :key="i" class="h-40 w-full" />
-	<UCard class="w-full" v-else :ui="{ header: '!p-0 sm:!p-0 divide-y! divide-(--ui-border)!', body: '!p-0 sm:!p-0' }">
+	<USkeleton v-for="i in 10" v-if="status === 'pending'" :key="i" class="h-40 w-full" />
+	<UCard v-else class="w-full" :ui="{ header: '!p-0 sm:!p-0 divide-y! divide-(--ui-border)!', body: '!p-0 sm:!p-0' }">
 		<template #header>
 			<div class="flex items-center justify-between p-2.5 px-3.5! py-[0.58rem]!">
 				<p class="font-medium text-(--ui-primary)">{{ camelCaseToNormalCase(battlelogEntry.battle.type, true) }}</p>

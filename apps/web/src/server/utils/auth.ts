@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
-import { captcha } from "better-auth/plugins";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { captcha } from "better-auth/plugins";
 import * as schema from "../database/schema";
 
 function createAuth() {
