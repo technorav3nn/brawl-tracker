@@ -17,13 +17,11 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
-      - name: Setup volta
-        uses: volta-cli/action@v4
-      - name: Install Dependencies
-        run: yarn
       - uses: moonrepo/setup-toolchain@v0
         with:
           auto-install: true
+      - name: Install Dependencies
+        run: yarn
       - name: Cache for Turbo
         uses: rharkor/caching-for-turbo@v1.5
         with:
