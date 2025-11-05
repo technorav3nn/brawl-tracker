@@ -82,7 +82,7 @@ onMounted(() => {
 					</template>
 
 					<template v-else>
-						<ClubsSearchResultCard v-for="club in data" :club />
+						<ClubsSearchResultCard v-for="club in data" :key="club.id.tag" :club />
 					</template>
 				</UPageGrid>
 			</UPageHero>

@@ -9,7 +9,6 @@ defineOptions({ inheritAttrs: false });
 
 const icon = ref("i-heroicons-clipboard-document");
 
-// eslint-disable-next-line vue/no-setup-props-destructure
 const content = ref(props.tooltipContent);
 
 async function onClick() {
@@ -28,7 +27,7 @@ const attrs = useAttrs();
 </script>
 
 <template>
-	<UTooltip disableClosingTrigger :delayDuration="0" :text="content">
+	<UTooltip disable-closing-trigger :delay-duration="0" :text="content">
 		<UButton :size="(props as any).size" v-bind="attrs" :icon="icon" @click="onClick" />
 	</UTooltip>
 </template>

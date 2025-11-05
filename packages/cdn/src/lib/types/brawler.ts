@@ -12,7 +12,7 @@ export interface BrawlerKitAttack {
 	}[];
 }
 
-/* eslint-disable typescript-sort-keys/interface */
+ 
 export interface BrawlerData {
 	/**
 	 * Normalized name
@@ -80,7 +80,7 @@ export interface BrawlerData {
 		 * Rarity, if any
 		 * E.g. Super Rare, Epic, etc.
 		 */
-		// eslint-disable-next-line @typescript-eslint/sort-type-constituents
+		 
 		rarity?: "Rare" | "Super Rare" | "Epic" | "Mythic" | "Legendary" | "Hypercharge";
 	}[];
 	/**

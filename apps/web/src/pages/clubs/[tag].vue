@@ -58,7 +58,7 @@ const links = computed<NavigationMenuItem[]>(() => [
 						</div>
 						<div class="flex flex-row items-center gap-x-2">
 							<UiCopyButton
-								tooltipContent="Copy Tag"
+								tooltip-content="Copy Tag"
 								:text="club.tag"
 								class="bg-primary-400! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.15]"
 								size="sm"

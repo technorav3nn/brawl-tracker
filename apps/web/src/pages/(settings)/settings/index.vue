@@ -5,6 +5,6 @@
 			<p class="text-sm">Manage everything about your profile</p>
 			<USeparator class="mt-4 w-full" />
 		</section>
-		<section class="mt-4"></section>
+		<section class="mt-4"/>
 	</div>
 </template>

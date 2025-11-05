@@ -73,8 +73,7 @@ function getPropsForPost(post: Article, index: number): UBlogPostProps {
 					target: '_blank',
 				},
 			]"
-		>
-		</UPageHeader>
+		/>
 		<UPageBody>
 			<UBlogPosts class="gap-x-7 gap-y-3.5 lg:gap-y-6">
 				<UBlogPost
@@ -90,8 +89,8 @@ function getPropsForPost(post: Article, index: number): UBlogPostProps {
 				<UPagination
 					v-model:page="page"
 					:total="news?.pageNumbers.length"
-					:itemsPerPage="1"
-					showEdges
+					:items-per-page="1"
+					show-edges
 					:to="(p: number) => ({ query: { page: p } })"
 					@update:page="scrollToTop"
 				/>

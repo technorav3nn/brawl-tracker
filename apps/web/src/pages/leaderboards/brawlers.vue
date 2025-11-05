@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type RankingsPlayer } from "@brawltracker/brawl-stars-api";
+import type { RankingsPlayer } from "@brawltracker/brawl-stars-api";
 import { CDN_URL_V2 } from "@brawltracker/cdn/v2";
 import { Image } from "@unpic/vue";
 import { NuxtLink, UiColorTagText } from "#components";
@@ -119,7 +119,7 @@ const globalFilter = ref("");
 			<LeaderboardsBrawlerSelectMenu />
 		</div>
 		<UTable
-			v-model:globalFilter="globalFilter"
+			v-model:global-filter="globalFilter"
 			:loading="status === 'pending'"
 			:data="status === 'pending' ? [] : leaderboards!"
 			:columns="columns"

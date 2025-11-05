@@ -13,7 +13,6 @@
 	},
 	"devDependencies": {
 		"esbuild-plugins-node-modules-polyfill": "^1.6.8",
-		"eslint": "^8.57.0",
 		"tsup": "^8.2.4",
 		"typescript": "5.8.2"
 	},

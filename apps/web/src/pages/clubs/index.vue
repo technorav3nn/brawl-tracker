@@ -80,7 +80,7 @@ const links: (ButtonProps & { click?(): any })[] = [
 				}"
 			/>
 
-			<UForm ref="form" :validate="validate as any" :state :validateOn="[]" @submit="void onSubmit()">
+			<UForm ref="form" :validate="validate as any" :state :validate-on="[]" @submit="void onSubmit()">
 				<UFieldGroup class="mt-4 flex items-start justify-center" size="xl">
 					<UFormField class="w-11/12 sm:w-96" name="club">
 						<UInput

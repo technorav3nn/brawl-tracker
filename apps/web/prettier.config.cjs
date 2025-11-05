@@ -1,9 +1,8 @@
-/* eslint-disable tsdoc/syntax */
+/* eslint-disable */
 /**
  * @type {import('prettier').Options}
  */
 module.exports = {
-	// eslint-disable-next-line @typescript-eslint/no-require-imports
 	...require("../../prettier.config.cjs"),
 	plugins: ["prettier-plugin-tailwindcss"],
 	tailwindStylesheet: "./src/assets/css/tailwind.css",

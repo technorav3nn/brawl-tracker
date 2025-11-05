@@ -1,4 +1,4 @@
-/* eslint-disable unicorn/better-regex */
+ 
 const AVATAR_CDN_BASE_URL = "https://cdn.id.supercell.com/assets/web/portraits";
 
 export function getCdnUrlForAvatarId(avatarId: string) {
@@ -24,10 +24,11 @@ export function tagToId(tag: string) {
 	}
 
 	if (tag.startsWith("#")) {
-		// eslint-disable-next-line no-param-reassign
+		 
 		tag = tag.slice(1);
 	}
 
+	// oxlint-disable-next-line prefer-spread
 	const result = tag.split("").reduce((sum, c) => sum * BigInt(14) + BigInt("0289PYLQGRJCUV".indexOf(c)), BigInt(0));
 	return result.toString();
 }

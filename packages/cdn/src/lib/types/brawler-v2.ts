@@ -1,4 +1,4 @@
-/* eslint-disable typescript-sort-keys/interface */
+ 
 export interface CdnBrawler {
 	attribution: string;
 	shortDescription: string;

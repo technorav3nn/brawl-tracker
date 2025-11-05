@@ -39,14 +39,14 @@ const altAttackStats = computed(() => (brawlerCdnData.value.altAttack ? useKitAb
 				v-if="selectedTab === '0'"
 				:title="`Attack: ${brawlerCdnData.attack.name}`"
 				:description="brawlerCdnData.attack.description"
-				:tableData="[...attackStats.basicStats?.value, ...attackStats.levelStats?.value]"
+				:table-data="[...attackStats.basicStats?.value, ...attackStats.levelStats?.value]"
 				icon="/icons/attack-icon.png"
 			/>
 			<BrawlerKitCard
 				v-else
 				:title="`Attack: ${brawlerCdnData.altAttack.name}`"
 				:description="brawlerCdnData.altAttack.description"
-				:tableData="[...altAttackStats?.basicStats?.value, ...altAttackStats?.levelStats?.value]"
+				:table-data="[...altAttackStats?.basicStats?.value, ...altAttackStats?.levelStats?.value]"
 				icon="/icons/attack-icon.png"
 			/>
 		</div>

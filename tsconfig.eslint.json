@@ -3,5 +3,6 @@
 	"compilerOptions": {
 		"allowJs": true
 	},
-	"include": ["*.ts", "*.js", "*.mjs", "*.jsx", "*.tsx", "*.vue", "scripts/**/*.mts"]
+	"include": ["*.ts", "*.js", "*.mjs", "*.jsx", "*.tsx", "*.vue", "scripts/**/*.mts"],
+	"exclude": ["*.config.cjs", "*.cjs"]
 }

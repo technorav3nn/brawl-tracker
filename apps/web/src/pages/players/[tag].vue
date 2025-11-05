@@ -128,7 +128,7 @@ onUnmounted(() => {
 				<div class="absolute right-0 bottom-2 flex h-min gap-2 sm:top-2">
 					<PlayersLegacyInformationPopover />
 					<UTooltip
-						:delayDuration="0"
+						:delay-duration="0"
 						:text="player.tag !== session?.user.tag ? 'You can only edit your own profile' : 'Edit Profile'"
 					>
 						<UButton
@@ -164,12 +164,12 @@ onUnmounted(() => {
 						</div>
 						<div class="flex flex-row items-center gap-x-2">
 							<UiCopyButton
-								tooltipContent="Copy Tag"
+								tooltip-content="Copy Tag"
 								:text="player.tag"
 								class="bg-primary-400! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.15]"
 								size="sm"
 							/>
-							<UTooltip :delayDuration="0" text="View Supercell ID Profile">
+							<UTooltip :delay-duration="0" text="View Supercell ID Profile">
 								<UButton
 									class="bg-primary-400! text-black dark:bg-(--ui-primary)! [&>span]:scale-[1.20]"
 									icon="local:scid"

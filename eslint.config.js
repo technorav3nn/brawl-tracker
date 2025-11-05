@@ -1,43 +1,30 @@
-import tsParser from "@typescript-eslint/parser";
-import common from "eslint-config-neon/flat/common.js";
-import node from "eslint-config-neon/flat/node.js";
-import prettier from "eslint-config-neon/flat/prettier.js";
-import typescript from "eslint-config-neon/flat/typescript.js";
-import vuetypescript from "eslint-config-neon/flat/vue-typescript.js";
-import vue from "eslint-config-neon/flat/vue.js";
-import merge from "lodash.merge";
-import tseslint from "typescript-eslint";
-import vueParser from "vue-eslint-parser";
+// @ts-check
+import { createConfigForNuxt } from "@nuxt/eslint-config/flat";
+import { globalIgnores } from "eslint/config";
+import pluginN from "eslint-plugin-n";
 
-const commonFiles = "{vue,js,mjs,cjs,ts,mts,cts,jsx,tsx}";
-
-const commonRuleset = merge(...common, {
-	files: [`**/*${commonFiles}`],
-	rules: {
-		"import/no-duplicates": ["error", { "prefer-inline": true }],
-		"import/no-extraneous-dependencies": "off",
-		"import/newline-after-import": "off",
-		"import/extensions": "off",
-		"no-warning-comments": "off",
-		"no-use-before-define": "off",
-		"unicorn/prefer-math-trunc": "off",
-		"unicorn/numeric-separators-style": "off",
-		"id-length": "off",
-		"no-undef": "off",
-		"no-extra-parens": "off",
-		"comma-dangle": "off",
-		"object-curly-newline": "off",
+export default createConfigForNuxt({
+	features: {
+		stylistic: false,
+		tooling: true,
+		formatters: false,
+		// typescript: {
+		//   tsconfigPath: 'tsconfig.json',
+		// },
+		import: true,
 	},
-});
-const nodeRuleset = merge(...node, { files: [`**/*${commonFiles}`] });
-const typeScriptRuleset = merge(...typescript, {
-	files: [`**/*${commonFiles}`],
-	languageOptions: {
-		parserOptions: {
-			project: ["tsconfig.eslint.json", "apps/*/tsconfig.eslint.json", "packages/*/tsconfig.eslint.json"],
-		},
+	dirs: {
+		src: ["packages", "apps"],
+		componentsPrefixed: ["playground/components-prefixed"],
 	},
-	rules: {
+})
+	.append(globalIgnores(["**/*.config.cjs"]))
+	.overrideRules({
+		"vue/multi-word-component-names": "off",
+		"vue/max-attributes-per-line": ["error", { singleline: 5 }],
+		"@typescript-eslint/ban-types": "off",
+		"@typescript-eslint/no-empty-object-type": "off",
+		"@typescript-eslint/no-explicit-any": "off",
 		"no-restricted-globals": "off",
 		"@typescript-eslint/consistent-type-definitions": [2, "interface"],
 		"@typescript-eslint/lines-between-class-members": "off",
@@ -59,91 +46,51 @@ const typeScriptRuleset = merge(...typescript, {
 				fixStyle: "inline-type-imports",
 			},
 		],
-	},
-	settings: {
-		"import/resolver": {
-			typescript: {
-				project: ["tsconfig.eslint.json", "apps/*/tsconfig.eslint.json", "packages/*/tsconfig.eslint.json"],
+	})
+	.override("nuxt/typescript/rules", {
+		rules: {
+			"@typescript-eslint/unified-signatures": "off",
+		},
+	})
+	.override("nuxt/import/rules", {
+		rules: {
+			"import/order": [
+				2,
+				{
+					alphabetize: {
+						caseInsensitive: false,
+						order: "asc",
+					},
+					groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
+					"newlines-between": "never",
+				},
+			],
+		},
+	})
+	.append([
+		pluginN.configs["flat/recommended-module"],
+		{
+			rules: {
+				"n/no-unpublished-bin": 2,
+				"n/no-unpublished-import": 0,
+				"n/no-unpublished-require": 0,
+				"n/no-unsupported-features/es-builtins": 0,
+				"n/no-unsupported-features/es-syntax": 0,
+				"n/no-unsupported-features/node-builtins": 0,
+				"n/prefer-global/buffer": [2, "never"],
+				"n/prefer-global/console": [2, "always"],
+				"n/prefer-global/process": [2, "never"],
+				"n/prefer-global/text-decoder": [2, "never"],
+				"n/prefer-global/text-encoder": [2, "never"],
+				"n/prefer-global/url": [2, "never"],
+				"n/prefer-global/url-search-params": 0,
+				"n/prefer-promises/dns": 0,
+				"n/prefer-promises/fs": 0,
+				// unicorn rule for this
+				"n/prefer-node-protocol": 0,
+				"n/process-exit-as-throw": 2,
+				"n/no-missing-import": 0,
+				"n/no-extraneous-import": 0,
 			},
 		},
-	},
-});
-
-const vueRuleset = merge(...vue, {
-	files: [`apps/**/*${commonFiles}`],
-	rules: {
-		"typescript-sort-keys/interface": "off",
-		"@typescript-eslint/consistent-type-definitions": "off",
-		"@typescript-eslint/no-return-await": "off",
-		"@typescript-eslint/return-await": "off",
-		"@typescript-eslint/promise-function-async": "off",
-		"no-restricted-globals": "off",
-		"n/prefer-global/process": "off",
-		"vue/sort-keys": "off",
-		"vue/html-comment-indent": "off",
-		"vue/no-v-model-argument": "off",
-		"vue/max-attributes-per-line": "off",
-		"vue/no-unused-properties": "off",
-		"vue/require-default-prop": "off",
-		"vue/no-empty-component-block": "off", // typescript in template
-		"vue/no-multiple-template-root": "off",
-		"vue/first-attribute-linebreak": "off",
-		"vue/require-emit-validator": "off",
-		"vue/attribute-hyphenation": "off",
-		"vue/html-self-closing": "off",
-		"vue/comma-dangle": "off",
-		"vue/operator-linebreak": "off",
-		"vue/html-indent": "off",
-		"vue/html-closing-bracket-newline": "off",
-		"vue/multi-word-component-names": "off",
-		"vue/one-component-per-file": "off",
-		"vue/comment-directive": "off",
-		// Rule is broken
-		"vue/valid-v-for": "off",
-		"vue/no-static-inline-styles": "off",
-		"vue/no-unused-refs": "off",
-		// Rule is also broken
-		"vue/valid-v-slot": "off",
-	},
-	languageOptions: {
-		parser: vueParser,
-		parserOptions: {
-			parser: tsParser,
-			sourceType: "module",
-			extraFileExtensions: [".vue"],
-			project: ["tsconfig.eslint.json", "apps/*/tsconfig.eslint.json", "packages/*/tsconfig.eslint.json"],
-		},
-	},
-});
-const vueTypeScriptRuleset = merge(...vuetypescript, { files: [`apps/**/*${commonFiles}`] });
-const prettierRuleset = merge(...prettier, { files: [`**/*${commonFiles}`] });
-
-export default tseslint.config(
-	{
-		ignores: [
-			"**/node_modules/",
-			".git/",
-			"**/dist/",
-			"**/template/",
-			"**/coverage/",
-			"**/storybook-static/",
-			"**/.next/",
-			"**/.nuxt/",
-			"**/.output/",
-			"**/.vercel/",
-			"**/__old__/",
-			"apps/web/src/components/ui/carousel/index.vue",
-		],
-	},
-	commonRuleset,
-	nodeRuleset,
-	typeScriptRuleset,
-	vueRuleset,
-	vueTypeScriptRuleset,
-	prettierRuleset,
-	{
-		rules: {
-			"import/no-extraneous-dependencies": "off",
-		},
-	}
-);
+	]);

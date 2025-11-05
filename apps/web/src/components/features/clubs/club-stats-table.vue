@@ -6,7 +6,7 @@ const {
 } = useRoute("clubs-tag");
 const { data: club, status } = useQuery(clubsDetailQuery(tag));
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
+ 
 const { format } = new Intl.NumberFormat("en-US");
 
 const trophyRange = computed(() => {

@@ -48,13 +48,12 @@ const rarityColorClasses = {
 						icon="i-heroicons-adjustments-horizontal"
 						placeholder="Group by"
 						class="w-36"
-					>
-					</USelect>
+					/>
 				</div>
 				<UPageGrid v-if="status === 'pending'" :class="gridClasses" class="h-full! w-full!">
 					<div v-for="i in 60" :key="i" class="flex h-full! w-full! flex-col gap-1">
 						<USkeleton class="h-full! w-full! rounded-b-none">
-							<img width="300" height="300" src="" :alt="undefined" class="indent-[-200vw]!" />
+							<img width="300" height="300" src="" :alt="undefined" class="indent-[-200vw]!" >
 						</USkeleton>
 						<USkeleton class="h-[76px] w-full rounded-t-none" />
 					</div>
@@ -63,7 +62,7 @@ const rarityColorClasses = {
 					v-else-if="(groupingMode === 'None' || groupingMode === '') && Array.isArray(groupedBrawlers)"
 					:class="gridClasses"
 				>
-					<BrawlerListCard v-for="brawler in groupedBrawlers" :key="brawler.id" :brawler="brawler" showRarity />
+					<BrawlerListCard v-for="brawler in groupedBrawlers" :key="brawler.id" :brawler="brawler" show-rarity />
 				</UPageGrid>
 				<div v-else-if="groupingMode !== 'None' && !Array.isArray(groupedBrawlers)" class="mt-2 flex flex-col gap-3">
 					<div v-for="(group, value) in groupedBrawlers" :key="value">
@@ -76,7 +75,7 @@ const rarityColorClasses = {
 								v-for="brawler in group"
 								:key="brawler.id"
 								:brawler="brawler"
-								:showRarity="groupingMode === 'Class'"
+								:show-rarity="groupingMode === 'Class'"
 							/>
 						</UPageGrid>
 					</div>

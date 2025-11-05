@@ -58,7 +58,7 @@ const closeSlideover = () => emit("close", true);
 			/>
 			<USelect
 				:disabled="isPending"
-				:modelValue="humanSort"
+				:model-value="humanSort"
 				class="mt-4 w-[44%]"
 				:items="['None', 'Ascending', 'Descending']"
 				icon="i-heroicons-adjustments-horizontal"

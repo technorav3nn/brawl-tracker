@@ -31,7 +31,7 @@ const netTrophies = computed(() => {
 		.filter((battle) => battle.battle.type !== "soloRanked" && battle.battle.trophyChange)
 		.reduce((acc, battle) => acc + (battle.battle.trophyChange ?? 0), 0);
 });
-// eslint-disable-next-line vue/no-setup-props-destructure
+
 const base = ref(props.player.trophies - netTrophies.value!);
 
 const data = computed(() => {
@@ -45,6 +45,7 @@ const data = computed(() => {
 				trophyChange: battle.battle.trophyChange,
 				brawler: "",
 			});
+			// eslint-disable-next-line vue/no-side-effects-in-computed-properties
 			base.value += battle.battle.trophyChange;
 		}
 	}
@@ -52,7 +53,6 @@ const data = computed(() => {
 	return arr;
 });
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
 const { format } = new Intl.NumberFormat("en-US");
 
 // console.log(data.value, base, netTrophies);
@@ -97,10 +97,10 @@ const template = (d: DataRecord) => `
 		</template>
 		<template v-else-if="status === 'success' && battlelog">
 			<ClientOnly>
-				<VisXYContainer scaleByDomain :data="data">
-					<VisLine color="var(--ui-primary)" curveType="linear" :x="x" :y="y" />
-					<VisScatter :labelColor="labelColor" :label="label" color="var(--ui-primary)" :x="x" :y="y" />
-					<VisAxis :gridLine="false" type="x" />
+				<VisXYContainer scale-by-domain :data="data">
+					<VisLine color="var(--ui-primary)" curve-type="linear" :x="x" :y="y" />
+					<VisScatter :label-color="labelColor" :label="label" color="var(--ui-primary)" :x="x" :y="y" />
+					<VisAxis :grid-line="false" type="x" />
 					<VisAxis type="y" />
 					<VisTooltip />
 					<VisCrosshair color="var(--ui-primary)" :template="template" />

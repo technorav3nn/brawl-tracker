@@ -28,10 +28,10 @@ watch(selected, () => {
 
 <template>
 	<USelectMenu
-		:modelValue="status === 'pending' ? undefined : selected"
+		:model-value="status === 'pending' ? undefined : selected"
 		:loading="status === 'pending'"
 		:items="brawlers ?? []"
-		optionAttribute="name"
+		option-attribute="name"
 		searchable
 		searchable-placeholder="Search for a brawler..."
 		class="w-48"

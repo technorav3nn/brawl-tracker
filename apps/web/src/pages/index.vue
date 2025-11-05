@@ -73,7 +73,7 @@ const slideThreeImages = [
 
 	<UPageHero :ui="{ container: 'py-45!' }">
 		<template #title>
-			<Motion asChild :initial="{ opacity: 0, y: 20 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.6 }">
+			<Motion as-child :initial="{ opacity: 0, y: 20 }" :animate="{ opacity: 1, y: 0 }" :transition="{ duration: 0.6 }">
 				<div class="mx-auto max-w-4xl *:leading-11 sm:*:leading-19">
 					Explore Brawl Stars with
 					<div>
@@ -94,7 +94,7 @@ const slideThreeImages = [
 		</template>
 		<template #description>
 			<Motion
-				asChild
+				as-child
 				:initial="{ opacity: 0, y: 20 }"
 				:animate="{ opacity: 1, y: 0 }"
 				:transition="{ delay: 0.2, duration: 0.5 }"
@@ -106,7 +106,7 @@ const slideThreeImages = [
 			<Motion
 				v-for="(link, index) in mainHeroLinks"
 				:key="index"
-				asChild
+				as-child
 				:initial="{ opacity: 0, y: 20 }"
 				:animate="{ opacity: 1, y: 0 }"
 				:transition="{ delay: 0.4 + index * 0.25, duration: 0.5 }"
@@ -115,7 +115,7 @@ const slideThreeImages = [
 			</Motion>
 		</template>
 
-		<LazyLandingStarsBg class="h-[130%]" :starCount="350" />
+		<LazyLandingStarsBg class="h-[130%]" :star-count="350" />
 
 		<!-- 
 		<template #bottom>
@@ -157,7 +157,7 @@ const slideThreeImages = [
 			<Motion
 				v-for="(feature, index) in brawlerPageHeroFeatures"
 				:key="index"
-				asChild
+				as-child
 				:initial="{ opacity: 0, transform: 'translateX(-20px)' }"
 				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
 				:transition="{ delay: 0.4 + 0.2 * index }"
@@ -192,7 +192,7 @@ const slideThreeImages = [
 			<Motion
 				v-for="(feature, index) in playerPageHeroFeatures"
 				:key="index"
-				asChild
+				as-child
 				:initial="{ opacity: 0, transform: 'translateX(-20px)' }"
 				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
 				:transition="{ delay: 0.4 + 0.2 * index }"
@@ -212,7 +212,7 @@ const slideThreeImages = [
 	>
 		<UPageGrid>
 			<Motion
-				asChild
+				as-child
 				:initial="{ opacity: 0, transform: 'translateY(20px)' }"
 				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
 				:transition="{ delay: 0.4 + 0.2 * 0 }"
@@ -227,7 +227,7 @@ const slideThreeImages = [
 				/>
 			</Motion>
 			<Motion
-				asChild
+				as-child
 				:initial="{ opacity: 0, transform: 'translateY(20px)' }"
 				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
 				:transition="{ delay: 0.4 + 0.2 * 1 }"
@@ -242,7 +242,7 @@ const slideThreeImages = [
 				/>
 			</Motion>
 			<Motion
-				asChild
+				as-child
 				:initial="{ opacity: 0, transform: 'translateY(20px)' }"
 				:while-in-view="{ opacity: 1, transform: 'translateY(0)' }"
 				:transition="{ delay: 0.4 + 0.2 * 2 }"
@@ -277,8 +277,7 @@ const slideThreeImages = [
 				color: 'neutral',
 			},
 		]"
-	>
-	</UPageSection>
+	/>
 
 	<USeparator />
 
@@ -286,19 +285,19 @@ const slideThreeImages = [
 		<template #title>Ready to Dive In?</template>
 		<template #description>
 			BrawlBase is <span class="font-medium text-primary">the</span> hub for everything Brawl Stars, perfect as a wiki and
-			companion with your gameplay<br />
+			companion with your gameplay<br >
 			Focused on performance, speed, and ease of use, BrawlBase is the best way to view everything in Brawl Stars. See for
 			yourself!
 		</template>
 		<template #links>
 			<UButton to="/brawlers" size="lg">Discover BrawlBase</UButton>
-			<UButton to="/signup" size="lg" variant="outline" trailingIcon="i-heroicons-arrow-right" color="neutral"> Sign Up </UButton>
+			<UButton to="/signup" size="lg" variant="outline" trailing-icon="i-heroicons-arrow-right" color="neutral"> Sign Up </UButton>
 		</template>
 
 		<div
 			class="absolute left-1/2 size-40 -translate-x-1/2 -translate-y-80 transform rounded-full blur-[250px] sm:size-50 dark:bg-primary"
 		/>
-		<LazyLandingStarsBg :starCount="400" :size="{ min: 2, max: 4 }" />
+		<LazyLandingStarsBg :star-count="400" :size="{ min: 2, max: 4 }" />
 
 		<div aria-hidden="true" class="absolute inset-0 z-[-1] mx-4 hidden border-x border-default sm:mx-6 lg:mx-8 lg:block" />
 		<div
@@ -322,7 +321,7 @@ const slideThreeImages = [
 					height="258"
 					:alt="image"
 					class="aspect-video rounded-[calc(var(--ui-radius)*2)] border border-default bg-white"
-				/>
+				>
 			</UMarquee>
 			<UMarquee
 				orientation="vertical"
@@ -341,7 +340,7 @@ const slideThreeImages = [
 					height="258"
 					:alt="image"
 					class="aspect-video rounded-[calc(var(--ui-radius)*2)] border border-default bg-white"
-				/>
+				>
 			</UMarquee>
 			<UMarquee
 				reverse
@@ -361,7 +360,7 @@ const slideThreeImages = [
 					height="258"
 					:alt="image"
 					class="aspect-video rounded-[calc(var(--ui-radius)*2)] border border-default bg-white"
-				/>
+				>
 			</UMarquee>
 		</div>
 	</UPageSection>

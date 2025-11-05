@@ -101,14 +101,13 @@ const links: (ButtonProps & { click?(): any })[] = [
 					container: 'lg:py-24 lg:pb-16',
 					title: 'text-3xl font-bold tracking-tight text-neutral-900 dark:text-white sm:text-4xl lg:text-5xl',
 				}"
-			>
-			</UPageHero>
+			/>
 
 			<UForm ref="form" :validate="validate as any" :state @submit="void onSubmit()">
 				<div class="flex items-center justify-center">
 					<USelect
 						class="w-48"
-						:modelValue="state.type === 'tag' ? 'Tag' : 'Supercell ID Handle'"
+						:model-value="state.type === 'tag' ? 'Tag' : 'Supercell ID Handle'"
 						:items="['Tag', 'Supercell ID Handle']"
 						@update:model-value="state.type = $event === 'Tag' ? 'tag' : 'scidHandle'"
 					/>

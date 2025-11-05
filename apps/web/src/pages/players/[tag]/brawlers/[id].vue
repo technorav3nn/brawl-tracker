@@ -43,12 +43,12 @@ useSeoMeta({
 			<PlayersBrawlerPortraitCard
 				v-if="fullStatus"
 				:brawler="brawler!"
-				:playerBrawler="playerBrawler!"
+				:player-brawler="playerBrawler!"
 				class="col-span-5 h-full w-full min-[340px]:w-[revert] sm:col-span-2 lg:col-span-1"
 			/>
 			<PlayersBrawlerStatsTable
 				v-if="fullStatus"
-				:playerBrawler="playerBrawler!"
+				:player-brawler="playerBrawler!"
 				class="col-span-5 flex w-full flex-col sm:col-span-3 lg:col-span-2"
 			/>
 			<div v-if="fullStatus" class="col-span-5 grid grid-cols-2 gap-4 lg:col-span-2">

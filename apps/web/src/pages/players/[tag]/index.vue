@@ -74,7 +74,7 @@ const trophyBox = computed(() => {
 	}
 });
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
+ 
 const { format } = new Intl.NumberFormat("en-US");
 
 const playerStats = [
@@ -217,8 +217,7 @@ const recordStats = [
 						icon="i-heroicons-exclamation-triangle"
 						title="An error occured when loading the graph"
 						:description="error.message"
-					>
-					</UAlert>
+					/>
 				</template>
 			</NuxtErrorBoundary>
 		</div>

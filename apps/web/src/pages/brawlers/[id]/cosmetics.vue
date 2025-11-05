@@ -81,8 +81,8 @@ function render(cost: string) {
 			/>
 			<UCarousel
 				v-slot="{ item }"
-				skipSnaps
-				wheelGestures
+				skip-snaps
+				wheel-gestures
 				arrows
 				class="h-96! w-full overflow-x-visible"
 				:items="skins"

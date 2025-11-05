@@ -1,12 +1,13 @@
+import process from "node:process";
 import { createResolver } from "@nuxt/kit";
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
 const { resolve } = createResolver(import.meta.url);
 
 export default defineNuxtConfig({
 	modules: [
 		"@nuxtjs/seo",
 		"@nuxt/devtools",
+		"@nuxt/eslint",
 		"@nuxt/image",
 		"@nuxtjs/turnstile",
 		"@nuxthub/core",

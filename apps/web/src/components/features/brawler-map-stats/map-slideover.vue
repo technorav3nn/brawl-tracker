@@ -9,7 +9,6 @@ const props = defineProps<{
 
 const emit = defineEmits<{ close: [boolean] }>();
 
-// eslint-disable-next-line vue/no-setup-props-destructure
 const { data: mapStats, status } = useFetch(() => `/api/maps/${props.map.id}`, {
 	transform: (d) => d!.stats.find((stat) => (stat.brawler as unknown as number) === props.brawler.id) ?? null,
 	getCachedData: createGetCachedData(useNuxtApp()),

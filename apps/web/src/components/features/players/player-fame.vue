@@ -5,5 +5,5 @@
 </script>
 
 <template>
-	<ClientOnly></ClientOnly>
+	<ClientOnly/>
 </template>

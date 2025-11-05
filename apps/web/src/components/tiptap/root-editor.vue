@@ -164,7 +164,7 @@ onBeforeUnmount(() => {
 												? 'i-lucide-heading-4'
 												: 'i-lucide-heading'
 							"
-							trailingIcon="i-lucide-chevron-down"
+							trailing-icon="i-lucide-chevron-down"
 							:ui="{ trailingIcon: 'size-3', base: 'gap-0' }"
 							:variant="editor?.isActive('heading') ? 'soft' : 'ghost'"
 							color="neutral"
@@ -182,11 +182,11 @@ onBeforeUnmount(() => {
 										? 'i-lucide-list-ordered'
 										: 'i-lucide-list'
 							"
-							trailingIcon="i-lucide-chevron-down"
+							trailing-icon="i-lucide-chevron-down"
 							:ui="{ trailingIcon: 'size-3', base: 'gap-0' }"
 							:variant="editor?.isActive('bulletList') ? 'soft' : 'ghost'"
 							color="neutral"
-						></UButton>
+						/>
 					</UTooltip>
 				</UDropdownMenu>
 
@@ -330,7 +330,7 @@ onBeforeUnmount(() => {
 				/>
 				<circle r="6" cx="10" cy="10" fill="var(--ui-bg)" />
 			</svg>
-			<UIcon v-else name="i-heroicons-check-circle" class="size-5 text-success"></UIcon>
+			<UIcon v-else name="i-heroicons-check-circle" class="size-5 text-success"/>
 			<span v-if="minimumCharacters" class="text-xs" :class="characterCount >= minimumCharacters ? 'text-success' : 'text-error'">
 				{{ characterCount >= minimumCharacters ? "Done!" : `${characterCount} / ${minimumCharacters} minimum characters` }}
 			</span>
@@ -340,8 +340,8 @@ onBeforeUnmount(() => {
 	<UiResponsiveModal
 		v-if="editor"
 		v-model:open="youtubeDialogOpen"
-		:drawerProps="{ title: 'Add Youtube Video' }"
-		:modalProps="{ title: 'Add Youtube Video', ui: { content: 'max-w-sm' } }"
+		:drawer-props="{ title: 'Add Youtube Video' }"
+		:modal-props="{ title: 'Add Youtube Video', ui: { content: 'max-w-sm' } }"
 		title="Add Youtube Video"
 	>
 		<template #body>
@@ -352,7 +352,7 @@ onBeforeUnmount(() => {
 						placeholder="https://www.youtube.com/watch?v=example"
 						class="w-full"
 						label="Youtube URL"
-						:labelProps="{ class: 'text-sm' }"
+						:label-props="{ class: 'text-sm' }"
 					/>
 				</UFormField>
 				<UButton
@@ -376,8 +376,8 @@ onBeforeUnmount(() => {
 	<UiResponsiveModal
 		v-if="editor"
 		v-model:open="linkDialogOpen"
-		:drawerProps="{ title: 'Add Link' }"
-		:modalProps="{ title: 'Add Link', ui: { content: 'max-w-sm' } }"
+		:drawer-props="{ title: 'Add Link' }"
+		:modal-props="{ title: 'Add Link', ui: { content: 'max-w-sm' } }"
 	>
 		<template #body>
 			<div class="flex w-full flex-col gap-4">
@@ -387,7 +387,7 @@ onBeforeUnmount(() => {
 						placeholder="https://example.com"
 						class="w-full"
 						label="Link"
-						:labelProps="{ class: 'text-sm' }"
+						:label-props="{ class: 'text-sm' }"
 					/>
 				</UFormField>
 				<UFormField label="Display Text">
@@ -396,7 +396,7 @@ onBeforeUnmount(() => {
 						placeholder="Display Text (optional)"
 						class="w-full leading-0"
 						label="Display Text"
-						:labelProps="{ class: 'text-sm' }"
+						:label-props="{ class: 'text-sm' }"
 					/>
 				</UFormField>
 

@@ -42,9 +42,9 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/tiers/regular/${ran
 		<!-- Powers -->
 		<div class="absolute top-[2px] right-[2px] flex flex-col gap-y-[2px]">
 			<Image v-if="playerBrawler.gadgets.length > 0" width="19" height="19" src="/icons/player/brawler-powers/gadget.png" />
-			<Image v-if="!!playerBrawler.gears?.[0]" width="19" height="19" src="/icons/player/brawler-powers/gear.png"></Image>
+			<Image v-if="!!playerBrawler.gears?.[0]" width="19" height="19" src="/icons/player/brawler-powers/gear.png"/>
 			<Image v-if="playerBrawler.starPowers.length > 0" width="19" height="19" src="/icons/player/brawler-powers/starpower.png" />
-			<Image v-if="!!playerBrawler.gears?.[1]" width="19" height="19" src="/icons/player/brawler-powers/gear.png"></Image>
+			<Image v-if="!!playerBrawler.gears?.[1]" width="19" height="19" src="/icons/player/brawler-powers/gear.png"/>
 		</div>
 
 		<div class="absolute -top-[2.234rem] -left-4 flex flex-row items-center">

@@ -33,21 +33,20 @@ const altSuperStats = computed(() => (brawlerCdnData.value.altSuper ? useKitAbil
 			:ui="{ trigger: 'flex-1', indicator: 'h-[2px]!' }"
 			variant="link"
 			size="lg"
-		>
-		</UTabs>
+		/>
 		<div class="p-4 !pb-0" :class="[brawlerCdnData.altSuper && 'pt-2']">
 			<BrawlerKitCard
 				v-if="selectedTab === '0'"
 				:title="`Super: ${brawlerCdnData.super.name}`"
 				:description="brawlerCdnData.super.description"
-				:tableData="[...superStats.basicStats?.value, ...superStats.levelStats?.value]"
+				:table-data="[...superStats.basicStats?.value, ...superStats.levelStats?.value]"
 				icon="/icons/super-icon.png"
 			/>
 			<BrawlerKitCard
 				v-else
 				:title="`Super: ${brawlerCdnData.altSuper.name}`"
 				:description="brawlerCdnData.altSuper.description"
-				:tableData="[...altSuperStats?.basicStats?.value, ...altSuperStats?.levelStats?.value]"
+				:table-data="[...altSuperStats?.basicStats?.value, ...altSuperStats?.levelStats?.value]"
 				icon="/icons/super-icon.png"
 			/>
 		</div>

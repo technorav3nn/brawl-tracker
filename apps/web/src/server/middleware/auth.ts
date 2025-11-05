@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 		}
 
 		// Inject the user id so it can be used in subsequent requests.
-		// eslint-disable-next-line require-atomic-updates
+		 
 		event.context.user = session.user;
 	} catch {
 		// Ignore error

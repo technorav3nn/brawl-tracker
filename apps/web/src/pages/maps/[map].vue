@@ -58,7 +58,7 @@ const sortedStats = computed(() => {
 		<USeparator />
 		<UPage>
 			<UPageBody class="mt-8 space-y-0">
-				<div class="flex items-center justify-center"></div>
+				<div class="flex items-center justify-center"/>
 				<ClientOnly>
 					<MapsBrawlerBarChart class="mt-8" :data="chartData as any" />
 				</ClientOnly>

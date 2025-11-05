@@ -152,7 +152,7 @@ onBeforeRouteLeave((_1, _2, next) => {
 		"
 		orientation="vertical"
 		class="space-y-2!"
-		containerClass="pb-3"
+		container-class="pb-3"
 	>
 		<UForm
 			ref="form"
@@ -199,9 +199,9 @@ onBeforeRouteLeave((_1, _2, next) => {
 					<TiptapRootEditor
 						ref="editor"
 						v-model:html="state.editorHtml"
-						:hasError="!!form?.errors.find((e) => e.name === 'editorHtml')"
-						editorClass="h-[300px] overflow-scroll "
-						:minimumCharacters="200"
+						:has-error="!!form?.errors.find((e) => e.name === 'editorHtml')"
+						editor-class="h-[300px] overflow-scroll "
+						:minimum-characters="200"
 						@update:char-count="characterCount = $event"
 					/>
 				</UFormField>

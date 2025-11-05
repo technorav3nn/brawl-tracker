@@ -20,7 +20,7 @@ export function isNameNormalized(name: string) {
  * @example attackrange becomes Attack Range
  */
 export function convertLowercaseToTitleCase(str: string) {
-	// eslint-disable-next-line prefer-named-capture-group
+	 
 	return str.replaceAll(/([a-z])([A-Z])/g, "$1 $2");
 }
 

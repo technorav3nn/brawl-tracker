@@ -52,7 +52,7 @@ const ownedBrawlers = computed(() => {
 		description="Select one of the players brawlers to view their stats"
 		orientation="vertical"
 		:ui="{ inner: 'w-full [&>div]:w-full! ' }"
-		fullWidth
+		full-width
 	>
 		<template #description>
 			<div class="flex w-full flex-col items-start justify-between gap-4 sm:flex-row">
@@ -85,9 +85,9 @@ const ownedBrawlers = computed(() => {
 				v-for="brawler in searchedAndSortedBrawlers"
 				:key="brawler.id"
 				:to="`/players/${encodeURIComponent(route.params.tag)}/brawlers/${brawler.id}`"
-				prefetchOn="visibility"
+				prefetch-on="visibility"
 			>
-				<PlayersPlayerBrawler :brawler="brawlers?.list.find((b) => b.id === brawler.id)!" :playerBrawler="brawler" />
+				<PlayersPlayerBrawler :brawler="brawlers?.list.find((b) => b.id === brawler.id)!" :player-brawler="brawler" />
 			</NuxtLink>
 		</UPageGrid>
 	</UiPageSection>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type RankingClub } from "@brawltracker/brawl-stars-api";
+import type { RankingClub } from "@brawltracker/brawl-stars-api";
 import { Image } from "@unpic/vue";
 import { NuxtLink } from "#components";
 import type { BreadcrumbItem, TableColumn } from "#ui/types";
@@ -103,7 +103,7 @@ const globalFilter = ref("");
 			<LeaderboardsLocationSelectMenu />
 		</div>
 		<UTable
-			v-model:globalFilter="globalFilter"
+			v-model:global-filter="globalFilter"
 			:loading="status === 'pending'"
 			:data="status === 'pending' ? [] : leaderboards!"
 			:columns="columns"

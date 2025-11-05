@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { type Background } from "$lib/backgrounds";
+import type { Background } from "$lib/backgrounds";
 
 export const useProfileConfigStore = defineStore("profile-editor-store", () => {
 	const background = ref<Background | undefined>(undefined);

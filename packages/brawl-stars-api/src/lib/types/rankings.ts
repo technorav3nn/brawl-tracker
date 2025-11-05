@@ -1,5 +1,3 @@
-/* eslint-disable tsdoc/syntax */
-
 /**
  * @copyright 2016 widdix GmbH and it's contributors
  * @license MIT

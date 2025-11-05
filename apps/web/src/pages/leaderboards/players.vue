@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type RankingsPlayer } from "@brawltracker/brawl-stars-api";
+import type { RankingsPlayer } from "@brawltracker/brawl-stars-api";
 import { Image } from "@unpic/vue";
 import { NuxtLink, UiColorTagText } from "#components";
 import type { BreadcrumbItem, TableColumn } from "#ui/types";
@@ -139,7 +139,6 @@ const globalFilter = ref("");
 			}"
 			:ui="{ root: 'divide-neutral-200 dark:divide-neutral-800', td: 'py-2 px-4' }"
 			class="mb-12 h-max w-full rounded-sm border border-(--ui-border-accented)"
-		>
-		</UTable>
+		/>
 	</UContainer>
 </template>

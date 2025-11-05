@@ -49,8 +49,8 @@ const template = (d: DataRecord) => `
 			</div>
 		</template>
 		<VisXYContainer :data="data">
-			<VisStackedBar :x="x" :y="y" :dataStep="0.9" />
-			<VisAxis :gridLine="false" :tickFormat="tickFormat" :numTicks="data.length" type="x" />
+			<VisStackedBar :x="x" :y="y" :data-step="0.9" />
+			<VisAxis :grid-line="false" :tick-format="tickFormat" :num-ticks="data.length" type="x" />
 			<VisAxis type="y" />
 			<VisTooltip />
 			<VisCrosshair color="var(--ui-primary)" :template="template" />

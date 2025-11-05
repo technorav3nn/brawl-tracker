@@ -1,4 +1,4 @@
-/* eslint-disable unicorn/prefer-string-replace-all */
+ 
 import { Buffer } from "node:buffer";
 import { createHmac } from "node:crypto";
 

@@ -311,7 +311,7 @@ export interface CsvSkin {
 	TID: string | null;
 	id: number;
 }
-/* eslint-disable typescript-sort-keys/interface */
+ 
 export interface ShopBillingPackage {
 	id: number;
 	Name: string;

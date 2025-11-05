@@ -14,7 +14,7 @@ const getRankUrl = (rank: number) => `${CDN_URL_V2}/brawlify/ranked/tiered/${580
 
 <template>
 	<ClientOnly>
-		<UTooltip v-model:open="hovered" :delayDuration="0" :text="`View Other Information ${!player ? '(Data not avaliable)' : ''}`">
+		<UTooltip v-model:open="hovered" :delay-duration="0" :text="`View Other Information ${!player ? '(Data not avaliable)' : ''}`">
 			<UPopover arrow :content="{ side: 'left', align: 'start' }">
 				<UButton
 					:disabled="status === 'pending' || !player"

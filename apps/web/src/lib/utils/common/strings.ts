@@ -36,13 +36,13 @@ export function lowercaseFirstLetter(string: string) {
 
 // const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export function validEmail(email: string) {
-	return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+	return /^[^\s@]+@[^\s@][^\s.@]*\.[^\s@]+$/.test(email);
 }
 
 export function getCountryFlagEmoji(countryCode: string) {
 	return (
 		[...countryCode.toUpperCase()]
-			// eslint-disable-next-line unicorn/prefer-code-point
+			 
 			.map((char) => String.fromCodePoint(127_397 + char.charCodeAt(0)))
 			.reduce((a, b) => `${a}${b}`)
 	);

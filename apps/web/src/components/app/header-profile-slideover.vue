@@ -104,7 +104,7 @@ async function logout() {
 								variant="subtle"
 								size="lg"
 								block
-								trailingIcon="i-heroicons-arrow-right"
+								trailing-icon="i-heroicons-arrow-right"
 								:ui="{ trailingIcon: 'ms-0!' }"
 								@click="emit('close', true)"
 							>

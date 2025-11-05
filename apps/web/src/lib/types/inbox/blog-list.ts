@@ -51,7 +51,7 @@ export interface LinkItem {
 	url: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+ 
 export interface Query {}
 
 export interface ScriptLoader {

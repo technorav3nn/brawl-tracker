@@ -1,6 +1,6 @@
-import { type $Fetch } from "ofetch";
+import type { $Fetch } from "ofetch";
 import { ProfileResult } from "../structures/profile/profile-result";
-import { type RawProfileResponse } from "../types/profile";
+import type { RawProfileResponse } from "../types/profile";
 
 export class ProfileRoute {
 	private readonly $fetch: $Fetch;

@@ -38,7 +38,7 @@ const winsUntilNextStage = computed(() => {
 				<p class="text-lg leading-none font-bold text-(--ui-primary)">{{ winsUntilNextStage }} MORE WINS FOR MEGA DROP</p>
 				<div class="flex flex-col items-center gap-6">
 					<div class="flex w-full flex-row items-center gap-2">
-						<UProgress size="lg" :modelValue="MEGA_PIG_WINS_PER_STAGE - winsUntilNextStage" :max="MEGA_PIG_WINS_PER_STAGE" />
+						<UProgress size="lg" :model-value="MEGA_PIG_WINS_PER_STAGE - winsUntilNextStage" :max="MEGA_PIG_WINS_PER_STAGE" />
 
 						<div class="relative">
 							<NuxtImg src="/icons/clubs/megapig-star.png" alt="Mega Pig Star" width="100" height="100" />
@@ -61,8 +61,8 @@ const winsUntilNextStage = computed(() => {
 						tag: idToTag(highLowToId(`${member.AccountId.High}-${member.AccountId.Low}`).toString()),
 						icon: { id: member.ProfileIcon },
 					}"
-					:megaPigWins="member.MegaPig?.Wins ?? 0"
-					:megaPigTicketsLeft="member.MegaPig?.TIcketsLeft ?? MEGA_PIG_TICKETS_PER_MEMBER"
+					:mega-pig-wins="member.MegaPig?.Wins ?? 0"
+					:mega-pig-tickets-left="member.MegaPig?.TIcketsLeft ?? MEGA_PIG_TICKETS_PER_MEMBER"
 				/>
 			</div>
 		</div>

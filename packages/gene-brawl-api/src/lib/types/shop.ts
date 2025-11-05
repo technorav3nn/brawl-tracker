@@ -1,4 +1,4 @@
-/* eslint-disable typescript-sort-keys/interface */
+ 
 export interface Offer {
 	Items: Item[];
 	PurchaseResource: number;

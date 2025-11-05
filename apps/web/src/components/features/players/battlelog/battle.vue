@@ -51,7 +51,9 @@ const result = computed(() => {
 </script>
 
 <template>
-	<USkeleton v-for="i in 10" v-if="status === 'pending'" :key="i" class="h-40 w-full" />
+	<template v-if="status === 'pending'">
+		<USkeleton v-for="i in 10" :key="i" class="h-40 w-full" />
+	</template>
 	<UCard v-else class="w-full" :ui="{ header: '!p-0 sm:!p-0 divide-y! divide-(--ui-border)!', body: '!p-0 sm:!p-0' }">
 		<template #header>
 			<div class="flex items-center justify-between p-2.5 px-3.5! py-[0.58rem]!">
@@ -150,11 +152,11 @@ const result = computed(() => {
 						v-for="player in props.battlelogEntry.battle.teams![0]"
 						:key="player.tag"
 						:player="player"
-						:isStarPlayer="
+						:is-star-player="
 							!!props.battlelogEntry.battle.starPlayer &&
 							formatTag(player.tag) === formatTag(props.battlelogEntry.battle.starPlayer!.tag)
 						"
-						:isRanked="props.battlelogEntry.battle.type === 'soloRanked'"
+						:is-ranked="props.battlelogEntry.battle.type === 'soloRanked'"
 						class="w-[100px]"
 					/>
 				</div>
@@ -166,11 +168,11 @@ const result = computed(() => {
 						v-for="player in props.battlelogEntry.battle.teams![1]"
 						:key="player.tag"
 						:player="player"
-						:isStarPlayer="
+						:is-star-player="
 							!!props.battlelogEntry.battle.starPlayer &&
 							formatTag(player.tag) === formatTag(props.battlelogEntry.battle.starPlayer!.tag)
 						"
-						:isRanked="props.battlelogEntry.battle.type === 'soloRanked'"
+						:is-ranked="props.battlelogEntry.battle.type === 'soloRanked'"
 						class="w-[100px]"
 					/>
 				</div>
@@ -183,11 +185,11 @@ const result = computed(() => {
 						v-for="player in props.battlelogEntry.battle.teams![0]"
 						:key="player.tag"
 						:player="player"
-						:isStarPlayer="
+						:is-star-player="
 							!!props.battlelogEntry.battle.starPlayer &&
 							formatTag(player.tag) === formatTag(props.battlelogEntry.battle.starPlayer!.tag)
 						"
-						:isRanked="props.battlelogEntry.battle.type === 'soloRanked'"
+						:is-ranked="props.battlelogEntry.battle.type === 'soloRanked'"
 						class="w-[80px] sm:w-[100px]"
 					/>
 				</div>
@@ -201,11 +203,11 @@ const result = computed(() => {
 						v-for="player in props.battlelogEntry.battle.teams![1]"
 						:key="player.tag"
 						:player="player"
-						:isStarPlayer="
+						:is-star-player="
 							!!props.battlelogEntry.battle.starPlayer &&
 							formatTag(player.tag) === formatTag(props.battlelogEntry.battle.starPlayer!.tag)
 						"
-						:isRanked="props.battlelogEntry.battle.type === 'soloRanked'"
+						:is-ranked="props.battlelogEntry.battle.type === 'soloRanked'"
 						class="w-[80px] sm:w-[100px]"
 					/>
 				</div>

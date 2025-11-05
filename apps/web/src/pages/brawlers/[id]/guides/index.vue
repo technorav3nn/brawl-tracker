@@ -22,14 +22,14 @@ const { data: session } = await authClient.useSession(useFetch);
 		orientation="vertical"
 		class="space-y-2! divide-y-0!"
 	>
-		<div></div>
+		<div />
 		<template #links>
 			<UButton :disabled="session === null" :to="`/brawlers/${id}/guides/create`" size="md" icon="i-heroicons-plus">
 				Create
 			</UButton>
 		</template>
 		<UPageGrid v-if="guides?.length !== 0" class="gap-4">
-			<GuidesGuideCard v-for="guide in guides" :guide :brawlerId="id" />
+			<GuidesGuideCard v-for="guide in guides" :key="guide.id" :guide :brawler-id="id" />
 		</UPageGrid>
 		<div v-else class="flex w-full items-center justify-center">
 			<p class="text-sm text-muted">No guides found. Why don't you try making one?</p>

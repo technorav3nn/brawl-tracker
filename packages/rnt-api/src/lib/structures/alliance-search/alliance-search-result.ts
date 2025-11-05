@@ -1,4 +1,4 @@
-import { type RawAllianceSearchResponse } from "../../types/alliance-search";
+import type { RawAllianceSearchResponse } from "../../types/alliance-search";
 import { AllianceSearchAlliance } from "./alliance-search-aliance";
 
 export class AllianceSearchResult {

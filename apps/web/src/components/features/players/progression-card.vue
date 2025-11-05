@@ -6,13 +6,13 @@ defineProps<{
 	max: number;
 }>();
 
-// eslint-disable-next-line @typescript-eslint/unbound-method
+ 
 const { format } = new Intl.NumberFormat("en-US", { notation: "compact" });
 </script>
 
 <template>
 	<UPageCard :title :ui="{ container: 'gap-y-2.5 sm:py-4 sm:px-6 py-4 px-6' }">
-		<UProgress :modelValue="value" :max />
+		<UProgress :model-value="value" :max />
 
 		<div class="flex items-center gap-2">
 			<NuxtImg fit="inside" :src="image" width="26" height="26" />

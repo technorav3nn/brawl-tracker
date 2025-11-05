@@ -67,8 +67,8 @@ const stats = computed(() => {
 					v-model="selectedLevel"
 					class="min-w-24"
 					:items="levelSelectOptions"
-					valueAttribute="value"
-					optionAttribute="label"
+					value-attribute="value"
+					option-attribute="label"
 				/>
 			</div>
 			<div class="flex w-full flex-col items-center justify-between gap-3 sm:flex-col md:flex-col xl:flex-col">
@@ -104,8 +104,7 @@ const stats = computed(() => {
 						},
 					]"
 					class="w-full!"
-				>
-				</UTable>
+				/>
 			</div>
 		</div>
 	</div>

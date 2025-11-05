@@ -1,6 +1,5 @@
 import type { CountryCodes } from "@brawltracker/brawl-stars-api";
 
-/* eslint-disable @typescript-eslint/padding-line-between-statements */
 export default defineEventHandler((event) => {
 	const query = getQuery<{
 		location?: string;

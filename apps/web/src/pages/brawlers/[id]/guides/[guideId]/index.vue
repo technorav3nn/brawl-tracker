@@ -193,7 +193,7 @@ function deleteGuide() {
 				<UContentToc
 					v-if="tocs.length > 0"
 					highlight
-					highlightColor="primary"
+					highlight-color="primary"
 					:ui="{ root: 'top-[calc(var(--ui-header-height)+40px)]!' }"
 					:links="tocs"
 				>

@@ -74,7 +74,7 @@ async function importFriends() {
 
 				<template #footer>
 					<div class="flex flex-col items-center justify-center px-2">
-						<UButton :loading color="primary" class="w-min" trailingIcon="i-heroicons-arrow-right" @click="importFriends"
+						<UButton :loading color="primary" class="w-min" trailing-icon="i-heroicons-arrow-right" @click="importFriends"
 							>Continue</UButton
 						>
 						<UAlert

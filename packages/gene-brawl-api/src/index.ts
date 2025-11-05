@@ -1,5 +1,5 @@
 import { $fetch, FetchError } from "ofetch";
-import { type ApiAllianceResponse } from "./lib/types/alliance";
+import type { ApiAllianceResponse } from "./lib/types/alliance";
 import type { ApiProfileResponse, ApiUnresolvedProfileStats } from "./lib/types/profile";
 import type { ShopResponse } from "./lib/types/shop";
 

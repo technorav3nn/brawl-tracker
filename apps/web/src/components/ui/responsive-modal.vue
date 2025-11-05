@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type ModalProps, type DrawerProps } from "#ui/types";
+import type { ModalProps, DrawerProps } from "#ui/types";
 
 defineProps<{
 	drawerProps: DrawerProps;

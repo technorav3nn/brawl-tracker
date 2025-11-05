@@ -29,7 +29,7 @@ export function convertApiDate(date: string) {
  * @returns string
  */
 export function formatTag(tag: string) {
-	// eslint-disable-next-line unicorn/prefer-string-replace-all
+	 
 	return `#${tag.toUpperCase().replace(/O/g, "0").replace(/^#/g, "").replace(/\s/g, "")}`;
 }
 
@@ -41,6 +41,6 @@ export function formatTag(tag: string) {
  * @returns boolean
  */
 export function verifyTag(tag: string) {
-	// eslint-disable-next-line unicorn/better-regex
+	 
 	return /^#?[0289PYLQGRJCUV]{3,}$/.test(tag);
 }

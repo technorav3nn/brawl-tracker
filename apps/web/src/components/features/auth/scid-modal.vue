@@ -110,9 +110,9 @@ async function nextStage() {
 
 				<div v-if="stageTwo && status !== 'error' && status === 'success'">
 					<div class="flex flex-row items-center justify-between">
-						<NuxtImg width="100" height="100" :src="originalIcon!"></NuxtImg>
+						<NuxtImg width="100" height="100" :src="originalIcon!"/>
 						<UIcon name="i-heroicons-arrow-right-20-solid" class="size-20 text-neutral-500 dark:text-neutral-400" />
-						<NuxtImg width="100" height="100" :src="randomIcon?.imageUrl2"></NuxtImg>
+						<NuxtImg width="100" height="100" :src="randomIcon?.imageUrl2"/>
 					</div>
 					<p class="text-md mt-2 text-center font-medium">Change your profile picture to the brawler on the right</p>
 					<p class="mb-2 text-center text-sm text-neutral-500 dark:text-neutral-400">You can change it back after verifying</p>
@@ -130,7 +130,7 @@ async function nextStage() {
 				<USeparator class="mt-4" size="xs" />
 				<UProgress
 					class="mt-3"
-					:modelValue="progress"
+					:model-value="progress"
 					:max="['empty step', 'Step 1: Enter your tag', 'Step 2: Verify with changing your profile picture', 'empty step']"
 					:ui="{ step: 'first' }"
 				/>

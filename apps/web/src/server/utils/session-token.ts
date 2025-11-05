@@ -5,7 +5,9 @@ export const getCachedScidSessionToken = cachedFunction(
 	async (_: H3Event, scidToken: string) => {
 		try {
 			return await getSessionToken(scidToken);
-		} catch {}
+		} catch {
+			/* empty */
+		}
 	},
 	{
 		maxAge: 60 * 60 * 24, // 24 hours

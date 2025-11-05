@@ -1,4 +1,4 @@
-import { type ApplicationCommandRegistry } from "@sapphire/framework";
+import type { ApplicationCommandRegistry } from "@sapphire/framework";
 import { envParseString } from "@skyra/env-utilities";
 
 const REGISTRY_GUILD_ID = envParseString("REGISTRY_GUILD_ID");

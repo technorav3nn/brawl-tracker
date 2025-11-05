@@ -1,4 +1,4 @@
-/* eslint-disable typescript-sort-keys/interface */
+ 
 export type GearData = Record<string, Gear>;
 
 export interface Gear {

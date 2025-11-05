@@ -1,6 +1,6 @@
 import { $fetch } from "ofetch";
-import { type CdnBrawler } from "./lib/types/brawler-v2";
-import { type GearData } from "./lib/types/gears";
+import type { CdnBrawler } from "./lib/types/brawler-v2";
+import type { GearData } from "./lib/types/gears";
 
 export const CDN_URL_V2 = "https://cdn.deathblows.dev";
 

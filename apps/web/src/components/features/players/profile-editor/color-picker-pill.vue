@@ -12,8 +12,7 @@
 				'--color-light': `var(--color-${color}-500)`,
 				'--color-dark': `var(--color-${color}-400)`,
 			}"
-		>
-		</span>
+		/>
 		<span class="capitalize">{{ color }}</span>
 	</UButton>
 </template>

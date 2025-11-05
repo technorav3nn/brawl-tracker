@@ -40,7 +40,6 @@ function onCardClick() {
 
 const showMenu = computed(() => currentMenuOpen.value === props.index);
 
-// eslint-disable-next-line vue/no-setup-props-destructure
 const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id}`, () => {
 	let apiDate: string;
 	if (props.type === "active") {
@@ -88,6 +87,8 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 		</section>
 
 		<!-- Menu not open -->
+		<!-- Disable this, because we have an if statement checking it -->
+		<!-- eslint-disable-next-line vue/valid-v-slot --->
 		<template v-if="!showMenu" #header>
 			<NuxtImg
 				:id="event.map.id"
@@ -104,6 +105,7 @@ const date = useState(`event-${props.event.map.id}-${props.event.map.gameMode.id
 				<div class="flex gap-1">
 					<Image
 						v-for="brawler in bestBrawlers"
+						:key="brawler.brawler"
 						:src="`${CDN_URL_V2}/brawlify/brawlers/borderless/${brawler.brawler}.png`"
 						width="25"
 						height="25"

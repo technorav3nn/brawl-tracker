@@ -7,8 +7,8 @@ const open = ref(false);
 
 	<UiResponsiveModal
 		v-model:open="open"
-		:drawerProps="{ title: 'drawer', ui: { container: 'h-[500px]!' } }"
-		:modalProps="{ title: 'modal' }"
+		:drawer-props="{ title: 'drawer', ui: { container: 'h-[500px]!' } }"
+		:modal-props="{ title: 'modal' }"
 	>
 		<template #body
 			>Hello world

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type AccordionItem } from "#ui/types";
+import type { AccordionItem } from "#ui/types";
 import { useBrawlerStore } from "$components/features/brawler/brawler-store";
 
 const brawlerStore = useBrawlerStore();
@@ -58,7 +58,7 @@ const items = computed<(AccordionItem | null)[]>(() =>
 				type="multiple"
 				multiple
 				:items="items as AccordionItem[]"
-				:defaultValue="items.map((i) => i?.value) as string[]"
+				:default-value="items.map((i) => i?.value) as string[]"
 			>
 				<template #default="{ item, index }">
 					<span class="truncate">{{ index + 1 }}. {{ item.label }}</span>
