@@ -708,7 +708,7 @@ __metadata:
     ultrahtml: "npm:^1.6.0"
     vite: "npm:*"
     wrangler: "npm:^4.10.0"
-    zod: "npm:^3.24.1"
+    zod: "npm:^4.1.13"
   languageName: unknown
   linkType: soft
 
@@ -24073,14 +24073,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.24.1, zod@npm:^3.25.34, zod@npm:^3.25.76":
+"zod@npm:^3.25.34, zod@npm:^3.25.76":
   version: 3.25.76
   resolution: "zod@npm:3.25.76"
   checksum: 10/f0c963ec40cd96858451d1690404d603d36507c1fc9682f2dae59ab38b578687d542708a7fdbf645f77926f78c9ed558f57c3d3aa226c285f798df0c4da16995
   languageName: node
   linkType: hard
 
-"zod@npm:^4.1.12":
+"zod@npm:^4.1.12, zod@npm:^4.1.13":
   version: 4.1.13
   resolution: "zod@npm:4.1.13"
   checksum: 10/0679190318928f69fcb07751063719de232c663b13955fcdb55db59839569d39f3f29b955cb0cba7af0b724233f88c06b3e84c550397ad4e68f8088fa6799d88
