@@ -9,12 +9,12 @@
 		"lint": "eslint ."
 	},
 	"dependencies": {
-		"ofetch": "^1.4.1"
+		"ofetch": "^1.5.1"
 	},
 	"devDependencies": {
-		"esbuild-plugins-node-modules-polyfill": "^1.6.8",
+		"esbuild-plugins-node-modules-polyfill": "^1.7.1",
 		"tsup": "^8.2.4",
-		"typescript": "5.8.2"
+		"typescript": "5.9.3"
 	},
 	"files": [
 		"dist"
