@@ -15,7 +15,7 @@
 	"dependencies": {
 		"@brawltracker/brawl-api": "workspace:*",
 		"@sapphire/decorators": "^6.1.1",
-		"@sapphire/discord-utilities": "^3.4.4",
+		"@sapphire/discord-utilities": "^4.0.0",
 		"@sapphire/discord.js-utilities": "^7.3.2",
 		"@sapphire/framework": "^5.3.2",
 		"@sapphire/plugin-logger": "^4.0.2",

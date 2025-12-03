@@ -545,7 +545,7 @@ __metadata:
   dependencies:
     "@brawltracker/brawl-api": "workspace:*"
     "@sapphire/decorators": "npm:^6.1.1"
-    "@sapphire/discord-utilities": "npm:^3.4.4"
+    "@sapphire/discord-utilities": "npm:^4.0.0"
     "@sapphire/discord.js-utilities": "npm:^7.3.2"
     "@sapphire/framework": "npm:^5.3.2"
     "@sapphire/plugin-logger": "npm:^4.0.2"
@@ -4714,12 +4714,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@sapphire/discord-utilities@npm:^3.4.4, @sapphire/discord-utilities@npm:^3.5.0":
+"@sapphire/discord-utilities@npm:^3.5.0":
   version: 3.5.0
   resolution: "@sapphire/discord-utilities@npm:3.5.0"
   dependencies:
     discord-api-types: "npm:^0.38.1"
   checksum: 10/6142d7807a58243ca12137189557b217527be45c61ccb1801bd05c54915eacfa379e894226c799af1992fa8c9f0eae9e0ee1a62cd8149fa5598fd219f592e534
+  languageName: node
+  linkType: hard
+
+"@sapphire/discord-utilities@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@sapphire/discord-utilities@npm:4.0.0"
+  dependencies:
+    discord-api-types: "npm:^0.38.30"
+  checksum: 10/d7be32d3759913de54fff3be7bdca7f5ebd61ec39c3aef58c182ceba135ede542e2935db22ff7826d5f3552c5b663f6dc4d040b7b6fb46930618c0f527311900
   languageName: node
   linkType: hard
 
@@ -10708,10 +10717,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16, discord-api-types@npm:^0.38.31":
-  version: 0.38.31
-  resolution: "discord-api-types@npm:0.38.31"
-  checksum: 10/7c3439f4e613434a3de50375508a0bf34894ca9079d91edb66d981260734c771fa7388abbfd27b5bbd94693a74e5cadc0c634c1f89121ad6719249cfef7943d0
+"discord-api-types@npm:^0.38.1, discord-api-types@npm:^0.38.16, discord-api-types@npm:^0.38.30, discord-api-types@npm:^0.38.31":
+  version: 0.38.36
+  resolution: "discord-api-types@npm:0.38.36"
+  checksum: 10/33d11b8a14761489e9e5ccb23f2c4c5668ef71b05a5c065b47098ff51836197582f4baeb5a5e6ddb02f7d487904f379a2131895d0be44e649e1832a7d83816d5
   languageName: node
   linkType: hard
 
