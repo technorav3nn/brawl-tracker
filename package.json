@@ -17,25 +17,25 @@
 		"db:stop": "docker-compose down"
 	},
 	"devDependencies": {
-		"@humanwhocodes/retry": "^0.4.1",
-		"@nuxt/eslint-config": "^1.10.0",
-		"@nuxt/eslint-plugin": "^1.10.0",
+		"@humanwhocodes/retry": "^0.4.3",
+		"@nuxt/eslint-config": "^1.12.1",
+		"@nuxt/eslint-plugin": "^1.12.1",
 		"@vitest/ui": "^3.2.4",
 		"eslint": "^9.39.0",
-		"eslint-plugin-format": "^1.0.2",
+		"eslint-plugin-format": "^1.1.0",
 		"eslint-plugin-import-x": "^4.16.1",
 		"eslint-plugin-n": "^17.23.1",
-		"lint-staged": "^16.2.6",
-		"prettier": "^3.4.2",
-		"prettier-plugin-tailwindcss": "^0.7.1",
-		"turbo": "2.6.0",
+		"lint-staged": "^16.2.7",
+		"prettier": "^3.7.4",
+		"prettier-plugin-tailwindcss": "^0.7.2",
+		"turbo": "2.6.3",
 		"vitest": "^3.2.4"
 	},
 	"resolutions": {
-		"sharp": "0.33.5"
+		"sharp": "0.34.5"
 	},
 	"volta": {
-		"node": "22.13.1"
+		"node": "22.21.1"
 	},
 	"lint-staged": {
 		"*": "prettier --ignore-unknown --write",
@@ -45,5 +45,5 @@
 		"packages/*",
 		"apps/*"
 	],
-	"packageManager": "yarn@4.8.1"
+	"packageManager": "yarn@4.12.0"
 }
