@@ -32,7 +32,7 @@
 		"vitest": "^3.2.4"
 	},
 	"resolutions": {
-		"sharp": "0.33.5"
+		"sharp": "0.35.0"
 	},
 	"volta": {
 		"node": "22.13.1"
