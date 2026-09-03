@@ -74,7 +74,7 @@
 		"@nuxt/content": "^3.5.1",
 		"@nuxt/eslint": "^1.10.0",
 		"@nuxthub/core": "0.9.0",
-		"@nuxtjs/seo": "^3.2.2",
+		"@nuxtjs/seo": "^5.3.14",
 		"@tailwindcss/typography": "^0.5.16",
 		"@types/luxon": "^3.4.2",
 		"drizzle-kit": "^0.31.0",
