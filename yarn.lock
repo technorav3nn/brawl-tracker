@@ -5329,11 +5329,11 @@ __metadata:
   linkType: hard
 
 "@tiptap/core@npm:^3.8.0, @tiptap/core@npm:^3.9.1":
-  version: 3.9.1
-  resolution: "@tiptap/core@npm:3.9.1"
+  version: 3.33.1
+  resolution: "@tiptap/core@npm:3.33.1"
   peerDependencies:
-    "@tiptap/pm": ^3.9.1
-  checksum: 10/d0a523644e3a08d3bfebfb97f72550315434a14fe24248cc625c70b4ef2dba81bfb3620127826c87b40674eb2f94909e0d2944af0544b9d94f3f9247b05f77ce
+    "@tiptap/pm": 3.33.1
+  checksum: 10/6d7763409d053c3a2835ab26e9ba53157ddcc2748488a3412f7a3defdd87f86f83b04f7ed0d698766f58c6f1fedfa04ad19bc11232295078a8c9e8d696ecedc0
   languageName: node
   linkType: hard
 
