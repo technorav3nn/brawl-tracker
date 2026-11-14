@@ -646,7 +646,7 @@ __metadata:
     "@brawltracker/rnt-api": "workspace:*"
     "@brawltracker/supercell-api-utils": "workspace:*"
     "@brawltracker/supercell-id-api": "workspace:*"
-    "@cloudflare/workers-types": "npm:^4.20250410.0"
+    "@cloudflare/workers-types": "npm:^5.20261114.1"
     "@hebilicious/vue-query-nuxt": "npm:^0.3.0"
     "@iconify-json/heroicons": "npm:^1.2.2"
     "@iconify-json/lucide": "npm:^1.2.24"
@@ -808,10 +808,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20250410.0, @cloudflare/workers-types@npm:^4.20250529.0":
+"@cloudflare/workers-types@npm:^4.20250529.0":
   version: 4.20251014.0
   resolution: "@cloudflare/workers-types@npm:4.20251014.0"
   checksum: 10/92d4971b354d6997d37431e32f35a42503b60f12e84050612894b24bf2059bc630005aada61a71513a2c413945b52472ad72007176e3b18809a5f09c24b07279
+  languageName: node
+  linkType: hard
+
+"@cloudflare/workers-types@npm:^5.20261114.1":
+  version: 5.20261114.1
+  resolution: "@cloudflare/workers-types@npm:5.20261114.1"
+  checksum: 10/c27dee4202b048e138c475649d161435b279cde51a68b0297420b3a3ce23ca51de7386a7e7e417369901cfdea1eca4ed3dbbfb046d965e1fac8d4f803385254f
   languageName: node
   linkType: hard
 
