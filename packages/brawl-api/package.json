@@ -9,7 +9,7 @@
 	},
 	"devDependencies": {
 		"tsup": "^8.2.4",
-		"typescript": "5.8.2"
+		"typescript": "5.9.3"
 	},
 	"files": [
 		"dist"
@@ -28,7 +28,7 @@
 		}
 	},
 	"dependencies": {
-		"ofetch": "^1.4.1"
+		"ofetch": "^1.5.1"
 	},
 	"license": "MIT",
 	"keywords": [
